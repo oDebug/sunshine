@@ -13,7 +13,7 @@ import java.util.List;
 @Controller
 public class ContactController {
     @Autowired private OrgService orgService;
-    @Autowired private PeopleService peopleService;
+//    @Autowired private PeopleService peopleService;
 
     @RequestMapping("/")
     public ModelAndView home() {
