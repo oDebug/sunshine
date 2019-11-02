@@ -1,6 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-   
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>  
 <!doctype html>
 <html lang="en">
 <head>
@@ -13,55 +11,12 @@
     <link rel="stylesheet" href="css/all.min.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/navbar_style.css">
     <link rel="stylesheet" href="css/index_style.css">
     <title>Sunshine Ministries Contacts</title>
 </head>
-
-
 <body>
 <jsp:include page="navbar.jsp"/>
-<%--<nav class="navbar navbar-expand-sm bg-light navbar-light fixed-top" id="main-nav">--%>
-<%--    <div class="container">--%>
-
-<%--        <a class="navbar-brand" href="./index.html"><img src="../img/logo.PNG"></a>--%>
-<%--        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">--%>
-<%--            <span class="navbar-toggler-icon"></span>--%>
-<%--        </button>--%>
-<%--        <div class="collapse navbar-collapse" id="navbarCollapse">--%>
-
-
-<%--            <ul class="navbar-nav ml-auto">--%>
-
-
-<%--                <li class="nav-item active">--%>
-<%--                    <a class="nav-link" href="./index.html">Home--%>
-<%--                        <span class="sr-only" width="30" height="30" alt="Sunshine">(current)</span>--%>
-<%--                    </a>--%>
-<%--                </li>--%>
-<%--                <li class="nav-item">--%>
-<%--                    <a class="nav-link" href="./html/reports.php">Reports <span class="sr-only" width="30" height="30"--%>
-<%--                                                                                alt="Sunshine">(current)</span></a>--%>
-<%--                </li>--%>
-<%--                <li class="nav-item">--%>
-<%--                    <a class="nav-link" href="html/searchOrgs.php">Organizations <span class="sr-only" width="30"--%>
-<%--                                                                                       height="30" alt="Sunshine">(current)</span></a>--%>
-<%--                </li>--%>
-<%--                <li class="nav-item">--%>
-<%--                    <a class="nav-link" href="./html/personContact.php">People <span class="sr-only" width="30"--%>
-<%--                                                                                     height="30" alt="Sunshine">(current)</span></a>--%>
-<%--                </li>--%>
-<%--                <li class="nav-item">--%>
-<%--                    <a class="nav-link" href="./html/help.html">Help <span class="sr-only" width="30" height="30"--%>
-<%--                                                                           alt="Sunshine">(current)</span></a>--%>
-<%--                </li>--%>
-<%--            </ul>--%>
-
-
-<%--        </div>--%>
-<%--    </div>--%>
-<%--</nav>--%>
-
-
 <!-- HOME SECTION -->
 <header id="home-section">
     <div class="dark-overlay">

@@ -1,5 +1,3 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
 <nav class="navbar navbar-expand-sm bg-light navbar-light" id="main-nav">
     <div class="container">
 
@@ -21,8 +19,10 @@
                                                                                   alt="Sunshine">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="searchPeople.jsp">People <span class="sr-only" width="30" height="30"
-                                                                                alt="Sunshine">(current)</span></a>
+                    <a class="nav-link" href="searchPeople.jsp">
+                        People
+                        <span class="sr-only" width="30" height="30" alt="Sunshine">(current)</span>
+                    </a>
                 </li>
                 <li class="nav-item ">
                     <a class="nav-link" href="./help.html">Help <span class="sr-only" width="30" height="30"
@@ -32,7 +32,7 @@
                     <a class="nav-link" href="index.jsp">Log Out <span class="sr-only" width="30" height="30"
                                                                        alt="Sunshine">(current)</span></a>
                 </li>
+            </ul>
         </div>
     </div>
 </nav>
-</html>

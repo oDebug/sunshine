@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!doctype html>
 <html>
 <head>
     <!-- Required meta tags -->
@@ -8,14 +9,12 @@
     <!-- Font Awsome
      Fonts and Icons free to use in commercial projects -->
     <link rel="stylesheet" href="css/all.min.css">
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/navbar_style.css">
     <link rel="stylesheet" href="css/dash_style.css">
     <title>Sunshine Ministries Contacts</title>
 </head>
-
-
 <body>
 <jsp:include page="navbar.jsp"/>
 <!-- HOME SECTION -->
@@ -23,8 +22,6 @@
     <div class="dark-overlay">
         <div class="home-inner container">
             <div class="row justify-content-center">
-
-
                 <div class="col-lg-8 ">
                     <div class="card bg-light text-center text-dark card-form">
                         <div class="card-header"><h4>Search Contacts</h4></div>
@@ -40,12 +37,12 @@
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="search" id="searchOrg"
                                        value="option1" checked>
-                                <label class="form-check-label" for="search">Organizations</label>
+                                <label class="form-check-label" for="searchOrg">Organizations</label>
                             </div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="search" id="searchPerson"
                                        value="option2">
-                                <label class="form-check-label" for="search">People</label>
+                                <label class="form-check-label" for="searchPerson">People</label>
                             </div>
                         </div>
                         <div class="card-footer ">
@@ -335,37 +332,36 @@
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
->
-<script src="./javascript/jquery-3.4.1.slim.min.js"></script>
-<script src="./javascript/popper.min.js"></script>
-<script src="./javascript/bootstrap.min.js"></script>
+<%--<script src="./javascript/jquery-3.4.1.slim.min.js"></script>--%>
+<%--<script src="./javascript/popper.min.js"></script>--%>
+<%--<script src="./javascript/bootstrap.min.js"></script>--%>
 
-<!-- add button contact type -->
-<script>
-    $('#orgRadio').click(function () {
-        $('#churchSelect').addClass("d-none");
-        $('#orgSelect').removeClass('d-none');
-        $('#orgname').removeClass('d-none');
-        $('#personfname').addClass('d-none');
-        $('#personlname').addClass('d-none');
-    });
+<%--<!-- add button contact type -->--%>
+<%--<script>--%>
+<%--    $('#orgRadio').click(function () {--%>
+<%--        $('#churchSelect').addClass("d-none");--%>
+<%--        $('#orgSelect').removeClass('d-none');--%>
+<%--        $('#orgname').removeClass('d-none');--%>
+<%--        $('#personfname').addClass('d-none');--%>
+<%--        $('#personlname').addClass('d-none');--%>
+<%--    });--%>
 
-    $('#churchRadio').click(function () {
+<%--    $('#churchRadio').click(function () {--%>
 
-        $('#orgSelect').addClass('d-none');
-        $('#churchSelect').removeClass('d-none');
-        $('#orgname').removeClass('d-none');
-        $('#personfname').addClass('d-none');
-        $('#personlname').addClass('d-none');
+<%--        $('#orgSelect').addClass('d-none');--%>
+<%--        $('#churchSelect').removeClass('d-none');--%>
+<%--        $('#orgname').removeClass('d-none');--%>
+<%--        $('#personfname').addClass('d-none');--%>
+<%--        $('#personlname').addClass('d-none');--%>
 
-    });
-    $('#personRadio').click(function () {
-        $('#orgSelect').addClass('d-none');
-        $('#churchSelect').addClass('d-none');
-        $('#orgname').addClass('d-none');
-        $('#personfname').removeClass('d-none');
-        $('#personlname').removeClass('d-none');
-    });
-</script>
+<%--    });--%>
+<%--    $('#personRadio').click(function () {--%>
+<%--        $('#orgSelect').addClass('d-none');--%>
+<%--        $('#churchSelect').addClass('d-none');--%>
+<%--        $('#orgname').addClass('d-none');--%>
+<%--        $('#personfname').removeClass('d-none');--%>
+<%--        $('#personlname').removeClass('d-none');--%>
+<%--    });--%>
+<%--</script>--%>
 </body>
 </html>
