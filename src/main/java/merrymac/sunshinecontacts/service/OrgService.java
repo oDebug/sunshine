@@ -1,7 +1,7 @@
 package merrymac.sunshinecontacts.service;
 
-import merrymac.sunshinecontacts.entity.Organization;
-import merrymac.sunshinecontacts.repository.OrgRepository;
+import merrymac.sunshinecontacts.dao.entity.Organization;
+import merrymac.sunshinecontacts.dao.repository.OrgRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

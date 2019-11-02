@@ -1,0 +1,140 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+   
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Font Awsome
+    Fonts and Icons free to use in commercial projects -->
+    <link rel="stylesheet" href="css/all.min.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/index_style.css">
+    <title>Sunshine Ministries Contacts</title>
+</head>
+
+
+<body>
+<jsp:include page="navbar.jsp"/>
+<%--<nav class="navbar navbar-expand-sm bg-light navbar-light fixed-top" id="main-nav">--%>
+<%--    <div class="container">--%>
+
+<%--        <a class="navbar-brand" href="./index.html"><img src="../img/logo.PNG"></a>--%>
+<%--        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">--%>
+<%--            <span class="navbar-toggler-icon"></span>--%>
+<%--        </button>--%>
+<%--        <div class="collapse navbar-collapse" id="navbarCollapse">--%>
+
+
+<%--            <ul class="navbar-nav ml-auto">--%>
+
+
+<%--                <li class="nav-item active">--%>
+<%--                    <a class="nav-link" href="./index.html">Home--%>
+<%--                        <span class="sr-only" width="30" height="30" alt="Sunshine">(current)</span>--%>
+<%--                    </a>--%>
+<%--                </li>--%>
+<%--                <li class="nav-item">--%>
+<%--                    <a class="nav-link" href="./html/reports.php">Reports <span class="sr-only" width="30" height="30"--%>
+<%--                                                                                alt="Sunshine">(current)</span></a>--%>
+<%--                </li>--%>
+<%--                <li class="nav-item">--%>
+<%--                    <a class="nav-link" href="html/searchOrgs.php">Organizations <span class="sr-only" width="30"--%>
+<%--                                                                                       height="30" alt="Sunshine">(current)</span></a>--%>
+<%--                </li>--%>
+<%--                <li class="nav-item">--%>
+<%--                    <a class="nav-link" href="./html/personContact.php">People <span class="sr-only" width="30"--%>
+<%--                                                                                     height="30" alt="Sunshine">(current)</span></a>--%>
+<%--                </li>--%>
+<%--                <li class="nav-item">--%>
+<%--                    <a class="nav-link" href="./html/help.html">Help <span class="sr-only" width="30" height="30"--%>
+<%--                                                                           alt="Sunshine">(current)</span></a>--%>
+<%--                </li>--%>
+<%--            </ul>--%>
+
+
+<%--        </div>--%>
+<%--    </div>--%>
+<%--</nav>--%>
+
+
+<!-- HOME SECTION -->
+<header id="home-section">
+    <div class="dark-overlay">
+        <div class="home-inner container">
+            <div class="row">
+                <div class="col-lg-8 d-none d-lg-block">
+                    <h1 class="display-4">
+                        <strong>Sunshine Ministries</strong>
+                    </h1>
+                    <div class="d-flex">
+                        <div class="p-4 align-self-start">
+                            <i class="fas fa-check fa-2x"></i>
+                        </div>
+                        <div class="p-4 align-self-end">
+                            <h2>Add & Find Contacts</h2>
+                        </div>
+
+                    </div>
+                    <div class="d-flex">
+                        <div class="p-4 align-self-start">
+                            <i class="fas fa-check fa-2x"></i>
+                        </div>
+                        <div class="p-4 align-self-end">
+                            <h2> Track Gift-in-Kind Donations</h2>
+                        </div>
+
+                    </div>
+                    <div class="d-flex">
+                        <div class="p-4 align-self-start">
+                            <i class="fas fa-check fa-2x"></i>
+                        </div>
+                        <div class="p-4 align-self-end">
+                            <h2>Keep Notes</h2>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card bg-primary text-center card-form">
+                        <div class="card-body">
+                            <h3>User Login</h3>
+                            <p>Authorized use and access only.</p>
+                            <div class="form-group">
+                                <form>
+                                    <input type="text" class="form-control form-control-lg" placeholder="Username">
+                                </form>
+                            </div>
+                            <div class="form-group">
+                                <form>
+                                    <input type="password" class="form-control form-control-lg" placeholder="Password">
+                                </form>
+                            </div>
+                            <button type="submit" class="btn btn-outline-light btn-block" id="login">Login</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+>
+<script src="javascript/jquery-3.4.1.slim.min.js"></script>
+<script src="javascript/popper.min.js"></script>
+<script src="javascript/bootstrap.min.js"></script>
+
+<script>
+    $('#login').click(function () {
+        window.location = 'dashboard.jsp';
+    });
+</script>
+</body>
+</html>

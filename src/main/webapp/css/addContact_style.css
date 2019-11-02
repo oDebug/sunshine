@@ -1,0 +1,23 @@
+
+.navbar {
+
+    border-bottom: #008ed6 3px solid;
+    position: relative;
+    z-index: 999;
+    padding-top: 0px;
+    padding-bottom: 0px;
+   
+}
+
+.navbar img {
+
+    width: 12rem;
+    
+}
+
+body {
+    background-color: #c0c0c0;
+}
+.card {
+    margin-top: 2rem;
+}

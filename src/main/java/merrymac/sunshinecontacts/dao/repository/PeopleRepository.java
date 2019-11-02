@@ -1,6 +1,6 @@
-package merrymac.sunshinecontacts.repository;
+package merrymac.sunshinecontacts.dao.repository;
 
-import merrymac.sunshinecontacts.entity.People;
+import merrymac.sunshinecontacts.dao.entity.People;
 import org.springframework.data.repository.CrudRepository;
 
 public interface PeopleRepository extends CrudRepository<People, Long> {

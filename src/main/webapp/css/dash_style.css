@@ -1,0 +1,50 @@
+
+.navbar {
+
+    border-bottom: #008ed6 3px solid;
+    
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+
+.navbar img {
+
+    width: 12rem;
+    
+}
+html {
+/* image is free and open source 
+Photo by Brittney Butler on Unsplash */
+    background: url(../img/dash.jpg) no-repeat center center fixed;
+    background-size: cover;
+}
+#home-section {
+    color: white;
+}
+#home-section .dark-overlay, .dark-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100%;
+    background: rgba(0,0,0,0.7);
+} 
+#home-section .home-inner {
+    padding-top: 200px;
+}
+
+#home-section .card-form {
+    opacity: 1;
+    color: white;
+}
+
+#home-section .fas  {
+    color: #0083d6;
+    background: white;
+    padding: 5px;
+    border-radius: 5px;
+}
+#first-form {
+    padding-top: 200px;
+}
