@@ -332,9 +332,9 @@
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<%--<script src="./javascript/jquery-3.4.1.slim.min.js"></script>--%>
-<%--<script src="./javascript/popper.min.js"></script>--%>
-<%--<script src="./javascript/bootstrap.min.js"></script>--%>
+<script src="./javascript/jquery-3.4.1.slim.min.js"></script>
+<script src="./javascript/popper.min.js"></script>
+<script src="./javascript/bootstrap.min.js"></script>
 
 <%--<!-- add button contact type -->--%>
 <%--<script>--%>
