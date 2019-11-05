@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="css/navbar_style.css">
 <nav class="navbar navbar-expand-sm bg-light navbar-light" id="main-nav">
     <div class="container">
 

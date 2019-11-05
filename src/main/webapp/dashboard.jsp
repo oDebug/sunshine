@@ -16,7 +16,7 @@
     <title>Sunshine Ministries Contacts</title>
 </head>
 <body>
-<jsp:include page="navbar.jsp"/>
+<jsp:include page="navbar.jsp" />
 <!-- HOME SECTION -->
 <header id="home-section">
     <div class="dark-overlay">
