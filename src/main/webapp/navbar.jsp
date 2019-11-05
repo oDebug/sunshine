@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-sm bg-light navbar-light" id="main-nav">
+<nav class="navbar navbar-expand-sm bg-light navbar-light fixed-top" id="main-nav">
     <div class="container">
 
         <a class="navbar-brand" href="dashboard.jsp"><img src="img/logo.PNG"></a>
@@ -10,6 +10,7 @@
                 <li class="nav-item ">
                     <a class="nav-link" href="dashboard.jsp">Home <span class="sr-only" width="30" height="30"
                                                                         alt="Sunshine">(current)</span></a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="reports.php">Reports <span class="sr-only" width="30" height="30"
                                                                            alt="Sunshine">(current)</span></a>
