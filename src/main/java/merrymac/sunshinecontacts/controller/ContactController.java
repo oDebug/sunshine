@@ -45,4 +45,12 @@ public class ContactController {
         return mav;
     }
 
+    @GetMapping("/editOrganization")
+    public ModelAndView editOrg(@RequestParam("id") String id) {
+        Long orgId = Long.parseLong(id);
+        Organization organization = orgService.get(orgId);
+        ModelAndView mav = new ModelAndView("editOrganization");
+        mav.addObject("result", organization);
+        return mav;
+    }
 }
