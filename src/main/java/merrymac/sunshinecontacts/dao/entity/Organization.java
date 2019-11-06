@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +28,27 @@ public class Organization {
 
     @Column(name = "org_type", nullable = false)
     private String type;
+
+    @Column(name="create_timestamp")
+    private Timestamp createTimestamp;
+
+    @Column(name="create_user")
+    private String createUser;
+
+    @Column(name="last_update_timestamp")
+    private Timestamp lastUpdateTimestamp;
+
+    @Column(name="last_update_user")
+    private String lastUpdateUser;
+
+    @Column(name="status_code")
+    private String statusCode;
+
+    @Column(name="delete_timestamp")
+    private Timestamp deleteTimestamp;
+
+    @Column(name="delete_user")
+    private String deleteUser;
 
     @OneToMany(
             mappedBy = "organization",

@@ -39,7 +39,7 @@ public class OrgAction implements Serializable {
     private String notes;
 
     @Column(name="due_date")
-    private Date due_date;
+    private Date dueDate;
 
     @Column(name="create_user")
     private String createUser;

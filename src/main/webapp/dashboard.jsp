@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html>
 <head>
@@ -16,7 +17,7 @@
     <title>Sunshine Ministries Contacts</title>
 </head>
 <body>
-<jsp:include page="navbar.jsp" />
+<jsp:include page="navbar.jsp"/>
 <!-- HOME SECTION -->
 <header id="home-section">
     <div class="dark-overlay">
@@ -32,7 +33,6 @@
                                 </div>
                                 <input type="text" class="form-control" placeholder="Search Name">
                             </div>
-
 
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="search" id="searchOrg"
@@ -269,60 +269,72 @@
                                     <th>Start Date</th>
                                     <th>FollowUp Date</th>
                                     <th>Note</th>
-                                    <th>Status</th>
+                                    <%--                                    <th>Status</th>--%>
                                     </thead>
                                     <tbody>
-                                    <td>003</td>
-                                    <td>Hazelwood Baptist Church</td>
-                                    <td>2019-10-7</td>
-                                    <td>2019-10-10</td>
-                                    <td>Call to thank Hazelwood Baptist Church for donation</td>
-                                    <td>In Progress</td>
+                                    <c:forEach var="action" items="${upcomingActions}">
+                                        <tr id="${action.getOrganization().getId()}">
+                                            <td>${action.getId()}</td>
+                                            <td>
+                                                <a href="editOrganization?id=${action.getOrganization().getId()}">
+                                                    ${action.getOrganization().getName()}
+                                                </a>
+                                            </td>
+                                            <td>${action.getCreateDate()}</td>
+                                            <td>${action.getDueDate()}</td>
+                                            <td>${action.getNotes()}</td>
+                                                <%--                                            <td>${action.isCompleted()}</td>--%>
+                                        </tr>
+                                    </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
                     <div class="card bg-primary text-center card-form mt-3">
-                        <div class="card-header"><h4>Recently Accessed Contacts</h4></div>
+                        <div class="card-header"><h4>Recently Added Organizations</h4></div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-primary table-hover">
                                     <thead class="thead-dark">
-                                    <th>Contact ID#</th>
+                                    <th>ID#</th>
                                     <th>Name</th>
                                     <th>Contact Type</th>
-                                    <th>Date</th>
+                                    <th>Date Created</th>
                                     </thead>
                                     <tbody>
-                                    <td>002</td>
-                                    <td>Simple Church St. Louis</td>
-                                    <td>Church</td>
-                                    <td>2019-10-20</td>
+                                    <c:forEach var="org" items="${recentOrgs}">
+                                        <tr id="${org.getId()}">
+                                            <td><a href="editOrganization?id=${org.getId()}">${org.getId()}</a></td>
+                                            <td>${org.getName()}</td>
+                                            <td>${org.getType()}</td>
+                                            <td>${org.getCreateTimestamp()}</td>
+                                        </tr>
+                                    </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
-                    <div class="card bg-primary text-center card-form mt-3">
-                        <div class="card-header"><h4>Recent Reports</h4></div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-primary table-hover">
-                                    <thead class="thead-dark">
-                                    <th>Type</th>
-                                    <th>Date</th>
-                                    <th>Desc</th>
-                                    </thead>
-                                    <tbody>
-                                    <td>Action Report</td>
-                                    <td>2019-10-20</td>
-                                    <td>Itemized list of Actions for Hazelwood Baptist Church</td>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+<%--                    <div class="card bg-primary text-center card-form mt-3">--%>
+<%--                        <div class="card-header"><h4>Recent Reports</h4></div>--%>
+<%--                        <div class="card-body">--%>
+<%--                            <div class="table-responsive">--%>
+<%--                                <table class="table table-primary table-hover">--%>
+<%--                                    <thead class="thead-dark">--%>
+<%--                                    <th>Type</th>--%>
+<%--                                    <th>Date</th>--%>
+<%--                                    <th>Desc</th>--%>
+<%--                                    </thead>--%>
+<%--                                    <tbody>--%>
+<%--                                    <td>Action Report</td>--%>
+<%--                                    <td>2019-10-20</td>--%>
+<%--                                    <td>Itemized list of Actions for Hazelwood Baptist Church</td>--%>
+<%--                                    </tbody>--%>
+<%--                                </table>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
                 </div>
             </div>
         </div>

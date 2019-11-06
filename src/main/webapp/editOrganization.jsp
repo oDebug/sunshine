@@ -28,7 +28,7 @@
                 <div class="row">
                     <div class="col-12">
                         <h1 class="ml-3 text-left">
-                            Select Contact Type
+                            Manage Contact Info
                         </h1>
                     </div>
                 </div>

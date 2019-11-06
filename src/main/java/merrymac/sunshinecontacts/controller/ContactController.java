@@ -1,6 +1,8 @@
 package merrymac.sunshinecontacts.controller;
 
+import merrymac.sunshinecontacts.dao.entity.OrgAction;
 import merrymac.sunshinecontacts.dao.entity.Organization;
+import merrymac.sunshinecontacts.service.OrgActionService;
 import merrymac.sunshinecontacts.service.OrgAliasService;
 import merrymac.sunshinecontacts.service.OrgService;
 //import merrymac.sunshinecontacts.service.PeopleService;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -16,16 +19,24 @@ import java.util.Map;
 public class ContactController {
     @Autowired private OrgService orgService;
     @Autowired private OrgAliasService orgAliasService;
+    @Autowired private OrgActionService orgActionService;
 
 //    @Autowired private PeopleService peopleService;
 
     @RequestMapping("/dashboard")
-    public String dashboard(Map<String, Object> model) {
-        model.put("message", "HowToDoInJava Reader !!");
-        return "dashboard";
+    public ModelAndView dashboard(Map<String, Object> model) {
+        ModelAndView mav = new ModelAndView("dashboard");
+
+        List<Organization> recentOrgs = orgService.getRecentlyAddedOrgs();
+        mav.addObject("recentOrgs", recentOrgs);
+
+        List<OrgAction> upcomingActions = orgActionService.getUpcomingActions();
+        mav.addObject("upcomingActions", upcomingActions);
+
+        return mav;
     }
+
     @RequestMapping(value="/listOrgs", method= RequestMethod.GET )
-    @ResponseBody
     public ModelAndView listOrgs(@RequestParam(value = "name", defaultValue = "") String name ) {
         List<Organization> organizations;
         if (name.isEmpty() ) {
@@ -36,7 +47,9 @@ public class ContactController {
         ModelAndView mav = new ModelAndView("searchOrgs");
         mav.addObject("tblResults", organizations);
         return mav;
+
     }
+
     @GetMapping("/searchOrgs")
     public ModelAndView searchOrgs(Map<String, Object> model) {
         List<Organization> organizations = orgService.listAll();
