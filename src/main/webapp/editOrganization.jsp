@@ -78,6 +78,11 @@
                                     <label for="Phone_${i}">Phone ${i + 1}</label>
                                     <input type="text" class="form-control" value="${phn.getPhone()}">
                                 </div>
+
+                                <div class="form-group col-sm-3">
+                                    <label for="Phone_${i}">Phone ${i + 1} Desc</label>
+                                    <input type="text" class="form-control" value="${phn.getType()}" >
+                                </div>
                                 <c:set var="i" value="${i} + 1" ></c:set>
                             </c:forEach>
                         </div>

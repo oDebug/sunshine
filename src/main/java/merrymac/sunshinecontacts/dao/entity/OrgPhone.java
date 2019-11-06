@@ -26,6 +26,9 @@ public class OrgPhone {
     @Column(name = "phone")
     private Long phone;
 
+    @Column(name="phone_type")
+    private String type;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="org_id")
     private Organization organization;
