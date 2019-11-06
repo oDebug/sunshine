@@ -1,9 +1,15 @@
 package merrymac.sunshinecontacts.dao.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,5 +41,12 @@ public class Organization {
             orphanRemoval = true
     )
     private List<OrgAddress> address = new ArrayList<>();
+
+    @OneToMany(
+            mappedBy = "organization",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<OrgAction> orgActions = new ArrayList<>();
 
 }
