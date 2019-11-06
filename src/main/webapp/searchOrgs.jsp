@@ -207,7 +207,7 @@ Fonts and Icons free to use in commercial projects -->
             <th onclick="sortTable(0)" >Name</th>
             <th>Contact Type</th>
             <th>Phone#</th>
-            <th>Email</th>
+            <th>Address</th>
             <th>Upcoming Action Due</th>
         </tr>
         </thead>
@@ -218,6 +218,7 @@ Fonts and Icons free to use in commercial projects -->
                 <td>${org.getName()}</td>
                 <td>${org.getType()}</td>
                 <td>${org.getPhone()[0].getPhone()}</td>
+                <td>${not empty org.getAddress()[0] ? org.getAddress()[0].getStreet() : ''}</td>
             </tr>
         </c:forEach>
         <%--        <tbody id="tblResults">--%>

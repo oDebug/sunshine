@@ -29,4 +29,11 @@ public class Organization {
     )
     private List<OrgPhone> phone = new ArrayList<>();
 
+    @OneToMany(
+            mappedBy = "organization",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<OrgAddress> address = new ArrayList<>();
+
 }
