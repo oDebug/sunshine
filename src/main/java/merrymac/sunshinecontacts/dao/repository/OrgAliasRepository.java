@@ -9,10 +9,9 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface OrgRepository extends CrudRepository<Organization, Long> {
-    @Query("SELECT DISTINCT o " +
-            "FROM Organization o " +
-            "JOIN OrgAlias oa on o.id=oa.org_id " +
-            "WHERE oa.alias LIKE :alias")
+public interface OrgAliasRepository extends CrudRepository<Organization, Long> {
+    @Query("SELECT DISTINCT organization " +
+            "FROM OrgAlias oa " +
+            "WHERE LOCATE(:alias,oa.alias) > 0")
     List<Organization> searchByAlias(@Param("alias") String alias);
 }

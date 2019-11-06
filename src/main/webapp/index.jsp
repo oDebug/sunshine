@@ -17,7 +17,7 @@
     <title>Sunshine Ministries Contacts</title>
 </head>
 <body>
-<jsp:include page="navbar.jsp"></jsp:include>
+<%--<jsp:include page="navbar.jsp"></jsp:include>--%>
 <!-- HOME SECTION -->
 <header id="home-section">
     <div class="dark-overlay">
@@ -83,7 +83,7 @@
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
-<script src="javascript/jquery-3.4.1.slim.min.js"></script>
+<script src="javascript/jquery-3.4.1.min.js"></script>
 <script src="javascript/popper.min.js"></script>
 <script src="javascript/bootstrap.min.js"></script>
 
