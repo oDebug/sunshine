@@ -15,4 +15,7 @@ public interface OrgRepository extends CrudRepository<Organization, Long> {
             "JOIN OrgAlias oa on o.id=oa.org_id " +
             "WHERE oa.alias LIKE :alias")
     List<Organization> searchByAlias(@Param("alias") String alias);
+
+    List<Organization>findTop5ByOrderByCreateTimestampDesc();
+
 }

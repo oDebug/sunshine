@@ -22,6 +22,10 @@ public class OrgService {
         return (List<Organization>) orgRepository.findAll();
     }
 
+    public List<Organization> getRecentlyAddedOrgs() {
+        return orgRepository.findTop5ByOrderByCreateTimestampDesc();
+    }
+
     public Organization get(Long id) {
         return orgRepository.findById(id).get();
     }
