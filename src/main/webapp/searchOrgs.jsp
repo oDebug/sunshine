@@ -216,6 +216,8 @@ Fonts and Icons free to use in commercial projects -->
             <tr id="${org.getId()}">
                 <td>${org.getId()}</td>
                 <td>${org.getName()}</td>
+                <td>${org.getType()}</td>
+                <td>${org.getPhone()[0].getPhone()}</td>
             </tr>
         </c:forEach>
         <%--        <tbody id="tblResults">--%>
