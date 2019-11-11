@@ -1,5 +1,6 @@
 package merrymac.sunshinecontacts.dao.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -28,9 +29,5 @@ public class OrgPhone {
 
     @Column(name="phone_type")
     private String type;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="org_id")
-    private Organization organization;
 
 }

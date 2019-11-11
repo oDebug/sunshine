@@ -26,7 +26,7 @@
                 <div class="col-lg-8 ">
                     <div class="card bg-light text-center text-dark card-form">
                         <div class="card-header"><h4>Search Contacts</h4></div>
-                        <div class="card-body">
+                        <form class="card-body">
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <button class="btn btn-secondary" type="button">Search</button>
@@ -44,7 +44,7 @@
                                        value="option2">
                                 <label class="form-check-label" for="searchPerson">People</label>
                             </div>
-                        </div>
+                        </form>
                         <div class="card-footer ">
                             <!-- Add data button modal -->
 

@@ -14,6 +14,9 @@ Fonts and Icons free to use in commercial projects -->
 <link rel="stylesheet" href="../css/navbar_style.css">
 <link rel="stylesheet" href="../css/addContact_style.css">
 
+<script src="javascript/jquery-3.4.1.min.js"></script>
+<script src="javascript/searchOrgs.js"></script>
+
 <title>Sunshine Ministries Contacts</title>
 <body>
 
@@ -24,12 +27,12 @@ Fonts and Icons free to use in commercial projects -->
     <div class="row">
         <div class="col-lg-5">
             <div class="input-group">
-                <form class="input-group-prepend" action="listOrgs">
+                <form class="input-group-prepend" action="listOrgs2">
                     <button class="btn bg-primary text-white" type="submit">
                         <i class="fas fa-search"></i>
                     </button>
-                    <%--                    <input type="text" class="form-control" placeholder="Search by contact name" onkeyup="showResults(this.value)">--%>
-                    <input type="text" name="name" class="form-control" placeholder="Search by contact name">
+                        <input type="text" class="form-control" placeholder="Search by contact name" onkeyup="showResults(this.value)">
+<%--                    <input type="text" name="name" class="form-control" placeholder="Search by contact name">--%>
                 </form>
             </div>
         </div>
@@ -219,7 +222,7 @@ Fonts and Icons free to use in commercial projects -->
 </div>
 
 <div class="table-responsive">
-    <table id="contactTable pagination" class="table table-hover table-bordered ml-3">
+    <table id="contactTable pagination" class="table table-hover table-bordered ml-3" name="tableResults">
         <caption>Note: Dates are formatted as Year-Month-Day. </br> Click on a table row to view more contact info and
             actions.
         </caption>
@@ -239,8 +242,8 @@ Fonts and Icons free to use in commercial projects -->
                 <td><a href="editOrganization?id=${org.getId()}">${org.getId()}</a></td>
                 <td>${org.getName()}</td>
                 <td>${org.getType()}</td>
-                <td>${org.getPhone()[0].getPhone()}</td>
-                <td>${not empty org.getAddress()[0] ? org.getAddress()[0].getStreet() : ''}</td>
+                <td>${org.getPhones()[0].getPhone()}</td>
+                <td>${not empty org.getAddresses()[0] ? org.getAddresses()[0].getStreet() : ''}</td>
             </tr>
         </c:forEach>
         <%--        <tbody id="tblResults">--%>
@@ -540,10 +543,8 @@ Fonts and Icons free to use in commercial projects -->
 </div>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="../javascript/jquery-3.4.1.min.js"></script>
 <script src="../javascript/popper.min.js"></script>
 <script src="../javascript/bootstrap.min.js"></script>
-<script src="../javascript/searchOrgs.js"></script>
 
 </body>
 </html>

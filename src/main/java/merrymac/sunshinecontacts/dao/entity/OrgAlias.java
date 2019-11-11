@@ -29,7 +29,7 @@ public class OrgAlias implements Serializable {
     private String alias;
 
     @Column(name="org_id", insertable = false, updatable = false)
-    private Long org_id;
+    private Long orgId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="org_id")

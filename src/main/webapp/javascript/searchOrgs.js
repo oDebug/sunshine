@@ -54,28 +54,55 @@
 //     }
 // }
 
-// function showResults(str) {
-//     if (str.length == 0) {
-//         document.getElementById("tblResults").innerHTML = "";
-//         return;
-//     } else {
-//         xmlhttp = new XMLHttpRequest();
-//         // xmlhttp.onreadystatechange = function () {
-//         //     if (this.readyState == 4 && this.status == 200) {
-//         //         document.getElementById("tblResults").innerHTML = this.responseText;
-//         //     }
-//         // };
-//         xmlhttp.open("GET", "listOrgs?name=" + str, true);
-//         xmlhttp.send();
-//     }
-// }
-// $(document).ready(function() {
-//     $(".clickable-row").click(function() {
-//         window.location = $(this).data("href");
-//     })
-// })
-$(document).ready(function($) {
-    $(".clickable-row").click(function() {
+function showResults(str) {
+    if (str.length == 0) {
+        document.getElementById("tblResults").innerHTML = "";
+        return;
+    } else {
+        $.ajax({
+            url: "/listOrgs2?name=" + str,
+            type: "GET",
+            success: function (data) {
+                generateTable(data);
+            }
+        })
+    }
+};
+
+function generateTable(data) {
+    $("#tableResults").empty();
+
+    var table = $("#tableResults");
+
+    var headerRow = "<thead class=\"thead-dark\">" +
+        "<tr class=\"header\">" +
+        "<th>ID#</th>" +
+        "<th onclick=\"sortTable(0)\">Name</th>" +
+        "<th>Contact Type</th>" +
+        "<th>Phone#</th>" +
+        "<th>Address</th>" +
+        "<%-- <th>Upcoming Action Due</th> --%>" +
+        "</tr>" +
+        "</thead>";
+
+    table.append(headerRow);
+
+    for(var i=0; i< data.links.id.length; i++){
+        table.append(createRow(data.links.id[i]));
+    }
+}
+
+function createRow(data) {
+    var trElement = "<tr class=\"clickable-row\">";
+    trElement+= "<td><a href='editOrganization?id=" + data.id + "'>" + data.id + "</a></td>";
+    trElement+="<td>data.name</td></td>";
+    trElement+="<td>data.type</td>";
+    trElement+="<td>data.phone[0].phone}</td>";
+    trElement+="<td>data.address[0].address}</td></tr>";
+    return trElement;
+}
+$(document).ready(function ($) {
+    $(".clickable-row").click(function () {
         window.location = $(this).data("href");
     });
 });

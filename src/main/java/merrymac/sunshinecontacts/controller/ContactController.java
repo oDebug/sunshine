@@ -1,9 +1,7 @@
 package merrymac.sunshinecontacts.controller;
 
-import merrymac.sunshinecontacts.dao.entity.OrgAction;
-import merrymac.sunshinecontacts.dao.entity.Organization;
-import merrymac.sunshinecontacts.service.OrgActionService;
-import merrymac.sunshinecontacts.service.OrgAliasService;
+import merrymac.sunshinecontacts.response.OrgActionResponse;
+import merrymac.sunshinecontacts.response.OrgResponse;
 import merrymac.sunshinecontacts.service.OrgService;
 //import merrymac.sunshinecontacts.service.PeopleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,15 +9,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 @Controller
 public class ContactController {
     @Autowired private OrgService orgService;
-    @Autowired private OrgAliasService orgAliasService;
-    @Autowired private OrgActionService orgActionService;
 
 //    @Autowired private PeopleService peopleService;
 
@@ -27,43 +22,53 @@ public class ContactController {
     public ModelAndView dashboard(Map<String, Object> model) {
         ModelAndView mav = new ModelAndView("dashboard");
 
-        List<Organization> recentOrgs = orgService.getRecentlyAddedOrgs();
+        List<OrgResponse> recentOrgs = orgService.getRecentlyAddedOrgs();
         mav.addObject("recentOrgs", recentOrgs);
 
-        List<OrgAction> upcomingActions = orgActionService.getUpcomingActions();
+        List<OrgActionResponse> upcomingActions = orgService.getUpcomingActions();
         mav.addObject("upcomingActions", upcomingActions);
 
         return mav;
     }
 
-    @RequestMapping(value="/listOrgs", method= RequestMethod.GET )
-    public ModelAndView listOrgs(@RequestParam(value = "name", defaultValue = "") String name ) {
-        List<Organization> organizations;
+//    @RequestMapping(value="/listOrgs", method= RequestMethod.GET )
+//    public ModelAndView listOrgs(@RequestParam(value = "name", defaultValue = "") String name ) {
+//        List<Organization> organizations;
+//        if (name.isEmpty() ) {
+//            organizations = orgService.listAll();
+//        } else {
+//            organizations = orgAliasService.searchByAlias(name);
+//        }
+//        ModelAndView mav = new ModelAndView("searchOrgs");
+//        mav.addObject("tblResults", organizations);
+//        return mav;
+//
+//    }
+
+    @RequestMapping(value="/listOrgs2", method= RequestMethod.GET )
+    public List<OrgResponse> listOrgs2(@RequestParam(value = "name", defaultValue = "") String name ) {
+        List<OrgResponse> response;
         if (name.isEmpty() ) {
-            organizations = orgService.listAll();
+            response = orgService.listAll();
         } else {
-            organizations = orgAliasService.searchByAlias(name);
+            response = orgService.searchByAlias(name);
         }
-        ModelAndView mav = new ModelAndView("searchOrgs");
-        mav.addObject("tblResults", organizations);
-        return mav;
-
+        return response;
     }
-
     @GetMapping("/searchOrgs")
     public ModelAndView searchOrgs(Map<String, Object> model) {
-        List<Organization> organizations = orgService.listAll();
+        List<OrgResponse> response = orgService.listAll();
         ModelAndView mav = new ModelAndView("searchOrgs");
-        mav.addObject("tblResults", organizations);
+        mav.addObject("tblResults", response);
         return mav;
     }
 
     @GetMapping("/editOrganization")
     public ModelAndView editOrg(@RequestParam("id") String id) {
         Long orgId = Long.parseLong(id);
-        Organization organization = orgService.get(orgId);
+        OrgResponse response = orgService.get(orgId);
         ModelAndView mav = new ModelAndView("editOrganization");
-        mav.addObject("result", organization);
+        mav.addObject("result", response);
         return mav;
     }
 }
