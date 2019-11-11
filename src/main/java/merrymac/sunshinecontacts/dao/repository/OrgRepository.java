@@ -10,12 +10,6 @@ import java.util.List;
 
 @Repository
 public interface OrgRepository extends CrudRepository<Organization, Long> {
-    @Query("SELECT DISTINCT o " +
-            "FROM Organization o " +
-            "JOIN OrgAlias oa on o.id=oa.org_id " +
-            "WHERE oa.alias LIKE :alias")
-    List<Organization> searchByAlias(@Param("alias") String alias);
-
+    Organization findById(Integer id);
     List<Organization>findTop5ByOrderByCreateTimestampDesc();
-
 }

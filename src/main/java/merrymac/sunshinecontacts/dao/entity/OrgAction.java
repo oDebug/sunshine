@@ -1,5 +1,6 @@
 package merrymac.sunshinecontacts.dao.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,7 +28,7 @@ public class OrgAction implements Serializable {
     private Long id;
 
     @Column(name="org_id", insertable = false, updatable = false)
-    private Long org_id;
+    private Long orgId;
 
     @Column(name="action_type")
     private String actionType;
@@ -52,9 +53,5 @@ public class OrgAction implements Serializable {
 
     @Column(name="complete_user")
     private String completeUser;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="org_id")
-    private Organization organization;
 
 }

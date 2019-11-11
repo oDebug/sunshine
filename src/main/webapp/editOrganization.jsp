@@ -73,7 +73,7 @@
                     <div class="card-body">
                         <div class="form-row">
                             <c:set var="i" value="0" ></c:set>
-                            <c:forEach var="phn" items="${result.getPhone()}">
+                            <c:forEach var="phn" items="${result.getPhones()}">
                                 <div class="form-group col-sm-3">
                                     <label for="Phone_${i}">Phone ${i + 1}</label>
                                     <input type="text" class="form-control" value="${phn.getPhone()}">

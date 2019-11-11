@@ -11,10 +11,7 @@ import java.util.List;
 @Service
 @Transactional
 public class OrgAliasService {
-    @Autowired
-    OrgAliasRepository orgAliasRepository;
 
-    public List<Organization> searchByAlias(String alias) {
-        return orgAliasRepository.searchByAlias(alias);
-    }
+
+
 }
