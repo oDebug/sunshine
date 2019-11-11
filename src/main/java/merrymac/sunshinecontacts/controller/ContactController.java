@@ -31,22 +31,8 @@ public class ContactController {
         return mav;
     }
 
-//    @RequestMapping(value="/listOrgs", method= RequestMethod.GET )
-//    public ModelAndView listOrgs(@RequestParam(value = "name", defaultValue = "") String name ) {
-//        List<Organization> organizations;
-//        if (name.isEmpty() ) {
-//            organizations = orgService.listAll();
-//        } else {
-//            organizations = orgAliasService.searchByAlias(name);
-//        }
-//        ModelAndView mav = new ModelAndView("searchOrgs");
-//        mav.addObject("tblResults", organizations);
-//        return mav;
-//
-//    }
-
-    @RequestMapping(value="/listOrgs2", method= RequestMethod.GET )
-    public List<OrgResponse> listOrgs2(@RequestParam(value = "name", defaultValue = "") String name ) {
+    @RequestMapping(value="/listOrgs", method= RequestMethod.GET )
+    public List<OrgResponse> listOrgs(@RequestParam(value = "name", defaultValue = "") String name ) {
         List<OrgResponse> response;
         if (name.isEmpty() ) {
             response = orgService.listAll();
