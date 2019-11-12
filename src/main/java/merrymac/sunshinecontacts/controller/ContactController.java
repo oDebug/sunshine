@@ -32,6 +32,7 @@ public class ContactController {
     }
 
     @RequestMapping(value="/listOrgs", method= RequestMethod.GET )
+    @ResponseBody
     public List<OrgResponse> listOrgs(@RequestParam(value = "name", defaultValue = "") String name ) {
         List<OrgResponse> response;
         if (name.isEmpty() ) {

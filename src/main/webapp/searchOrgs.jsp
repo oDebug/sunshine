@@ -27,7 +27,7 @@ Fonts and Icons free to use in commercial projects -->
     <div class="row">
         <div class="col-lg-5">
             <div class="input-group">
-                <form class="input-group-prepend" action="listOrgs2">
+                <form class="input-group-prepend" action="listOrgs">
                     <button class="btn bg-primary text-white" type="submit">
                         <i class="fas fa-search"></i>
                     </button>

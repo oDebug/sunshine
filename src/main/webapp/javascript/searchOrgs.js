@@ -60,7 +60,7 @@ function showResults(str) {
         return;
     } else {
         $.ajax({
-            url: "/listOrgs2?name=" + str,
+            url: "/listOrgs?name=" + str,
             type: "GET",
             success: function (data) {
                 generateTable(data);
