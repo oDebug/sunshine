@@ -55,18 +55,14 @@
 // }
 
 function showResults(str) {
-    if (str.length == 0) {
-        document.getElementById("tblResults").innerHTML = "";
-        return;
-    } else {
-        $.ajax({
-            url: "/listOrgs?name=" + str,
-            type: "GET",
-            success: function (data) {
-                generateTable(data);
-            }
-        })
-    }
+    var url = "/listOrgs?name=" + str;
+    $.ajax({
+        url: url,
+        type: "GET",
+        success: function (data) {
+            generateTable(data);
+        }
+    })
 };
 
 function generateTable(data) {
@@ -74,35 +70,38 @@ function generateTable(data) {
 
     var table = $("#tableResults");
 
-    var headerRow = "<thead class=\"thead-dark\">" +
-        "<tr class=\"header\">" +
-        "<th>ID#</th>" +
-        "<th onclick=\"sortTable(0)\">Name</th>" +
-        "<th>Contact Type</th>" +
-        "<th>Phone#</th>" +
-        "<th>Address</th>" +
-        "<%-- <th>Upcoming Action Due</th> --%>" +
-        "</tr>" +
-        "</thead>";
-
-    table.append(headerRow);
-
-    for(var i=0; i< data.links.id.length; i++){
-        table.append(createRow(data.links.id[i]));
+    // table.append("<table id=\"contactTable pagination\" class=\"table table-hover table-bordered ml-3\">")
+    //
+    // var headerRow = "<thead class=\"thead-dark\">" +
+    //     "<tr class=\"header\">" +
+    //     "<th>ID#</th>" +
+    //     "<th onclick=\"sortTable(0)\">Name</th>" +
+    //     "<th>Contact Type</th>" +
+    //     "<th>Phone#</th>" +
+    //     "<th>Address</th></tr>" +
+    //     "</thead><tbody>";
+    //
+    // table.append(headerRow);
+    for (var i = 0; i < data.length; i++) {
+        table.append(createRow(data[i]));
     }
+
+    // table.append("</tbody></table>")
 }
 
 function createRow(data) {
     var trElement = "<tr class=\"clickable-row\">";
-    trElement+= "<td><a href='editOrganization?id=" + data.id + "'>" + data.id + "</a></td>";
-    trElement+="<td>data.name</td></td>";
-    trElement+="<td>data.type</td>";
-    trElement+="<td>data.phone[0].phone}</td>";
-    trElement+="<td>data.address[0].address}</td></tr>";
+    trElement += "<td><a href='editOrganization?id=" + data.id + "'>" + data.id + "</a></td>";
+    trElement += "<td>" + data.name + "</td>";
+    trElement += "<td>" + data.type + "</td>";
+    trElement += "<td>" + data.phones[0].phone + "</td>";
+    trElement += "<td>" + data.addresses[0].street + "</td></tr>";
     return trElement;
 }
+
 $(document).ready(function ($) {
     $(".clickable-row").click(function () {
         window.location = $(this).data("href");
     });
+    showResults("");
 });

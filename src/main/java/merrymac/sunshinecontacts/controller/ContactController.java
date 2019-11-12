@@ -51,6 +51,7 @@ public class ContactController {
     }
 
     @GetMapping("/editOrganization")
+    @ResponseBody
     public ModelAndView editOrg(@RequestParam("id") String id) {
         Long orgId = Long.parseLong(id);
         OrgResponse response = orgService.get(orgId);
