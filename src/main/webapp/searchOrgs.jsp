@@ -31,8 +31,9 @@ Fonts and Icons free to use in commercial projects -->
                     <button class="btn bg-primary text-white" type="submit">
                         <i class="fas fa-search"></i>
                     </button>
-                        <input type="text" class="form-control" placeholder="Search by contact name" onkeyup="showResults(this.value)">
-<%--                    <input type="text" name="name" class="form-control" placeholder="Search by contact name">--%>
+                    <input type="text" class="form-control" placeholder="Search by contact name"
+                           onkeyup="showResults(this.value)">
+                    <%--                    <input type="text" name="name" class="form-control" placeholder="Search by contact name">--%>
                 </form>
             </div>
         </div>
@@ -221,34 +222,21 @@ Fonts and Icons free to use in commercial projects -->
     </div><!-- end of row class under organization contacts h3 -->
 </div>
 
-<div class="table-responsive">
-    <table id="contactTable pagination" class="table table-hover table-bordered ml-3" name="tableResults">
-        <caption>Note: Dates are formatted as Year-Month-Day. </br> Click on a table row to view more contact info and
-            actions.
-        </caption>
-        <thead class="thead-dark">
-        <tr class="header">
-            <th>ID#</th>
-            <th onclick="sortTable(0)">Name</th>
-            <th>Contact Type</th>
-            <th>Phone#</th>
-            <th>Address</th>
-<%--            <th>Upcoming Action Due</th>--%>
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach var="org" items="${tblResults}">
-            <tr class="clickable-row" data-href="url://editOrganization?id=${org.getId()}">
-                <td><a href="editOrganization?id=${org.getId()}">${org.getId()}</a></td>
-                <td>${org.getName()}</td>
-                <td>${org.getType()}</td>
-                <td>${org.getPhones()[0].getPhone()}</td>
-                <td>${not empty org.getAddresses()[0] ? org.getAddresses()[0].getStreet() : ''}</td>
-            </tr>
-        </c:forEach>
-        <%--        <tbody id="tblResults">--%>
-        </tbody>
-    </table>
+<div class="table-responsive"></div>
+<table id="contactTable pagination" class="table table-hover table-bordered ml-3">
+    <caption>Click on a table row to view more contact info and actions.</caption>
+    <thead class="thead-dark">
+    <tr class="header">
+        <th>ID#</th>
+        <th onclick="sortTable(0)">Name</th>
+        <th>Contact Type</th>
+        <th>Phone#</th>
+        <th>Address</th>
+    </tr>
+    </thead>
+    <tbody id="tableResults">
+    </tbody>
+</table>
 </div>
 
 <div class='modal fade' id='orgModal' tabindex='-1' role='dialog'>
