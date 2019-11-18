@@ -54,39 +54,38 @@
 //     }
 // }
 
-function showResults(str) {
-    var url = "/listOrgs?name=" + str;
-    $.ajax({
-        url: url,
-        type: "GET",
-        success: function (data) {
-            generateTable(data);
-        }
-    })
-};
+function showResults(str)
+{
+    if(str.toString().length > 2) //only run if string has 3+ chars. SOMEWHERE NEEDS TO BE ABLE TO SEARCH WITH 1 CHAR.
+    {
+        var url = "/listOrgs?name=" + str;
+        $.ajax({
+            url: url,
+            type: "GET",
+            success: function (data)
+            {
+                generateTable(data);
+            }
+        })
+    }
+}
 
-function generateTable(data) {
-    $("#tableResults").empty();
+function addContact() //dont use
+{
+    document.getElementById("frmAddContact").submit();
+}
 
-    var table = $("#tableResults");
 
-    // table.append("<table id=\"contactTable pagination\" class=\"table table-hover table-bordered ml-3\">")
-    //
-    // var headerRow = "<thead class=\"thead-dark\">" +
-    //     "<tr class=\"header\">" +
-    //     "<th>ID#</th>" +
-    //     "<th onclick=\"sortTable(0)\">Name</th>" +
-    //     "<th>Contact Type</th>" +
-    //     "<th>Phone#</th>" +
-    //     "<th>Address</th></tr>" +
-    //     "</thead><tbody>";
-    //
-    // table.append(headerRow);
-    for (var i = 0; i < data.length; i++) {
+
+function generateTable(data)
+{
+    $("#tableResults").empty(); //empty the table with id="tableResults"
+    var table = $("#tableResults"); //store reference to table
+
+    for (var i = 0; i < data.length; i++) //use data to fill rows
+    {
         table.append(createRow(data[i]));
     }
-
-    // table.append("</tbody></table>")
 }
 
 function createRow(data) {

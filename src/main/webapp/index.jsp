@@ -88,7 +88,8 @@
 <script src="javascript/bootstrap.min.js"></script>
 
 <script>
-    $('#login').click(function () {
+    $('#login').click(function ()
+    {
         window.location = 'dashboard';
     });
 </script>
