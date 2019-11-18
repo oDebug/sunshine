@@ -24,7 +24,8 @@ public class ContactController {
 //    @Autowired private PeopleService peopleService;
 
     @RequestMapping("/dashboard")
-    public ModelAndView dashboard() {
+    public ModelAndView dashboard()
+    {
         ModelAndView mav = new ModelAndView("dashboard");
 
         List<OrgResponse> recentOrgs = orgService.getRecentlyAddedOrgs();
@@ -38,11 +39,15 @@ public class ContactController {
 
     @RequestMapping(value = "/listOrgs", method = RequestMethod.GET)
     @ResponseBody
-    public List<OrgResponse> listOrgs(@RequestParam(value = "name", defaultValue = "") String name) {
+    public List<OrgResponse> listOrgs(@RequestParam(value = "name", defaultValue = "") String name)
+    {
         List<OrgResponse> response;
-        if (name.isEmpty()) {
+        if (name.isEmpty())
+        {
             response = orgService.listAll();
-        } else {
+        }
+        else
+        {
             response = orgService.searchByAlias(name);
         }
         return response;
@@ -68,7 +73,8 @@ public class ContactController {
 
     @RequestMapping("/validate")
     @ResponseBody
-    public ModelAndView validate(@ModelAttribute("userForm") User user) {
+    public ModelAndView validate(@ModelAttribute("userForm") User user)
+    {
         try
         {
             User dbUser = userService.get(user.getId());
