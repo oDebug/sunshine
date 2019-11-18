@@ -22,206 +22,210 @@ Fonts and Icons free to use in commercial projects -->
 
 <jsp:include page="navbar.jsp"/>
 
-<div class="container mt-3 ml-4">
-    <div class="row"><h3 class="ml-3">Organization Contacts</h3></div>
-    <div class="row">
-        <div class="col-lg-5">
-            <div class="input-group">
-                <form class="input-group-prepend" action="listOrgs">
-                    <button class="btn bg-primary text-white" type="submit">
-                        <i class="fas fa-search"></i>
-                    </button>
-                    <input type="text" class="form-control" placeholder="Search by contact name"
-                           onkeyup="showResults(this.value)">
-                    <%--                    <input type="text" name="name" class="form-control" placeholder="Search by contact name">--%>
-                </form>
+<div class="container"><!--Big Div for padding page -->
+<div class="col"></div>
+
+<div class="col-12">
+    <div class="container mt-3 ml-4">
+        <div class="row"><h3 class="ml-3">Organization Contacts</h3></div>
+
+        <div class="row">
+            <div class="col-lg-5">
+                <div class="input-group">
+                    <form class="input-group-prepend" action="listOrgs">
+                        <button class="btn bg-primary text-white" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                        <input type="text" class="form-control" placeholder="Search by contact name"
+                               onkeyup="showResults(this.value)">
+                        <%--                    <input type="text" name="name" class="form-control" placeholder="Search by contact name">--%>
+                    </form>
+                </div>
             </div>
-        </div>
 
+            <div class="form-group col-lg-2 mt-3 ml-auto">
+                <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#inputContact">Add
+                    Contact
+                </button>
+            </div>
+            <!-- Input Modal -->
+            <div class="modal fade" id="inputContact" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+                 aria-hidden="true">
+                <div class="modal-lg modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalCenterTitle">Input Contact Info</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- input form -->
+                            <form action="addOrg.php" method="POST" id="frmAddOrg">
+                                <div class="form-row justify-content-center">
+                                    <div class="form-group-col-md-6">
+                                        <label class="btn btn-md btn-default" id="churchRadio">
+                                            <input class="mr-2" type="radio" name="contactType" id="contactType"
+                                                   name="ContactType" value="Church" checked>Church
+                                        </label>
+                                        <label class="btn btn-md btn-default" id="orgRadio">
+                                            <input class="mr-2" type="radio" name="contactType" id="contactType"
+                                                   value="Organization">Organization/Business
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="tboxName">Name</label>
+                                        <input type="text" class="form-control" id="tboxName" placeholder="Name"
+                                               name="name">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="tboxAlias">Alternative Alias</label>
+                                        <input type="text" class="form-control" id="tboxAlias" placeholder="Alias"
+                                               name="alias">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="tboxEmail">Email</label>
+                                        <input type="email" class="form-control" id="tboxEmail" placeholder="Email"
+                                               name="email">
+                                    </div>
+                                    <div class="form-group col-md-6" id="churchSelect">
+                                        <label for="denomination">Denomination</label>
+                                        <input type="text" class="form-control" id="tboxDenomination"
+                                               placeholder="Denomination" checked name="denomination">
+                                    </div>
 
-        <div class="form-group col-lg-2 mt-3 ml-auto">
-            <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#inputContact">Add
-                Contact
-            </button>
-        </div>
-        <!-- Input Modal -->
-        <div class="modal fade" id="inputContact" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-             aria-hidden="true">
-            <div class="modal-lg modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalCenterTitle">Input Contact Info</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <!-- input form -->
-                        <form action="addOrg.php" method="POST" id="frmAddOrg">
-                            <div class="form-row justify-content-center">
-                                <div class="form-group-col-md-6">
-                                    <label class="btn btn-md btn-default" id="churchRadio">
-                                        <input class="mr-2" type="radio" name="contactType" id="contactType"
-                                               name="ContactType" value="Church" checked>Church
-                                    </label>
-                                    <label class="btn btn-md btn-default" id="orgRadio">
-                                        <input class="mr-2" type="radio" name="contactType" id="contactType"
-                                               value="Organization">Organization/Business
-                                    </label>
+                                    <div class="form-group col-md-6 d-none " id="orgSelect">
+                                        <label for="orgType">Type</label>
+                                        <input type="text" class="form-control" id="tboxOrgType" placeholder="Type"
+                                               name="orgType">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="tboxName">Name</label>
-                                    <input type="text" class="form-control" id="tboxName" placeholder="Name"
-                                           name="name">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="tboxAlias">Alternative Alias</label>
-                                    <input type="text" class="form-control" id="tboxAlias" placeholder="Alias"
-                                           name="alias">
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="tboxEmail">Email</label>
-                                    <input type="email" class="form-control" id="tboxEmail" placeholder="Email"
-                                           name="email">
-                                </div>
-                                <div class="form-group col-md-6" id="churchSelect">
-                                    <label for="denomination">Denomination</label>
-                                    <input type="text" class="form-control" id="tboxDenomination"
-                                           placeholder="Denomination" checked name="denomination">
+                                <div class="form-row">
+                                    <div class="form-group col-md-2">
+                                        <label for="addressDesc">Address Desc.</label>
+                                        <input type="text" class="form-control" id="tboxAddressDesc" placeholder="Mailing"
+                                               name="addressDesc">
+                                    </div>
+                                    <div class="form-group col-md-5">
+                                        <label for="address1">Address1</label>
+                                        <input type="text" class="form-control" id="tboxAddress1" placeholder="1234 Main St"
+                                               name="address">
+                                    </div>
+                                    <div class="form-group col-md-5">
+                                        <label for="address2">Address2</label>
+                                        <input type="text" class="form-control" id="tboxAddress2"
+                                               placeholder="i.e. Appartment # or Office Room #" name="address2">
+                                    </div>
                                 </div>
 
-                                <div class="form-group col-md-6 d-none " id="orgSelect">
-                                    <label for="orgType">Type</label>
-                                    <input type="text" class="form-control" id="tboxOrgType" placeholder="Type"
-                                           name="orgType">
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="city">City</label>
+                                        <input type="text" class="form-control" id="tboxCity" name="city">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="state">State</label>
+                                        <!-- <input type="text" id="tboxState" class="form-control" name="state"> -->
+                                        <input class="form-control" list="states" name="state">
+                                        <datalist id="states">
+                                            <option value="MO">
+                                            <option value="IL">
+                                        </datalist>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="zip">Zip</label>
+                                        <input type="text" class="form-control" id="tboxZip" name="zip">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-2">
-                                    <label for="addressDesc">Address Desc.</label>
-                                    <input type="text" class="form-control" id="tboxAddressDesc" placeholder="Mailing"
-                                           name="addressDesc">
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="phone">Phone</label>
+                                        <input type="text" class="form-control" id="tboxPhone" placeholder="Phone"
+                                               name="phone">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="fax">Fax</label>
+                                        <input type="text" class="form-control" id="tboxFax" placeholder="Fax" name="fax">
+                                    </div>
                                 </div>
-                                <div class="form-group col-md-5">
-                                    <label for="address1">Address1</label>
-                                    <input type="text" class="form-control" id="tboxAddress1" placeholder="1234 Main St"
-                                           name="address">
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="website">Website URL:</label>
+                                        <input type="text" class="form-control" name="website" id="tboxWebsite"
+                                               placeholder="https://example.com">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="facebook">Facebook URL:</label>
+                                        <input type="text" class="form-control" name="facebook" id="tboxFacebook"
+                                               placeholder="https://example.com">
+                                    </div>
                                 </div>
-                                <div class="form-group col-md-5">
-                                    <label for="address2">Address2</label>
-                                    <input type="text" class="form-control" id="tboxAddress2"
-                                           placeholder="i.e. Appartment # or Office Room #" name="address2">
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="tboxInstagram">Instagram URL:</label>
+                                        <input type="text" class="form-control" name="instagram" id="tboxInstagram"
+                                               placeholder="https://example.com">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="tboxTwitter">Twitter URL:</label>
+                                        <input type="text" class="form-control" name="twitter" id="tboxTwitter"
+                                               placeholder="https://example.com">
+                                    </div>
                                 </div>
-                            </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label for="txtareaInputNote">Note</label>
+                                        <textarea class="form-control" name="inputNote" id="txtareaInputNote"
+                                                  placeholder=". . ."></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="gridCheck">
+                                        <label class="form-check-label" for="gridCheck">
+                                            Is this information complete and accurate?
+                                        </label>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary add-row" id="submitContact" data-dismiss="modal"
+                                    data-toggle="modal" data-target="#addContact">Submit
+                            </button>
+                        </div>
+                    </div> <!-- end of modal-content-->
+                </div> <!-- end of modal role=document -->
+            </div><!-- end of model fade -->
 
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="city">City</label>
-                                    <input type="text" class="form-control" id="tboxCity" name="city">
-                                </div>
-                                <div class="form-group col-md-3">
-                                    <label for="state">State</label>
-                                    <!-- <input type="text" id="tboxState" class="form-control" name="state"> -->
-                                    <input class="form-control" list="states" name="state">
-                                    <datalist id="states">
-                                        <option value="MO">
-                                        <option value="IL">
-                                    </datalist>
-                                </div>
-                                <div class="form-group col-md-3">
-                                    <label for="zip">Zip</label>
-                                    <input type="text" class="form-control" id="tboxZip" name="zip">
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="phone">Phone</label>
-                                    <input type="text" class="form-control" id="tboxPhone" placeholder="Phone"
-                                           name="phone">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="fax">Fax</label>
-                                    <input type="text" class="form-control" id="tboxFax" placeholder="Fax" name="fax">
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="website">Website URL:</label>
-                                    <input type="text" class="form-control" name="website" id="tboxWebsite"
-                                           placeholder="https://example.com">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="facebook">Facebook URL:</label>
-                                    <input type="text" class="form-control" name="facebook" id="tboxFacebook"
-                                           placeholder="https://example.com">
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="tboxInstagram">Instagram URL:</label>
-                                    <input type="text" class="form-control" name="instagram" id="tboxInstagram"
-                                           placeholder="https://example.com">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="tboxTwitter">Twitter URL:</label>
-                                    <input type="text" class="form-control" name="twitter" id="tboxTwitter"
-                                           placeholder="https://example.com">
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-12">
-                                    <label for="txtareaInputNote">Note</label>
-                                    <textarea class="form-control" name="inputNote" id="txtareaInputNote"
-                                              placeholder=". . ."></textarea>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="gridCheck">
-                                    <label class="form-check-label" for="gridCheck">
-                                        Is this information complete and accurate?
-                                    </label>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary add-row" id="submitContact" data-dismiss="modal"
-                                data-toggle="modal" data-target="#addContact">Submit
-                        </button>
-                    </div>
-                </div> <!-- end of modal-content-->
-            </div> <!-- end of modal role=document -->
-        </div><!-- end of model fade -->
+            <!-- Confirmed Modal -->
+            <div class="modal fade" id="addContact" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="addContactTitle">Addition Confirmed!</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Your contact was added!
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
-        <!-- Confirmed Modal -->
-        <div class="modal fade" id="addContact" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="addContactTitle">Addition Confirmed!</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        Your contact was added!
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div><!-- end of row class under organization contacts h3 -->
+        </div><!-- end of row class under organization contacts h3 -->
+    </div>
 </div>
-
 <div class="table-responsive"></div>
 <table id="contactTable pagination" class="table table-hover table-bordered ml-3">
     <caption>Click on a table row to view more contact info and actions.</caption>
@@ -238,7 +242,9 @@ Fonts and Icons free to use in commercial projects -->
     </tbody>
 </table>
 </div>
-
+</div>
+<div class="col"></div>
+</div> <!-- big div for padding page -->
 <div class='modal fade' id='orgModal' tabindex='-1' role='dialog'>
     <div class='modal-dialog modal-lg' role='document'>
         <div class='modal-content'>

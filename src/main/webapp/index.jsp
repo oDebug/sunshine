@@ -62,17 +62,15 @@
                         <div class="card-body">
                             <h3>User Login</h3>
                             <p>Authorized use and access only.</p>
-                            <div class="form-group">
-                                <form>
-                                    <input type="text" class="form-control form-control-lg" placeholder="Username">
-                                </form>
-                            </div>
-                            <div class="form-group">
-                                <form>
-                                    <input type="password" class="form-control form-control-lg" placeholder="Password">
-                                </form>
-                            </div>
-                            <button type="submit" class="btn btn-outline-light btn-block" id="login">Login</button>
+                            <form name="userForm" action="/validate" method="POST">
+                                <div class="form-group">
+                                    <input type="text" name="id" class="form-control form-control-lg" placeholder="Username">
+                                </div>
+                                <div class="form-group">
+                                    <input name="pw" type="password" class="form-control form-control-lg" placeholder="Password">
+                                </div>
+                                <button type="submit" class="btn btn-outline-light btn-block" id="login">Login</button>
+                            </form>
                         </div>
                     </div>
                 </div>
