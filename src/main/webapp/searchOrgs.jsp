@@ -36,7 +36,7 @@ Fonts and Icons free to use in commercial projects -->
 
 
         <div class="form-group col-lg-2 mt-3 ml-auto">
-            <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#inputContact">Add
+            <button type="button" id="addContactBtn" class="btn btn-primary btn-block" data-toggle="modal" data-target="#inputContact">Add
                 Contact
             </button>
         </div>
@@ -53,16 +53,20 @@ Fonts and Icons free to use in commercial projects -->
                     </div>
                     <div class="modal-body">
                         <!-- input form -->
-                        <form action="addOrg.php" method="POST" id="frmAddOrg">
+                        <form action="addOrg.php" method="POST" id="frmAddOrg" class="needs-validation" novalidate>
                             <div class="form-row justify-content-center">
                                 <div class="form-group-col-md-6">
                                     <label class="btn btn-md btn-default" id="churchRadio">
                                         <input class="mr-2" type="radio" name="contactType" id="contactType"
-                                               name="ContactType" value="Church" checked>Church
+                                               name="ContactType" value="Church" checked required>Church
                                     </label>
                                     <label class="btn btn-md btn-default" id="orgRadio">
                                         <input class="mr-2" type="radio" name="contactType" id="contactType"
                                                value="Organization">Organization/Business
+                                    </label>
+                                    <label class="btn btn-md btn-default" id="personRadio">
+                                        <input class="mr-2" type="radio" name="contactType" id="contactType"
+                                               value="Person">Person
                                     </label>
                                 </div>
                             </div>
@@ -70,19 +74,19 @@ Fonts and Icons free to use in commercial projects -->
                                 <div class="form-group col-md-6">
                                     <label for="tboxName">Name</label>
                                     <input type="text" class="form-control" id="tboxName" placeholder="Name"
-                                           name="name">
+                                           name="name" >
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="tboxAlias">Alternative Alias</label>
                                     <input type="text" class="form-control" id="tboxAlias" placeholder="Alias"
-                                           name="alias">
+                                           name="alias" >
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="tboxEmail">Email</label>
                                     <input type="email" class="form-control" id="tboxEmail" placeholder="Email"
-                                           name="email">
+                                           name="email" >
                                 </div>
                                 <div class="form-group col-md-6" id="churchSelect">
                                     <label for="denomination">Denomination</label>
@@ -524,5 +528,25 @@ Fonts and Icons free to use in commercial projects -->
 <script src="../javascript/bootstrap.min.js"></script>
 <script src="../javascript/searchOrgs.js"></script>
 
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>
 </body>
 </html>

@@ -114,3 +114,16 @@ $(document).on('hidden.bs.modal', '.modal', function() {
     $('.modal:visible').length && $(document.body).addClass('modal-open');
 });
 
+$('#addContactBtn').on('click', function() {
+    $('#orgRadio').click(function() {
+        $('#churchSelect').addClass("d-none");
+        $('#orgSelect').removeClass('d-none');
+    });
+
+    $('#churchRadio').click(function() {
+
+        $('#orgSelect').addClass('d-none');
+        $('#churchSelect').removeClass('d-none');
+
+    });
+});
