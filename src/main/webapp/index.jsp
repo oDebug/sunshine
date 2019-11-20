@@ -74,6 +74,7 @@
                                 </div>
                                 <button class="btn btn-outline-light btn-block" id="login">Login</button>
                             </div>
+                            <p id="credentials-error" style="color: red; font-weight: bold"></p>
                         </div>
                     </div>
                 </div>

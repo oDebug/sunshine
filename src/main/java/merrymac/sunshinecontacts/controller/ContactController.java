@@ -82,31 +82,10 @@ public class ContactController {
             return new ResponseEntity<Object>(null, HttpStatus.UNAUTHORIZED);
         }
     }
-//    @RequestMapping("/validate")
-//    @ResponseBody
-//    public ModelAndView validate(@RequestParam("userid") String userId, @RequestParam("userpass") String userPass) {
-//        try {
-//            User dbUser = userService.get(userId);
-//            if (dbUser.getPw().equals(userPass)) //if username + pw is valid
-//            {
-//                return dashboard();
-//            } else {
-//                return invalidCredentials();
-//            }
-//        } catch (Exception e) {
-//            e.getMessage();
-//            return invalidCredentials();
-//        }
-//    }
 
-    public ModelAndView invalidCredentials() {
-        ModelAndView mav = new ModelAndView("index");
-        return mav;
-    }
-
-    @RequestMapping("/addContact")
+    @RequestMapping("/saveContact")
     @ResponseBody
-    public void addContact(@ModelAttribute("addContactForm") Contact contact) {
+    public void saveContact(@ModelAttribute("addContactForm") Contact contact) {
         try {
             contactService.save(contact);
         } catch (Exception e) {
