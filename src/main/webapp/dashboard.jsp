@@ -23,10 +23,10 @@
     <div class="dark-overlay">
         <div class="home-inner container">
             <div class="row justify-content-center">
-                <div class="col-lg-8 ">
+                <div class="col-lg-10 ">
                     <div class="card bg-light text-center text-dark card-form">
                         <div class="card-header"><h4>Search Contacts</h4></div>
-                        <div class="card-body">
+                        <form class="card-body">
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <button class="btn btn-secondary" type="button">Search</button>
@@ -44,14 +44,12 @@
                                        value="option2">
                                 <label class="form-check-label" for="searchPerson">People</label>
                             </div>
-                        </div>
+                        </form>
                         <div class="card-footer ">
                             <!-- Add data button modal -->
 
                             <div class="form-group mb-0">
-                                <button type="button" class="btn btn-primary btn-block" data-toggle="modal"
-                                        data-target="#inputContact">Add Contact
-                                </button>
+                                <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#inputContact">Add Contact</button>
                             </div>
                             <!-- Input Modal -->
                             <div class="modal fade" id="inputContact" tabindex="-1" role="dialog"
@@ -248,19 +246,15 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
                                             </button>
-
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
-
-
-                    <div class="card bg-primary text-center card-form mt-3">
+                    <div class="card bg-light text-center card-form mt-3 text-dark">
                         <div class="card-header"><h4>Upcoming Actions</h4></div>
-                        <div class="card-body">
+                        <div class="card-body" style="padding: 0">
                             <div class="table-responsive-md">
                                 <table class="table table-primary table-hover">
                                     <thead class="thead-dark">
@@ -269,7 +263,6 @@
                                     <th>Start Date</th>
                                     <th>FollowUp Date</th>
                                     <th>Note</th>
-                                    <%--                                    <th>Status</th>--%>
                                     </thead>
                                     <tbody>
                                     <c:forEach var="action" items="${upcomingActions}">
@@ -283,7 +276,6 @@
                                             <td>${action.getCreateDate()}</td>
                                             <td>${action.getDueDate()}</td>
                                             <td>${action.getNotes()}</td>
-                                                <%--                                            <td>${action.isCompleted()}</td>--%>
                                         </tr>
                                     </c:forEach>
                                     </tbody>
@@ -291,16 +283,16 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card bg-primary text-center card-form mt-3">
+                    <div class="card bg-light text-center card-form mt-3 text-dark">
                         <div class="card-header"><h4>Recently Added Organizations</h4></div>
-                        <div class="card-body">
+                        <div class="card-body" style="padding: 0">
                             <div class="table-responsive">
                                 <table class="table table-primary table-hover">
                                     <thead class="thead-dark">
-                                    <th>ID#</th>
-                                    <th>Name</th>
-                                    <th>Contact Type</th>
-                                    <th>Date Created</th>
+                                        <th>ID#</th>
+                                        <th>Name</th>
+                                        <th>Contact Type</th>
+                                        <th>Date Created</th>
                                     </thead>
                                     <tbody>
                                     <c:forEach var="org" items="${recentOrgs}">

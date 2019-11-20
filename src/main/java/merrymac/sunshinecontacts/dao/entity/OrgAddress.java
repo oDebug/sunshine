@@ -1,5 +1,6 @@
 package merrymac.sunshinecontacts.dao.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,7 +27,7 @@ public class OrgAddress implements Serializable {
     private Long id;
 
     @Column(name="org_id", insertable = false, updatable = false)
-    private Long org_id;
+    private Long orgId;
 
     @Column(name="street")
     private String street;
@@ -39,9 +40,5 @@ public class OrgAddress implements Serializable {
 
     @Column(name="postal_code")
     private Long postalCode;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="org_id")
-    private Organization organization;
 
 }

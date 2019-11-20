@@ -54,30 +54,55 @@
 //     }
 // }
 
-// function showResults(str) {
-//     if (str.length == 0) {
-//         document.getElementById("tblResults").innerHTML = "";
-//         return;
-//     } else {
-//         xmlhttp = new XMLHttpRequest();
-//         // xmlhttp.onreadystatechange = function () {
-//         //     if (this.readyState == 4 && this.status == 200) {
-//         //         document.getElementById("tblResults").innerHTML = this.responseText;
-//         //     }
-//         // };
-//         xmlhttp.open("GET", "listOrgs?name=" + str, true);
-//         xmlhttp.send();
-//     }
-// }
-// $(document).ready(function() {
-//     $(".clickable-row").click(function() {
-//         window.location = $(this).data("href");
-//     })
-// })
-$(document).ready(function($) {
-    $(".clickable-row").click(function() {
+function showResults(str)
+{
+    if(str.toString().length > 2) //only run if string has 3+ chars. SOMEWHERE NEEDS TO BE ABLE TO SEARCH WITH 1 CHAR.
+    {
+        var url = "/listOrgs?name=" + str;
+        $.ajax({
+            url: url,
+            type: "GET",
+            success: function (data)
+            {
+                generateTable(data);
+            }
+        })
+    }
+}
+
+function addContact() //dont use
+{
+    document.getElementById("frmAddContact").submit();
+}
+
+
+
+function generateTable(data)
+{
+    $("#tableResults").empty(); //empty the table with id="tableResults"
+    var table = $("#tableResults"); //store reference to table
+
+    for (var i = 0; i < data.length; i++) //use data to fill rows
+    {
+        table.append(createRow(data[i]));
+    }
+}
+
+function createRow(data) {
+    var trElement = "<tr class=\"clickable-row\">";
+    trElement += "<td><a href='editOrganization?id=" + data.id + "'>" + data.id + "</a></td>";
+    trElement += "<td>" + data.name + "</td>";
+    trElement += "<td>" + data.type + "</td>";
+    trElement += "<td>" + data.phones[0].phone + "</td>";
+    trElement += "<td>" + data.addresses[0].street + "</td></tr>";
+    return trElement;
+}
+
+$(document).ready(function ($) {
+    $(".clickable-row").click(function () {
         window.location = $(this).data("href");
     });
+    showResults("");
 });
 
 
