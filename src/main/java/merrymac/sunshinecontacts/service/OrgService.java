@@ -29,7 +29,6 @@ public class OrgService {
     OrgAddressRepository orgAddressRepository;
     @Autowired
     OrgPhoneRepository orgPhoneRepository;
-
     @Autowired
     OrgResponseAdapter orgResponseAdapter;
 
@@ -37,34 +36,41 @@ public class OrgService {
         orgRepository.save(organization);
     }
 
-    public List<OrgResponse> searchByAlias(String alias) {
+    public List<OrgResponse> searchByAlias(String alias)
+    {
         List<Organization> organizations = orgAliasRepository.searchByAlias(alias);
         List<OrgResponse> response = new ArrayList<>();
-        for (Organization org : organizations) {
+        for (Organization org : organizations)
+        {
             response.add(toOrgResponse(org));
         }
         return response;
     }
 
-    public List<OrgResponse> listAll() {
+    public List<OrgResponse> listAll()
+    {
         List<Organization> organizations = (List<Organization>) orgRepository.findAll();
         List<OrgResponse> response = new ArrayList<>();
-        for (Organization org : organizations) {
+        for (Organization org : organizations)
+        {
             response.add(toOrgResponse(org));
         }
         return response;
     }
 
-    public List<OrgResponse> getRecentlyAddedOrgs() {
+    public List<OrgResponse> getRecentlyAddedOrgs()
+    {
         List<Organization> organizations = orgRepository.findTop5ByOrderByCreateTimestampDesc();
         List<OrgResponse> response = new ArrayList<>();
-        for (Organization org : organizations) {
+        for (Organization org : organizations)
+        {
             response.add(toOrgResponse(org));
         }
         return response;
     }
 
-    public OrgResponse get(Long id) {
+    public OrgResponse get(Long id)
+    {
         Organization organization = orgRepository.findById(id).get();
         OrgResponse response = toOrgResponse(organization);
         return response;
@@ -74,7 +80,8 @@ public class OrgService {
         orgRepository.deleteById(id);
     }
 
-    private OrgResponse toOrgResponse(Organization organization) {
+    private OrgResponse toOrgResponse(Organization organization)
+    {
         OrgResponse response = new OrgResponse();
         OrgResponse element;
 
@@ -89,11 +96,13 @@ public class OrgService {
 
     }
 
-    public List<OrgActionResponse> getUpcomingActions() {
+    public List<OrgActionResponse> getUpcomingActions()
+    {
         List<OrgAction> results = orgActionRepository.findTop5ByOrderByDueDateAsc();
 
         List<OrgActionResponse> response = new ArrayList<>();
-        for (OrgAction action : results) {
+        for (OrgAction action : results)
+        {
             Organization organization = orgRepository.findById(action.getOrgId()).get();
             response.add(orgResponseAdapter.toOrgActionResponse(action, organization));
         }
