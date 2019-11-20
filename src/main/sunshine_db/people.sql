@@ -13,7 +13,7 @@ create table sunshine.people
     delete_timestamp      timestamp                            null,
     delete_user           varchar(10)                          null,
     constraint people_orgs_id_fk
-        foreign key (member_org) references sunshine.orgs (id)
+        foreign key (member_org) references sunshine.contacts (id)
 );
 
 create definer = merrymac@localhost trigger sunshine.before_insert_people

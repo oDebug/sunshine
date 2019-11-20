@@ -12,7 +12,7 @@ create table sunshine.org_actions
     org_id          int(7)               null,
     due_date        date                 not null,
     constraint org_actions_orgs_id_fk
-        foreign key (org_id) references sunshine.orgs (id)
+        foreign key (org_id) references sunshine.contacts (id)
 );
 
 create definer = merrymac@localhost trigger sunshine.before_insert_org_actions

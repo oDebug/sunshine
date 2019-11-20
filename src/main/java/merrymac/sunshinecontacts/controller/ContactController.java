@@ -1,8 +1,8 @@
 package merrymac.sunshinecontacts.controller;
 
-import merrymac.sunshinecontacts.response.OrgActionResponse;
-import merrymac.sunshinecontacts.response.OrgResponse;
-import merrymac.sunshinecontacts.service.OrgService;
+import merrymac.sunshinecontacts.response.ActionResponse;
+import merrymac.sunshinecontacts.response.ContactResponse;
+import merrymac.sunshinecontacts.service.ContactService;
 //import merrymac.sunshinecontacts.service.PeopleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,18 +14,16 @@ import java.util.Map;
 
 @Controller
 public class ContactController {
-    @Autowired private OrgService orgService;
-
-//    @Autowired private PeopleService peopleService;
+    @Autowired private ContactService contactService;
 
     @RequestMapping("/dashboard")
     public ModelAndView dashboard(Map<String, Object> model) {
         ModelAndView mav = new ModelAndView("dashboard");
 
-        List<OrgResponse> recentOrgs = orgService.getRecentlyAddedOrgs();
+        List<ContactResponse> recentOrgs = contactService.getRecentlyAddedOrgs();
         mav.addObject("recentOrgs", recentOrgs);
 
-        List<OrgActionResponse> upcomingActions = orgService.getUpcomingActions();
+        List<ActionResponse> upcomingActions = contactService.getUpcomingActions();
         mav.addObject("upcomingActions", upcomingActions);
 
         return mav;
@@ -33,20 +31,22 @@ public class ContactController {
 
     @RequestMapping(value="/listOrgs", method= RequestMethod.GET )
     @ResponseBody
-    public List<OrgResponse> listOrgs(@RequestParam(value = "name", defaultValue = "") String name ) {
-        List<OrgResponse> response;
+    public List<ContactResponse> listOrgs(@RequestParam(value = "name", defaultValue = "") String name ) {
+        List<ContactResponse> response;
         if (name.isEmpty() ) {
-            response = orgService.listAll();
+            response = contactService.listAll();
         } else {
-            response = orgService.searchByAlias(name);
+            response = contactService.searchByAlias(name);
         }
         return response;
     }
     @GetMapping("/searchOrgs")
     public ModelAndView searchOrgs(Map<String, Object> model) {
-        List<OrgResponse> response = orgService.listAll();
+        List<ContactResponse> response = contactService.listAll();
         ModelAndView mav = new ModelAndView("searchOrgs");
         mav.addObject("tblResults", response);
+        model.get("id");
+
         return mav;
     }
 
@@ -54,7 +54,7 @@ public class ContactController {
     @ResponseBody
     public ModelAndView editOrg(@RequestParam("id") String id) {
         Long orgId = Long.parseLong(id);
-        OrgResponse response = orgService.get(orgId);
+        ContactResponse response = contactService.get(orgId);
         ModelAndView mav = new ModelAndView("editOrganization");
         mav.addObject("result", response);
         return mav;

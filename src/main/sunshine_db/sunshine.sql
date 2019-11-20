@@ -28,9 +28,9 @@ create table orgs
     delete_timestamp timestamp null,
     delete_user varchar(10) null,
     constraint orgs_org_types_type_code_fk
-        foreign key (org_type) references org_types (type_code)
+        foreign key (org_type) references contact_types (type_code)
 )
-    comment 'Table for Organization data';
+    comment 'Table for Contact data';
 
 create table org_actions
 (
@@ -46,7 +46,7 @@ create table org_actions
     org_id int(7) null,
     due_date date not null,
     constraint org_actions_orgs_id_fk
-        foreign key (org_id) references orgs (id)
+        foreign key (org_id) references contacts (id)
 );
 
 create definer = merrymac@localhost trigger before_insert_org_actions
@@ -66,7 +66,7 @@ create table org_address
     state varchar(2) not null,
     postal_code int(5) not null,
     constraint org_address_orgs_id_fk
-        foreign key (org_id) references orgs (id)
+        foreign key (org_id) references contacts (id)
             on delete cascade
 );
 
@@ -84,7 +84,7 @@ create table org_alias
     org_id int(7) not null,
     org_name varchar(55) not null,
     constraint org_alias_orgs_id_fk
-        foreign key (org_id) references orgs (id)
+        foreign key (org_id) references contacts (id)
 );
 
 create table org_phone
@@ -96,7 +96,7 @@ create table org_phone
     constraint org_phone_id_phone_uindex
         unique (id, phone),
     constraint org_phone_orgs_id_fk
-        foreign key (org_id) references orgs (id)
+        foreign key (org_id) references contacts (id)
 )
     comment 'Phone numbers for Organizations';
 
@@ -107,7 +107,7 @@ create definer = root@localhost trigger after_insert_orgs
     after INSERT on orgs
     for each row
 BEGIN
-    INSERT into sunshine.org_alias(org_id, org_name)
+    INSERT into sunshine.aliases(contact_id, name)
     VALUES (new.id, new.org_name);
 END;
 
@@ -133,7 +133,7 @@ create table people
     delete_timestamp timestamp null,
     delete_user varchar(10) null,
     constraint people_orgs_id_fk
-        foreign key (member_org) references orgs (id)
+        foreign key (member_org) references contacts (id)
 );
 
 create definer = merrymac@localhost trigger before_insert_people
@@ -200,7 +200,7 @@ create table org_social_media
     sm_type varchar(2) null,
     sm_address varchar(50) null,
     constraint org_social_media_orgs_id_fk
-        foreign key (org_id) references orgs (id),
+        foreign key (org_id) references contacts (id),
     constraint org_social_media_soc_med_types_social_media_type_fk
         foreign key (sm_type) references soc_med_types (social_media_type)
 );

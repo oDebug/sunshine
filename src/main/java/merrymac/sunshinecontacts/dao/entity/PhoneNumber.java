@@ -1,22 +1,18 @@
 package merrymac.sunshinecontacts.dao.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "org_phone", schema = "sunshine")
+@Table(name = "phone_numbers", schema = "sunshine")
 @Data
 @NoArgsConstructor
-public class OrgPhone {
+public class PhoneNumber {
     @Id
     @Column(name = "id", updatable = false, nullable = false)
     private Long id;

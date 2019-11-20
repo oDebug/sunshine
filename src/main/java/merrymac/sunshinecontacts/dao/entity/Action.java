@@ -19,8 +19,8 @@ import java.util.Date;
 @Entity
 @Data
 @NoArgsConstructor
-@Table(name = "org_actions", schema = "sunshine")
-public class OrgAction implements Serializable {
+@Table(name = "actions", schema = "sunshine")
+public class Action implements Serializable {
 
     @Id
     @GeneratedValue

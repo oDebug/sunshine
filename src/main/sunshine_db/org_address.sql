@@ -8,7 +8,7 @@ create table sunshine.org_address
     state       varchar(2)   not null,
     postal_code int(5)       not null,
     constraint org_address_orgs_id_fk
-        foreign key (org_id) references sunshine.orgs (id)
+        foreign key (org_id) references sunshine.contacts (id)
             on delete cascade
 );
 

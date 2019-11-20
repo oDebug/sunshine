@@ -27,11 +27,11 @@ Fonts and Icons free to use in commercial projects -->
     <div class="row">
         <div class="col-lg-5">
             <div class="input-group">
-                <form class="input-group-prepend" action="listOrgs">
+                <form class="input-group-prepend">
                     <button class="btn bg-primary text-white" type="submit">
                         <i class="fas fa-search"></i>
                     </button>
-                    <input type="text" class="form-control" placeholder="Search by contact name"
+                    <input type="text" class="form-control" id="searchName" name="searchName" placeholder="Search by contact name"
                            onkeyup="showResults(this.value)">
                     <%--                    <input type="text" name="name" class="form-control" placeholder="Search by contact name">--%>
                 </form>
@@ -219,7 +219,7 @@ Fonts and Icons free to use in commercial projects -->
                 </div>
             </div>
         </div>
-    </div><!-- end of row class under organization contacts h3 -->
+    </div><!-- end of row class under contact contacts h3 -->
 </div>
 
 <div class="table-responsive"></div>

@@ -8,7 +8,7 @@ create table sunshine.org_phone
     constraint org_phone_id_phone_uindex
         unique (id, phone),
     constraint org_phone_orgs_id_fk
-        foreign key (org_id) references sunshine.orgs (id)
+        foreign key (org_id) references sunshine.contacts (id)
 )
     comment 'Phone numbers for Organizations';
 

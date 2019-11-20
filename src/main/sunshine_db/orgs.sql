@@ -12,16 +12,16 @@ create table sunshine.orgs
     delete_timestamp      timestamp              null,
     delete_user           varchar(10)            null,
     constraint orgs_org_types_type_code_fk
-        foreign key (org_type) references sunshine.org_types (type_code)
+        foreign key (org_type) references sunshine.contact_types (type_code)
 )
-    comment 'Table for Organization data';
+    comment 'Table for Contact data';
 
 create definer = root@localhost trigger sunshine.after_insert_orgs
     after INSERT
     on sunshine.orgs
     for each row
 BEGIN
-    INSERT into sunshine.org_alias(org_id, org_name)
+    INSERT into sunshine.aliases(contact_id, name)
     VALUES (new.id, new.org_name);
 END;
 

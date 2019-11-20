@@ -76,7 +76,7 @@
                                                         </label>
                                                         <label class="btn btn-md btn-default" id="orgRadio">
                                                             <input class="mr-2" type="radio" name="contactType"
-                                                                   value="organization">Organization/Business
+                                                                   value="contact">Organization/Business
                                                         </label>
                                                         <label class="btn btn-md btn-default" id="personRadio">
                                                             <input class="mr-2" type="radio" name="contactType"
