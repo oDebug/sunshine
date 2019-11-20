@@ -102,9 +102,10 @@ public class ContactController {
         return mav;
     }
 
-    @RequestMapping("/addContact")
+    @RequestMapping(value="/addContact", method = RequestMethod.POST)
     @ResponseBody
-    public void addContact(@ModelAttribute("addContactForm") Organization organization)
+    //public void addContact(@ModelAttribute("addContactForm") Organization organization)
+    public void addContact(@RequestBody Organization organization)
     {
         try
         {

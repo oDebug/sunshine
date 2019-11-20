@@ -90,7 +90,7 @@ Fonts and Icons free to use in commercial projects -->
                                                    name="email">
                                         </div>
                                         <div class="form-group col-md-6" id="churchSelect">
-                                            <label for="denomination">Denomination</label>
+                                            <label for="tboxDenomination">Denomination</label>
                                             <input type="text" class="form-control" id="tboxDenomination"
                                                    placeholder="Denomination" checked name="denomination">
                                         </div>
@@ -196,7 +196,6 @@ Fonts and Icons free to use in commercial projects -->
                                         <button type="submit" class="btn btn-primary add-row" id="submitContact" data-dismiss="modal" data-toggle="modal" data-target="#addContact">Submit</button>
                                         <input type="submit" value="Submit"> <!--Temporary button for testing purposes-->
                                     </div>
-
                                 </form>
                             </div>
 

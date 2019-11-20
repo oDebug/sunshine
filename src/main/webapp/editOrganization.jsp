@@ -92,44 +92,50 @@
 
                 <div class="card border-dark">
                     <div class="card-header"><h4 class="card-title">Church Mailing Address</h4></div>
-                    <div class="card-body">
-                        <div class="form-row">
-                            <div class="form-group col-lg-6">
-                                <label for="inputChurchAddressDesc">Desc</label>
-                                <input type="text" class="form-control" id="inputChurchAddressDesc"
-                                       placeholder="Mailing">
+                    <div class="card-body container">
+                        <div class="row">
+                            <div class ="col-6">
+                                <div class="form-row">
+                                    <div class="form-group col-lg-12">
+                                        <label for="inputChurchAddressDesc">Desc</label>
+                                        <input type="text" class="form-control" id="inputChurchAddressDesc"
+                                               placeholder="Mailing">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-lg-12">
+                                        <label for="inputChurchAddress">Address</label>
+                                        <input type="text" class="form-control" id="inputChurchAddress">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group  col-lg-12">
+                                        <label for="inputChurchAddress2">Address 2</label>
+                                        <input type="text" class="form-control" id="inputChurchAddress2"
+                                               placeholder="Apartment, studio, or floor">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6 col-lg-6">
+                                        <label for="inputChruchCity">City</label>
+                                        <input type="text" class="form-control" id="inputChurchCity">
+                                    </div>
+                                    <div class="form-group col-md-4 col-lg-2">
+                                        <label for="inputChurchState">State</label>
+                                        <select id="inputChurchState" class="form-control">
+                                            <!--When implemented, MO should always be at top for QoL-->
+                                            <option selected>Choose...</option>
+                                            <option>...</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-2 col-lg-4">
+                                        <label for="inpuChurchtZip">Zip</label>
+                                        <input type="text" class="form-control" id="inputChurchZip">
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-lg-6">
-                                <label for="inputChurchAddress">Address</label>
-                                <input type="text" class="form-control" id="inputChurchAddress"
-                                       placeholder="1234 Main St">
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group  col-lg-6">
-                                <label for="inputChurchAddress2">Address 2</label>
-                                <input type="text" class="form-control" id="inputChurchAddress2"
-                                       placeholder="Apartment, studio, or floor">
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6 col-lg-3">
-                                <label for="inputChruchCity">City</label>
-                                <input type="text" class="form-control" id="inputChurchCity">
-                            </div>
-                            <div class="form-group col-md-4 col-lg-2">
-                                <label for="inputChurchState">State</label>
-                                <select id="inputChurchState" class="form-control">
-                                    <!--When implemented, MO should always be at top for QoL-->
-                                    <option selected>Choose...</option>
-                                    <option>...</option>
-                                </select>
-                            </div>
-                            <div class="form-group col-md-2 col-lg-1">
-                                <label for="inpuChurchtZip">Zip</label>
-                                <input type="text" class="form-control" id="inputChurchZip">
+                            <div class="col-6">
+                                <div id="map" style="height: 400px; width: 500px;"></div>
                             </div>
                         </div>
                     </div>
@@ -1145,9 +1151,24 @@
 <%--    });--%>
 <%--</script>--%>
 <script>
+
+
+
+
     $("#submitContact").click(function () {
         $("submitContact").submit();
     });
+
+    function initMap()
+    {
+        alert('Test');
+        var map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: 38.6530169, lng: -90.3835463},
+            zoom: 8
+        });
+    }
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWPtNLGcAlbmiNAiT9Pn794fMGXc3N4CM&callback=initMap">
 </script>
 </body>
 </html>
