@@ -58,6 +58,11 @@ public class ContactController {
         return mav;
     }
 
+
+
+
+
+
     @GetMapping("/editOrganization")
     public ModelAndView editOrg(@RequestParam("id") String id) {
         Long orgId = Long.parseLong(id);
@@ -66,4 +71,11 @@ public class ContactController {
         mav.addObject("result", organization);
         return mav;
     }
+
+    @GetMapping("/reports")
+    public ModelAndView Reports() {
+        ModelAndView mav = new ModelAndView("reports");
+        return mav;
+    }
+
 }

@@ -22,4 +22,8 @@ public class OrgActionService {
         }
         return results;
     }
-}
+
+    public List<OrgAction> listAll() {
+        return (List<OrgAction>) orgActionRepository.findAll();
+    }
+    }
