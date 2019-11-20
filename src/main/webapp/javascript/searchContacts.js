@@ -54,16 +54,15 @@
 //     }
 // }
 
-function showResults(str)
-{
-    if(str.toString().length > 2) //only run if string has 3+ chars. SOMEWHERE NEEDS TO BE ABLE TO SEARCH WITH 1 CHAR.
+function showResults(str) {
+    if (str.toString().length > 2) //only run if string has 3+ chars. SOMEWHERE NEEDS TO BE ABLE TO SEARCH WITH 1 CHAR.
     {
         var url = "/listOrgs?name=" + str;
         $.ajax({
             url: url,
             type: "GET",
-            success: function (data)
-            {
+            data: {name: str},
+            success: function (data) {
                 generateTable(data);
             }
         })
@@ -76,9 +75,7 @@ function addContact() //dont use
 }
 
 
-
-function generateTable(data)
-{
+function generateTable(data) {
     $("#tableResults").empty(); //empty the table with id="tableResults"
     var table = $("#tableResults"); //store reference to table
 

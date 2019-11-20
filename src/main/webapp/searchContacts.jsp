@@ -15,7 +15,7 @@ Fonts and Icons free to use in commercial projects -->
 <link rel="stylesheet" href="../css/addContact_style.css">
 
 <script src="javascript/jquery-3.4.1.min.js"></script>
-<script src="javascript/searchOrgs.js"></script>
+<script src="javascript/searchContacts.js"></script>
 
 <title>Sunshine Ministries Contacts</title>
 <body>
