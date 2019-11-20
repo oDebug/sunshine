@@ -67,6 +67,13 @@ public class ContactController {
     }
 
 
+    @GetMapping("/reports")
+    public ModelAndView Reports() {
+        ModelAndView mav = new ModelAndView("reports");
+        return mav;
+    }
+
+
     @RequestMapping(value = "/validate", method = RequestMethod.GET)
     public ResponseEntity<Object> deleteSport(@RequestParam("userid") String userId, @RequestParam("userpass") String userPass) {
         try {

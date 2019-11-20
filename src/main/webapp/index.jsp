@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
-  
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="./favicon.ico">
     <link rel="icon" href="./favicon.ico">
     <!-- Font Awsome
-    Fonts and Icons free to use in commercial projects -->
+     Fonts and Icons free to use in commercial projects -->
     <link rel="stylesheet" href="css/all.min.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">

@@ -16,15 +16,10 @@
                                                                            alt="Sunshine">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="searchContacts">Contacts <span class="sr-only" width="30" height="30"
+                    <a class="nav-link" href="searchOrgs">Manage Contacts <span class="sr-only" width="30" height="30"
                                                                                   alt="Sunshine">(current)</span></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="searchPeople">
-                        People
-                        <span class="sr-only" width="30" height="30" alt="Sunshine">(current)</span>
-                    </a>
-                </li>
+
                 <li class="nav-item ">
                     <a class="nav-link" href="./help">Help <span class="sr-only" width="30" height="30"
                                                                       alt="Sunshine">(current)</span></a>
