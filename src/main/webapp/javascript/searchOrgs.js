@@ -104,3 +104,51 @@ $(document).ready(function ($) {
     });
     showResults("");
 });
+
+
+    $('#contactTable tbody').on('click', 'tr', function () {
+
+         if ($('#contactLabel').length) {
+             $('#contactLabel').remove();
+            $('#contactTitle').remove();
+        }
+        var rowContact = $(this).find('td:nth-of-type(3)').text();
+        var contactID = $(this).find('td:nth-of-type(1)').text();
+         var name = $(this).find('td:nth-of-type(2)').text();
+
+        $('#orgModal').modal('show');
+
+         $('#orgModal .modal-header').prepend('<h5 class="modal-title" id="contactTitle">' + name + '</h5>')
+         $('#rowContact').append('<div id="contactLabel"><label>Contact Type: ' + rowContact + '</label></br><label id="contactIDLabel" >Contact ID: ' + contactID + '</label></div>');
+
+        if (rowContact === "Person" || rowContact === "PN" ) {
+            $('#orgTypeShow').addClass('d-none');
+            $('#denomShow').addClass('d-none');
+         } else if (rowContact === "Church" || rowContact === "CH") {
+             $('#orgTypeShow').addClass('d-none');
+             $('#denomShow').removeClass('d-none');
+
+         } else {
+             $('#denomShow').addClass("d-none");
+             $('#orgTypeShow').removeClass('d-none');
+         }
+
+    });
+
+$(document).on('hidden.bs.modal', '.modal', function() {
+    $('.modal:visible').length && $(document.body).addClass('modal-open');
+});
+
+$('#addContactBtn').on('click', function() {
+    $('#orgRadio').click(function() {
+        $('#churchSelect').addClass("d-none");
+        $('#orgSelect').removeClass('d-none');
+    });
+
+    $('#churchRadio').click(function() {
+
+        $('#orgSelect').addClass('d-none');
+        $('#churchSelect').removeClass('d-none');
+
+    });
+});

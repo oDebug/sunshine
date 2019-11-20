@@ -63,6 +63,11 @@ public class ContactController {
         return mav;
     }
 
+
+
+
+
+
     @GetMapping("/editOrganization")
     @ResponseBody
     public ModelAndView editOrg(@RequestParam("id") String id) {
@@ -72,6 +77,13 @@ public class ContactController {
         mav.addObject("result", response);
         return mav;
     }
+
+    @GetMapping("/reports")
+    public ModelAndView Reports() {
+        ModelAndView mav = new ModelAndView("reports");
+        return mav;
+    }
+
 
     @RequestMapping("/validate")
     @ResponseBody
