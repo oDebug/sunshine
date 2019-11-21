@@ -50,9 +50,9 @@ public class ContactController {
 
     @GetMapping("/searchContacts")
     public ModelAndView searchContacts(Map<String, Object> model) {
-        List<ContactResponse> response = contactService.listAll();
+//        List<ContactResponse> response = contactService.listAll();
         ModelAndView mav = new ModelAndView("searchContacts");
-        mav.addObject("tblResults", response);
+//        mav.addObject("tblResults", response);
         return mav;
     }
 

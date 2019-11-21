@@ -27,79 +27,20 @@ Fonts and Icons free to use in commercial projects -->
 
     <div class="col-12">
         <div class="container mt-3 ml-4">
-            <div class="row"><h3 class="ml-3">Manage Contacts</h3></div>
+            <div class="row"><h3 class="ml-3">Organization Contacts</h3></div>
 
             <div class="row">
                 <div class="col-lg-5">
                     <div class="input-group">
-                        <form class="input-group-prepend" action="listOrgs">
-                            <button class="btn bg-primary text-white" type="submit">
+                        <form class="input-group-prepend">
+                            <button class="btn bg-primary text-white" id="submit-search">
                                 <i class="fas fa-search"></i>
                             </button>
-                            <input type="text" class="form-control" placeholder="Search by contact name" onkeyup="showResults(this.value)">
+                            <input type="text" id="search-string" class="form-control" placeholder="Search by contact name" onkeyup="keyUpSearch(this.value)">
                         </form>
                     </div>
                 </div>
 
-
-        <div class="form-group col-lg-2 mt-3 ml-auto">
-            <button type="button" id="addContactBtn" class="btn btn-primary btn-block" data-toggle="modal" data-target="#inputContact">Add
-                Contact
-            </button>
-        </div>
-        <!-- Input Modal -->
-        <div class="modal fade" id="inputContact" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-             aria-hidden="true">
-            <div class="modal-lg modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalCenterTitle">Input Contact Info</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <!-- input form -->
-                        <form action="addOrg.php" method="POST" id="frmAddOrg" class="needs-validation" novalidate>
-                            <div class="form-row justify-content-center">
-                                <div class="form-group-col-md-6">
-                                    <label class="btn btn-md btn-default" id="churchRadio">
-                                        <input class="mr-2" type="radio" name="contactType" id="contactType"
-                                               name="ContactType" value="Church" checked required>Church
-                                    </label>
-                                    <label class="btn btn-md btn-default" id="orgRadio">
-                                        <input class="mr-2" type="radio" name="contactType" id="contactType"
-                                               value="Organization">Organization/Business
-                                    </label>
-                                    <label class="btn btn-md btn-default" id="personRadio">
-                                        <input class="mr-2" type="radio" name="contactType" id="contactType"
-                                               value="Person">Person
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="tboxName">Name</label>
-                                    <input type="text" class="form-control" id="tboxName" placeholder="Name"
-                                           name="name" >
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="tboxAlias">Alternative Alias</label>
-                                    <input type="text" class="form-control" id="tboxAlias" placeholder="Alias"
-                                           name="alias" >
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="tboxEmail">Email</label>
-                                    <input type="email" class="form-control" id="tboxEmail" placeholder="Email"
-                                           name="email" >
-                                </div>
-                                <div class="form-group col-md-6" id="churchSelect">
-                                    <label for="denomination">Denomination</label>
-                                    <input type="text" class="form-control" id="tboxDenomination"
-                                           placeholder="Denomination" checked name="denomination">
-                                </div>
                 <div class="form-group col-lg-2 mt-3 ml-auto">
                     <button type="button" class="btn btn-primary btn-block" data-toggle="modal"
                             data-target="#inputContact">Add Contact
@@ -287,12 +228,12 @@ Fonts and Icons free to use in commercial projects -->
         </div>
     </div>
     <div class="table-responsive"></div>
-    <table id="contactTable" class="table table-hover table-bordered ml-3">
+    <table id="contactTable pagination" class="table table-hover table-bordered ml-3">
         <caption>Click on a table row to view more contact info and actions.</caption>
         <thead class="thead-dark">
         <tr class="header">
             <th>ID#</th>
-            <th >Name</th>
+            <th onclick="sortTable(0)">Name</th>
             <th>Contact Type</th>
             <th>Phone#</th>
             <th>Address</th>
@@ -483,17 +424,38 @@ Fonts and Icons free to use in commercial projects -->
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach var="action" items="${actionTblResults}">
-                                    <tr>
-                                        <td>${action.getId()}</td>
-                                        <td>${action.getCreateDate()}</td>
-                                        <td>${action.getDueDate()}</td>
-                                        <td>${action.getActionType()}</td>
-                                        <td>${action.getNote()}</td>
-                                        <td>${action.getCompleted()}</td>
-                                        <td>${action.getCompleteDate()}</td>
-                                    </tr>
-                                </c:forEach>
+                                <tr class='contactID1'>
+                                    <td>1</td>
+                                    <td>2019-10-21</td>
+                                    <td>2019-10-23</td>
+                                    <td>Left Message</td>
+                                    <td>Call back to get the scuttlebutt</td>
+                                    <td>In progress</td>
+                                    <td>None</td>
+                                    <td class="d-none">1</td>
+                                </tr>
+
+                                <tr class='contactID2'>
+                                    <td>2</td>
+                                    <td>2019-10-21</td>
+                                    <td>2019-10-24</td>
+                                    <td>Email</td>
+                                    <td>Email about tour</td>
+                                    <td>In progress</td>
+                                    <td>None</td>
+                                    <td class="d-none">2</td>
+                                </tr>
+
+                                <tr class='contactID2'>
+                                    <td>3</td>
+                                    <td>2019-10-23</td>
+                                    <td>2019-10-25</td>
+                                    <td>GIK Drop-off</td>
+                                    <td>Pick up donation of blankets</td>
+                                    <td>In progress</td>
+                                    <td>None</td>
+                                    <td class="d-none">2</td>
+                                </tr>
 
                                 </tbody>
                             </table>
@@ -582,7 +544,6 @@ Fonts and Icons free to use in commercial projects -->
     $("#frmAddContact").submit(function(e)
     {
         e.preventDefault(); //prevent usual post cycle
-
         var form = $(this); //set the form that called this method to a var
         var url = form.attr('action');
         alert("Data sent looks like: " + form.serialize());
@@ -598,25 +559,5 @@ Fonts and Icons free to use in commercial projects -->
     })
 </script>
 
-<script>
-    // Example starter JavaScript for disabling form submissions if there are invalid fields
-    (function() {
-        'use strict';
-        window.addEventListener('load', function() {
-            // Fetch all the forms we want to apply custom Bootstrap validation styles to
-            var forms = document.getElementsByClassName('needs-validation');
-            // Loop over them and prevent submission
-            var validation = Array.prototype.filter.call(forms, function(form) {
-                form.addEventListener('submit', function(event) {
-                    if (form.checkValidity() === false) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                    }
-                    form.classList.add('was-validated');
-                }, false);
-            });
-        }, false);
-    })();
-</script>
 </body>
 </html>

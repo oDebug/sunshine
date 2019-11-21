@@ -53,20 +53,23 @@
 //         }
 //     }
 // }
+function keyUpSearch(str) {
+    //only run if string has 3+ chars. SOMEWHERE NEEDS TO BE ABLE TO SEARCH WITH 1 CHAR.
+    if (str.toString().length > 2) {
+        showResults(str);
+    }
+}
 
 function showResults(str) {
-    if (str.toString().length > 2) //only run if string has 3+ chars. SOMEWHERE NEEDS TO BE ABLE TO SEARCH WITH 1 CHAR.
-    {
-        var url = "/listOrgs?name=" + str;
-        $.ajax({
-            url: url,
-            type: "GET",
-            data: {name: str},
-            success: function (data) {
-                generateTable(data);
-            }
-        })
-    }
+    var url = "/listOrgs";
+    $.ajax({
+        url: url,
+        type: "GET",
+        data: {name: str},
+        success: function (data) {
+            generateTable(data);
+        }
+    })
 }
 
 function addContact() //dont use
@@ -87,7 +90,7 @@ function generateTable(data) {
 
 function createRow(data) {
     var trElement = "<tr class=\"clickable-row\">";
-    trElement += "<td><a href='editOrganization?id=" + data.id + "'>" + data.id + "</a></td>";
+    trElement += "<td><a href='editContact?id=" + data.id + "'>" + data.id + "</a></td>";
     trElement += "<td>" + data.name + "</td>";
     trElement += "<td>" + data.type + "</td>";
     trElement += "<td>" + data.phones[0].phone + "</td>";
@@ -96,56 +99,59 @@ function createRow(data) {
 }
 
 $(document).ready(function ($) {
-    $(".clickable-row").click(function () {
+    $(".clickable-row").click(function() {
         window.location = $(this).data("href");
+    });
+    $("#submit-search").click(function(str) {
+        showResults($('#search-string').val());
     });
     showResults("");
 });
 
 
-    $('#contactTable tbody').on('click', 'tr', function () {
-
-         if ($('#contactLabel').length) {
-             $('#contactLabel').remove();
-            $('#contactTitle').remove();
-        }
-        var rowContact = $(this).find('td:nth-of-type(3)').text();
-        var contactID = $(this).find('td:nth-of-type(1)').text();
-         var name = $(this).find('td:nth-of-type(2)').text();
-
-        $('#orgModal').modal('show');
-
-         $('#orgModal .modal-header').prepend('<h5 class="modal-title" id="contactTitle">' + name + '</h5>')
-         $('#rowContact').append('<div id="contactLabel"><label>Contact Type: ' + rowContact + '</label></br><label id="contactIDLabel" >Contact ID: ' + contactID + '</label></div>');
-
-        if (rowContact === "Person" || rowContact === "PN" ) {
-            $('#orgTypeShow').addClass('d-none');
-            $('#denomShow').addClass('d-none');
-         } else if (rowContact === "Church" || rowContact === "CH") {
-             $('#orgTypeShow').addClass('d-none');
-             $('#denomShow').removeClass('d-none');
-
-         } else {
-             $('#denomShow').addClass("d-none");
-             $('#orgTypeShow').removeClass('d-none');
-         }
-
-    });
-
-$(document).on('hidden.bs.modal', '.modal', function() {
-    $('.modal:visible').length && $(document.body).addClass('modal-open');
-});
-
-$('#addContactBtn').on('click', function() {
-    $('#orgRadio').click(function() {
-        $('#churchSelect').addClass("d-none");
-        $('#orgSelect').removeClass('d-none');
-    });
-
-    $('#churchRadio').click(function() {
-
-        $('#orgSelect').addClass('d-none');
-        $('#churchSelect').removeClass('d-none');
-
-    });
-});
+// $('#contactTable tbody').on('click', 'tr', function () {
+//
+//     if ($('#contactLabel').length) {
+//         $('#contactLabel').remove();
+//         $('#contactTitle').remove();
+//     }
+//     var rowContact = $(this).find('td:nth-of-type(3)').text();
+//     var contactID = $(this).find('td:nth-of-type(1)').text();
+//     var name = $(this).find('td:nth-of-type(2)').text();
+//
+//     $('#orgModal').modal('show');
+//
+//     $('#orgModal .modal-header').prepend('<h5 class="modal-title" id="contactTitle">' + name + '</h5>')
+//     $('#rowContact').append('<div id="contactLabel"><label>Contact Type: ' + rowContact + '</label></br><label id="contactIDLabel" >Contact ID: ' + contactID + '</label></div>');
+//
+//     if (rowContact === "Person" || rowContact === "PN") {
+//         $('#orgTypeShow').addClass('d-none');
+//         $('#denomShow').addClass('d-none');
+//     } else if (rowContact === "Church" || rowContact === "CH") {
+//         $('#orgTypeShow').addClass('d-none');
+//         $('#denomShow').removeClass('d-none');
+//
+//     } else {
+//         $('#denomShow').addClass("d-none");
+//         $('#orgTypeShow').removeClass('d-none');
+//     }
+//
+// });
+//
+// $(document).on('hidden.bs.modal', '.modal', function () {
+//     $('.modal:visible').length && $(document.body).addClass('modal-open');
+// });
+//
+// $('#addContactBtn').on('click', function () {
+//     $('#orgRadio').click(function () {
+//         $('#churchSelect').addClass("d-none");
+//         $('#orgSelect').removeClass('d-none');
+//     });
+//
+//     $('#churchRadio').click(function () {
+//
+//         $('#orgSelect').addClass('d-none');
+//         $('#churchSelect').removeClass('d-none');
+//
+//     });
+// });

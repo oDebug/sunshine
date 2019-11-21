@@ -8,7 +8,7 @@ $(document).ready(function () {
                 window.location = 'dashboard';
             },
             error: function () {
-                $('#credentials-error').innerText = "Invalid Credentials";
+                $('#credentials-error').text("Invalid Credentials");
             }
         })
     });
