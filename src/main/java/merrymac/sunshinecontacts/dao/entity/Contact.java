@@ -10,18 +10,18 @@ import javax.persistence.Table;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "orgs", schema = "sunshine")
+@Table(name = "contacts", schema = "sunshine")
 @Data
 @NoArgsConstructor
-public class Organization {
+public class Contact {
     @Id
     @Column(name = "id", updatable = false, nullable = false)
     private Long id;
 
-    @Column(name = "org_name", nullable = false)
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "org_type", nullable = false)
+    @Column(name = "type", nullable = false)
     private String type;
 
     @Column(name="create_timestamp")
@@ -44,5 +44,8 @@ public class Organization {
 
     @Column(name="delete_user")
     private String deleteUser;
+
+    @Column(name="denomination")
+    private String denomination;
 
 }

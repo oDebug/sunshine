@@ -4,5 +4,3 @@ create table sunshine.user_table
     pw           tinytext  null,
     date_created timestamp null
 );
-
-

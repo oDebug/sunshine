@@ -3,17 +3,16 @@ package merrymac.sunshinecontacts.response;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import merrymac.sunshinecontacts.dao.entity.Organization;
+import merrymac.sunshinecontacts.dao.entity.Contact;
 
-import javax.persistence.Column;
 import java.util.Date;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrgActionResponse {
+public class ActionResponse {
     private Long id;
-    private Organization organization;
+    private Contact contact;
     private String actionType;
     private boolean completed;
     private String notes;

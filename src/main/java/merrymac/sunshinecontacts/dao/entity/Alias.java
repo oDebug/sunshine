@@ -15,24 +15,24 @@ import javax.persistence.Table;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "org_alias", schema = "sunshine")
+@Table(name = "aliases", schema = "sunshine")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrgAlias implements Serializable {
+public class Alias implements Serializable {
     @Id
     @GeneratedValue
     @Column(name="id", updatable=false, nullable=false)
     private Long id;
 
-    @Column(name="org_name")
+    @Column(name="name")
     private String alias;
 
-    @Column(name="org_id", insertable = false, updatable = false)
-    private Long orgId;
+    @Column(name="contact_id", insertable = false, updatable = false)
+    private Long contactId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="org_id")
-    private Organization organization;
+    @JoinColumn(name="contact_id")
+    private Contact contact;
 
 }
