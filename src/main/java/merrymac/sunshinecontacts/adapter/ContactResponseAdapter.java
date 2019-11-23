@@ -11,11 +11,11 @@ import java.util.List;
 @Component
 public class ContactResponseAdapter {
 
-    public ContactResponse toOrgResponse(Contact contact,
-                                         List<PhoneNumber> phones,
-                                         List<Address> addresses,
-                                         List<Action> actions,
-                                         List<Alias> aliases) {
+    public ContactResponse toContactResponse(Contact contact,
+                                             List<PhoneNumber> phones,
+                                             List<Address> addresses,
+                                             List<Action> actions,
+                                             List<Alias> aliases) {
 
         ContactResponse response = new ContactResponse();
         response.setId(contact.getId());
@@ -36,7 +36,7 @@ public class ContactResponseAdapter {
         return response;
     }
 
-    public ActionResponse toOrgActionResponse(Action action, Contact contact) {
+    public ActionResponse toContactActionResponse(Action action, Contact contact) {
         ActionResponse response = new ActionResponse();
 
         response.setActionType(action.getActionType());
