@@ -117,4 +117,11 @@ public class ContactController {
         }
     }
 
+    @GetMapping("/reports")
+    public ModelAndView reports(Map<String, Object> model)
+    {
+        ModelAndView mav = new ModelAndView("reports");
+        return mav;
+    }
+
 }
