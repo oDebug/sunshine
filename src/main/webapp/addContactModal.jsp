@@ -144,3 +144,28 @@
         </div> <!-- end of modal-content-->
     </div> <!-- end of modal role=document -->
 </div><!-- end of model fade -->
+
+<%-- Radio Buttons:
+       rbtnContactTypeChurch
+       rbtnContactTypeOrg
+       rbtnContactTypePerson
+     Everything else:
+        tboxName
+        tboxAlias
+        tboxEmail
+        tboxDenomination
+        tboxOrgType
+        tboxAddressDesc
+        tboxAddress1
+        tboxAddress2
+        tboxCity
+        states
+        tboxZip
+        tboxPhone
+        tboxFax
+        tboxWebsite
+        tboxFacebook
+        tboxInstagram
+        tboxTwitter
+        txtareaInputNote
+       --%>
