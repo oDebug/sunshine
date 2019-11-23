@@ -11,7 +11,7 @@
             </div>
             <div class="modal-body">
                 <!-- input form -->
-                <form name="addContactForm" id="frmAddContact" action="/addContact" method="POST" autocomplete="off">
+                <form name="addContactForm" id="frmAddContact" action="/saveContact" method="POST" autocomplete="off">
                     <div class="form-row justify-content-center">
                         <div class="form-group-col-md-6">
                             <label class="btn btn-md btn-default" id="churchRadio">
@@ -28,7 +28,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="tboxName">Name</label>
-                            <input type="text" class="form-control" id="tboxName" placeholder="Name" name="name">
+                            <input type="text" class="form-control" id="tboxName" placeholder="Name" name="name" required>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="tboxAlias">Alternative Alias</label>
@@ -135,8 +135,8 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary add-row" id="submitContact" data-dismiss="modal" data-toggle="modal" data-target="#addContact">Submit</button>
-                        <input type="submit" value="Submit"> <!--Temporary button for testing purposes-->
+<%--                        <button type="submit" class="btn btn-primary add-row" id="submitContact" data-dismiss="modal" data-toggle="modal">Submit</button>--%>
+                        <input class="btn btn-primary " type="submit" value="Submit"> <!--Temporary button for testing purposes-->
                     </div>
                 </form>
             </div>

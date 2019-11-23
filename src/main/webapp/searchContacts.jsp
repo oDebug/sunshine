@@ -399,9 +399,11 @@
             data: form.serialize(), //serialize the form input data
             success: function(data)
             {
-                alert(data); //test alert
+                alert("Success: This is ajax at bottom of searchContacts.jsp"); //test alert
             }
         });
+
+        $('#inputContact').modal('hide');
     })
 </script>
 
