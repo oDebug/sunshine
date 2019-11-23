@@ -19,8 +19,8 @@
 
 <jsp:include page="navbar.jsp"></jsp:include>
 <!-- form selection
-    four types of contact form options: 1) church 2) business/organization 
-    3) organization personnel 4) volunteer/donor -->
+    four types of contact form options: 1) church 2) business/contact
+    3) contact personnel 4) volunteer/donor -->
 <div class="container"> <!--Container for forms-->
     <header id="option-section" style="min-height: 100%;margin-top: 10px">
         <div class="dark-overlay">
@@ -304,7 +304,7 @@
 
         </form>
     </section>
-    <!-- Add Business/Organization Section -->
+    <!-- Add Business/Contact Section -->
 <%--    <section class="" id="orgContactSection">--%>
 <%--        <div class="fluid-container ">--%>
 
@@ -315,7 +315,7 @@
 <%--                        <div class="form-row">--%>
 <%--                            <div class="form-group col-sm-3">--%>
 <%--                                <label for="inputOrgName">Name</label>--%>
-<%--                                <input type="text" class="form-control" placeholder="Organization Name">--%>
+<%--                                <input type="text" class="form-control" placeholder="Contact Name">--%>
 <%--                            </div>--%>
 <%--                            <div class="form-group col-sm-3">--%>
 <%--                                <label for="inputAltOrgName">Alterative Name</label>--%>
@@ -324,7 +324,7 @@
 <%--                        </div>--%>
 <%--                        <div class="form-row">--%>
 <%--                            <div class="form-group col-sm-3">--%>
-<%--                                <label for="inputOrgType">Organization Type</label>--%>
+<%--                                <label for="inputOrgType">Contact Type</label>--%>
 <%--                                <input type="text" class="form-control" placeholder="Business, school...">--%>
 <%--                            </div>--%>
 <%--                            <div class="form-group col-sm-3">--%>
@@ -377,7 +377,7 @@
 <%--            <!--------------------------------------------------------------------------------->--%>
 
 <%--            <div class="card border-dark">--%>
-<%--                <div class="card-header"><h4 class="card-title">Organization Mailing Address</h4></div>--%>
+<%--                <div class="card-header"><h4 class="card-title">Contact Mailing Address</h4></div>--%>
 <%--                <div class="card-body">--%>
 <%--                    <form>--%>
 <%--                        <div class="form-row">--%>
@@ -1161,7 +1161,7 @@
 
     function initMap()
     {
-        alert('Test');
+        //alert('Test');
         var map = new google.maps.Map(document.getElementById('map'), {
             center: {lat: 38.6530169, lng: -90.3835463},
             zoom: 8

@@ -15,8 +15,8 @@
     <link rel="stylesheet" href="../css/navbar_style.css">
     <link rel="stylesheet" href="../css/addContact_style.css">
 
-    <script src="javascript/jquery-3.4.1.min.js"></script>
-    <script src="javascript/searchOrgs.js"></script>
+<script src="javascript/jquery-3.4.1.min.js"></script>
+<script src="javascript/searchContacts.js"></script>
 
     <title>Sunshine Ministries Contacts</title>
 </head>
@@ -34,11 +34,11 @@
             <div class="row">
                 <div class="col-lg-5">
                     <div class="input-group">
-                        <form class="input-group-prepend" action="listOrgs">
-                            <button class="btn bg-primary text-white" type="submit">
+                        <form class="input-group-prepend">
+                            <button class="btn bg-primary text-white" id="submit-search">
                                 <i class="fas fa-search"></i>
                             </button>
-                            <input type="text" class="form-control" placeholder="Search by contact name" onkeyup="showResults(this.value)">
+                            <input type="text" id="search-string" class="form-control" placeholder="Search by contact name" onkeyup="keyUpSearch(this.value)">
                         </form>
                     </div>
                 </div>
@@ -70,7 +70,7 @@
                         </div>
                     </div>
                 </div>
-            </div><!-- end of row class under organization contacts h3 -->
+            </div><!-- end of row class under contact contacts h3 -->
         </div>
     </div>
     <div class="table-responsive"></div>
@@ -390,7 +390,6 @@
     $("#frmAddContact").submit(function(e)
     {
         e.preventDefault(); //prevent usual post cycle
-
         var form = $(this); //set the form that called this method to a var
         var url = form.attr('action');
         alert("Data sent looks like: " + form.serialize());
