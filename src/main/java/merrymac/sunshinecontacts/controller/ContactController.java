@@ -16,15 +16,19 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 import java.util.Map;
 
+//import merrymac.sunshinecontacts.service.PeopleService;
+
 @Controller
 public class ContactController {
     @Autowired
     private ContactService contactService;
     @Autowired
     private UserService userService;
+//    @Autowired private PeopleService peopleService;
 
     @RequestMapping("/dashboard")
-    public ModelAndView dashboard() {
+    public ModelAndView dashboard()
+    {
         ModelAndView mav = new ModelAndView("dashboard");
 
         List<ContactResponse> recentContacts = contactService.getRecentlyAddedContacts();
@@ -56,12 +60,12 @@ public class ContactController {
         return mav;
     }
 
-    @GetMapping("/editOrganization")
+    @GetMapping("/editContact")
     @ResponseBody
     public ModelAndView editOrg(@RequestParam("id") String id) {
         Long orgId = Long.parseLong(id);
         ContactResponse response = contactService.get(orgId);
-        ModelAndView mav = new ModelAndView("editOrganization");
+        ModelAndView mav = new ModelAndView("editContact");
         mav.addObject("result", response);
         return mav;
     }
