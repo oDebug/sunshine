@@ -154,7 +154,6 @@
     </div>
 </div>
 
-
 </div>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -183,7 +182,6 @@
     $('#contactTable').on("click", "#tableResults tr", function(e) {
         //show Modal for id in row
         $('#orgModal').modal('show');
-
     });
 
 </script>
