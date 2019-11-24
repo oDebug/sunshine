@@ -31,8 +31,8 @@ public class ContactController {
     {
         ModelAndView mav = new ModelAndView("dashboard");
 
-        List<ContactResponse> recentOrgs = contactService.getRecentlyAddedOrgs();
-        mav.addObject("recentOrgs", recentOrgs);
+        List<ContactResponse> recentContacts = contactService.getRecentlyAddedContacts();
+        mav.addObject("recentContacts", recentContacts);
 
         List<ActionResponse> upcomingActions = contactService.getUpcomingActions();
         mav.addObject("upcomingActions", upcomingActions);

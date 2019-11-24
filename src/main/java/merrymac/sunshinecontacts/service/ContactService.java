@@ -37,7 +37,7 @@ public class ContactService {
         List<Contact> contacts = aliasRepository.searchByAlias(alias);
         List<ContactResponse> response = new ArrayList<>();
         for (Contact org : contacts) {
-            response.add(toOrgResponse(org));
+            response.add(toContactResponse(org));
         }
         return response;
     }
@@ -46,23 +46,23 @@ public class ContactService {
         List<Contact> contacts = (List<Contact>) contactRepository.findAll();
         List<ContactResponse> response = new ArrayList<>();
         for (Contact org : contacts) {
-            response.add(toOrgResponse(org));
+            response.add(toContactResponse(org));
         }
         return response;
     }
 
-    public List<ContactResponse> getRecentlyAddedOrgs() {
+    public List<ContactResponse> getRecentlyAddedContacts() {
         List<Contact> contacts = contactRepository.findTop5ByOrderByCreateTimestampDesc();
         List<ContactResponse> response = new ArrayList<>();
         for (Contact org : contacts) {
-            response.add(toOrgResponse(org));
+            response.add(toContactResponse(org));
         }
         return response;
     }
 
     public ContactResponse get(Long id) {
         Contact contact = contactRepository.findById(id).get();
-        ContactResponse response = toOrgResponse(contact);
+        ContactResponse response = toContactResponse(contact);
         return response;
     }
 
@@ -70,7 +70,7 @@ public class ContactService {
         contactRepository.deleteById(id);
     }
 
-    private ContactResponse toOrgResponse(Contact contact) {
+    private ContactResponse toContactResponse(Contact contact) {
         ContactResponse response = new ContactResponse();
         ContactResponse element;
 
@@ -81,7 +81,7 @@ public class ContactService {
         List<Address> addresses = addressRepository.findByOrgId(orgId);
         List<Alias> aliases = aliasRepository.findByContactId(orgId);
 
-        return contactResponseAdapter.toOrgResponse(contact, phones, addresses, actions, aliases);
+        return contactResponseAdapter.toContactResponse(contact, phones, addresses, actions, aliases);
 
     }
 
@@ -91,7 +91,7 @@ public class ContactService {
         List<ActionResponse> response = new ArrayList<>();
         for (Action action : results) {
             Contact contact = contactRepository.findById(action.getOrgId()).get();
-            response.add(contactResponseAdapter.toOrgActionResponse(action, contact));
+            response.add(contactResponseAdapter.toContactActionResponse(action, contact));
         }
 
         return response;

@@ -266,11 +266,11 @@
                                     </thead>
                                     <tbody>
                                     <c:forEach var="action" items="${upcomingActions}">
-                                        <tr id="${action.getOrganization().getId()}">
+                                        <tr id="${action.getContact().getId()}">
                                             <td>${action.getId()}</td>
                                             <td>
-                                                <a href="editOrganization?id=${action.getOrganization().getId()}">
-                                                    ${action.getOrganization().getName()}
+                                                <a href="editOrganization?id=${action.getContact().getId()}">
+                                                    ${action.getContact().getName()}
                                                 </a>
                                             </td>
                                             <td>${action.getCreateDate()}</td>
@@ -284,7 +284,7 @@
                         </div>
                     </div>
                     <div class="card bg-light text-center card-form mt-3 text-dark">
-                        <div class="card-header"><h4>Recently Added Organizations</h4></div>
+                        <div class="card-header"><h4>Recently Added Contacts</h4></div>
                         <div class="card-body" style="padding: 0">
                             <div class="table-responsive">
                                 <table class="table table-primary table-hover">
@@ -295,12 +295,12 @@
                                         <th>Date Created</th>
                                     </thead>
                                     <tbody>
-                                    <c:forEach var="org" items="${recentOrgs}">
-                                        <tr id="${org.getId()}">
-                                            <td><a href="editOrganization?id=${org.getId()}">${org.getId()}</a></td>
-                                            <td>${org.getName()}</td>
-                                            <td>${org.getType()}</td>
-                                            <td>${org.getCreateTimestamp()}</td>
+                                    <c:forEach var="contact" items="${recentContacts}">
+                                        <tr id="${contact.getId()}">
+                                            <td><a href="editOrganization?id=${contact.getId()}">${contact.getId()}</a></td>
+                                            <td>${contact.getName()}</td>
+                                            <td>${contact.getType()}</td>
+                                            <td>${contact.getCreateTimestamp()}</td>
                                         </tr>
                                     </c:forEach>
                                     </tbody>
