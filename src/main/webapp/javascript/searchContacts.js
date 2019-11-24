@@ -98,6 +98,8 @@ function createRow(data) {
     return trElement;
 }
 
+
+
 $(document).ready(function ($) {
     $(".clickable-row").click(function() {
         window.location = $(this).data("href");
