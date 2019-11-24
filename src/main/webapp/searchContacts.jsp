@@ -29,7 +29,7 @@
 
     <div class="col-12">
         <div class="container mt-3 ml-4">
-            <div class="row"><h3 class="ml-3">Organization Contacts</h3></div>
+            <div class="row"><h3 class="ml-3">Contacts</h3></div>
 
             <div class="row">
                 <div class="col-lg-5">
@@ -80,7 +80,7 @@
             <th>ID#</th>
             <th onclick="sortTable(0)">Name</th>
             <th>Contact Type</th>
-            <th>Phone#</th>
+            <th>Phone</th>
             <th>Address</th>
         </tr>
         </thead>

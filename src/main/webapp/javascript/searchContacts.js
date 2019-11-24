@@ -89,12 +89,15 @@ function generateTable(data) {
 }
 
 function createRow(data) {
+    var address = data.addresses[0].street + ", " + data.addresses[0].city + " " + data.addresses[0].state + ", " + data.addresses[0].postalCode;
+    var mapLink = "https://www.google.com/maps/search/?api=1&query=" + decodeURIComponent(address);
+
     var trElement = "<tr class=\"clickable-row\">";
     trElement += "<td><a href='editContact?id=" + data.id + "'>" + data.id + "</a></td>";
     trElement += "<td>" + data.name + "</td>";
     trElement += "<td>" + data.type + "</td>";
     trElement += "<td>" + data.phones[0].phone + "</td>";
-    trElement += "<td>" + data.addresses[0].street + "</td></tr>";
+    trElement += "<td>" + address + " <a target='_blank' href='" + mapLink + "'>Map</a>" + "</td></tr>";
     return trElement;
 }
 

@@ -16,6 +16,9 @@
                     <li class='nav-item'>
                         <a class='nav-link' id='action-tab' data-toggle='tab' href='#action' role='tab' aria-controls='action' aria-selected='false'>Actions</a>
                     </li>
+                    <li class='nav-item'>
+                        <a class='nav-link' id='map-tab' data-toggle='tab' href='#map' role='tab' aria-controls='action' aria-selected='false'>Map</a>
+                    </li>
                 </ul>
                 <div class='tab-content' id='myTabContent'>
                     <div class='tab-pane fade show active' id='info' role='tabpanel' aria-labelledby='info-tab'><!-- info tab -->
@@ -119,7 +122,7 @@
                             </div>
                         </form>
                     </div>
-                    <!-- aciton tab -->
+                    <!---- action tab ------------------------------------------------------------------------------------------------------------------------------>
                     <div class='tab-pane fade' id='action' role='tabpanel' aria-labelledby='action-tab'>
                         <h2 class="mt-2">View Actions</h2>
                         <!-- add action button -->
@@ -185,6 +188,10 @@
                                 </tbody>
                             </table>
                         </div>
+                    </div>
+
+                    <div class='tab-pane fade' id='map' role='tabpanel' aria-labelledby='map-tab'>
+
                     </div>
                 </div>
             </div>
