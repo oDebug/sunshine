@@ -27,8 +27,8 @@ public class Action implements Serializable {
     @Column(name="id", updatable=false, nullable=false)
     private Long id;
 
-    @Column(name="org_id", insertable = false, updatable = false)
-    private Long orgId;
+    @Column(name="contact_id", insertable = false, updatable = false)
+    private Long contactId;
 
     @Column(name="action_type")
     private String actionType;

@@ -3,10 +3,7 @@ package merrymac.sunshinecontacts.response;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import merrymac.sunshinecontacts.dao.entity.Action;
-import merrymac.sunshinecontacts.dao.entity.Address;
-import merrymac.sunshinecontacts.dao.entity.Alias;
-import merrymac.sunshinecontacts.dao.entity.PhoneNumber;
+import merrymac.sunshinecontacts.dao.entity.*;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -30,5 +27,6 @@ public class ContactResponse {
     private List<Address> addresses;
     private List<Action> actions;
     private List<Alias> aliases;
+    private List<SocialMedia> socialMedia;
 
 }

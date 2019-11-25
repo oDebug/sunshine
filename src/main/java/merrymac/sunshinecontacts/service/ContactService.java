@@ -28,6 +28,8 @@ public class ContactService {
     PhoneRepository phoneRepository;
     @Autowired
     ContactResponseAdapter contactResponseAdapter;
+    @Autowired
+    SocialMediaRepository socialMediaRepository;
 
     public void save(Contact contact) {
         contactRepository.save(contact);
@@ -36,8 +38,8 @@ public class ContactService {
     public List<ContactResponse> searchByAlias(String alias) {
         List<Contact> contacts = aliasRepository.searchByAlias(alias);
         List<ContactResponse> response = new ArrayList<>();
-        for (Contact org : contacts) {
-            response.add(toContactResponse(org));
+        for (Contact contact : contacts) {
+            response.add(toContactResponse(contact));
         }
         return response;
     }
@@ -45,8 +47,8 @@ public class ContactService {
     public List<ContactResponse> listAll() {
         List<Contact> contacts = (List<Contact>) contactRepository.findAll();
         List<ContactResponse> response = new ArrayList<>();
-        for (Contact org : contacts) {
-            response.add(toContactResponse(org));
+        for (Contact contact : contacts) {
+            response.add(toContactResponse(contact));
         }
         return response;
     }
@@ -54,8 +56,8 @@ public class ContactService {
     public List<ContactResponse> getRecentlyAddedContacts() {
         List<Contact> contacts = contactRepository.findTop5ByOrderByCreateTimestampDesc();
         List<ContactResponse> response = new ArrayList<>();
-        for (Contact org : contacts) {
-            response.add(toContactResponse(org));
+        for (Contact contact : contacts) {
+            response.add(toContactResponse(contact));
         }
         return response;
     }
@@ -74,14 +76,15 @@ public class ContactService {
         ContactResponse response = new ContactResponse();
         ContactResponse element;
 
-        Long orgId = contact.getId();
+        Long contactId = contact.getId();
 
-        List<PhoneNumber> phones = phoneRepository.findByOrgId(orgId);
-        List<Action> actions = actionRepository.findByOrgId(orgId);
-        List<Address> addresses = addressRepository.findByOrgId(orgId);
-        List<Alias> aliases = aliasRepository.findByContactId(orgId);
+        List<PhoneNumber> phones = phoneRepository.findByContactId(contactId);
+        List<Action> actions = actionRepository.findByContactId(contactId);
+        List<Address> addresses = addressRepository.findByContactId(contactId);
+        List<Alias> aliases = aliasRepository.findByContactId(contactId);
+        List<SocialMedia> socialMedia = socialMediaRepository.findByContactId(contactId);
 
-        return contactResponseAdapter.toContactResponse(contact, phones, addresses, actions, aliases);
+        return contactResponseAdapter.toContactResponse(contact, phones, addresses, actions, aliases, socialMedia);
 
     }
 
@@ -90,7 +93,7 @@ public class ContactService {
 
         List<ActionResponse> response = new ArrayList<>();
         for (Action action : results) {
-            Contact contact = contactRepository.findById(action.getOrgId()).get();
+            Contact contact = contactRepository.findById(action.getContactId()).get();
             response.add(contactResponseAdapter.toContactActionResponse(action, contact));
         }
 

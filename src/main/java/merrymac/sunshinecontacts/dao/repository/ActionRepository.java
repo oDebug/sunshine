@@ -15,5 +15,5 @@ public interface ActionRepository extends CrudRepository<Action, Long> {
             "ORDER BY a.dueDate ASC ")
     List<Action> findTop5ByOrderByDueDateAsc ();
 
-    List<Action> findByOrgId(Long orgId);
+    List<Action> findByContactId(Long contactId);
 }

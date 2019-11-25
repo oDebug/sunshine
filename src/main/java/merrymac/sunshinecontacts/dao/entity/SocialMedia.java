@@ -1,5 +1,6 @@
 package merrymac.sunshinecontacts.dao.entity;
 
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,10 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "phone_numbers", schema = "sunshine")
+@Table(name = "socials", schema = "sunshine")
 @Data
 @NoArgsConstructor
-public class PhoneNumber {
+public class SocialMedia {
     @Id
     @Column(name = "id", updatable = false, nullable = false)
     private Long id;
@@ -20,10 +21,9 @@ public class PhoneNumber {
     @Column(name = "contact_id", insertable = false, updatable = false)
     private Long contactId;
 
-    @Column(name = "phone")
-    private Long phone;
+    @Column(name = "sm_type")
+    private String socialMediaType;
 
-    @Column(name="phone_type")
-    private String type;
-
+    @Column(name="sm_address")
+    private String socialMediaAddress;
 }
