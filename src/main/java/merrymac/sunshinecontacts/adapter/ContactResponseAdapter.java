@@ -15,7 +15,8 @@ public class ContactResponseAdapter {
                                              List<PhoneNumber> phones,
                                              List<Address> addresses,
                                              List<Action> actions,
-                                             List<Alias> aliases) {
+                                             List<Alias> aliases,
+                                             List<SocialMedia> socialMedia) {
 
         ContactResponse response = new ContactResponse();
         response.setId(contact.getId());
@@ -32,6 +33,7 @@ public class ContactResponseAdapter {
         response.setAddresses(addresses);
         response.setActions(actions);
         response.setAliases(aliases);
+        response.setSocialMedia(socialMedia);
 
         return response;
     }

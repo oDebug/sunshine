@@ -2,6 +2,7 @@ package merrymac.sunshinecontacts.controller;
 
 import merrymac.sunshinecontacts.dao.entity.Contact;
 import merrymac.sunshinecontacts.dao.entity.User;
+import merrymac.sunshinecontacts.request.ContactRequest;
 import merrymac.sunshinecontacts.response.ActionResponse;
 import merrymac.sunshinecontacts.response.ContactResponse;
 import merrymac.sunshinecontacts.service.ContactService;
@@ -96,7 +97,10 @@ public class ContactController {
 
     @RequestMapping("/saveContact")
     @ResponseBody
-    public void saveContact(@ModelAttribute("addContactForm") Contact contact) {
+    public void saveContact(Map<String, Object> model) {
+        Contact contact = new Contact();
+        contact.setId((Long) model.get("id"));
+
         try {
             contactService.save(contact);
         } catch (Exception e) {

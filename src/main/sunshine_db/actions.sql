@@ -9,10 +9,10 @@ create table actions
 	create_date date not null,
 	complete_date date null,
 	complete_user varchar(10) null,
-	org_id int(7) null,
+	contact_id int(7) null,
 	due_date date not null,
-	constraint org_actions_orgs_id_fk
-		foreign key (org_id) references contacts (id)
+	constraint actions_contact_id_fk
+		foreign key (contact_id) references contacts (id)
 );
 
 create definer = merrymac@localhost trigger before_insert_actions
