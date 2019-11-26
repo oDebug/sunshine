@@ -12,7 +12,7 @@ create table phone_numbers
 )
 comment 'Phone numbers for Organizations';
 
-create index org_phone_id_index
+create index phone_id_index
 	on phone_numbers (id);
 
 create definer = merrymac@localhost trigger before_insert_phone

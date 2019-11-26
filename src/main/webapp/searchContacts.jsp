@@ -91,7 +91,7 @@
 </div>
 <div class="col"></div>
 </div> <!-- big div for padding page -->
-<jsp:include page="orgModal.jsp"/>
+<jsp:include page="editContact.jsp"/>
 <!-- add action modal -->
 <div class='modal fade' id="addAction" tableindex='-1' role="dialog" aria-labelledby="addActionLabel"
      area-hidden='true'>
@@ -181,7 +181,7 @@
 
     $('#contactTable').on("click", "#tableResults tr", function(e) {
         //show Modal for id in row
-        $('#orgModal').modal('show');
+        $('#editContactModal').modal('show');
     });
 
 </script>

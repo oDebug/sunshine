@@ -111,6 +111,19 @@ $(document).ready(function ($) {
         showResults($('#search-string').val());
     });
     showResults("");
+
+    $('#saveContact').click(function () {
+        var form = $("form#editContactModal");
+        $.ajax({
+            url: "/saveContact",
+            data: form.serialize(),
+            type: "POST",
+            success: function (data) {
+                window.location = 'searchContacts';
+
+            }
+        })
+    });
 });
 
 

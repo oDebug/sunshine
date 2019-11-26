@@ -17,8 +17,6 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 import java.util.Map;
 
-//import merrymac.sunshinecontacts.service.PeopleService;
-
 @Controller
 public class ContactController {
     @Autowired
@@ -95,8 +93,7 @@ public class ContactController {
         }
     }
 
-    @RequestMapping("/saveContact")
-    @ResponseBody
+    @PostMapping("/saveContact")
     public void saveContact(Map<String, Object> model) {
         Contact contact = new Contact();
         contact.setId((Long) model.get("id"));
