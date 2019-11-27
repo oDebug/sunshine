@@ -233,6 +233,59 @@
             y.setAttribute("list", "");
         }
     }
+
+    function changeAddress() //Called by onChange attribute of addresses list input
+    {
+        //Replace inputs within the address section with the address that's now selected
+        var selectedAddress = document.getElementById("selectboxAddresses").value; //the id of the address or index #
+
+        //use selectedAddress to find new address data.
+
+        //insert new address data into form fields.
+
+    }
+
+    function addAddress() //Called by "Add New" button onclick.
+    {
+        //insert address form fields into database
+
+        //refresh selectboxAddresses list to include new address,
+        //AJAX call?
+
+    }
+
+    function removeAddress() //Called by "Remove" button onclick.
+    {
+        //Use id to delete address record
+        var selectedAddress = document.getElementById("selectboxAddresses").value;
+
+        //refresh selectboxAddresses list
+    }
+
+    function refreshAddressesList() //Either use javascript below or replace the element with an ajax call
+    {
+        //ajax call to select address data from db and populate the selectbox.
+        var addressList = document.getElementById("selectboxAddresses");
+        var option = document.createElement('option').appendChild(document.createTextNode('ADDRESS STRING HERE'));
+        option.value = 'ID OF ADDRESS';
+        addressList.appendChild(option);
+    }
+
+    function addPhone()
+    {
+
+    }
+
+    function removePhone()
+    {
+
+    }
+
+    function refreshPhonesList()
+    {
+
+    }
+
 </script>
 
 </body>

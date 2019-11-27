@@ -56,60 +56,56 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="card p-3 mt-2 border-primary"> <!-- Name, Contact Type, Email, Type Description -->
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label for="tboxName">Name</label>
-                                            <input type="text" class="form-control" name="nameEdit" id="tboxName" placeholder="Name">
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label for="tboxName">Name</label>
+                                                <input type="text" class="form-control" name="nameEdit" id="tboxNameEdit" placeholder="Name">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="selectboxType">Contact Type</label>
+                                                <select class="custom-select" id="selectboxTypeEdit" name="typeEdit" onchange="typeChange()">
+                                                    <option selected>Choose...</option>
+                                                    <option value="Church">Church</option>
+                                                    <option value="Organization">Organization</option>
+                                                    <option value="Business">Business</option>
+                                                    <option value="School">School</option>
+                                                    <option value="Person">Person</option>
+                                                    <option value="Other">Other</option>
+                                                </select>
+                                            </div>
                                         </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="selectboxType">Contact Type</label>
-                                            <select class="custom-select" id="selectboxType" name="type" onchange="typeChange()">
-                                                <option selected>Choose...</option>
-                                                <option value="Church">Church</option>
-                                                <option value="Organization">Organization</option>
-                                                <option value="Business">Business</option>
-                                                <option value="School">School</option>
-                                                <option value="Person">Person</option>
-                                                <option value="Other">Other</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label for="tboxEmail">Email</label>
-                                            <input type="email" class="form-control" id="tboxEmail" name="emailEdit" placeholder="Email">
-                                        </div>
-                                        <div class="form-group col-md-6" name="denomShow">
-                                            <label for="lboxTypeDescriptions">Type Description</label>
-                                            <input class="form-control" list="" id="lboxTypeDescriptions" name="typeDescriptions" placeholder="Denomination, Job Title, etc."> <!-- populate list based on contact type via javascript by changing list attribute-->
-                                            <datalist id="churchTypeDescriptions">
-                                                <option value="Baptist">
-                                                <option value="Catholic">
-                                            </datalist>
-                                            <datalist id="orgTypeDescriptions">
-                                                <option value="Charity">
-                                                <option value="Political">
-                                            </datalist>
-                                            <datalist id="businessTypeDescriptions">
-                                            </datalist>
-                                            <datalist id="schoolTypeDescriptions">
-                                                <option value="University">
-                                                <option value="Private">
-                                                <option value="Charter">
-                                            </datalist>
-                                            <datalist id="personTypeDescriptions">
-                                                <option value="President">
-                                                <option value="Receptionist">
-                                                <option value="Chairperson">
-                                                <option value="Priest">
-                                            </datalist>
-                                        </div>
-                                        <div class="form-group col-md-6 d-none " name="orgTypeShow">
-                                            <label for="orgTypeEdit">Type</label>
-                                            <input type="text" class="form-control" name="orgTypeEdit" placeholder="Type">
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label>Email</label>
+                                                <input type="email" class="form-control" id="tboxEmailEdit" name="emailEdit" placeholder="Email">
+                                            </div>
+                                            <div class="form-group col-md-6" name="denomShow">
+                                                <label for="lboxTypeDescriptions">Type Description</label>
+                                                <input class="form-control" list="" id="lboxTypeDescriptions" name="typeDescriptions" placeholder="Denomination, Job Title, etc."> <!-- populate list based on contact type via javascript by changing list attribute-->
+                                                <datalist id="churchTypeDescriptions">
+                                                    <option value="Baptist">
+                                                    <option value="Catholic">
+                                                </datalist>
+                                                <datalist id="orgTypeDescriptions">
+                                                    <option value="Charity">
+                                                    <option value="Political">
+                                                </datalist>
+                                                <datalist id="businessTypeDescriptions">
+                                                </datalist>
+                                                <datalist id="schoolTypeDescriptions">
+                                                    <option value="University">
+                                                    <option value="Private">
+                                                    <option value="Charter">
+                                                </datalist>
+                                                <datalist id="personTypeDescriptions">
+                                                    <option value="President">
+                                                    <option value="Receptionist">
+                                                    <option value="Chairperson">
+                                                    <option value="Priest">
+                                                </datalist>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
                                 </div>
                             </div>
 
@@ -119,7 +115,7 @@
                                         <div class="row">
                                             <div class="col">
                                                 <label for="selectboxAddresses">Addresses</label>
-                                                <select class="custom-select" id="selectboxAddresses" name="addresses" onchange="">
+                                                <select class="custom-select" id="selectboxAddressesEdit" name="addressesEdit" onchange="changeAddress()">
                                                     <option value="ID_NUM_HERE[index]">190 Carondelet Rd</option>
                                                     <option value="ID_NUM_HERE[index2]">7726 Watson Rd</option>
                                                 </select>
@@ -127,7 +123,7 @@
                                         </div>
                                         <div class="row h-100 align-items-end">
                                             <div class="col w-100">
-                                                <button type='button' class='btn btn-outline-success my-1 mx-0'>Add New</button>
+                                                <button type='button' class='btn btn-outline-danger my-1 mx-0'>Remove</button>
                                             </div>
                                         </div>
                                     </div>
@@ -136,37 +132,37 @@
                                     <div class="card p-3 mt-2 border-success"> <!-- Address Desc, Address, Address2, City, State, Zip -->
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
-                                                <label for="address1Edit">Street</label>
-                                                <input type="text" class="form-control" name="address1Edit">
+                                                <label>Street</label>
+                                                <input type="text" class="form-control" name="streetEdit" id="tboxStreetEdit">
                                             </div>
                                             <div class="form-group col-md-2">
-                                                <label for="address2Edit">Suite</label>
-                                                <input type="text" class="form-control" name="address2Edit">
+                                                <label>Suite</label>
+                                                <input type="text" class="form-control" name="suiteEdit" id="tboxSuiteEdit">
                                             </div>
                                             <div class="form-group col-md-4">
-                                                <label for="cityEdit">City</label>
-                                                <input type="text" class="form-control" name="cityEdit">
+                                                <label>City</label>
+                                                <input type="text" class="form-control" name="cityEdit" id="tboxCityEdit">
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-md-2">
-                                                <label for="stateEdit">State</label>
-                                                <input class="form-control" list="states" name="state">
+                                                <label>State</label>
+                                                <input class="form-control" list="states" name="stateEdit" id="listStates">
                                                 <datalist id="states">
                                                     <option value="MO">
                                                     <option value="IL">
                                                 </datalist>
                                             </div>
                                             <div class="form-group col-md-2">
-                                                <label for="zipEdit">Zip</label>
-                                                <input type="text" class="form-control" name="zipEdit">
+                                                <label>Zip</label>
+                                                <input type="text" class="form-control" name="zipEdit" id="tboxZipEdit">
                                             </div>
                                             <div class="form-group col-md-5">
-                                                <label for="addressDescEdit">Descr.</label>
-                                                <input type="text" class="form-control" name="addressDescEdit">
+                                                <label>Descr.</label>
+                                                <input type="text" class="form-control" name="addressDescrEdit" id="tboxAddressDescrEdit">
                                             </div>
                                             <div class="form-group col-md-3 align-self-end">
-                                                <button type='button' class='btn btn-outline-danger mt-2 mx-0'>Remove</button>
+                                                <button type='button' class='btn btn-outline-success mt-2 mx-0'>Add New</button>
                                             </div>
                                         </div>
                                     </div>
@@ -176,8 +172,8 @@
                             <div class="row"><!--Phones Row------------------------------------------------------------------------------->
                                 <div class="col-4 pr-1 mb-2">
                                     <div class="card p-3 mt-2 h-100 border-warning">
-                                        <label for="selectboxPhones">Phones</label>
-                                        <select class="custom-select" id="selectboxPhones" name="phones" onchange="">
+                                        <label>Phones</label>
+                                        <select class="custom-select" id="selectboxPhonesEdit" name="phonesEdit" onchange="">
                                             <option value="ID_NUM_HERE[index]">1234567</option>
                                             <option value="ID_NUM_HERE[index2]">7654321</option>
                                         </select>
@@ -186,13 +182,19 @@
                                 <div class="col-8 pl-1">
                                     <div class="card p-3 mt-2 border-warning">
                                         <div class="form-row">
-                                            <div class="form-group col-md-6">
-                                                <label for="phoneEdit">Phone</label>
-                                                <input type="text" class="form-control" name="phoneEdit" placeholder="Phone">
+                                            <div class="form-group col-md-4">
+                                                <label>Phone</label>
+                                                <input type="text" class="form-control" name="phoneEdit" id="tboxPhoneEdit" placeholder="Phone">
                                             </div>
-                                            <div class="form-group col-md-6">
+                                            <div class="form-group col-md-3">
                                                 <label>Type</label>
-                                                <input type="text" class="form-control" name="phoneType" placeholder="Type">
+                                                <input type="text" class="form-control" name="phoneTypeEdit" id="tboxPhoneTypeEdit" placeholder="Type">
+                                            </div>
+                                            <div class="form-group col-md-2 align-self-end mx-0 px-0">
+                                                <button type='button' class='btn btn-outline-success mt-2 mx-0'>Add</button>
+                                            </div>
+                                            <div class="form-group col-md-2 align-self-end mx-0 px-0">
+                                                <button type='button' class='btn btn-outline-danger mt-2 mx-0'>Remove</button>
                                             </div>
                                         </div>
                                     </div>
@@ -203,7 +205,7 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="websiteEdit">Website URL:</label>
-                                        <input type="text" class="form-control" name="website" id="websiteEdit" placeholder="https://example.com">
+                                        <input type="text" class="form-control" name="websiteEdit" id="websiteEdit" placeholder="https://example.com">
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="facebookEdit">Facebook URL:</label>
@@ -213,11 +215,11 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="instagramEdit">Instagram URL:</label>
-                                        <input type="text" class="form-control" name="instagram" id="instagramEdit" placeholder="https://example.com">
+                                        <input type="text" class="form-control" name="instagramEdit" id="instagramEdit" placeholder="https://example.com">
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="twitterEdit">Twitter URL:</label>
-                                        <input type="text" class="form-control" name="twitter" id="twitterEdit" placeholder="https://example.com">
+                                        <input type="text" class="form-control" name="twitterEdit" id="twitterEdit" placeholder="https://example.com">
                                     </div>
                                 </div>
                             </div>
