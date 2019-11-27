@@ -14,6 +14,9 @@
                         <a class='nav-link active' id='info-tab' data-toggle='tab' href='#info' role='tab' aria-controls='info' aria-selected='true'>Info</a>
                     </li>
                     <li class='nav-item'>
+                        <a class='nav-link' id='edit-tab' data-toggle='tab' href='#edit' role='tab' aria-controls='edit' aria-selected='false'>Edit</a>
+                    </li>
+                    <li class='nav-item'>
                         <a class='nav-link' id='action-tab' data-toggle='tab' href='#action' role='tab' aria-controls='action' aria-selected='false'>Actions</a>
                     </li>
                     <li class='nav-item'>
@@ -24,115 +27,177 @@
                     </li>
                 </ul>
                 <div class='tab-content' id='myTabContent'>
-                    <div class='tab-pane fade show active' id='info' role='tabpanel' aria-labelledby='info-tab'><!-- info tab -->
+
+                    <div class='tab-pane fade show active container' id='info' role='tabpanel' aria-labelledby='info-tab'>
+                        <div class="row">
+                            <div class="col">
+                                <h2 class="mt-3">Church of Cool</h2><span class="badge badge-warning">Business</span>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Description</li>
+                                <li class="list-group-item">Main Address</li>
+                                <li class="list-group-item">Main Phone</li>
+                                <li class="list-group-item">Main Email</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class='tab-pane fade' id='edit' role='tabpanel' aria-labelledby='edit-tab'><!-- edit tab -->
                         <h2 class="mt-3">View and Edit Contact</h2>
-                        <form autocomplete="off">
-                            <div class="form-row justify-content-center">
-                                <div class="form-group-col-md-6">
+                        <div class="container">
+                            <form autocomplete="off">
+                            <div class="row justify-content-center">
+                                <div class="col">
                                     <label class="btn btn-md btn-default" name="rowContact">[Name for contact]</label>
                                 </div>
                             </div>
-
-                            <div class="card p-3 mt-2"> <!-- Name, Contact Type, Email, Type Description -->
-                                <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <label for="nameEdit">Name</label>
-                                        <input type="text" class="form-control" name="nameEdit" placeholder="Name">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="card p-3 mt-2 border-primary"> <!-- Name, Contact Type, Email, Type Description -->
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="tboxName">Name</label>
+                                            <input type="text" class="form-control" name="nameEdit" id="tboxName" placeholder="Name">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="selectboxType">Contact Type</label>
+                                            <select class="custom-select" id="selectboxType" name="type" onchange="typeChange()">
+                                                <option selected>Choose...</option>
+                                                <option value="Church">Church</option>
+                                                <option value="Organization">Organization</option>
+                                                <option value="Business">Business</option>
+                                                <option value="School">School</option>
+                                                <option value="Person">Person</option>
+                                                <option value="Other">Other</option>
+                                            </select>
+                                        </div>
                                     </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="aliasEdit">Contact Type</label>
-                                        <select class="custom-select" id="selectboxType" onchange="typeChange()">
-                                            <option selected>Choose...</option>
-                                            <option value="Church">Church</option>
-                                            <option value="Organization">Organization</option>
-                                            <option value="Business">Business</option>
-                                            <option value="School">School</option>
-                                            <option value="Person">Person</option>
-                                            <option value="Other">Other</option>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="tboxEmail">Email</label>
+                                            <input type="email" class="form-control" id="tboxEmail" name="emailEdit" placeholder="Email">
+                                        </div>
+                                        <div class="form-group col-md-6" name="denomShow">
+                                            <label for="lboxTypeDescriptions">Type Description</label>
+                                            <input class="form-control" list="" id="lboxTypeDescriptions" name="typeDescriptions" placeholder="Denomination, Job Title, etc."> <!-- populate list based on contact type via javascript by changing list attribute-->
+                                            <datalist id="churchTypeDescriptions">
+                                                <option value="Baptist">
+                                                <option value="Catholic">
+                                            </datalist>
+                                            <datalist id="orgTypeDescriptions">
+                                                <option value="Charity">
+                                                <option value="Political">
+                                            </datalist>
+                                            <datalist id="businessTypeDescriptions">
+                                            </datalist>
+                                            <datalist id="schoolTypeDescriptions">
+                                                <option value="University">
+                                                <option value="Private">
+                                                <option value="Charter">
+                                            </datalist>
+                                            <datalist id="personTypeDescriptions">
+                                                <option value="President">
+                                                <option value="Receptionist">
+                                                <option value="Chairperson">
+                                                <option value="Priest">
+                                            </datalist>
+                                        </div>
+                                        <div class="form-group col-md-6 d-none " name="orgTypeShow">
+                                            <label for="orgTypeEdit">Type</label>
+                                            <input type="text" class="form-control" name="orgTypeEdit" placeholder="Type">
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+
+                            <div class="row"> <!-- Address row -------------------------------------->
+                                <div class="col-4 pr-1 mb-2">
+                                    <div class="card p-3 mt-2 h-100 border-success">
+                                        <div class="row">
+                                            <div class="col">
+                                                <label for="selectboxAddresses">Addresses</label>
+                                                <select class="custom-select" id="selectboxAddresses" name="addresses" onchange="">
+                                                    <option value="ID_NUM_HERE[index]">190 Carondelet Rd</option>
+                                                    <option value="ID_NUM_HERE[index2]">7726 Watson Rd</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="row h-100 align-items-end">
+                                            <div class="col w-100">
+                                                <button type='button' class='btn btn-outline-success my-1 mx-0'>Add New</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-8 pl-1">
+                                    <div class="card p-3 mt-2 border-success"> <!-- Address Desc, Address, Address2, City, State, Zip -->
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label for="address1Edit">Street</label>
+                                                <input type="text" class="form-control" name="address1Edit">
+                                            </div>
+                                            <div class="form-group col-md-2">
+                                                <label for="address2Edit">Suite</label>
+                                                <input type="text" class="form-control" name="address2Edit">
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="cityEdit">City</label>
+                                                <input type="text" class="form-control" name="cityEdit">
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-2">
+                                                <label for="stateEdit">State</label>
+                                                <input class="form-control" list="states" name="state">
+                                                <datalist id="states">
+                                                    <option value="MO">
+                                                    <option value="IL">
+                                                </datalist>
+                                            </div>
+                                            <div class="form-group col-md-2">
+                                                <label for="zipEdit">Zip</label>
+                                                <input type="text" class="form-control" name="zipEdit">
+                                            </div>
+                                            <div class="form-group col-md-5">
+                                                <label for="addressDescEdit">Descr.</label>
+                                                <input type="text" class="form-control" name="addressDescEdit">
+                                            </div>
+                                            <div class="form-group col-md-3 align-self-end">
+                                                <button type='button' class='btn btn-outline-danger mt-2 mx-0'>Remove</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row"><!--Phones Row------------------------------------------------------------------------------->
+                                <div class="col-4 pr-1 mb-2">
+                                    <div class="card p-3 mt-2 h-100 border-warning">
+                                        <label for="selectboxPhones">Phones</label>
+                                        <select class="custom-select" id="selectboxPhones" name="phones" onchange="">
+                                            <option value="ID_NUM_HERE[index]">1234567</option>
+                                            <option value="ID_NUM_HERE[index2]">7654321</option>
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <label for="emailEdit">Email</label>
-                                        <input type="email" class="form-control" name="emailEdit" placeholder="Email">
-                                    </div>
-                                    <div class="form-group col-md-6" name="denomShow">
-                                        <label for="lboxTypeDescriptions">Type Description</label>
-                                        <input class="form-control" list="" id="lboxTypeDescriptions" name="typeDescriptions" placeholder="Denomination, Job Title, etc."> <!-- populate list based on contact type via javascript by changing list attribute-->
-                                        <datalist id="churchTypeDescriptions">
-                                            <option value="Baptist">
-                                            <option value="Catholic">
-                                        </datalist>
-                                        <datalist id="orgTypeDescriptions">
-                                            <option value="Charity">
-                                            <option value="Political">
-                                        </datalist>
-                                        <datalist id="businessTypeDescriptions">
-                                        </datalist>
-                                        <datalist id="schoolTypeDescriptions">
-                                            <option value="University">
-                                            <option value="Private">
-                                            <option value="Charter">
-                                        </datalist>
-                                        <datalist id="personTypeDescriptions">
-                                            <option value="President">
-                                            <option value="Receptionist">
-                                            <option value="Chairperson">
-                                            <option value="Priest">
-                                        </datalist>
-                                    </div>
-                                    <div class="form-group col-md-6 d-none " name="orgTypeShow">
-                                        <label for="orgTypeEdit">Type</label>
-                                        <input type="text" class="form-control" name="orgTypeEdit" placeholder="Type">
+                                <div class="col-8 pl-1">
+                                    <div class="card p-3 mt-2 border-warning">
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label for="phoneEdit">Phone</label>
+                                                <input type="text" class="form-control" name="phoneEdit" placeholder="Phone">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label>Type</label>
+                                                <input type="text" class="form-control" name="phoneType" placeholder="Type">
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="card p-3 mt-2"> <!-- Address Desc, Address, Address2, City, State, Zip -->
-                                <div class="form-row">
-                                    <div class="form-group col-md-2">
-                                        <label for="addressDescEdit">Address Desc.</label>
-                                        <input type="text" class="form-control" name="addressDescEdit" placeholder="Mailing">
-                                    </div>
-                                    <div class="form-group col-md-5">
-                                        <label for="address1Edit">Address1</label>
-                                        <input type="text" class="form-control" name="address1Edit" placeholder="1234 Main St">
-                                    </div>
-                                    <div class="form-group col-md-5">
-                                        <label for="address2Edit">Address2</label>
-                                        <input type="text" class="form-control" name="address2Edit" placeholder="i.e. Apartment # or Office Room #">
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <label for="cityEdit">City</label>
-                                        <input type="text" class="form-control" name="cityEdit">
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label for="stateEdit">State</label>
-                                        <input class="form-control" list="states" name="state">
-                                        <datalist id="states">
-                                            <option value="MO">
-                                            <option value="IL">
-                                        </datalist>
-                                    </div>
-                                    <div class="form-group col-md-2">
-                                        <label for="zipEdit">Zip</label>
-                                        <input type="text" class="form-control" name="zipEdit">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card p-3 mt-2">
-                                <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="phoneEdit">Phone</label>
-                                    <input type="text" class="form-control" name="phoneEdit" placeholder="Phone">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="faxEdit">Fax</label>
-                                    <input type="text" class="form-control" name="faxEdit" placeholder="Fax">
-                                </div>
-                            </div>
+
                             </div>
                             <div class="card p-3 mt-2">
                                 <div class="form-row">
@@ -157,15 +222,8 @@
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="gridCheck">
-                                    <label class="form-check-label" for="gridCheck">
-                                        Is this information complete and accurate?
-                                    </label>
-                                </div>
-                            </div>
                         </form>
+                        </div>
                     </div>
                     <!---- action tab ------------------------------------------------------------------------------------------------------------------------------>
                     <div class='tab-pane fade' id='action' role='tabpanel' aria-labelledby='action-tab'>
