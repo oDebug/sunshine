@@ -184,6 +184,56 @@
         $('#editContactModal').modal('show');
     });
 
+    function setRemovingAlias(val) {
+       document.getElementById("headerAlias").innerHTML = val;
+    }
+
+    function removeAlias()
+    {
+       var list = document.getElementById("inputGroupAliases");
+
+       if(list.selectedIndex != 0)
+       {
+           var alias = list.options[list.selectedIndex].value;
+           alert(alias);
+           list.remove(list.selectedIndex);
+       }
+       else
+       {
+           alert("Select an alias");
+       }
+    }
+
+    function typeChange()
+    {
+        var x = document.getElementById("selectboxType").value;
+        var y = document.getElementById("lboxTypeDescriptions");
+
+        if(x == "Church")
+        {
+            y.setAttribute("list", "churchTypeDescriptions");
+        }
+        else if(x == "Business")
+        {
+            y.setAttribute("list", "businessTypeDescriptions");
+        }
+        else if(x == "School")
+        {
+            y.setAttribute("list", "schoolTypeDescriptions");
+        }
+        else if(x == "Person")
+        {
+            y.setAttribute("list", "personTypeDescriptions");
+        }
+        else if(x == "Organization")
+        {
+            y.setAttribute("list", "orgTypeDescriptions");
+        }
+        else if(x == "Other")
+        {
+            y.setAttribute("list", "");
+        }
+    }
 </script>
 
 </body>
