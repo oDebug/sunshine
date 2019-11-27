@@ -338,7 +338,7 @@
 
 
                     <div class='tab-pane fade' id='map' role='tabpanel' aria-labelledby='map-tab'>
-                        <div id="map"></div>
+                        <div id="mapPane"></div>
                     </div>
                 </div>
             </div>
