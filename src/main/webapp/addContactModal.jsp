@@ -67,7 +67,7 @@
                         <div class="form-group col-md-5">
                             <label for="tboxAddress2">Address2</label>
                             <input type="text" class="form-control" id="tboxAddress2"
-                                   placeholder="i.e. Appartment # or Office Room #" name="address2">
+                                   placeholder="i.e. Apartment # or Office Room #" name="address2">
                         </div>
                     </div>
 

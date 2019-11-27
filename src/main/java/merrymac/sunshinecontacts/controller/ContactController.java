@@ -1,6 +1,8 @@
 package merrymac.sunshinecontacts.controller;
 
+import merrymac.sunshinecontacts.dao.entity.Address;
 import merrymac.sunshinecontacts.dao.entity.Contact;
+import merrymac.sunshinecontacts.dao.entity.PhoneNumber;
 import merrymac.sunshinecontacts.dao.entity.User;
 import merrymac.sunshinecontacts.request.ContactRequest;
 import merrymac.sunshinecontacts.response.ActionResponse;
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
@@ -26,8 +29,7 @@ public class ContactController {
 //    @Autowired private PeopleService peopleService;
 
     @RequestMapping("/dashboard")
-    public ModelAndView dashboard()
-    {
+    public ModelAndView dashboard() {
         ModelAndView mav = new ModelAndView("dashboard");
 
         List<ContactResponse> recentContacts = contactService.getRecentlyAddedContacts();
@@ -93,15 +95,19 @@ public class ContactController {
         }
     }
 
-    @PostMapping("/saveContact")
-    public void saveContact(Map<String, Object> model) {
+    @RequestMapping(value = "/saveContact", method = RequestMethod.POST)
+    public ResponseEntity<Object> saveContact(Map<String, Object> model,
+                                              HttpServletRequest request,
+                                              @ModelAttribute("phones") List<PhoneNumber> phones,
+                                              @ModelAttribute("addresses") List<Address> addresses) {
         Contact contact = new Contact();
         contact.setId((Long) model.get("id"));
-
         try {
             contactService.save(contact);
+            return new ResponseEntity<Object>(HttpStatus.OK);
         } catch (Exception e) {
             e.getMessage();
+            return new ResponseEntity<Object>(HttpStatus.EXPECTATION_FAILED);
         }
     }
 
