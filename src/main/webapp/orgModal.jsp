@@ -338,7 +338,15 @@
                     </div>
 
                     <div class='tab-pane fade' id='map' role='tabpanel' aria-labelledby='map-tab'>
-                        <div id="mapPane"style="height: 400px; width: 400px;"></div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col"><div id="mapPane" style="height: 350px; width: 350px;"></div></div>
+
+                                <div class="col"><p>DISPLAY ADDRESS HERE</p></div>
+                            </div>
+                        </div>
+
+
                     </div>
                 </div>
             </div>
