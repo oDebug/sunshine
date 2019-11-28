@@ -1,58 +1,4 @@
-<!-- sorting columns by clicking headers -->
-// function sortTable(n) {
-//     var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-//     table = document.getElementById("contactTable");
-//     switching = true;
-//     // Set the sorting direction to ascending:
-//     dir = "asc";
-//     /* Make a loop that will continue until
-//     no switching has been done: */
-//     while (switching) {
-//         // Start by saying: no switching is done:
-//         switching = false;
-//         rows = table.rows;
-//         /* Loop through all table rows (except the
-//         first, which contains table headers): */
-//         for (i = 1; i < (rows.length - 1); i++) {
-//             // Start by saying there should be no switching:
-//             shouldSwitch = false;
-//             /* Get the two elements you want to compare,
-//             one from current row and one from the next: */
-//             x = rows[i].getElementsByTagName("TD")[n];
-//             y = rows[i + 1].getElementsByTagName("TD")[n];
-//             /* Check if the two rows should switch place,
-//             based on the direction, asc or desc: */
-//             if (dir == "asc") {
-//                 if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-//                     // If so, mark as a switch and break the loop:
-//                     shouldSwitch = true;
-//                     break;
-//                 }
-//             } else if (dir == "desc") {
-//                 if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-//                     // If so, mark as a switch and break the loop:
-//                     shouldSwitch = true;
-//                     break;
-//                 }
-//             }
-//         }
-//         if (shouldSwitch) {
-//             /* If a switch has been marked, make the switch
-//             and mark that a switch has been done: */
-//             rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-//             switching = true;
-//             // Each time a switch is done, increase this count by 1:
-//             switchcount++;
-//         } else {
-//             /* If no switching has been done AND the direction is "asc",
-//             set the direction to "desc" and run the while loop again. */
-//             if (switchcount == 0 && dir == "asc") {
-//                 dir = "desc";
-//                 switching = true;
-//             }
-//         }
-//     }
-// }
+
 function keyUpSearch(str) {
     //only run if string has 3+ chars. SOMEWHERE NEEDS TO BE ABLE TO SEARCH WITH 1 CHAR.
     if (str.toString().length > 2) {
@@ -89,15 +35,17 @@ function generateTable(data) {
 }
 
 function createRow(data) {
+    geocodeAddress(data); //this is just for testing. Need to send the actual data of the row clicked on.
+
     var address = data.addresses[0].street + ", " + data.addresses[0].city + " " + data.addresses[0].state + ", " + data.addresses[0].postalCode;
     var mapLink = "https://www.google.com/maps/search/?api=1&query=" + decodeURIComponent(address);
 
     var trElement = "<tr class=\"clickable-row\">";
-    trElement += "<td><a href='editContact?id=" + data.id + "'>" + data.id + "</a></td>";
+    trElement += "<td>" + data.id + "</td>";
     trElement += "<td>" + data.name + "</td>";
     trElement += "<td>" + data.type + "</td>";
     trElement += "<td>" + data.phones[0].phone + "</td>";
-    trElement += "<td>" + address + " <a target='_blank' href='" + mapLink + "'>Map</a>" + "</td></tr>";
+    trElement += "<td>" + address + " <a target='_blank' href='" + mapLink + "'><i class='fas fa-map-marked-alt'></i></a>" + "</td></tr>";
     return trElement;
 }
 
@@ -113,49 +61,43 @@ $(document).ready(function ($) {
 });
 
 
-// $('#contactTable tbody').on('click', 'tr', function () {
-//
-//     if ($('#contactLabel').length) {
-//         $('#contactLabel').remove();
-//         $('#contactTitle').remove();
-//     }
-//     var rowContact = $(this).find('td:nth-of-type(3)').text();
-//     var contactID = $(this).find('td:nth-of-type(1)').text();
-//     var name = $(this).find('td:nth-of-type(2)').text();
-//
-//     $('#orgModal').modal('show');
-//
-//     $('#orgModal .modal-header').prepend('<h5 class="modal-title" id="contactTitle">' + name + '</h5>')
-//     $('#rowContact').append('<div id="contactLabel"><label>Contact Type: ' + rowContact + '</label></br><label id="contactIDLabel" >Contact ID: ' + contactID + '</label></div>');
-//
-//     if (rowContact === "Person" || rowContact === "PN") {
-//         $('#orgTypeShow').addClass('d-none');
-//         $('#denomShow').addClass('d-none');
-//     } else if (rowContact === "Church" || rowContact === "CH") {
-//         $('#orgTypeShow').addClass('d-none');
-//         $('#denomShow').removeClass('d-none');
-//
-//     } else {
-//         $('#denomShow').addClass("d-none");
-//         $('#orgTypeShow').removeClass('d-none');
-//     }
-//
-// });
-//
-// $(document).on('hidden.bs.modal', '.modal', function () {
-//     $('.modal:visible').length && $(document.body).addClass('modal-open');
-// });
-//
-// $('#addContactBtn').on('click', function () {
-//     $('#orgRadio').click(function () {
-//         $('#churchSelect').addClass("d-none");
-//         $('#orgSelect').removeClass('d-none');
-//     });
-//
-//     $('#churchRadio').click(function () {
-//
-//         $('#orgSelect').addClass('d-none');
-//         $('#churchSelect').removeClass('d-none');
-//
-//     });
-// });
+function geocodeAddress(latest)
+{
+    var geocoder = new google.maps.Geocoder();
+    var address = latest.addresses[0].street + ", " + latest.addresses[0].city + " " + latest.addresses[0].state + ", " + latest.addresses[0].postalCode;
+    var coords;
+    var bounds = new google.maps.LatLngBounds();
+
+    geocoder.geocode({'address': address}, function(results, status) //Geocode
+    {
+        if (status === 'OK')
+        {
+            coords = results[0].geometry.location;
+
+            var map = new google.maps.Map(document.getElementById('mapPane'), {
+                center: coords,
+                zoom: 14
+            });
+
+            var marker = new google.maps.Marker({map: map, position: coords});
+
+        }
+        else
+        {
+            alert('Geocode was not successful for the following reason: ' + status);
+        }
+    });
+}
+
+function showAddress(str) //get address data on the row selected and run chain of callbacks to display map
+{
+    var url = "/listOrgs";
+    $.ajax({
+        url: url,
+        type: "GET",
+        data: {id: str},
+        success: function (data) {
+            geocodeAddress(data);
+        }
+    })
+}

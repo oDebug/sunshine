@@ -335,12 +335,10 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-
                     </div>
 
-
                     <div class='tab-pane fade' id='map' role='tabpanel' aria-labelledby='map-tab'>
-                        <div id="mapPane"></div>
+                        <div id="mapPane"style="height: 400px; width: 400px;"></div>
                     </div>
                 </div>
             </div>
@@ -351,3 +349,4 @@
         </div>
     </div>
 </div>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWPtNLGcAlbmiNAiT9Pn794fMGXc3N4CM&callback=initMap"/>

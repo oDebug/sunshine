@@ -181,6 +181,7 @@
     $('#contactTable').on("click", "#tableResults tr", function(e) {
         //show Modal for id in row
         $('#orgModal').modal('show');
+        initMap();
     });
 
     function setRemovingAlias(val) {
@@ -285,6 +286,7 @@
     {
 
     }
+
 
 </script>
 
