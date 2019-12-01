@@ -21,3 +21,5 @@ body {
 .card {
     margin-top: 2rem;
 }
+
+.modal {overflow-y: auto !important;}

@@ -152,6 +152,61 @@
         </div>
     </div>
 </div>
+<!-- NEW ADDRESS MODAL -->
+<div class='modal fade' id="newAddress" tableindex='-1' role="dialog" area-hidden='true'>
+    <div class="modal-dialog modal-lg" role='document'>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class='modal-title'>New Address</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+            </div>
+            <div class='modal-body'>
+                <div class="card p-3 mt-2 border-success"> <!-- Address Desc, Address, Address2, City, State, Zip -->
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>Street</label>
+                            <input type="text" class="form-control" name="streetNew" id="tboxStreetNew">
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label>Suite</label>
+                            <input type="text" class="form-control" name="suiteNew" id="tboxSuiteNew">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>City</label>
+                            <input type="text" class="form-control" name="cityENew" id="tboxCityNew">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-2">
+                            <label>State</label>
+                            <input class="form-control" list="statesNew" name="stateNew" id="listStates">
+                            <datalist id="statesNew">
+                                <option value="MO">
+                                <option value="IL">
+                            </datalist>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label>Zip</label>
+                            <input type="text" class="form-control" name="zipEdit" id="tboxZipEdit">
+                        </div>
+                        <div class="form-group col-md-5">
+                            <label>Descr.</label>
+                            <input type="text" class="form-control" name="addressDescrEdit" id="tboxAddressDescrEdit">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type='button' class='btn btn-secondary' data-dismiss='modal'>Cancel</button>
+                <button type='button' class='btn btn-primary' id="submitAction" data-dismiss='modal'>Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 </div>
 <!-- Optional JavaScript -->
@@ -206,7 +261,8 @@
 
     function typeChange()
     {
-        var x = document.getElementById("selectboxType").value;
+
+        var x = document.getElementById("selectboxTypeEdit").value;
         var y = document.getElementById("lboxTypeDescriptions");
 
         if(x == "Church")
@@ -286,6 +342,22 @@
     {
 
     }
+
+    function phonesChange()
+    {
+        var x = document.getElementById("selectboxPhonesEdit").value; //Either get id corresponding to option or 'new'
+        var y = document.getElementById("btnPhoneUpdate"); //UpdateButton
+
+        if(x == "new")
+        {
+            y.innerHTML = "Add";
+        }
+        else
+        {
+            y.innerHTML = "Update";
+        }
+    }
+
 
 
 </script>

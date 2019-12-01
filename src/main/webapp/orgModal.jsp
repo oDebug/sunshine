@@ -125,6 +125,9 @@
                                             <div class="col w-100">
                                                 <button type='button' class='btn btn-outline-danger my-1 mx-0'>Remove</button>
                                             </div>
+                                            <div class="col w-100">
+                                                <button type='button' class='btn btn-outline-primary my-1 mx-0' data-toggle="modal" data-target="#newAddress">New</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -162,7 +165,7 @@
                                                 <input type="text" class="form-control" name="addressDescrEdit" id="tboxAddressDescrEdit">
                                             </div>
                                             <div class="form-group col-md-3 align-self-end">
-                                                <button type='button' class='btn btn-outline-success mt-2 mx-0'>Add New</button>
+                                                <button type='button' class='btn btn-outline-success mt-2 mx-0'>Save</button>
                                             </div>
                                         </div>
                                     </div>
@@ -173,9 +176,10 @@
                                 <div class="col-4 pr-1 mb-2">
                                     <div class="card p-3 mt-2 h-100 border-warning">
                                         <label>Phones</label>
-                                        <select class="custom-select" id="selectboxPhonesEdit" name="phonesEdit" onchange="">
+                                        <select class="custom-select" id="selectboxPhonesEdit" name="phonesEdit" onchange="phonesChange()">
                                             <option value="ID_NUM_HERE[index]">1234567</option>
                                             <option value="ID_NUM_HERE[index2]">7654321</option>
+                                            <option value="new">New...</option>
                                         </select>
                                     </div>
                                 </div>
@@ -191,7 +195,7 @@
                                                 <input type="text" class="form-control" name="phoneTypeEdit" id="tboxPhoneTypeEdit" placeholder="Type">
                                             </div>
                                             <div class="form-group col-md-2 align-self-end mx-0 px-0">
-                                                <button type='button' class='btn btn-outline-success mt-2 mx-0'>Add</button>
+                                                <button id="btnPhoneUpdate"  type='button' class='btn btn-outline-success mt-2 mx-0'>Add</button>
                                             </div>
                                             <div class="form-group col-md-2 align-self-end mx-0 px-0">
                                                 <button type='button' class='btn btn-outline-danger mt-2 mx-0'>Remove</button>
@@ -357,4 +361,4 @@
         </div>
     </div>
 </div>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWPtNLGcAlbmiNAiT9Pn794fMGXc3N4CM&callback=initMap"/>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWPtNLGcAlbmiNAiT9Pn794fMGXc3N4CM&callback=initMap"></script>

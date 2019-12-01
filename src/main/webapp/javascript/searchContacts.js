@@ -101,3 +101,8 @@ function showAddress(str) //get address data on the row selected and run chain o
         }
     })
 }
+
+$(document).on('hidden.bs.modal', '.modal', function () //Not Working Yet
+{
+    $('modal:visible').length && $(document.body).addClass('modal-open');
+});
