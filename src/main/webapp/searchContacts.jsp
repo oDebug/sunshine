@@ -34,7 +34,7 @@
             <div class="row">
                 <div class="col-lg-5">
                     <div class="input-group">
-                        <form class="input-group-prepend">
+                        <form class="input-group-prepend" id="searchForm" onsubmit="return false">
                             <button class="btn bg-primary text-white" id="submit-search">
                                 <i class="fas fa-search"></i>
                             </button>
@@ -238,6 +238,8 @@
     $('#contactTable').on("click", "#tableResults tr", function(e) {
         //show Modal for id in row
         $('#orgModal').modal('show');
+        $('#editContactModal').modal('show');
+
     });
     //
     // function setRemovingAlias(val) {

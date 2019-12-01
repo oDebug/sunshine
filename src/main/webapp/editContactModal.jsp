@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<div class='modal fade' id='orgModal' tabindex='-1' role='dialog'>
+<div class='modal fade' id='editContactModal' tabindex='-1' role='dialog'>
     <div class='modal-dialog modal-lg' role='document'>
         <div class='modal-content'>
             <div class='modal-header'>
