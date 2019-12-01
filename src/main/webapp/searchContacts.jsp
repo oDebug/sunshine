@@ -237,7 +237,6 @@
     $('#contactTable').on("click", "#tableResults tr", function(e) {
         //show Modal for id in row
         $('#editContactModal').modal('show');
-        initMap();
     });
 
     function setRemovingAlias(val) {

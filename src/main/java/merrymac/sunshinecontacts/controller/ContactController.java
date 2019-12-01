@@ -44,7 +44,7 @@ public class ContactController {
     public List<ContactResponse> listOrgs(@RequestParam(value = "name", defaultValue = "") String name) {
         List<ContactResponse> response;
         if (name.isEmpty()) {
-            response = contactService.listAll();
+            response = contactService.getRecentlyAddedContacts();
         } else {
             response = contactService.searchByAlias(name);
         }

@@ -10,6 +10,8 @@ $(document).ready(function ($) {
                 clearEditForm();
                 populateEditForm(data);
                 $('#editContactModal').modal('show');
+                $('.nav-tabs a[href="#edit"]').tab('show')
+
             }
         })
     })
