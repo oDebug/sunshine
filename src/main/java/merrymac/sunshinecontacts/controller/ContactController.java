@@ -51,6 +51,16 @@ public class ContactController {
         return response;
     }
 
+    @RequestMapping(value = "/getAddress", method = RequestMethod.GET) //Return query for address
+    @ResponseBody
+    public ContactResponse getAddress(@RequestParam(value = "id") String id)
+    {
+        ContactResponse response;
+        response = contactService.get(Long.parseLong(id)); //Could use a more purpose-built service response
+
+        return response;
+    }
+
     @GetMapping("/searchContacts")
     public ModelAndView searchContacts(Map<String, Object> model) {
 //        List<ContactResponse> response = contactService.listAll();
