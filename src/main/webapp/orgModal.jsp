@@ -195,7 +195,7 @@
                                                 <input type="text" class="form-control" name="phoneTypeEdit" id="tboxPhoneTypeEdit" placeholder="Type">
                                             </div>
                                             <div class="form-group col-md-2 align-self-end mx-0 px-0">
-                                                <button id="btnPhoneUpdate"  type='button' class='btn btn-outline-success mt-2 mx-0'>Add</button>
+                                                <button id="btnPhoneUpdate"  type='button' class='btn btn-outline-success mt-2 mx-0'>Update</button>
                                             </div>
                                             <div class="form-group col-md-2 align-self-end mx-0 px-0">
                                                 <button type='button' class='btn btn-outline-danger mt-2 mx-0'>Remove</button>

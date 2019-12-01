@@ -81,6 +81,7 @@
             <th>Contact Type</th>
             <th>Phone</th>
             <th>Address</th>
+            <th>Map</th>
         </tr>
         </thead>
         <tbody id="tableResults">
@@ -343,7 +344,7 @@
 
     }
 
-    function phonesChange()
+    function phonesChange() //should call after phones list gets populated on page load
     {
         var x = document.getElementById("selectboxPhonesEdit").value; //Either get id corresponding to option or 'new'
         var y = document.getElementById("btnPhoneUpdate"); //UpdateButton

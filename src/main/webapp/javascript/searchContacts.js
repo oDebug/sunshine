@@ -45,7 +45,8 @@ function createRow(data) {
     trElement += "<td>" + data.name + "</td>";
     trElement += "<td>" + data.type + "</td>";
     trElement += "<td>" + data.phones[0].phone + "</td>";
-    trElement += "<td>" + address + " <a target='_blank' href='" + mapLink + "'><i class='fas fa-map-marked-alt'></i></a>" + "</td></tr>";
+    trElement += "<td>" + address + "</td>";
+    trElement += "<td>" + "<a target='_blank' href='" + mapLink + "'><i class='fas fa-map-marked-alt'></i></a>"+ "</td></tr>";
     return trElement;
 }
 
