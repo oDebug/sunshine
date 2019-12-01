@@ -48,8 +48,15 @@ function keyUpSearch(str) {
     //only run if string has 3+ chars. SOMEWHERE NEEDS TO BE ABLE TO SEARCH WITH 1 CHAR.
     if (str.toString().length > 2) {
         showResults(str);
+    } else if (str === "") {
+        showResults(str)
     }
 }
+$('#searchForm').submit(function(e) {
+    e.preventDefault();
+    var str = $('#search-string').val();
+    showResults(str);
+});
 
 function showResults(str) {
     var url = "/listOrgs";
@@ -128,10 +135,6 @@ function removeAlias() {
     }
 };
 
-function typeChange() {
-    var x = document.getElementById("selectboxType").value;
-    var y = document.getElementById("lboxTypeDescriptions");
-
 function geocodeAddress(latest)
 {
     var geocoder = new google.maps.Geocoder();
@@ -177,6 +180,11 @@ $(document).on('hidden.bs.modal', '.modal', function () //Not Working Yet
 {
     $('modal:visible').length && $(document.body).addClass('modal-open');
 });
+
+function typeChange() {
+    var x = document.getElementById("selectboxType").value;
+    var y = document.getElementById("lboxTypeDescriptions");
+
     if (x == "Church") {
         y.setAttribute("list", "churchTypeDescriptions");
     } else if (x == "Business") {
