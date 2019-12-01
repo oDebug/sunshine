@@ -37,12 +37,28 @@ function clearEditForm() {
     $('#selectboxTypeEdit').attr('value', "");
     // $('#tboxDenomination').attr('value', "");
 
-};
+}
 
 function populateEditForm(data) {
     $('#tboxNameEdit').attr('value', data.name);
     $('#selectboxTypeEdit').attr('value', data.type);
-};
+    //$('#tboxEmailEdit').attr('value', data.email);
+    $('#tboxStreetEdit').attr('value', data.addresses[0].street);
+    //$('#tboxSuiteEdit').attr('value', data.type);
+    $('#tboxCityEdit').attr('value', data.addresses[0].city);
+    $('#listStates').attr('value', data.addresses[0].state);
+    $('#tboxZipEdit').attr('value', data.postalCode);
+    $('#tboxAddressDescrEdit').attr('value', data.addresses[0].description);
+
+    for (var x = 0; x < data.addresses.length; x++)
+    {
+        $('#selectboxAddressesEdit').append($('<option>').val(x).text(data.addresses[x].toString()));
+        //$('#selectboxAddressesEdit').append(new Option(data.addresses[x].toString(), x));
+    }
+
+
+
+}
 
 function keyUpSearch(str) {
     //only run if string has 3+ chars. SOMEWHERE NEEDS TO BE ABLE TO SEARCH WITH 1 CHAR.
@@ -93,7 +109,7 @@ function createRow(data) {
     trElement += "<td>" + address + "</td>";
     trElement += "<td>" + "<a target='_blank' href='" + mapLink + "'><i class='fas fa-map-marked-alt'></i></a>"+ "</td></tr>";
     return trElement;
-};
+}
 
 $("#frmAddContact").submit(function (e) {
     e.preventDefault(); //prevent usual post cycle
@@ -114,7 +130,7 @@ $("#frmAddContact").submit(function (e) {
 
 function setRemovingAlias(val) {
     document.getElementById("headerAlias").innerHTML = val;
-};
+}
 
 function removeAlias() {
     var list = document.getElementById("inputGroupAliases");
@@ -126,11 +142,12 @@ function removeAlias() {
     } else {
         alert("Select an alias");
     }
-};
+}
 
 function typeChange() {
     var x = document.getElementById("selectboxType").value;
     var y = document.getElementById("lboxTypeDescriptions");
+}
 
 function geocodeAddress(latest)
 {
@@ -177,17 +194,34 @@ $(document).on('hidden.bs.modal', '.modal', function () //Not Working Yet
 {
     $('modal:visible').length && $(document.body).addClass('modal-open');
 });
-    if (x == "Church") {
+
+function typeChange()
+{
+    var x = document.getElementById("selectboxTypeEdit").value;
+    var y = document.getElementById("lboxTypeDescriptions");
+
+    if(x == "Church")
+    {
         y.setAttribute("list", "churchTypeDescriptions");
-    } else if (x == "Business") {
+    }
+    else if(x == "Business")
+    {
         y.setAttribute("list", "businessTypeDescriptions");
-    } else if (x == "School") {
+    }
+    else if(x == "School")
+    {
         y.setAttribute("list", "schoolTypeDescriptions");
-    } else if (x == "Person") {
+    }
+    else if(x == "Person")
+    {
         y.setAttribute("list", "personTypeDescriptions");
-    } else if (x == "Organization") {
+    }
+    else if(x == "Organization")
+    {
         y.setAttribute("list", "orgTypeDescriptions");
-    } else if (x == "Other") {
+    }
+    else if(x == "Other")
+    {
         y.setAttribute("list", "");
     }
 }

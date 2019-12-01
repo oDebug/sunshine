@@ -116,8 +116,7 @@
                                             <div class="col">
                                                 <label for="selectboxAddresses">Addresses</label>
                                                 <select class="custom-select" id="selectboxAddressesEdit" name="addressesEdit" onchange="changeAddress()">
-                                                    <option value="ID_NUM_HERE[index]">190 Carondelet Rd</option>
-                                                    <option value="ID_NUM_HERE[index2]">7726 Watson Rd</option>
+
                                                 </select>
                                             </div>
                                         </div>
@@ -148,7 +147,7 @@
                                             </div>
                                         </div>
                                         <div class="form-row">
-                                            <div class="form-group col-md-2">
+                                            <div class="form-group col-md-3">
                                                 <label>State</label>
                                                 <input class="form-control" list="states" name="stateEdit" id="listStates">
                                                 <datalist id="states">
@@ -164,7 +163,7 @@
                                                 <label>Descr.</label>
                                                 <input type="text" class="form-control" name="addressDescrEdit" id="tboxAddressDescrEdit">
                                             </div>
-                                            <div class="form-group col-md-3 align-self-end">
+                                            <div class="form-group col-md-2 align-self-end">
                                                 <button type='button' class='btn btn-outline-success mt-2 mx-0'>Save</button>
                                             </div>
                                         </div>
