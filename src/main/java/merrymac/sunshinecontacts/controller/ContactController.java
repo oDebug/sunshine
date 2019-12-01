@@ -4,7 +4,6 @@ import merrymac.sunshinecontacts.dao.entity.Address;
 import merrymac.sunshinecontacts.dao.entity.Contact;
 import merrymac.sunshinecontacts.dao.entity.PhoneNumber;
 import merrymac.sunshinecontacts.dao.entity.User;
-import merrymac.sunshinecontacts.request.ContactRequest;
 import merrymac.sunshinecontacts.response.ActionResponse;
 import merrymac.sunshinecontacts.response.ContactResponse;
 import merrymac.sunshinecontacts.service.ContactService;
@@ -26,7 +25,6 @@ public class ContactController {
     private ContactService contactService;
     @Autowired
     private UserService userService;
-//    @Autowired private PeopleService peopleService;
 
     @RequestMapping("/dashboard")
     public ModelAndView dashboard() {
@@ -66,10 +64,11 @@ public class ContactController {
     public ModelAndView editOrg(@RequestParam("id") String id) {
         Long orgId = Long.parseLong(id);
         ContactResponse response = contactService.get(orgId);
-        ModelAndView mav = new ModelAndView("editContact");
+        ModelAndView mav = new ModelAndView("editContact_deprecated");
         mav.addObject("result", response);
         return mav;
     }
+
 
 
     @GetMapping("/reports")
@@ -108,6 +107,18 @@ public class ContactController {
         } catch (Exception e) {
             e.getMessage();
             return new ResponseEntity<Object>(HttpStatus.EXPECTATION_FAILED);
+        }
+    }
+
+    @GetMapping("/getContact")
+    @ResponseBody
+    public ContactResponse getContact(@RequestParam("id") String id) {
+        try {
+            Long contactId = Long.parseLong(id);
+            ContactResponse response = contactService.get(contactId);
+            return response;
+        } catch (NumberFormatException e) {
+            return null;
         }
     }
 

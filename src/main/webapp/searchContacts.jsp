@@ -91,7 +91,7 @@
 </div>
 <div class="col"></div>
 </div> <!-- big div for padding page -->
-<jsp:include page="editContact.jsp"/>
+<jsp:include page="editContactModal.jsp"/>
 <!-- add action modal -->
 <div class='modal fade' id="addAction" tableindex='-1' role="dialog" aria-labelledby="addActionLabel"
      area-hidden='true'>
@@ -159,82 +159,6 @@
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="../javascript/popper.min.js"></script>
 <script src="../javascript/bootstrap.min.js"></script>
-<script>
-    $("#frmAddContact").submit(function(e)
-    {
-        e.preventDefault(); //prevent usual post cycle
-        var form = $(this); //set the form that called this method to a var
-        var url = form.attr('action');
-        alert("Data sent looks like: " + form.serialize());
-        $.ajax({
-            type:"POST",
-            url: url,
-            data: form.serialize(), //serialize the form input data
-            success: function(data)
-            {
-                alert("Success: This is ajax at bottom of searchContacts.jsp"); //test alert
-            }
-        });
-
-        $('#inputContact').modal('hide');
-    })
-
-    $('#contactTable').on("click", "#tableResults tr", function(e) {
-        //show Modal for id in row
-        $('#editContactModal').modal('show');
-    });
-
-    function setRemovingAlias(val) {
-       document.getElementById("headerAlias").innerHTML = val;
-    }
-
-    function removeAlias()
-    {
-       var list = document.getElementById("inputGroupAliases");
-
-       if(list.selectedIndex != 0)
-       {
-           var alias = list.options[list.selectedIndex].value;
-           alert(alias);
-           list.remove(list.selectedIndex);
-       }
-       else
-       {
-           alert("Select an alias");
-       }
-    }
-
-    function typeChange()
-    {
-        var x = document.getElementById("selectboxType").value;
-        var y = document.getElementById("lboxTypeDescriptions");
-
-        if(x == "Church")
-        {
-            y.setAttribute("list", "churchTypeDescriptions");
-        }
-        else if(x == "Business")
-        {
-            y.setAttribute("list", "businessTypeDescriptions");
-        }
-        else if(x == "School")
-        {
-            y.setAttribute("list", "schoolTypeDescriptions");
-        }
-        else if(x == "Person")
-        {
-            y.setAttribute("list", "personTypeDescriptions");
-        }
-        else if(x == "Organization")
-        {
-            y.setAttribute("list", "orgTypeDescriptions");
-        }
-        else if(x == "Other")
-        {
-            y.setAttribute("list", "");
-        }
-    }
-</script>
 
 </body>
 </html>
