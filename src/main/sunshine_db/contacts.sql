@@ -15,7 +15,7 @@ create table contacts
 	constraint contact_types_type_code_fk
 		foreign key (type) references contact_types (type_code)
 )
-comment 'Table for Organization data';
+comment 'Table for Contact data';
 
 create definer = root@localhost trigger after_insert_contacts
 after INSERT on contacts

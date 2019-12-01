@@ -65,6 +65,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
                             </div>
                         </div>
                     </div>
@@ -91,7 +92,7 @@
 </div>
 <div class="col"></div>
 </div> <!-- big div for padding page -->
-<jsp:include page="orgModal.jsp"/>
+<jsp:include page="editContactModal.jsp"/>
 <!-- add action modal -->
 <div class='modal fade' id="addAction" tableindex='-1' role="dialog" aria-labelledby="addActionLabel"
      area-hidden='true'>
