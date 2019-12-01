@@ -1,6 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<div class='modal fade' id='orgModal' tabindex='-1' role='dialog'>
+<form class='modal fade' id='editContactModal' tabindex='-1' role='dialog'>
     <div class='modal-dialog modal-lg' role='document'>
         <div class='modal-content'>
             <div class='modal-header'>
@@ -32,7 +31,7 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="nameEdit">Name</label>
-                                    <input type="text" class="form-control" id="nameEdit" placeholder="Name">
+                                    <input type="text" class="form-control" id="nameEdit" name="name" placeholder="Name">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="aliasEdit">Alternative Alias</label>
@@ -42,16 +41,18 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="emailEdit">Email</label>
-                                    <input type="email" class="form-control" id="emailEdit" placeholder="Email">
+                                    <input type="email" class="form-control" id="emailEdit" name="email" placeholder="Email">
                                 </div>
                                 <div class="form-group col-md-6" id="denomShow">
                                     <label for="denominationEdit">Denomination</label>
-                                    <input type="text" class="form-control" id="denominationEdit" placeholder="Denomination" checked>
+                                    <input type="text" class="form-control" id="denominationEdit"
+                                           name="denomination" placeholder="Denomination" checked>
                                 </div>
 
-                                <div class="form-group col-md-6 d-none " id="orgTypeShow">
-                                    <label for="orgTypeEdit">Type</label>
-                                    <input type="text" class="form-control" id="orgTypeEdit" placeholder="Type">
+                                <div class="form-group col-md-6 d-none " id="contactTypeShow">
+                                    <label for="contactTypeEdit">Type</label>
+                                    <input type="text" class="form-control" id="contactTypeEdit"
+                                           name="type" placeholder="Type">
                                 </div>
                             </div>
                             <div class="form-row">
@@ -196,9 +197,9 @@
                 </div>
             </div>
             <div class='modal-footer'>
-                <button type='button' class='btn btn-primary'>Save changes</button>
+                <button type='button' class='btn btn-primary' id="saveContact">Save changes</button>
                 <button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>
             </div>
         </div>
     </div>
-</div>
+</form>

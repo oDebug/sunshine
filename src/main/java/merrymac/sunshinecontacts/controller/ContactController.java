@@ -1,8 +1,9 @@
 package merrymac.sunshinecontacts.controller;
 
+import merrymac.sunshinecontacts.dao.entity.Address;
 import merrymac.sunshinecontacts.dao.entity.Contact;
+import merrymac.sunshinecontacts.dao.entity.PhoneNumber;
 import merrymac.sunshinecontacts.dao.entity.User;
-import merrymac.sunshinecontacts.request.ContactRequest;
 import merrymac.sunshinecontacts.response.ActionResponse;
 import merrymac.sunshinecontacts.response.ContactResponse;
 import merrymac.sunshinecontacts.service.ContactService;
@@ -14,10 +15,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
-
-//import merrymac.sunshinecontacts.service.PeopleService;
 
 @Controller
 public class ContactController {
@@ -25,11 +25,9 @@ public class ContactController {
     private ContactService contactService;
     @Autowired
     private UserService userService;
-//    @Autowired private PeopleService peopleService;
 
     @RequestMapping("/dashboard")
-    public ModelAndView dashboard()
-    {
+    public ModelAndView dashboard() {
         ModelAndView mav = new ModelAndView("dashboard");
 
         List<ContactResponse> recentContacts = contactService.getRecentlyAddedContacts();
@@ -66,10 +64,11 @@ public class ContactController {
     public ModelAndView editOrg(@RequestParam("id") String id) {
         Long orgId = Long.parseLong(id);
         ContactResponse response = contactService.get(orgId);
-        ModelAndView mav = new ModelAndView("editContact");
+        ModelAndView mav = new ModelAndView("editContact_deprecated");
         mav.addObject("result", response);
         return mav;
     }
+
 
 
     @GetMapping("/reports")
@@ -95,16 +94,31 @@ public class ContactController {
         }
     }
 
-    @RequestMapping("/saveContact")
-    @ResponseBody
-    public void saveContact(Map<String, Object> model) {
+    @RequestMapping(value = "/saveContact", method = RequestMethod.POST)
+    public ResponseEntity<Object> saveContact(Map<String, Object> model,
+                                              HttpServletRequest request,
+                                              @ModelAttribute("phones") List<PhoneNumber> phones,
+                                              @ModelAttribute("addresses") List<Address> addresses) {
         Contact contact = new Contact();
         contact.setId((Long) model.get("id"));
-
         try {
             contactService.save(contact);
+            return new ResponseEntity<Object>(HttpStatus.OK);
         } catch (Exception e) {
             e.getMessage();
+            return new ResponseEntity<Object>(HttpStatus.EXPECTATION_FAILED);
+        }
+    }
+
+    @GetMapping("/getContact")
+    @ResponseBody
+    public ContactResponse getContact(@RequestParam("id") String id) {
+        try {
+            Long contactId = Long.parseLong(id);
+            ContactResponse response = contactService.get(contactId);
+            return response;
+        } catch (NumberFormatException e) {
+            return null;
         }
     }
 

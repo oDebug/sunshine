@@ -91,7 +91,7 @@
 </div>
 <div class="col"></div>
 </div> <!-- big div for padding page -->
-<jsp:include page="orgModal.jsp"/>
+<jsp:include page="editContactModal.jsp"/>
 <!-- add action modal -->
 <div class='modal fade' id="addAction" tableindex='-1' role="dialog" aria-labelledby="addActionLabel"
      area-hidden='true'>
@@ -159,32 +159,6 @@
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="../javascript/popper.min.js"></script>
 <script src="../javascript/bootstrap.min.js"></script>
-<script>
-    $("#frmAddContact").submit(function(e)
-    {
-        e.preventDefault(); //prevent usual post cycle
-        var form = $(this); //set the form that called this method to a var
-        var url = form.attr('action');
-        alert("Data sent looks like: " + form.serialize());
-        $.ajax({
-            type:"POST",
-            url: url,
-            data: form.serialize(), //serialize the form input data
-            success: function(data)
-            {
-                alert("Success: This is ajax at bottom of searchContacts.jsp"); //test alert
-            }
-        });
-
-        $('#inputContact').modal('hide');
-    })
-
-    $('#contactTable').on("click", "#tableResults tr", function(e) {
-        //show Modal for id in row
-        $('#orgModal').modal('show');
-    });
-
-</script>
 
 </body>
 </html>

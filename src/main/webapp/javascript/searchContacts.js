@@ -1,58 +1,49 @@
-<!-- sorting columns by clicking headers -->
-// function sortTable(n) {
-//     var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-//     table = document.getElementById("contactTable");
-//     switching = true;
-//     // Set the sorting direction to ascending:
-//     dir = "asc";
-//     /* Make a loop that will continue until
-//     no switching has been done: */
-//     while (switching) {
-//         // Start by saying: no switching is done:
-//         switching = false;
-//         rows = table.rows;
-//         /* Loop through all table rows (except the
-//         first, which contains table headers): */
-//         for (i = 1; i < (rows.length - 1); i++) {
-//             // Start by saying there should be no switching:
-//             shouldSwitch = false;
-//             /* Get the two elements you want to compare,
-//             one from current row and one from the next: */
-//             x = rows[i].getElementsByTagName("TD")[n];
-//             y = rows[i + 1].getElementsByTagName("TD")[n];
-//             /* Check if the two rows should switch place,
-//             based on the direction, asc or desc: */
-//             if (dir == "asc") {
-//                 if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-//                     // If so, mark as a switch and break the loop:
-//                     shouldSwitch = true;
-//                     break;
-//                 }
-//             } else if (dir == "desc") {
-//                 if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-//                     // If so, mark as a switch and break the loop:
-//                     shouldSwitch = true;
-//                     break;
-//                 }
-//             }
-//         }
-//         if (shouldSwitch) {
-//             /* If a switch has been marked, make the switch
-//             and mark that a switch has been done: */
-//             rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-//             switching = true;
-//             // Each time a switch is done, increase this count by 1:
-//             switchcount++;
-//         } else {
-//             /* If no switching has been done AND the direction is "asc",
-//             set the direction to "desc" and run the while loop again. */
-//             if (switchcount == 0 && dir == "asc") {
-//                 dir = "desc";
-//                 switching = true;
-//             }
-//         }
-//     }
-// }
+$(document).ready(function ($) {
+    $('#contactTable').on("click", "#tableResults tr", function (e) {
+        var id = $(this).attr('id');
+
+        $.ajax({
+            url: "getContact",
+            type: "GET",
+            data: {id: id},
+            success: function (data) {
+                clearEditForm();
+                populateEditForm(data);
+                $('#editContactModal').modal('show');
+            }
+        })
+    })
+    $("#submit-search").click(function (str) {
+        showResults($('#search-string').val());
+    });
+    showResults("");
+
+    // $('#saveContact').click(function () {
+    //     var form = $("form#editContactModal");
+    //     $.ajax({
+    //         url: "/saveContact",
+    //         data: form.serialize(),
+    //         type: "POST",
+    //         success: function (data) {
+    //             window.location = 'searchContacts';
+    //
+    //         }
+    //     })
+    // });
+});
+
+function clearEditForm() {
+    $('#tboxNameEdit').attr('value', "");
+    $('#selectboxTypeEdit').attr('value', "");
+    // $('#tboxDenomination').attr('value', "");
+
+};
+
+function populateEditForm(data) {
+    $('#tboxNameEdit').attr('value', data.name);
+    $('#selectboxTypeEdit').attr('value', data.type);
+};
+
 function keyUpSearch(str) {
     //only run if string has 3+ chars. SOMEWHERE NEEDS TO BE ABLE TO SEARCH WITH 1 CHAR.
     if (str.toString().length > 2) {
@@ -92,71 +83,63 @@ function createRow(data) {
     var address = data.addresses[0].street + ", " + data.addresses[0].city + " " + data.addresses[0].state + ", " + data.addresses[0].postalCode;
     var mapLink = "https://www.google.com/maps/search/?api=1&query=" + decodeURIComponent(address);
 
-    var trElement = "<tr class=\"clickable-row\">";
+    var trElement = "<tr class=\"clickable-row\" id=" + data.id + ">";
     trElement += "<td><a href='editContact?id=" + data.id + "'>" + data.id + "</a></td>";
     trElement += "<td>" + data.name + "</td>";
     trElement += "<td>" + data.type + "</td>";
     trElement += "<td>" + data.phones[0].phone + "</td>";
     trElement += "<td>" + address + " <a target='_blank' href='" + mapLink + "'>Map</a>" + "</td></tr>";
     return trElement;
-}
+};
 
-
-
-$(document).ready(function ($) {
-    $(".clickable-row").click(function() {
-        window.location = $(this).data("href");
+$("#frmAddContact").submit(function (e) {
+    e.preventDefault(); //prevent usual post cycle
+    var form = $(this); //set the form that called this method to a var
+    var url = form.attr('action');
+    alert("Data sent looks like: " + form.serialize());
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: form.serialize(), //serialize the form input data
+        success: function (data) {
+            alert("Success: This is ajax at bottom of searchContacts.jsp"); //test alert
+        }
     });
-    $("#submit-search").click(function(str) {
-        showResults($('#search-string').val());
-    });
-    showResults("");
+
+    $('#inputContact').modal('hide');
 });
 
+function setRemovingAlias(val) {
+    document.getElementById("headerAlias").innerHTML = val;
+};
 
-// $('#contactTable tbody').on('click', 'tr', function () {
-//
-//     if ($('#contactLabel').length) {
-//         $('#contactLabel').remove();
-//         $('#contactTitle').remove();
-//     }
-//     var rowContact = $(this).find('td:nth-of-type(3)').text();
-//     var contactID = $(this).find('td:nth-of-type(1)').text();
-//     var name = $(this).find('td:nth-of-type(2)').text();
-//
-//     $('#orgModal').modal('show');
-//
-//     $('#orgModal .modal-header').prepend('<h5 class="modal-title" id="contactTitle">' + name + '</h5>')
-//     $('#rowContact').append('<div id="contactLabel"><label>Contact Type: ' + rowContact + '</label></br><label id="contactIDLabel" >Contact ID: ' + contactID + '</label></div>');
-//
-//     if (rowContact === "Person" || rowContact === "PN") {
-//         $('#orgTypeShow').addClass('d-none');
-//         $('#denomShow').addClass('d-none');
-//     } else if (rowContact === "Church" || rowContact === "CH") {
-//         $('#orgTypeShow').addClass('d-none');
-//         $('#denomShow').removeClass('d-none');
-//
-//     } else {
-//         $('#denomShow').addClass("d-none");
-//         $('#orgTypeShow').removeClass('d-none');
-//     }
-//
-// });
-//
-// $(document).on('hidden.bs.modal', '.modal', function () {
-//     $('.modal:visible').length && $(document.body).addClass('modal-open');
-// });
-//
-// $('#addContactBtn').on('click', function () {
-//     $('#orgRadio').click(function () {
-//         $('#churchSelect').addClass("d-none");
-//         $('#orgSelect').removeClass('d-none');
-//     });
-//
-//     $('#churchRadio').click(function () {
-//
-//         $('#orgSelect').addClass('d-none');
-//         $('#churchSelect').removeClass('d-none');
-//
-//     });
-// });
+function removeAlias() {
+    var list = document.getElementById("inputGroupAliases");
+
+    if (list.selectedIndex != 0) {
+        var alias = list.options[list.selectedIndex].value;
+        alert(alias);
+        list.remove(list.selectedIndex);
+    } else {
+        alert("Select an alias");
+    }
+};
+
+function typeChange() {
+    var x = document.getElementById("selectboxType").value;
+    var y = document.getElementById("lboxTypeDescriptions");
+
+    if (x == "Church") {
+        y.setAttribute("list", "churchTypeDescriptions");
+    } else if (x == "Business") {
+        y.setAttribute("list", "businessTypeDescriptions");
+    } else if (x == "School") {
+        y.setAttribute("list", "schoolTypeDescriptions");
+    } else if (x == "Person") {
+        y.setAttribute("list", "personTypeDescriptions");
+    } else if (x == "Organization") {
+        y.setAttribute("list", "orgTypeDescriptions");
+    } else if (x == "Other") {
+        y.setAttribute("list", "");
+    }
+}
