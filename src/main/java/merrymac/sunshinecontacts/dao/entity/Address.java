@@ -33,9 +33,4 @@ public class Address implements Serializable {
     @Column(name="postal_code")
     private Long postalCode;
 
-    public String toString()
-    {
-        return street + ", " + city + " " + state + ", " + postalCode;
-    }
-
 }

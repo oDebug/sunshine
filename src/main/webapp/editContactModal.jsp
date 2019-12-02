@@ -176,9 +176,7 @@
                                     <div class="card p-3 mt-2 h-100 border-warning">
                                         <label>Phones</label>
                                         <select class="custom-select" id="selectboxPhonesEdit" name="phonesEdit" onchange="phonesChange()">
-                                            <option value="ID_NUM_HERE[index]">1234567</option>
-                                            <option value="ID_NUM_HERE[index2]">7654321</option>
-                                            <option value="new">New...</option>
+
                                         </select>
                                     </div>
                                 </div>
@@ -204,25 +202,14 @@
                                 </div>
 
                             </div>
-                            <div class="card p-3 mt-2">
+                            <div id="websiteCard" class="card p-3 mt-2">
                                 <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <label for="websiteEdit">Website URL:</label>
+                                    <div class="form-group input-group col">
                                         <input type="text" class="form-control" name="websiteEdit" id="websiteEdit" placeholder="https://example.com">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="facebookEdit">Facebook URL:</label>
-                                        <input type="text" class="form-control" name="facebookEdit" id="facebookEdit" placeholder="https://example.com">
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <label for="instagramEdit">Instagram URL:</label>
-                                        <input type="text" class="form-control" name="instagramEdit" id="instagramEdit" placeholder="https://example.com">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="twitterEdit">Twitter URL:</label>
-                                        <input type="text" class="form-control" name="twitterEdit" id="twitterEdit" placeholder="https://example.com">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-secondary" type="button">Go</button>
+                                            <button class="btn btn-outline-danger" type="button">Delete</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -354,6 +341,7 @@
                 </div>
             </div>
             <div class='modal-footer'>
+                <button type='button' class='btn btn-primary' onclick="clearEditForm()">Clear Form</button>
                 <button type='button' class='btn btn-primary'>Save changes</button>
                 <button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>
             </div>
