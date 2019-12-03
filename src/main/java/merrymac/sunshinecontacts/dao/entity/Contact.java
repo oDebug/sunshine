@@ -24,6 +24,9 @@ public class Contact {
     @Column(name = "type", nullable = false)
     private String type;
 
+    @Column(name = "denomination")
+    private String denomination;
+
     @Column(name="create_timestamp")
     private Timestamp createTimestamp;
 
@@ -44,8 +47,5 @@ public class Contact {
 
     @Column(name="delete_user")
     private String deleteUser;
-
-    @Column(name="denomination")
-    private String denomination;
 
 }

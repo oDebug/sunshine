@@ -21,7 +21,6 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class Alias implements Serializable {
     @Id
-    @GeneratedValue
     @Column(name="id", updatable=false, nullable=false)
     private Long id;
 

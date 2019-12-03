@@ -4,6 +4,7 @@ import merrymac.sunshinecontacts.dao.entity.Address;
 import merrymac.sunshinecontacts.dao.entity.Contact;
 import merrymac.sunshinecontacts.dao.entity.PhoneNumber;
 import merrymac.sunshinecontacts.dao.entity.User;
+import merrymac.sunshinecontacts.request.ContactRequest;
 import merrymac.sunshinecontacts.response.ActionResponse;
 import merrymac.sunshinecontacts.response.ContactResponse;
 import merrymac.sunshinecontacts.service.ContactService;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -53,8 +56,7 @@ public class ContactController {
 
     @RequestMapping(value = "/getAddress", method = RequestMethod.GET) //Return query for address
     @ResponseBody
-    public ContactResponse getAddress(@RequestParam(value = "id") String id)
-    {
+    public ContactResponse getAddress(@RequestParam(value = "id") String id) {
         ContactResponse response;
         response = contactService.get(Long.parseLong(id)); //Could use a more purpose-built service response
 
@@ -79,8 +81,6 @@ public class ContactController {
         return mav;
     }
 
-
-
     @GetMapping("/reports")
     public ModelAndView Reports() {
         ModelAndView mav = new ModelAndView("reports");
@@ -104,20 +104,59 @@ public class ContactController {
         }
     }
 
-    @RequestMapping(value = "/saveContact", method = RequestMethod.POST)
-    public ResponseEntity<Object> saveContact(Map<String, Object> model,
-                                              HttpServletRequest request,
-                                              @ModelAttribute("phones") List<PhoneNumber> phones,
-                                              @ModelAttribute("addresses") List<Address> addresses) {
+    @RequestMapping(value = "/addContact", method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseEntity<Object> addContact(@RequestBody ContactRequest contactRequest) {
         Contact contact = new Contact();
-        contact.setId((Long) model.get("id"));
+        Address newAddress = new Address();
+        PhoneNumber newPhone = new PhoneNumber();
+
         try {
-            contactService.save(contact);
-            return new ResponseEntity<Object>(HttpStatus.OK);
+            contact.setId(0L);
+            contact.setName(contactRequest.getName());
+            contact.setType(contactRequest.getType());
+            contact.setDenomination(contactRequest.getDescription());
+            contact.setCreateTimestamp(new Timestamp(System.currentTimeMillis()));
+            contact.setStatusCode("A");
+
+            newAddress.setId(0L);
+            newAddress.setStreet(contactRequest.getStreet());
+            newAddress.setCity(contactRequest.getCity());
+            newAddress.setState(contactRequest.getState());
+            newAddress.setPostalCode(Long.parseLong(contactRequest.getZip()));
+
+            newPhone.setId(0L);
+            newPhone.setPhone(Long.parseLong(contactRequest.getPhone()));
+            newPhone.setType(contactRequest.getPhoneType());
         } catch (Exception e) {
             e.getMessage();
             return new ResponseEntity<Object>(HttpStatus.EXPECTATION_FAILED);
         }
+
+        Contact newContact = new Contact();
+        try {
+            newContact = contactService.saveContact(contact);
+        } catch (Exception e) {
+            e.getMessage();
+            return new ResponseEntity<Object>(HttpStatus.EXPECTATION_FAILED);
+        }
+        newAddress.setContactId(newContact.getId());
+        newPhone.setContactId(newContact.getId());
+
+        try {
+            contactService.saveAddress(newAddress);
+        } catch (Exception e) {
+            e.getMessage();
+            return new ResponseEntity<Object>(HttpStatus.EXPECTATION_FAILED);
+        }
+
+        try {
+            contactService.savePhone(newPhone);
+        } catch (Exception e) {
+            e.getMessage();
+            return new ResponseEntity<Object>(HttpStatus.EXPECTATION_FAILED);
+        }
+        return new ResponseEntity<Object>(HttpStatus.OK);
     }
 
     @GetMapping("/getContact")

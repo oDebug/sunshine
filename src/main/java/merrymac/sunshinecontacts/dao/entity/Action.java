@@ -23,11 +23,10 @@ import java.util.Date;
 public class Action implements Serializable {
 
     @Id
-    @GeneratedValue
     @Column(name="id", updatable=false, nullable=false)
     private Long id;
 
-    @Column(name="contact_id", insertable = false, updatable = false)
+    @Column(name="contact_id", updatable = false)
     private Long contactId;
 
     @Column(name="action_type")

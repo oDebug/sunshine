@@ -18,7 +18,7 @@ public class SocialMedia {
     @Column(name = "id", updatable = false, nullable = false)
     private Long id;
 
-    @Column(name = "contact_id", insertable = false, updatable = false)
+    @Column(name = "contact_id", updatable = false)
     private Long contactId;
 
     @Column(name = "sm_type")

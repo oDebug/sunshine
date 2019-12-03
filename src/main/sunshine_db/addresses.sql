@@ -7,6 +7,7 @@ create table addresses
 	city varchar(50) not null,
 	state varchar(2) not null,
 	postal_code int(5) not null,
+	address_type varchar(20),
 	constraint address_contact_id_fk
 		foreign key (contact_id) references contacts (id)
 			on delete cascade

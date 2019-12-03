@@ -1,5 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <div class='modal fade' id='editContactModal' tabindex='-1' role='dialog'>
     <div class='modal-dialog modal-lg' role='document'>
         <div class='modal-content'>
@@ -10,9 +9,9 @@
             </div>
             <div class='modal-body'>
                 <ul class='nav nav-tabs' id='contactTab' role='tablist'><!-- nav tabs -->
-                    <li class='nav-item'>
-                        <a class='nav-link active' id='info-tab' data-toggle='tab' href='#info' role='tab' aria-controls='info' aria-selected='true'>Info</a>
-                    </li>
+<%--                    <li class='nav-item'>--%>
+<%--                        <a class='nav-link active' id='info-tab' data-toggle='tab' href='#info' role='tab' aria-controls='info' aria-selected='true'>Info</a>--%>
+<%--                    </li>--%>
                     <li class='nav-item'>
                         <a class='nav-link' id='edit-tab' data-toggle='tab' href='#edit' role='tab' aria-controls='edit' aria-selected='false'>Edit</a>
                     </li>
@@ -27,30 +26,13 @@
                     </li>
                 </ul>
                 <div class='tab-content' id='myTabContent'>
-
-                    <div class='tab-pane fade show active container' id='info' role='tabpanel' aria-labelledby='info-tab'>
-                        <div class="row">
-                            <div class="col">
-                                <h2 class="mt-3">Church of Cool</h2><span class="badge badge-warning">Business</span>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Description</li>
-                                <li class="list-group-item">Main Address</li>
-                                <li class="list-group-item">Main Phone</li>
-                                <li class="list-group-item">Main Email</li>
-                            </ul>
-                        </div>
-                    </div>
-
                     <div class='tab-pane fade' id='edit' role='tabpanel' aria-labelledby='edit-tab'><!-- edit tab -->
                         <h2 class="mt-3">View and Edit Contact</h2>
                         <div class="container">
                             <form autocomplete="off">
                             <div class="row justify-content-center">
                                 <div class="col">
-                                    <label class="btn btn-md btn-default" name="rowContact">[Name for contact]</label>
+                                    <label class="btn btn-md btn-default" id="rowContact"></label>
                                 </div>
                             </div>
                             <div class="row">
@@ -58,11 +40,11 @@
                                     <div class="card p-3 mt-2 border-primary"> <!-- Name, Contact Type, Email, Type Description -->
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
-                                                <label for="tboxName">Name</label>
+                                                <label for="tboxNameEdit">Name</label>
                                                 <input type="text" class="form-control" name="nameEdit" id="tboxNameEdit" placeholder="Name">
                                             </div>
                                             <div class="form-group col-md-6">
-                                                <label for="selectboxType">Contact Type</label>
+                                                <label for="selectboxTypeEdit">Contact Type</label>
                                                 <select class="custom-select" id="selectboxTypeEdit" name="typeEdit" onchange="typeChange()">
                                                     <option selected>Choose...</option>
                                                     <option value="Church">Church</option>
@@ -79,9 +61,9 @@
                                                 <label>Email</label>
                                                 <input type="email" class="form-control" id="tboxEmailEdit" name="emailEdit" placeholder="Email">
                                             </div>
-                                            <div class="form-group col-md-6" name="denomShow">
+                                            <div class="form-group col-md-6">
                                                 <label for="lboxTypeDescriptions">Type Description</label>
-                                                <input class="form-control" list="" id="lboxTypeDescriptions" name="typeDescriptions" placeholder="Denomination, Job Title, etc."> <!-- populate list based on contact type via javascript by changing list attribute-->
+                                                <input class="form-control" id="lboxTypeDescriptions" name="typeDescriptions" placeholder="Denomination, Job Title, etc."> <!-- populate list based on contact type via javascript by changing list attribute-->
                                                 <datalist id="churchTypeDescriptions">
                                                     <option value="Baptist">
                                                     <option value="Catholic">
@@ -114,7 +96,7 @@
                                     <div class="card p-3 mt-2 h-100 border-success">
                                         <div class="row">
                                             <div class="col">
-                                                <label for="selectboxAddresses">Addresses</label>
+                                                <label for="selectboxAddressesEdit">Addresses</label>
                                                 <select class="custom-select" id="selectboxAddressesEdit" name="addressesEdit" onchange="changeAddress()">
 
                                                 </select>
@@ -149,7 +131,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-md-3">
                                                 <label>State</label>
-                                                <input class="form-control" list="states" name="stateEdit" id="listStates">
+                                                <input class="form-control" list="states" name="stateEdit" id="listStatesEdit">
                                                 <datalist id="states">
                                                     <option value="MO">
                                                     <option value="IL">
@@ -348,4 +330,4 @@
         </div>
     </div>
 </div>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWPtNLGcAlbmiNAiT9Pn794fMGXc3N4CM&callback=initMap"></script>
+<%--<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWPtNLGcAlbmiNAiT9Pn794fMGXc3N4CM&callback=initMap"></script>--%>
