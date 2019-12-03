@@ -11,7 +11,18 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 public class ContactRequest {
-    private Contact contact;
-    private List<Address> addresses;
-    private List<PhoneNumber> phoneNumbers;
+    private String name;
+    private String type;
+    private String email;
+    private String description;
+    private String street;
+    private String suite;
+    private String city;
+    private String state;
+    private String zip;
+    private String addressType;
+    private String phone;
+    private String phoneType;
+
+
 }

@@ -31,8 +31,17 @@ public class ContactService {
     @Autowired
     SocialMediaRepository socialMediaRepository;
 
-    public void save(Contact contact) {
+    public Contact saveContact(Contact contact) {
         contactRepository.save(contact);
+        return contactRepository.findFirstByNameAndTypeOrderByIdDesc(contact.getName(), contact.getType());
+
+    }
+
+    public void savePhone(PhoneNumber phoneNumber) {
+        phoneRepository.save(phoneNumber);
+    }
+    public void saveAddress(Address address) {
+        addressRepository.save(address);
     }
 
     public List<ContactResponse> searchByAlias(String alias) {
