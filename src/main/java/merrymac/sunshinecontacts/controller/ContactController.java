@@ -68,15 +68,15 @@ public class ContactController {
         return mav;
     }
 
-    @GetMapping("/editContact")
-    @ResponseBody
-    public ModelAndView editOrg(@RequestParam("id") String id) {
-        Long orgId = Long.parseLong(id);
-        ContactResponse response = contactService.get(orgId);
-        ModelAndView mav = new ModelAndView("editContact_deprecated");
-        mav.addObject("result", response);
-        return mav;
-    }
+//    @GetMapping("/editContact")
+//    @ResponseBody
+//    public ModelAndView editOrg(@RequestParam("id") String id) {
+//        Long orgId = Long.parseLong(id);
+//        ContactResponse response = contactService.get(orgId);
+//        ModelAndView mav = new ModelAndView("editContact_deprecated");
+//        mav.addObject("result", response);
+//        return mav;
+//    }
 
     @GetMapping("/reports")
     public ModelAndView Reports() {

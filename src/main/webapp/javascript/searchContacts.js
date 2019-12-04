@@ -1,19 +1,7 @@
 $(document).ready(function ($) {
     $('#contactTable').on("click", "#tableResults tr", function (e) {
         var id = $(this).attr('id');
-
-        $.ajax({
-            url: "getContact",
-            type: "GET",
-            data: {id: id},
-            success: function (data) {
-                clearEditForm();
-                populateEditForm(data);
-                $('#editContactModal').modal('show');
-                $('.nav-tabs a[href="#edit"]').tab('show')
-
-            }
-        })
+        openEditForm(id);
     });
     $("#submit-search").click(function (str) {
         showResults($('#search-string').val());

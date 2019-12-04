@@ -151,6 +151,20 @@ function populateWebsites(data, num) {
     return websiteElement;
 }
 
+function openEditForm(id) {
+    $.ajax({
+        url: "getContact",
+        type: "GET",
+        data: {id: id},
+        success: function (data) {
+            clearEditForm();
+            populateEditForm(data);
+            $('#editContactModal').modal('show');
+            $('.nav-tabs a[href="#edit"]').tab('show');
+        }
+    })
+}
+
 function updateContact() {
     // var addressArray = getAddresses();
     // var phoneArray = getPhones();
