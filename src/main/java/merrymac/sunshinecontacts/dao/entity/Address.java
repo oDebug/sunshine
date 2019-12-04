@@ -23,6 +23,9 @@ public class Address implements Serializable {
     @Column(name="street")
     private String street;
 
+    @Column(name="suite")
+    private String suite;
+
     @Column(name="city")
     private String city;
 
@@ -32,4 +35,6 @@ public class Address implements Serializable {
     @Column(name="postal_code")
     private Long postalCode;
 
+    @Column(name="address_type")
+    private String addressType;
 }

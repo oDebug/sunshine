@@ -43,6 +43,10 @@ public class ContactService {
     public void saveAddress(Address address) {
         addressRepository.save(address);
     }
+    public Action saveAction(Action action) {
+        actionRepository.save(action);
+        return actionRepository.findTopByOrderByIdDesc();
+    }
 
     public List<ContactResponse> searchByAlias(String alias) {
         List<Contact> contacts = aliasRepository.searchByAlias(alias);

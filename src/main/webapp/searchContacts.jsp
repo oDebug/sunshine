@@ -19,6 +19,7 @@
     <script src="javascript/searchContacts.js"></script>
     <script src="javascript/editContact.js"></script>
     <script src="javascript/addContact.js"></script>
+    <script src="javascript/addAction.js"></script>
 
     <title>Sunshine Ministries Contacts</title>
 </head>

@@ -10,10 +10,10 @@ public interface ActionRepository extends CrudRepository<Action, Long> {
 
     @Query("SELECT a " +
             "FROM Action a " +
-            "WHERE a.completed=false " +
-            "AND a.dueDate BETWEEN current_date AND current_date + 5 " +
+            "WHERE a.status <> 'Complete' " +
+            "AND a.dueDate BETWEEN current_date AND (current_date + 5) " +
             "ORDER BY a.dueDate ASC ")
     List<Action> findTop5ByOrderByDueDateAsc ();
-
+    Action findTopByOrderByIdDesc();
     List<Action> findByContactId(Long contactId);
 }

@@ -1,6 +1,5 @@
 $(document).ready(function ($) {
     $('#addSaveButton').click(function (e) {
-        var form = $("form#frmAddContact");
         var formData = {
             name: $('#tboxNameAdd').val(),
             type: $('#selectboxTypeAdd').val(),

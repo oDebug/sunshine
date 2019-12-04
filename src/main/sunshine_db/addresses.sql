@@ -4,6 +4,7 @@ create table addresses
 		primary key,
 	contact_id int(7) not null,
 	street varchar(100) not null,
+	suite varchar(50),
 	city varchar(50) not null,
 	state varchar(2) not null,
 	postal_code int(5) not null,
