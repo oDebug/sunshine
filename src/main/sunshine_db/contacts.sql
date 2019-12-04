@@ -4,7 +4,6 @@ create table contacts
         primary key,
     name varchar(45) not null,
     type varchar(20) not null,
-    email varchar(60),
     denomination varchar(30) null,
     create_timestamp timestamp null,
     create_user varchar(10) null,
@@ -12,7 +11,8 @@ create table contacts
     last_update_user varchar(10) null,
     status_code varchar(1) default 'A' not null,
     delete_timestamp timestamp null,
-    delete_user varchar(10) null
+    delete_user varchar(10) null,
+    email varchar(60) null
 )
     comment 'Table for Organization data';
 

@@ -5,7 +5,7 @@ $(document).ready(function ($) {
     $('#addActionButton').click(function(e) {
         $('#addActionModal').modal('show');
     })
-})
+});
 
 function clearEditForm() {
     $('#editContactId').val("");
@@ -24,8 +24,7 @@ function clearEditForm() {
     $('#tlistStatesEdit').val("");
     $('#selectboxAddressesEdit').empty();
     $('#selectboxPhonesEdit').empty();
-};
-
+}
 function populateEditForm(data) {
     clearEditForm();
     $('#editContactId').val(data.id);
@@ -81,7 +80,7 @@ function createActionTableRow(data) {
     } else {
         trElement += "<option value='Completed'>Completed</option>";
         trElement += "<option selected='Follow Up'>Follow Up</option>";
-    };
+    }
     trElement += "</select></td>";
     trElement += "</tr>";
 

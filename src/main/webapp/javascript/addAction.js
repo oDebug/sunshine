@@ -2,7 +2,7 @@ $(document).ready(function ($) {
     $('#addActionSaveButton').click(function (e) {
         addNewAction();
     });
-})
+});
 function addNewAction(){
     var formData = {
         actionType: $('#selectboxActionTypeAdd').val(),

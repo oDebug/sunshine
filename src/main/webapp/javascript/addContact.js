@@ -13,7 +13,7 @@ $(document).ready(function ($) {
             addressType: $('#tboxAddressDescrAdd').val(),
             phone: $('#tboxPhoneAdd').val(),
             phoneType: $('#tboxPhoneTypeAdd').val()
-        }
+        };
         $.ajax({
             url: "/addContact",
             contentType: "application/json",
@@ -27,4 +27,4 @@ $(document).ready(function ($) {
             }
         })
     })
-})
+});
