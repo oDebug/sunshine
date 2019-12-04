@@ -43,7 +43,7 @@ $('#searchForm').submit(function(e) {
 });
 
 function showResults(str) {
-    var url = "/listOrgs";
+    var url = "/listContacts";
     $.ajax({
         url: url,
         type: "GET",

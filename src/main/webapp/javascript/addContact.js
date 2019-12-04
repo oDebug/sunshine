@@ -12,7 +12,8 @@ $(document).ready(function ($) {
             zip: $('#tboxZipAdd').val(),
             addressType: $('#tboxAddressDescrAdd').val(),
             phone: $('#tboxPhoneAdd').val(),
-            phoneType: $('#tboxPhoneTypeAdd').val()
+            phoneType: $('#selectboxPhoneTypeAdd').val(),
+            extenstion: $('#tboxExtensionAdd').val()
         };
         $.ajax({
             url: "/addContact",

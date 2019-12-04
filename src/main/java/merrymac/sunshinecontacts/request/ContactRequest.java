@@ -18,6 +18,5 @@ public class ContactRequest {
     private String addressType;
     private String phone;
     private String phoneType;
-
-
+    private String extension;
 }

@@ -39,9 +39,9 @@ public class ContactController {
         return mav;
     }
 
-    @RequestMapping(value = "/listOrgs", method = RequestMethod.GET) //Return query for Organizations
+    @RequestMapping(value = "/listContacts", method = RequestMethod.GET) //Return query for Organizations
     @ResponseBody
-    public List<ContactResponse> listOrgs(@RequestParam(value = "name", defaultValue = "") String name) {
+    public List<ContactResponse> listContacts(@RequestParam(value = "name", defaultValue = "") String name) {
         List<ContactResponse> response;
         if (name.isEmpty()) {
             response = contactService.getRecentlyAddedContacts();
@@ -67,16 +67,6 @@ public class ContactController {
 //        mav.addObject("tblResults", response);
         return mav;
     }
-
-//    @GetMapping("/editContact")
-//    @ResponseBody
-//    public ModelAndView editOrg(@RequestParam("id") String id) {
-//        Long orgId = Long.parseLong(id);
-//        ContactResponse response = contactService.get(orgId);
-//        ModelAndView mav = new ModelAndView("editContact_deprecated");
-//        mav.addObject("result", response);
-//        return mav;
-//    }
 
     @GetMapping("/reports")
     public ModelAndView Reports() {
@@ -125,6 +115,8 @@ public class ContactController {
             newPhone.setId(0L);
             newPhone.setPhone(Long.parseLong(contactRequest.getPhone()));
             newPhone.setType(contactRequest.getPhoneType());
+            newPhone.setExtension(contactRequest.getExtension());
+
         } catch (Exception e) {
             e.getMessage();
             return new ResponseEntity<Object>(HttpStatus.EXPECTATION_FAILED);

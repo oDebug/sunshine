@@ -133,51 +133,51 @@
                                     <div class="col-8 pl-1">
                                         <div class="card p-3 mt-2 border-success" id="addressesCard">
                                             <!-- Address Desc, Address, Address2, City, State, Zip -->
-<%--                                            <div class="addressItem">--%>
-<%--                                                <div class="form-row">--%>
-<%--                                                    <div class="form-group col-md-6">--%>
-<%--                                                        <label>Street</label>--%>
-<%--                                                        <input type="text" class="form-control" name="streetEdit"--%>
-<%--                                                               id="tboxStreetEdit">--%>
-<%--                                                    </div>--%>
-<%--                                                    <div class="form-group col-md-2">--%>
-<%--                                                        <label>Suite</label>--%>
-<%--                                                        <input type="text" class="form-control" name="suiteEdit"--%>
-<%--                                                               id="tboxSuiteEdit">--%>
-<%--                                                    </div>--%>
-<%--                                                    <div class="form-group col-md-4">--%>
-<%--                                                        <label>City</label>--%>
-<%--                                                        <input type="text" class="form-control" name="cityEdit"--%>
-<%--                                                               id="tboxCityEdit">--%>
-<%--                                                    </div>--%>
-<%--                                                </div>--%>
-<%--                                                <div class="form-row">--%>
-<%--                                                    <div class="form-group col-md-3">--%>
-<%--                                                        <label>State</label>--%>
-<%--                                                        <input class="form-control" list="states" name="stateEdit"--%>
-<%--                                                               id="listStatesEdit">--%>
-<%--                                                        <datalist id="states">--%>
-<%--                                                            <option value="MO">--%>
-<%--                                                            <option value="IL">--%>
-<%--                                                        </datalist>--%>
-<%--                                                    </div>--%>
-<%--                                                    <div class="form-group col-md-2">--%>
-<%--                                                        <label>Zip</label>--%>
-<%--                                                        <input type="text" class="form-control" name="zipEdit"--%>
-<%--                                                               id="tboxZipEdit">--%>
-<%--                                                    </div>--%>
-<%--                                                    <div class="form-group col-md-5">--%>
-<%--                                                        <label>Descr.</label>--%>
-<%--                                                        <input type="text" class="form-control" name="addressDescrEdit"--%>
-<%--                                                               id="tboxAddressDescrEdit">--%>
-<%--                                                    </div>--%>
-<%--                                                    <div class="form-group col-md-2 align-self-end">--%>
-<%--                                                        <button type='button' id='editSaveButton'--%>
-<%--                                                                class='btn btn-outline-success mt-2 mx-0'>Save--%>
-<%--                                                        </button>--%>
-<%--                                                    </div>--%>
-<%--                                                </div>--%>
-<%--                                            </div>--%>
+                                            <%--                                            <div class="addressItem">--%>
+                                            <%--                                                <div class="form-row">--%>
+                                            <%--                                                    <div class="form-group col-md-6">--%>
+                                            <%--                                                        <label>Street</label>--%>
+                                            <%--                                                        <input type="text" class="form-control" name="streetEdit"--%>
+                                            <%--                                                               id="tboxStreetEdit">--%>
+                                            <%--                                                    </div>--%>
+                                            <%--                                                    <div class="form-group col-md-2">--%>
+                                            <%--                                                        <label>Suite</label>--%>
+                                            <%--                                                        <input type="text" class="form-control" name="suiteEdit"--%>
+                                            <%--                                                               id="tboxSuiteEdit">--%>
+                                            <%--                                                    </div>--%>
+                                            <%--                                                    <div class="form-group col-md-4">--%>
+                                            <%--                                                        <label>City</label>--%>
+                                            <%--                                                        <input type="text" class="form-control" name="cityEdit"--%>
+                                            <%--                                                               id="tboxCityEdit">--%>
+                                            <%--                                                    </div>--%>
+                                            <%--                                                </div>--%>
+                                            <%--                                                <div class="form-row">--%>
+                                            <%--                                                    <div class="form-group col-md-3">--%>
+                                            <%--                                                        <label>State</label>--%>
+                                            <%--                                                        <input class="form-control" list="states" name="stateEdit"--%>
+                                            <%--                                                               id="listStatesEdit">--%>
+                                            <%--                                                        <datalist id="states">--%>
+                                            <%--                                                            <option value="MO">--%>
+                                            <%--                                                            <option value="IL">--%>
+                                            <%--                                                        </datalist>--%>
+                                            <%--                                                    </div>--%>
+                                            <%--                                                    <div class="form-group col-md-2">--%>
+                                            <%--                                                        <label>Zip</label>--%>
+                                            <%--                                                        <input type="text" class="form-control" name="zipEdit"--%>
+                                            <%--                                                               id="tboxZipEdit">--%>
+                                            <%--                                                    </div>--%>
+                                            <%--                                                    <div class="form-group col-md-5">--%>
+                                            <%--                                                        <label>Descr.</label>--%>
+                                            <%--                                                        <input type="text" class="form-control" name="addressDescrEdit"--%>
+                                            <%--                                                               id="tboxAddressDescrEdit">--%>
+                                            <%--                                                    </div>--%>
+                                            <%--                                                    <div class="form-group col-md-2 align-self-end">--%>
+                                            <%--                                                        <button type='button' id='editSaveButton'--%>
+                                            <%--                                                                class='btn btn-outline-success mt-2 mx-0'>Save--%>
+                                            <%--                                                        </button>--%>
+                                            <%--                                                    </div>--%>
+                                            <%--                                                </div>--%>
+                                            <%--                                            </div>--%>
                                         </div>
                                     </div>
                                 </div>
@@ -188,35 +188,14 @@
                                         <div class="card p-3 mt-2 h-100 border-warning">
                                             <label>Phones</label>
                                             <select class="custom-select" id="selectboxPhonesEdit" name="phonesEdit"
-                                                    onchange="phonesChange()">
+                                                    onchange="changePhone()">
 
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-8 pl-1">
-                                        <div class="card p-3 mt-2 border-warning">
-                                            <div class="form-row">
-                                                <div class="form-group col-md-4">
-                                                    <label>Phone</label>
-                                                    <input type="text" class="form-control" name="phoneEdit"
-                                                           id="tboxPhoneEdit" placeholder="Phone">
-                                                </div>
-                                                <div class="form-group col-md-3">
-                                                    <label>Type</label>
-                                                    <input type="text" class="form-control" name="phoneTypeEdit"
-                                                           id="tboxPhoneTypeEdit" placeholder="Type">
-                                                </div>
-                                                <div class="form-group col-md-2 align-self-end mx-0 px-0">
-                                                    <button id="btnPhoneUpdate" type='button'
-                                                            class='btn btn-outline-success mt-2 mx-0'>Update
-                                                    </button>
-                                                </div>
-                                                <div class="form-group col-md-2 align-self-end mx-0 px-0">
-                                                    <button type='button' class='btn btn-outline-danger mt-2 mx-0'>
-                                                        Remove
-                                                    </button>
-                                                </div>
-                                            </div>
+                                        <div class="card p-3 mt-2 border-warning" id="phonesCard">
+
                                         </div>
                                     </div>
 
