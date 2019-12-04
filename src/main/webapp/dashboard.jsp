@@ -9,11 +9,13 @@
 
     <!-- Font Awsome
      Fonts and Icons free to use in commercial projects -->
-    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="resources/css/all.min.css">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/navbar_style.css">
-    <link rel="stylesheet" href="css/dash_style.css">
+    <link rel="stylesheet" href="resources/css/bootstrap.min.css">
+    <link rel="stylesheet" href="resources/css/navbar_style.css">
+    <link rel="stylesheet" href="resources/css/dash_style.css">
+    <script src="resources/javascript/jquery-3.4.1.slim.min.js"></script>
+
     <title>Sunshine Ministries Contacts</title>
 </head>
 <body>
@@ -336,9 +338,8 @@
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="./javascript/jquery-3.4.1.slim.min.js"></script>
-<script src="./javascript/popper.min.js"></script>
-<script src="./javascript/bootstrap.min.js"></script>
+<script src="resources/javascript/popper.min.js"></script>
+<script src="resources/javascript/bootstrap.min.js"></script>
 
 <%--<!-- add button contact type -->--%>
 <%--<script>--%>

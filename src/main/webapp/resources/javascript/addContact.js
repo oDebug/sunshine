@@ -18,14 +18,20 @@ $(document).ready(function ($) {
         $.ajax({
             url: "/addContact",
             contentType: "application/json",
-            dataType: "json",
+            //dataType: "json",
             data: JSON.stringify(formData),
             type: "POST",
-            success: function (data) {
-                $('#inputContact').modal('hide');
-                window.location = 'searchContacts';
-                alert('Contact added successfully');
-            }
+
         })
+            .done(function(data) {
+                    $('#inputContact').modal('hide');
+                    window.location = 'searchContacts';
+                    alert('Contact added successfully');
+
+            })
+            .fail(function(textStatus, errorThrown) {
+                alert("error: " + textStatus + errorThrown);
+
+            });
     })
 })

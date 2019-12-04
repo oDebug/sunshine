@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -7,15 +8,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="shortcut icon" href="./favicon.ico">
+    <link rel="shortcut icon" href="./favicon.ico" >
     <link rel="icon" href="./favicon.ico">
     <!-- Font Awsome
      Fonts and Icons free to use in commercial projects -->
-    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="resources/css/all.min.css" >
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/navbar_style.css">
-    <link rel="stylesheet" href="css/index_style.css">
+    <link rel="stylesheet" type="text/css" href="resources/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="resources/css/navbar_style.css">
+    <link rel="stylesheet" type="text/css" href="resources/css/index_style.css">
+
     <title>Sunshine Ministries Contacts</title>
 </head>
 <body>
@@ -62,18 +64,26 @@
                         <div class="card-body">
                             <h3>User Login</h3>
                             <p>Authorized use and access only.</p>
-                            <%--                            <form name="userForm" action="/validate" method="POST">--%>
+                            <form:form action="/login"
+                                        method="POST">
+                            <c:if test="${not empty errorMessage}">
+                                <div class="alert alert-danger" role="alert">${errorMessage}</div>
+                            </c:if>
                             <div name="userForm">
                                 <div class="form-group">
-                                    <input type="text" name="id" id="userid" class="form-control form-control-lg"
+                                    <input type="text" name="username" id="userid" class="form-control form-control-lg"
                                            placeholder="Username">
                                 </div>
                                 <div class="form-group">
-                                    <input name="pw" type="password" id="userpass" class="form-control form-control-lg"
+                                    <input name="password" type="password" id="userpass" class="form-control form-control-lg"
                                            placeholder="Password">
                                 </div>
-                                <button class="btn btn-outline-light btn-block" id="login">Login</button>
+                                <input class="btn btn-outline-light btn-block" id="login" type="submit" value="Login">
+
+                                <%--<button class="btn btn-outline-light btn-block" id="login">Login</button>--%>
                             </div>
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                            </form:form>
                             <p id="credentials-error" style="color: red; font-weight: bold"></p>
                         </div>
                     </div>
@@ -87,10 +97,10 @@
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
-<script src="javascript/jquery-3.4.1.min.js"></script>
-<script src="javascript/popper.min.js"></script>
-<script src="javascript/bootstrap.min.js"></script>
-<script src="javascript/validateUser.js"></script>
+<script src="resources/javascript/jquery-3.4.1.min.js"></script>
+<script src="resources/javascript/popper.min.js"></script>
+<script src="resources/javascript/bootstrap.min.js"></script>
+<%--<script src="javascript/validateUser.js"></script>--%>
 
 </body>
 </html>

@@ -7,18 +7,15 @@
 
     <!-- Font Awsome
     Fonts and Icons free to use in commercial projects -->
-    <link rel="stylesheet" href="../css/all.min.css">
+    <link rel="stylesheet" href="resources/css/all.min.css">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/findTable.css">
-    <link rel="stylesheet" href="../css/navbar_style.css">
-    <link rel="stylesheet" href="../css/addContact_style.css">
+    <link rel="stylesheet" href="resources/css/bootstrap.min.css">
+    <link rel="stylesheet" href="resources/css/findTable.css">
+    <link rel="stylesheet" href="resources/css/navbar_style.css">
+    <link rel="stylesheet" href="resources/css/addContact_style.css">
 
-    <script src="javascript/jquery-3.4.1.min.js"></script>
-    <script src="javascript/searchContacts.js"></script>
-    <script src="javascript/editContact.js"></script>
-    <script src="javascript/addContact.js"></script>
+
 
     <title>Sunshine Ministries Contacts</title>
 </head>
@@ -208,8 +205,14 @@
 <%--</div>--%>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="../javascript/popper.min.js"></script>
-<script src="../javascript/bootstrap.min.js"></script>
+<script src="resources/javascript/jquery-3.4.1.min.js"></script>
+
+<script src="resources/javascript/popper.min.js"></script>
+<script src="resources/javascript/bootstrap.min.js"></script>
+
+<script src="resources/javascript/searchContacts.js"></script>
+<script src="resources/javascript/editContact.js"></script>
+<script src="resources/javascript/addContact.js"></script>
 <%--<script>--%>
 <%--    // $("#frmAddContact").submit(function(e)--%>
 <%--    // {--%>
