@@ -56,7 +56,6 @@ function populateAddresses(data) {
         }
     }
 }
-
 function populatePhones(data) {
     $('#phonesCard').empty();
     var card = $('#phonesCard');
@@ -111,7 +110,7 @@ function createAddressItem(data) {
     dataElement += "</div>";
     dataElement += "<div class='form-group col-md-2'>";
     dataElement += "<label>Zip</label>";
-    dataElement += "<input type='text' class='form-control' name='zipEdit' id='tboxZipEdit' value='" + data.zip + "'>";
+    dataElement += "<input type='text' class='form-control' name='zipEdit' id='tboxZipEdit' value='" + data.postalCode + "'>";
     dataElement += "</div>";
     dataElement += "<div class='form-group col-md-5'>";
     dataElement += "<label>Descr.</label>";
@@ -125,7 +124,6 @@ function createAddressItem(data) {
 
     return dataElement;
 }
-
 function createPhoneItem(data) {
     var dataElement = "<div class='phoneItem' style='display: none' id='" + data.type + "Phone'>";
     dataElement += "<div class='form-row'>";
@@ -158,7 +156,6 @@ function generateActionsTableBody(data) {
         table.append(createActionTableRow(data[i]));
     }
 }
-
 function createActionTableRow(data) {
     var trElement = "<tr id='action" + data.id + "'>";
     trElement += "<td>" + data.createDate + "</td>";
@@ -259,22 +256,25 @@ function openEditForm(id) {
 function updateContact() {
     var addressArray = getAddresses();
     var phoneArray = getPhones();
-    // var actionArray = getActions();
-
-    // var formData = {
-    //     name: $('#tboxNameEdit').val(),
-    //     type: $('#selectboxTypeEdit').val(),
-    //     email: $('#tboxEmailEdit').val(),
-    //     description: $('#lboxTypeDescriptions').val(),
-    //     street: $('#tboxStreetEdit').val(),
-    //     suite: $('#tboxSuiteEdit').val(),
-    //     city: $('#tboxCityEdit').val(),
-    //     state: $('#listStatesEdit').val(),
-    //     zip: $('#tboxZipEdit').val(),
-    // addresses: addressArray,
-    // phones: phoneArray,
-    // actions: actionArray
-// };
+    var formData = {
+        id: $('#editContactId').val(),
+        name: $('#tboxNameEdit').val(),
+        type: $('#selectboxTypeEdit').val(),
+        email: $('#tboxEmailEdit').val(),
+        description: $('#lboxTypeDescriptions').val(),
+        addresses: addressArray,
+        phones: phoneArray
+};
+    $.ajax({
+        url: "/updateContact",
+        contentType: "application/json",
+        dataType: "json",
+        data: JSON.stringify(formData),
+        type: "POST",
+        success: function (data) {
+            alert('Contact updated successfully');
+        }
+    })
 }
 
 function getAddresses() {
@@ -302,7 +302,7 @@ function getPhones() {
             id: $(this).find('#phoneIdEdit').val(),
             phone: $(this).find('#tboxPhoneEdit').val(),
             extension: $(this).find('#tboxExtensionEdit').val(),
-            phoneType: $(this).attr('id').replace('Phone','')
+            phoneType: $(this).find('#phoneTypeEdit').val()
         }
         phones.push(formData);
     });

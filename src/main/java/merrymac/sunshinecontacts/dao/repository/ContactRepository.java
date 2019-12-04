@@ -10,5 +10,5 @@ import java.util.List;
 public interface ContactRepository extends CrudRepository<Contact, Long> {
     Contact findById(Integer id);
     List<Contact>findTop5ByOrderByCreateTimestampDesc();
-    Contact findFirstByNameAndTypeOrderByIdDesc(String name, String type);
+    Contact findTopByOrderByIdDesc();
 }

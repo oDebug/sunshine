@@ -317,7 +317,7 @@
             </div>
             <div class='modal-footer'>
                 <button type='button' class='btn btn-primary' onclick="clearEditForm()">Clear Form</button>
-                <button type='button' class='btn btn-primary'>Save changes</button>
+                <button type='button' class='btn btn-primary' onclick="updateContact()">Save changes</button>
                 <button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>
             </div>
         </div>

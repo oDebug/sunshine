@@ -31,12 +31,12 @@ public class ContactService {
     @Autowired
     SocialMediaRepository socialMediaRepository;
 
-    public Contact saveContact(Contact contact) {
+    public void saveContact(Contact contact) {
         contactRepository.save(contact);
-        return contactRepository.findFirstByNameAndTypeOrderByIdDesc(contact.getName(), contact.getType());
-
     }
-
+    public Contact getLastAddedContact() {
+        return contactRepository.findTopByOrderByIdDesc();
+    }
     public void savePhone(PhoneNumber phoneNumber) {
         phoneRepository.save(phoneNumber);
     }
