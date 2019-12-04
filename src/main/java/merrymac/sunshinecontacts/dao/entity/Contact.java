@@ -27,6 +27,9 @@ public class Contact {
     @Column(name = "denomination")
     private String denomination;
 
+    @Column(name = "email")
+    private String email;
+
     @Column(name="create_timestamp")
     private Timestamp createTimestamp;
 

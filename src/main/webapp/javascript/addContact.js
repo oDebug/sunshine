@@ -1,6 +1,5 @@
 $(document).ready(function ($) {
     $('#addSaveButton').click(function (e) {
-        var form = $("form#frmAddContact");
         var formData = {
             name: $('#tboxNameAdd').val(),
             type: $('#selectboxTypeAdd').val(),
@@ -14,7 +13,7 @@ $(document).ready(function ($) {
             addressType: $('#tboxAddressDescrAdd').val(),
             phone: $('#tboxPhoneAdd').val(),
             phoneType: $('#tboxPhoneTypeAdd').val()
-        }
+        };
         $.ajax({
             url: "/addContact",
             contentType: "application/json",
@@ -28,4 +27,4 @@ $(document).ready(function ($) {
             }
         })
     })
-})
+});

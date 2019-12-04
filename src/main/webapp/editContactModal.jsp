@@ -8,6 +8,7 @@
                 </button>
             </div>
             <div class='modal-body'>
+                <input hidden type="text" id="editContactId" />
                 <ul class='nav nav-tabs' id='contactTab' role='tablist'><!-- nav tabs -->
 <%--                    <li class='nav-item'>--%>
 <%--                        <a class='nav-link active' id='info-tab' data-toggle='tab' href='#info' role='tab' aria-controls='info' aria-selected='true'>Info</a>--%>
@@ -146,7 +147,7 @@
                                                 <input type="text" class="form-control" name="addressDescrEdit" id="tboxAddressDescrEdit">
                                             </div>
                                             <div class="form-group col-md-2 align-self-end">
-                                                <button type='button' class='btn btn-outline-success mt-2 mx-0'>Save</button>
+                                                <button type='button' id='editSaveButton' class='btn btn-outline-success mt-2 mx-0'>Save</button>
                                             </div>
                                         </div>
                                     </div>
@@ -213,7 +214,7 @@
                                 </div>
                             </div>
                             <div class="col-5 col-lg-3  ml-md-auto">
-                                <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addAction">Add Action</button>
+                                <button type="button" class="btn btn-primary btn-block" id="addActionButton">Add Action</button>
                             </div>
                         </div>
                         <div class="table-responsive">
@@ -221,48 +222,17 @@
                                 <caption>Note: Dates are formatted as Year-Month-Day.</caption>
                                 <thead class="thead-dark">
                                     <tr class="header">
-                                        <th>Action ID</th>
+<%--                                        <th>Action ID</th>--%>
                                         <th>Date Created</th>
-                                        <th>Date Due</th>
+<%--                                        <th>Date Due</th>--%>
                                         <th>Type</th>
-                                        <th>Recent Notes</th>
+                                        <th>Notes</th>
                                         <th>Status</th>
-                                        <th>Date Completed</th>
+<%--                                        <th>Date Completed</th>--%>
                                         <th class="d-none">Contact ID</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr class='contactID1'>
-                                        <td>1</td>
-                                        <td>2019-10-21</td>
-                                        <td>2019-10-23</td>
-                                        <td>Left Message</td>
-                                        <td>Call back to get the scuttlebutt</td>
-                                        <td>In progress</td>
-                                        <td>None</td>
-                                        <td class="d-none">1</td>
-                                    </tr>
-                                    <tr class='contactID2'>
-                                        <td>2</td>
-                                        <td>2019-10-21</td>
-                                        <td>2019-10-24</td>
-                                        <td>Email</td>
-                                        <td>Email about tour</td>
-                                        <td>In progress</td>
-                                        <td>None</td>
-                                        <td class="d-none">2</td>
-                                    </tr>
-                                    <tr class='contactID2'>
-                                        <td>3</td>
-                                        <td>2019-10-23</td>
-                                        <td>2019-10-25</td>
-                                        <td>GIK Drop-off</td>
-                                        <td>Pick up donation of blankets</td>
-                                        <td>In progress</td>
-                                        <td>None</td>
-                                        <td class="d-none">2</td>
-                                    </tr>
-                                </tbody>
+                                <tbody id="actionTableBody"></tbody>
                             </table>
                         </div>
                     </div>
@@ -330,4 +300,5 @@
         </div>
     </div>
 </div>
+<jsp:include page="addActionModal.jsp" />
 <%--<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWPtNLGcAlbmiNAiT9Pn794fMGXc3N4CM&callback=initMap"></script>--%>

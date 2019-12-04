@@ -1,50 +1,90 @@
+$(document).ready(function ($) {
+    $('#editSaveButton').click(function (e) {
+        updateContact();
+    });
+    $('#addActionButton').click(function(e) {
+        $('#addActionModal').modal('show');
+    })
+});
+
 function clearEditForm() {
-    $('#tboxNameEdit').attr('value', "");
-    $('#selectboxTypeEdit').attr('value', "");
-    // $('#tboxDenomination').attr('value', "");
-    $("#websiteCard").empty();
-    $('#tboxStreetEdit').attr('value', "");
-    $('#tboxCityEdit').attr('value', "");
-    $('#tboxZipEdit').attr('value', "");
-    $('#tboxAddressDescrEdit').attr('value', "");
-    //$('#tboxEmailEdit').attr('value', "");
-    //$('#tboxSuiteEdit').attr('value', "");
-    $('#tboxPhoneEdit').attr('value', "");
-    $('#tboxPhoneTypeEdit').attr('value', "");
-    $('#tlistStatesEdit').attr('value', "");
+    $('#editContactId').val("");
+    $('#tboxNameEdit').val("");
+    $('#selectboxTypeEdit').val("");
+    $('#tboxDenomination').val("");
+    $("#websiteCard").val("");
+    $('#tboxStreetEdit').val("");
+    $('#tboxCityEdit').val("");
+    $('#tboxZipEdit').val("");
+    $('#tboxAddressDescrEdit').val("");
+    $('#tboxEmailEdit').val("");
+    $('#tboxSuiteEdit').val("");
+    $('#tboxPhoneEdit').val("");
+    $('#tboxPhoneTypeEdit').val("");
+    $('#tlistStatesEdit').val("");
     $('#selectboxAddressesEdit').empty();
     $('#selectboxPhonesEdit').empty();
-};
-
+}
 function populateEditForm(data) {
     clearEditForm();
-    $('#tboxNameEdit').attr('value', data.name);
-    $('#selectboxTypeEdit').attr('value', data.type);
-    //$('#tboxEmailEdit').attr('value', data.email);
-    $('#tboxStreetEdit').attr('value', data.addresses[0].street);
-    //$('#tboxSuiteEdit').attr('value', data.type);
-    $('#tboxCityEdit').attr('value', data.addresses[0].city);
-    $('#listStatesEdit').attr('value', data.addresses[0].state);
-    $('#tboxZipEdit').attr('value', data.addresses[0].postalCode);
-    $('#tboxAddressDescrEdit').attr('value', data.addresses[0].description);
+    $('#editContactId').val(data.id);
+    $('#tboxNameEdit').val(data.name);
+    $('#selectboxTypeEdit').val(data.type);
+    $('#tboxEmailEdit').val(data.email);
+    $('#tboxStreetEdit').val(data.addresses[0].street);
+    $('#tboxSuiteEdit').val(data.addresses[0].suite);
+    $('#tboxCityEdit').val(data.addresses[0].city);
+    $('#listStatesEdit').val(data.addresses[0].state);
+    $('#tboxZipEdit').val(data.addresses[0].postalCode);
+    $('#tboxAddressDescrEdit').val(data.addresses[0].addressType);
 
-    for (var x = 0; x < data.addresses.length; x++) //fill list with addresses
-    {
-        $('#selectboxAddressesEdit').append(new Option(fullAddress(data.addresses[x]), x));
+    for (var x = 0; x < data.addresses.length; x++) {
+        //fill list with addresses
+        $('#selectboxAddressesEdit').append(new Option(data.addresses[x].addressType), x);
     }
 
-    $('#tboxPhoneEdit').attr('value', data.phones[0].phone);
-    $('#tboxPhoneTypeEdit').attr('value', data.phones[0].type);
+    $('#tboxPhoneEdit').val(data.phones[0].phone);
+    $('#tboxPhoneTypeEdit').val(data.phones[0].type);
 
-    for (var x = 0; x < data.phones.length; x++) //fill list with phone numbers
-    {
-        $('#selectboxPhonesEdit').append(new Option(data.phones[x].phone, x));
+    for (var x = 0; x < data.phones.length; x++) {
+        //fill list with phone numbers
+        $('#selectboxPhonesEdit').append(new Option(data.phones[x].type, x));
     }
 
     $('#selectboxPhonesEdit').append(new Option("New...", "new"));
 
+    generateActionsTableBody(data.actions);
+
     // generateWebsiteList(data);
 
+}
+
+function generateActionsTableBody(data) {
+    $("#actionTableBody").empty(); //empty the table with id="tableResults"
+    var table = $("#actionTableBody"); //store reference to table
+
+    for (var i = 0; i < data.length; i++) {
+        table.append(createActionTableRow(data[i]));
+    }
+}
+
+function createActionTableRow(data) {
+    var trElement = "<tr id='action" + data.id + "'>";
+    trElement += "<td>" + data.createDate + "</td>";
+    trElement += "<td>" + data.actionType + "</td>";
+    trElement += "<td><input type='text' class='form-control' value='" + data.notes + "'/></td>";
+    trElement += "<td><select class='custom-select'>";
+    if (data.status === 'Completed') {
+        trElement += "<option selected='Completed'>Completed</option>";
+        trElement += "<option value='Follow Up'>Follow Up</option>";
+    } else {
+        trElement += "<option value='Completed'>Completed</option>";
+        trElement += "<option selected='Follow Up'>Follow Up</option>";
+    }
+    trElement += "</select></td>";
+    trElement += "</tr>";
+
+    return trElement;
 }
 
 function generateWebsiteList(data) {
@@ -110,3 +150,30 @@ function populateWebsites(data, num) {
 
     return websiteElement;
 }
+
+function updateContact() {
+    // var addressArray = getAddresses();
+    // var phoneArray = getPhones();
+    // var actionArray = getActions();
+
+    // var formData = {
+    //     name: $('#tboxNameEdit').val(),
+    //     type: $('#selectboxTypeEdit').val(),
+    //     email: $('#tboxEmailEdit').val(),
+    //     description: $('#lboxTypeDescriptions').val(),
+    //     street: $('#tboxStreetEdit').val(),
+    //     suite: $('#tboxSuiteEdit').val(),
+    //     city: $('#tboxCityEdit').val(),
+    //     state: $('#listStatesEdit').val(),
+    //     zip: $('#tboxZipEdit').val(),
+        // addresses: addressArray,
+        // phones: phoneArray,
+        // actions: actionArray,
+}
+
+// function getAddresses() {
+//     var addresses = new Array();
+//     var divs = $('.address-edit-div').
+//
+//     return addresses;
+// }

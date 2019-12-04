@@ -34,7 +34,7 @@ public class ContactResponseAdapter {
         response.setActions(actions);
         response.setAliases(aliases);
         response.setSocialMedia(socialMedia);
-
+        response.setEmail(contact.getEmail());
         return response;
     }
 
@@ -42,7 +42,7 @@ public class ContactResponseAdapter {
         ActionResponse response = new ActionResponse();
 
         response.setActionType(action.getActionType());
-        response.setCompleted(action.isCompleted());
+        response.setStatus(action.getStatus());
         response.setCompleteDate(action.getCompleteDate());
         response.setCompleteUser(action.getCompleteUser());
         response.setCreateDate(action.getCompleteDate());

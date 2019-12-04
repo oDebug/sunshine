@@ -14,7 +14,7 @@ $(document).ready(function ($) {
 
             }
         })
-    })
+    });
     $("#submit-search").click(function (str) {
         showResults($('#search-string').val());
     });

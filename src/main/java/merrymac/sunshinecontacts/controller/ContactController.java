@@ -1,9 +1,6 @@
 package merrymac.sunshinecontacts.controller;
 
-import merrymac.sunshinecontacts.dao.entity.Address;
-import merrymac.sunshinecontacts.dao.entity.Contact;
-import merrymac.sunshinecontacts.dao.entity.PhoneNumber;
-import merrymac.sunshinecontacts.dao.entity.User;
+import merrymac.sunshinecontacts.dao.entity.*;
 import merrymac.sunshinecontacts.request.ContactRequest;
 import merrymac.sunshinecontacts.response.ActionResponse;
 import merrymac.sunshinecontacts.response.ContactResponse;
@@ -171,4 +168,24 @@ public class ContactController {
         }
     }
 
+    @RequestMapping(value = "/addAction", method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseEntity<Action> addAction(@RequestBody Action action) {
+        Action newAction = null;
+        try {
+            Timestamp curTimestamp = new Timestamp(System.currentTimeMillis());
+            action.setId(0L);
+            action.setCreateDate(curTimestamp);
+            if (action.getStatus().equals("Completed")) {
+                action.setCompleteDate(curTimestamp);
+            }
+            newAction = contactService.saveAction(action);
+
+        } catch (Exception e) {
+            e.getMessage();
+            return new ResponseEntity<Action>(HttpStatus.EXPECTATION_FAILED);
+        }
+
+        return new ResponseEntity<Action>(newAction, HttpStatus.OK);
+    }
 }

@@ -28,5 +28,7 @@ public class ContactResponse {
     private List<Action> actions;
     private List<Alias> aliases;
     private List<SocialMedia> socialMedia;
+    private String email;
+
 
 }
