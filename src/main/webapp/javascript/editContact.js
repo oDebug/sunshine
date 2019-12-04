@@ -2,7 +2,7 @@ $(document).ready(function ($) {
     $('#editSaveButton').click(function (e) {
         updateContact();
     });
-    $('#addActionButton').click(function(e) {
+    $('#addActionButton').click(function (e) {
         $('#addActionModal').modal('show');
     })
 });
@@ -25,23 +25,22 @@ function clearEditForm() {
     $('#selectboxAddressesEdit').empty();
     $('#selectboxPhonesEdit').empty();
 }
+
 function populateEditForm(data) {
     clearEditForm();
     $('#editContactId').val(data.id);
     $('#tboxNameEdit').val(data.name);
     $('#selectboxTypeEdit').val(data.type);
     $('#tboxEmailEdit').val(data.email);
+    populateAddresses(data.addresses);
+    // populatePhones(data.phones);
+
     $('#tboxStreetEdit').val(data.addresses[0].street);
     $('#tboxSuiteEdit').val(data.addresses[0].suite);
     $('#tboxCityEdit').val(data.addresses[0].city);
     $('#listStatesEdit').val(data.addresses[0].state);
     $('#tboxZipEdit').val(data.addresses[0].postalCode);
     $('#tboxAddressDescrEdit').val(data.addresses[0].addressType);
-
-    for (var x = 0; x < data.addresses.length; x++) {
-        //fill list with addresses
-        $('#selectboxAddressesEdit').append(new Option(data.addresses[x].addressType), x);
-    }
 
     $('#tboxPhoneEdit').val(data.phones[0].phone);
     $('#tboxPhoneTypeEdit').val(data.phones[0].type);
@@ -57,6 +56,71 @@ function populateEditForm(data) {
 
     // generateWebsiteList(data);
 
+}
+
+function populateAddresses(data) {
+    $('#addressesCard').empty();
+    var card = $('#addressesCard');
+
+    for (var i = 0; i < data.length; i++) {
+        card.append(createAddressItem(data[i]));
+        $('#selectboxAddressesEdit').append(new Option(data[i].addressType), i);
+        if (i === 0) {
+            $('#selectboxAddressesEdit').val(data[i].addressType)
+
+            var selectedAddress =  $('#' + data[i].addressType + 'Address');
+            selectedAddress.show();
+        }
+    }
+
+
+}
+
+function changeAddress() {
+    $('.addressItem').each(function() {
+        $(this).hide();
+    });
+    var selectedAddress =  $('#' + $('#selectboxAddressesEdit').val() + 'Address')
+    selectedAddress.show();
+}
+
+function createAddressItem(data) {
+    var dataElement = "<div class='addressItem' style='display: none' id='" + data.addressType + "Address'>";
+    dataElement += "<div class='form-row'>";
+    dataElement += "<div class='form-group col-md-6'>";
+    dataElement += "<label>Street</label>";
+    dataElement += "<input type='text' class='form-control' name='streetEdit' id='tboxStreetEdit' value='" + data.street + "'>";
+    dataElement += "</div>";
+    dataElement += "<div class='form-group col-md-2'>";
+    dataElement += "<label>Suite</label>";
+    dataElement += "<input type='text' class='form-control' name='suiteEdit' id='tboxSuiteEdit' value='" + data.suite + "'>";
+    dataElement += "</div>";
+    dataElement += "<div class='form-group col-md-4'>";
+    dataElement += "<label>City</label>";
+    dataElement += "<input type='text' class='form-control' name='cityEdit' id='tboxCityEdit' value='" + data.city + "'>";
+    dataElement += "</div>";
+    dataElement += "</div>";
+    dataElement += "<div class='form-row'>";
+    dataElement += "<div class='form-group col-md-3'>";
+    dataElement += "<label>State</label>";
+    dataElement += "<input class='form-control' list='states' name='stateEdit' id='listStatesEdit' value='" + data.state + "'>";
+    dataElement += "<datalist id='states'><option value='MO'><option value='IL'></datalist>";
+    dataElement += "</div>";
+    dataElement += "<div class='form-group col-md-2'>";
+    dataElement += "<label>Zip</label>";
+    dataElement += "<input type='text' class='form-control' name='zipEdit' id='tboxZipEdit' value='" + data.zip + "'>";
+    dataElement += "</div>";
+    dataElement += "<div class='form-group col-md-5'>";
+    dataElement += "<label>Descr.</label>";
+    dataElement += "<input type='text' class='form-control' name='addressDescrEdit' id='tboxAddressDescrEdit' value='" + data.addressType + "'>";
+    dataElement += "</div>";
+    dataElement += "<div class='form-group col-md-2 align-self-end'>";
+    dataElement += "<button type='button' id='editSaveButton' class='btn btn-outline-success mt-2 mx-0'>Save</button>";
+    dataElement += "</div>";
+    dataElement += "</div>";
+    dataElement += "</div>";
+
+    return dataElement;
 }
 
 function generateActionsTableBody(data) {
@@ -180,9 +244,9 @@ function updateContact() {
     //     city: $('#tboxCityEdit').val(),
     //     state: $('#listStatesEdit').val(),
     //     zip: $('#tboxZipEdit').val(),
-        // addresses: addressArray,
-        // phones: phoneArray,
-        // actions: actionArray,
+    // addresses: addressArray,
+    // phones: phoneArray,
+    // actions: actionArray,
 }
 
 // function getAddresses() {
