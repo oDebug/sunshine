@@ -2,7 +2,7 @@ create table actions
 (
     id int(7) not null
         primary key,
-    action_type varchar(20) not null,
+    action_type varchar(50) not null,
     status varchar(10) null,
     notes varchar(255) null,
     create_user varchar(10) null,
@@ -21,3 +21,4 @@ create definer = merrymac@localhost trigger before_insert_actions
 begin
     SET new.id = get_next_gid();
 end;
+

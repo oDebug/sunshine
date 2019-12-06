@@ -26,4 +26,6 @@ public class PhoneNumber {
     @Column(name="phone_type")
     private String type;
 
+    @Column(name="extension")
+    private String extension;
 }

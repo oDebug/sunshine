@@ -119,15 +119,26 @@
                         <div class="col">
                             <div class="card p-3 mt-2 border-warning">
                                 <div class="form-row">
+                                    <div class="form-group col-md-5">
+                                        <label>Type</label>
+                                        <select class="custom-select" name="phoneType" id="selectboxPhoneTypeAdd">
+                                            <option selected>Choose...</option>
+                                            <option value="Home">Home</option>
+                                            <option value="Office">Office</option>
+                                            <option value="Mobile">Mobile</option>
+                                            <option value="Fax">Fax</option>
+                                            <option value="Pager">Pager</option>
+                                        </select>
+                                    </div>
                                     <div class="form-group col-md-4">
                                         <label>Phone</label>
                                         <input type="text" class="form-control" name="phone" id="tboxPhoneAdd"
                                                placeholder="Phone">
                                     </div>
                                     <div class="form-group col-md-3">
-                                        <label>Type</label>
-                                        <input type="text" class="form-control" name="phoneType"
-                                               id="tboxPhoneTypeAdd" placeholder="Type">
+                                        <label>Ext.</label>
+                                        <input type="text" class="form-control" name="extension"
+                                               id="tboxExtensionAdd" placeholder="Type">
                                     </div>
                                 </div>
                             </div>
@@ -157,28 +168,3 @@
     </div> <!-- end of modal role=document -->
 </div>
 <!-- end of model fade -->
-
-<%-- Radio Buttons:
-       rbtnContactTypeChurch
-       rbtnContactTypeOrg
-       rbtnContactTypePerson
-     Everything else:
-        tboxName
-        tboxAlias
-        tboxEmail
-        tboxDenomination
-        tboxOrgType
-        tboxAddressDesc
-        tboxAddress1
-        tboxAddress2
-        tboxCity
-        states
-        tboxZip
-        tboxPhone
-        tboxFax
-        tboxWebsite
-        tboxFacebook
-        tboxInstagram
-        tboxTwitter
-        txtareaInputNote
-       --%>

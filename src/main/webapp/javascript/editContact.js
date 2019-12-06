@@ -2,7 +2,7 @@ $(document).ready(function ($) {
     $('#editSaveButton').click(function (e) {
         updateContact();
     });
-    $('#addActionButton').click(function(e) {
+    $('#addActionButton').click(function (e) {
         $('#addActionModal').modal('show');
     })
 });
@@ -25,33 +25,15 @@ function clearEditForm() {
     $('#selectboxAddressesEdit').empty();
     $('#selectboxPhonesEdit').empty();
 }
+
 function populateEditForm(data) {
     clearEditForm();
     $('#editContactId').val(data.id);
     $('#tboxNameEdit').val(data.name);
     $('#selectboxTypeEdit').val(data.type);
     $('#tboxEmailEdit').val(data.email);
-    $('#tboxStreetEdit').val(data.addresses[0].street);
-    $('#tboxSuiteEdit').val(data.addresses[0].suite);
-    $('#tboxCityEdit').val(data.addresses[0].city);
-    $('#listStatesEdit').val(data.addresses[0].state);
-    $('#tboxZipEdit').val(data.addresses[0].postalCode);
-    $('#tboxAddressDescrEdit').val(data.addresses[0].addressType);
-
-    for (var x = 0; x < data.addresses.length; x++) {
-        //fill list with addresses
-        $('#selectboxAddressesEdit').append(new Option(data.addresses[x].addressType), x);
-    }
-
-    $('#tboxPhoneEdit').val(data.phones[0].phone);
-    $('#tboxPhoneTypeEdit').val(data.phones[0].type);
-
-    for (var x = 0; x < data.phones.length; x++) {
-        //fill list with phone numbers
-        $('#selectboxPhonesEdit').append(new Option(data.phones[x].type, x));
-    }
-
-    $('#selectboxPhonesEdit').append(new Option("New...", "new"));
+    populateAddresses(data.addresses);
+    populatePhones(data.phones);
 
     generateActionsTableBody(data.actions);
 
@@ -59,6 +41,113 @@ function populateEditForm(data) {
 
 }
 
+function populateAddresses(data) {
+    $('#addressesCard').empty();
+    var card = $('#addressesCard');
+
+    for (var i = 0; i < data.length; i++) {
+        card.append(createAddressItem(data[i]));
+        $('#selectboxAddressesEdit').append(new Option(data[i].addressType), i);
+        if (i === 0) {
+            $('#selectboxAddressesEdit').val(data[i].addressType)
+
+            var selectedAddress =  $('#' + data[i].addressType + 'Address');
+            selectedAddress.show();
+        }
+    }
+}
+function populatePhones(data) {
+    $('#phonesCard').empty();
+    var card = $('#phonesCard');
+
+    for (var i = 0; i < data.length; i++) {
+        card.append(createPhoneItem(data[i]));
+        $('#selectboxPhonesEdit').append(new Option(data[i].type), i);
+        if (i === 0) {
+            $('#selectboxPhonesEdit').val(data[i].type)
+
+            var selectedPhone =  $('#' + data[i].type + 'Phone');
+            selectedPhone.show();
+        }
+    }
+}
+function changeAddress() {
+    $('.addressItem').each(function() {
+        $(this).hide();
+    });
+    var selectedAddress =  $('#' + $('#selectboxAddressesEdit').val() + 'Address')
+    selectedAddress.show();
+}
+function changePhone() {
+    $('.phoneItem').each(function() {
+        $(this).hide();
+    });
+    var selectedPhone =  $('#' + $('#selectboxPhonesEdit').val() + 'Phone')
+    selectedPhone.show();
+}
+function createAddressItem(data) {
+    var dataElement = "<div class='addressItem' style='display: none' id='" + data.addressType + "Address'>";
+    dataElement += "<div class='form-row'>";
+    dataElement += "<div class='form-group col-md-6'>";
+    dataElement += "<input hidden type='text' id='addressIdEdit' value='" + data.id + "'></input>";
+    dataElement += "<label>Street</label>";
+    dataElement += "<input type='text' class='form-control' name='streetEdit' id='tboxStreetEdit' value='" + data.street + "'>";
+    dataElement += "</div>";
+    dataElement += "<div class='form-group col-md-2'>";
+    dataElement += "<label>Suite</label>";
+    dataElement += "<input type='text' class='form-control' name='suiteEdit' id='tboxSuiteEdit' value='" + data.suite + "'>";
+    dataElement += "</div>";
+    dataElement += "<div class='form-group col-md-4'>";
+    dataElement += "<label>City</label>";
+    dataElement += "<input type='text' class='form-control' name='cityEdit' id='tboxCityEdit' value='" + data.city + "'>";
+    dataElement += "</div>";
+    dataElement += "</div>";
+    dataElement += "<div class='form-row'>";
+    dataElement += "<div class='form-group col-md-3'>";
+    dataElement += "<label>State</label>";
+    dataElement += "<input class='form-control' list='states' name='stateEdit' id='listStatesEdit' value='" + data.state + "'>";
+    dataElement += "<datalist id='states'><option value='MO'><option value='IL'></datalist>";
+    dataElement += "</div>";
+    dataElement += "<div class='form-group col-md-2'>";
+    dataElement += "<label>Zip</label>";
+    dataElement += "<input type='text' class='form-control' name='zipEdit' id='tboxZipEdit' value='" + data.postalCode + "'>";
+    dataElement += "</div>";
+    dataElement += "<div class='form-group col-md-5'>";
+    dataElement += "<label>Descr.</label>";
+    dataElement += "<input type='text' class='form-control' name='addressDescrEdit' id='tboxAddressDescrEdit' value='" + data.addressType + "'>";
+    dataElement += "</div>";
+    dataElement += "<div class='form-group col-md-2 align-self-end'>";
+    dataElement += "<button type='button' id='editSaveButton' class='btn btn-outline-success mt-2 mx-0'>Save</button>";
+    dataElement += "</div>";
+    dataElement += "</div>";
+    dataElement += "</div>";
+
+    return dataElement;
+}
+function createPhoneItem(data) {
+    var dataElement = "<div class='phoneItem' style='display: none' id='" + data.type + "Phone'>";
+    dataElement += "<div class='form-row'>";
+    dataElement += "<div class='form-group col-md-4'>";
+    dataElement += "<input hidden type='text' id='phoneIdEdit' value='" + data.id + "'>";
+    dataElement += "<input hidden type='text' id='phoneTypeEdit' value='" + data.type + "'>";
+    dataElement += "<label>Phone</label>";
+    dataElement += "<input type='text' class='form-control' name='phoneEdit' id='tboxPhoneEdit' value='" + data.phone +"'>";
+    dataElement += "</div>";
+    dataElement += "<div class='form-group col-md-3'>";
+    dataElement += "<label>Ext.</label>";
+    dataElement += "<input type='text' class='form-control' name='extensionEdit' id='tboxExtensionEdit' value='" + data.extension + "'>";
+    dataElement += "</div>";
+    dataElement += "<div class='form-group col-md-2 align-self-end mx-0 px-0'>";
+    dataElement += "<button id='btnPhoneUpdate' type='button'class='btn btn-outline-success mt-2 mx-0'>Update</button>";
+    dataElement += "</div>";
+    dataElement += "<div class='form-group col-md-2 align-self-end mx-0 px-0'>";
+    dataElement += "<button type='button' class='btn btn-outline-danger mt-2 mx-0'>Remove</button>";
+    dataElement += "</div>";
+    dataElement += "</div>";
+    dataElement += "</div>";
+
+    return dataElement;
+}
 function generateActionsTableBody(data) {
     $("#actionTableBody").empty(); //empty the table with id="tableResults"
     var table = $("#actionTableBody"); //store reference to table
@@ -67,7 +156,6 @@ function generateActionsTableBody(data) {
         table.append(createActionTableRow(data[i]));
     }
 }
-
 function createActionTableRow(data) {
     var trElement = "<tr id='action" + data.id + "'>";
     trElement += "<td>" + data.createDate + "</td>";
@@ -151,29 +239,73 @@ function populateWebsites(data, num) {
     return websiteElement;
 }
 
-function updateContact() {
-    // var addressArray = getAddresses();
-    // var phoneArray = getPhones();
-    // var actionArray = getActions();
-
-    // var formData = {
-    //     name: $('#tboxNameEdit').val(),
-    //     type: $('#selectboxTypeEdit').val(),
-    //     email: $('#tboxEmailEdit').val(),
-    //     description: $('#lboxTypeDescriptions').val(),
-    //     street: $('#tboxStreetEdit').val(),
-    //     suite: $('#tboxSuiteEdit').val(),
-    //     city: $('#tboxCityEdit').val(),
-    //     state: $('#listStatesEdit').val(),
-    //     zip: $('#tboxZipEdit').val(),
-        // addresses: addressArray,
-        // phones: phoneArray,
-        // actions: actionArray,
+function openEditForm(id) {
+    $.ajax({
+        url: "getContact",
+        type: "GET",
+        data: {id: id},
+        success: function (data) {
+            clearEditForm();
+            populateEditForm(data);
+            $('#editContactModal').modal('show');
+            $('.nav-tabs a[href="#edit"]').tab('show');
+        }
+    })
 }
 
-// function getAddresses() {
-//     var addresses = new Array();
-//     var divs = $('.address-edit-div').
-//
-//     return addresses;
-// }
+function updateContact() {
+    var addressArray = getAddresses();
+    var phoneArray = getPhones();
+    var formData = {
+        id: $('#editContactId').val(),
+        name: $('#tboxNameEdit').val(),
+        type: $('#selectboxTypeEdit').val(),
+        email: $('#tboxEmailEdit').val(),
+        description: $('#lboxTypeDescriptions').val(),
+        addresses: addressArray,
+        phones: phoneArray
+};
+    $.ajax({
+        url: "/updateContact",
+        contentType: "application/json",
+        dataType: "json",
+        data: JSON.stringify(formData),
+        type: "POST",
+        success: function (data) {
+            alert('Contact updated successfully');
+        }
+    })
+}
+
+function getAddresses() {
+    var addresses = new Array();
+    $('.addressItem').each(function() {
+        var formData = {
+            id: $(this).find('#addressIdEdit').val(),
+            street: $(this).find('#tboxStreetEdit').val(),
+            suite: $(this).find('#tboxSuiteEdit').val(),
+            city: $(this).find('#tboxCityEdit').val(),
+            state: $(this).find('#listStatesEdit').val(),
+            postalCode: $(this).find('#tboxZipEdit').val(),
+            addressType: $(this).attr('id').replace('Address','')
+        }
+        addresses.push(formData);
+    });
+
+    return addresses;
+}
+
+function getPhones() {
+    var phones = new Array();
+    $('.phoneItem').each(function() {
+        var formData = {
+            id: $(this).find('#phoneIdEdit').val(),
+            phone: $(this).find('#tboxPhoneEdit').val(),
+            extension: $(this).find('#tboxExtensionEdit').val(),
+            phoneType: $(this).find('#phoneTypeEdit').val()
+        }
+        phones.push(formData);
+    });
+
+    return phones;
+}
