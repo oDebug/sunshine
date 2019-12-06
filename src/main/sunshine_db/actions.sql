@@ -1,3 +1,4 @@
+drop table actions;
 create table actions
 (
     id int(7) not null

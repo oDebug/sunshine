@@ -28,46 +28,49 @@
 <jsp:include page="navbar.jsp"/>
 
 <div class="container"><!--Big Div for padding page -->
-    <div class="col-12">
-        <div class="container mt-3 ml-4">
-            <div class="row"><h3 class="ml-3">Contacts</h3></div>
-            <div class="row">
-                <div class="col-lg-5">
-                    <div class="input-group">
-                        <form class="input-group-prepend" id="searchForm" onsubmit="return false">
-                            <button class="btn bg-primary text-white" id="submit-search">
-                                <i class="fas fa-search"></i>
-                            </button>
-                            <input type="text" id="search-string" class="form-control"
-                                   placeholder="Search by contact name" onkeyup="keyUpSearch(this.value)">
-                        </form>
+    <div class="row">
+        <div class="col-12">
+            <div class="container mt-3 p-0">
+                <div class="row"><h3 class="ml-3">Contacts</h3></div>
+                <div class="row">
+                    <div class="col-lg-5">
+                        <div class="input-group">
+                            <form class="input-group-prepend" id="searchForm" onsubmit="return false">
+                                <button class="btn bg-primary text-white" id="submit-search">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                                <input type="text" id="search-string" class="form-control search-bar"
+                                       placeholder="Search by contact name" onkeyup="keyUpSearch(this.value)">
+                            </form>
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group col-lg-2 mt-3 ml-auto">
-                    <button type="button" class="btn btn-primary btn-block" data-toggle="modal"
-                            data-target="#inputContact">Add Contact
-                    </button>
-                </div>
-            </div><!-- end of row class under contact contacts h3 -->
+                    <div class="form-group col-lg-2 mt-3 ml-auto pr-0">
+                        <button type="button" class="btn btn-primary btn-block" data-toggle="modal"
+                                data-target="#inputContact">Add Contact</button>
+                    </div>
+                </div><!-- end of row class under contact contacts h3 -->
+            </div>
         </div>
     </div>
-    <table id="contactTable" class="table table-hover table-bordered ml-3">
-        <caption>Click on a table row to view more contact info and actions.</caption>
-        <thead class="thead-dark">
-        <tr class="header">
-            <th>ID#</th>
-            <th onclick="sortTable(0)">Name</th>
-            <th>Contact Type</th>
-            <th>Phone</th>
-            <th>Address</th>
-            <th>Map</th>
-        </tr>
-        </thead>
-        <tbody id="tableResults">
-        </tbody>
-    </table>
-<div class="col"></div>
+    <div class="row">
+        <table id="contactTable" class="table table-hover table-bordered ml-3">
+            <caption>Click on a table row to view more contact info and actions.</caption>
+            <thead class="thead-dark">
+            <tr class="header">
+                <th>ID#</th>
+                <th onclick="sortTable(0)">Name</th>
+                <th>Contact Type</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>Map</th>
+            </tr>
+            </thead>
+            <tbody id="tableResults">
+            </tbody>
+        </table>
+    </div>
+
 </div> <!-- big div for padding page -->
 
 <jsp:include page="editContactModal.jsp"/>

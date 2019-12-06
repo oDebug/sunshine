@@ -25,7 +25,7 @@
                                     <div class="form-group col-md-6">
                                         <label for="selectboxTypeAdd">Contact Type</label>
                                         <select class="custom-select" id="selectboxTypeAdd" name="type"
-                                                onchange="typeChange()">
+                                                onchange="typeChangeAdd()">
                                             <option selected>Choose...</option>
                                             <option value="Church">Church</option>
                                             <option value="Organization">Organization</option>
@@ -43,27 +43,27 @@
                                                placeholder="Email">
                                     </div>
                                     <div class="form-group col-md-6" name="denomShow">
-                                        <label for="lboxTypeDescriptions">Type Description</label>
-                                        <input class="form-control" id="lboxTypeDescriptions"
+                                        <label for="lboxTypeDescriptionsAdd">Type Description</label>
+                                        <input class="form-control" id="lboxTypeDescriptionsAdd"
                                                name="description"
                                                placeholder="Denomination, Job Title, etc.">
                                         <!-- populate list based on contact type via javascript by changing list attribute-->
-                                        <datalist id="churchTypeDescriptions">
+                                        <datalist id="churchTypeDescriptionsAdd">
                                             <option value="Baptist">
                                             <option value="Catholic">
                                         </datalist>
-                                        <datalist id="orgTypeDescriptions">
+                                        <datalist id="orgTypeDescriptionsAdd">
                                             <option value="Charity">
                                             <option value="Political">
                                         </datalist>
-                                        <datalist id="businessTypeDescriptions">
+                                        <datalist id="businessTypeDescriptionsAdd">
                                         </datalist>
-                                        <datalist id="schoolTypeDescriptions">
+                                        <datalist id="schoolTypeDescriptionsAdd">
                                             <option value="University">
                                             <option value="Private">
                                             <option value="Charter">
                                         </datalist>
-                                        <datalist id="personTypeDescriptions">
+                                        <datalist id="personTypeDescriptionsAdd">
                                             <option value="President">
                                             <option value="Receptionist">
                                             <option value="Chairperson">
@@ -138,7 +138,7 @@
                                     <div class="form-group col-md-3">
                                         <label>Ext.</label>
                                         <input type="text" class="form-control" name="extension"
-                                               id="tboxExtensionAdd" placeholder="Type">
+                                               id="tboxExtensionAdd">
                                     </div>
                                 </div>
                             </div>

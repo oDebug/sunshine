@@ -212,7 +212,7 @@
                                         </div>
                                     </div>
                                 </div>
-
+                                <button type='button' class='btn btn-primary mt-2' onclick="clearEditForm()">Clear Form</button>
                             </form>
                         </div>
                     </div>
@@ -301,22 +301,20 @@
                     </div>
 
                     <div class='tab-pane fade' id='map' role='tabpanel' aria-labelledby='map-tab'>
-                        <div class="container">
-                            <div class="row">
-                                <div class="col">
-                                    <div id="mapPane" style="height: 350px; width: 350px;"></div>
+                        <div class="container p-2">
+                            <div class="row ">
+                                <div class="col justify-content-center">
+                                    <div id="mapPane" class="m-0" style="height: 350px; width: 350px; box-shadow: 0px 0px 5px 0px #383838;"></div>
                                 </div>
-
-                                <div class="col"><p>DISPLAY ADDRESS HERE</p></div>
+                            </div>
+                            <div class="row">
+                                <div class="col"><p id="mapTabAddress"></p></div>
                             </div>
                         </div>
-
-
                     </div>
                 </div>
             </div>
             <div class='modal-footer'>
-                <button type='button' class='btn btn-primary' onclick="clearEditForm()">Clear Form</button>
                 <button type='button' class='btn btn-primary' onclick="updateContact()">Save changes</button>
                 <button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>
             </div>
@@ -324,4 +322,4 @@
     </div>
 </div>
 <jsp:include page="addActionModal.jsp"/>
-<%--<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWPtNLGcAlbmiNAiT9Pn794fMGXc3N4CM&callback=initMap"></script>--%>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWPtNLGcAlbmiNAiT9Pn794fMGXc3N4CM"></script>

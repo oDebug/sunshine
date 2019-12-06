@@ -221,6 +221,7 @@ function typeChange() {
     }
 }
 
+
 function fullAddress(data) {
     return data.street + ", " + data.city + " " + data.state + ", " + data.postalCode;
 }
@@ -247,6 +248,7 @@ function openEditForm(id) {
         success: function (data) {
             clearEditForm();
             populateEditForm(data);
+            geocodeAddress(data);
             $('#editContactModal').modal('show');
             $('.nav-tabs a[href="#edit"]').tab('show');
         }
@@ -308,4 +310,33 @@ function getPhones() {
     });
 
     return phones;
+}
+
+function geocodeAddress(data) //THIS NOW WORKS
+{
+    var geocoder = new google.maps.Geocoder();
+    var address = data.addresses[0].street + ", " + data.addresses[0].city + " " + data.addresses[0].state + ", " + data.addresses[0].postalCode;
+    var coords;
+    var bounds = new google.maps.LatLngBounds();
+    document.getElementById('mapTabAddress').innerText = address;
+
+    geocoder.geocode({'address': address}, function(results, status) //Geocode
+    {
+        if (status === 'OK')
+        {
+            coords = results[0].geometry.location;
+
+            var map = new google.maps.Map(document.getElementById('mapPane'), {
+                center: coords,
+                zoom: 14
+            });
+
+            var marker = new google.maps.Marker({map: map, position: coords});
+
+        }
+        else
+        {
+            alert('Geocode was not successful for the following reason: ' + status);
+        }
+    });
 }
