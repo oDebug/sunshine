@@ -44,14 +44,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col">
-                            <div class="card p-3 mt-2 border-warning">
-                                <div class="form-row">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </form>
             </div>
             <div class='modal-footer'>
