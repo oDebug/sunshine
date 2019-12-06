@@ -14,6 +14,15 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/navbar_style.css">
     <link rel="stylesheet" href="css/dash_style.css">
+
+    <script src="javascript/jquery-3.4.1.min.js"></script>
+    <script src="javascript/popper.min.js"></script>
+    <script src="javascript/bootstrap.min.js"></script>
+    <script src="javascript/editContact.js"></script>
+    <script src="javascript/addContact.js"></script>
+    <script src="javascript/addAction.js"></script>
+    <script src="javascript/dashboard.js"></script>
+
     <title>Sunshine Ministries Contacts</title>
 </head>
 <body>
@@ -49,7 +58,8 @@
                             <!-- Add data button modal -->
 
                             <div class="form-group mb-0">
-                                <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#inputContact">Add Contact</button>
+                                <button type="button" class="btn btn-primary " data-toggle="modal"
+                                        data-target="#inputContact">>Add Contact</button>
                             </div>
                             <!-- Input Modal -->
                             <div class="modal fade" id="inputContact" tabindex="-1" role="dialog"
@@ -253,28 +263,24 @@
                         </div>
                     </div>
                     <div class="card bg-light text-center card-form mt-3 text-dark">
-                        <div class="card-header"><h4>Upcoming Actions</h4></div>
+                        <div class="card-header"><h4>Follow Up</h4></div>
                         <div class="card-body" style="padding: 0">
                             <div class="table-responsive-md">
-                                <table class="table table-primary table-hover">
+                                <table id="actionTableDashboard" class="table table-primary table-hover">
                                     <thead class="thead-dark">
                                     <th>Action ID#</th>
                                     <th>Contact Name</th>
-                                    <th>Start Date</th>
-                                    <th>FollowUp Date</th>
+                                    <th>Date Created</th>
+<%--                                    <th>FollowUp Date</th>--%>
                                     <th>Note</th>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="actionTableResultsDashboard">
                                     <c:forEach var="action" items="${upcomingActions}">
                                         <tr id="${action.getContact().getId()}">
                                             <td>${action.getId()}</td>
-                                            <td>
-                                                <a href="editOrganization?id=${action.getContact().getId()}">
-                                                    ${action.getContact().getName()}
-                                                </a>
-                                            </td>
+                                            <td>${action.getContact().getName()}</td>
                                             <td>${action.getCreateDate()}</td>
-                                            <td>${action.getDueDate()}</td>
+<%--                                            <td>${action.getDueDate()}</td>--%>
                                             <td>${action.getNotes()}</td>
                                         </tr>
                                     </c:forEach>
@@ -287,17 +293,17 @@
                         <div class="card-header"><h4>Recently Added Contacts</h4></div>
                         <div class="card-body" style="padding: 0">
                             <div class="table-responsive">
-                                <table class="table table-primary table-hover">
+                                <table id="contactTableDashboard" class="table table-primary table-hover">
                                     <thead class="thead-dark">
                                         <th>ID#</th>
                                         <th>Name</th>
                                         <th>Contact Type</th>
                                         <th>Date Created</th>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="tableResultsDashboard">
                                     <c:forEach var="contact" items="${recentContacts}">
                                         <tr id="${contact.getId()}">
-                                            <td><a href="editOrganization?id=${contact.getId()}">${contact.getId()}</a></td>
+                                            <td>${contact.getId()}</td>
                                             <td>${contact.getName()}</td>
                                             <td>${contact.getType()}</td>
                                             <td>${contact.getCreateTimestamp()}</td>
@@ -308,64 +314,18 @@
                             </div>
                         </div>
                     </div>
-<%--                    <div class="card bg-primary text-center card-form mt-3">--%>
-<%--                        <div class="card-header"><h4>Recent Reports</h4></div>--%>
-<%--                        <div class="card-body">--%>
-<%--                            <div class="table-responsive">--%>
-<%--                                <table class="table table-primary table-hover">--%>
-<%--                                    <thead class="thead-dark">--%>
-<%--                                    <th>Type</th>--%>
-<%--                                    <th>Date</th>--%>
-<%--                                    <th>Desc</th>--%>
-<%--                                    </thead>--%>
-<%--                                    <tbody>--%>
-<%--                                    <td>Action Report</td>--%>
-<%--                                    <td>2019-10-20</td>--%>
-<%--                                    <td>Itemized list of Actions for Hazelwood Baptist Church</td>--%>
-<%--                                    </tbody>--%>
-<%--                                </table>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
                 </div>
             </div>
         </div>
     </div>
 </header>
+<jsp:include page="editContactModal.jsp" />
+<jsp:include page="addContactModal.jsp" />
 
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="./javascript/jquery-3.4.1.slim.min.js"></script>
-<script src="./javascript/popper.min.js"></script>
-<script src="./javascript/bootstrap.min.js"></script>
 
-<%--<!-- add button contact type -->--%>
-<%--<script>--%>
-<%--    $('#orgRadio').click(function () {--%>
-<%--        $('#churchSelect').addClass("d-none");--%>
-<%--        $('#orgSelect').removeClass('d-none');--%>
-<%--        $('#orgname').removeClass('d-none');--%>
-<%--        $('#personfname').addClass('d-none');--%>
-<%--        $('#personlname').addClass('d-none');--%>
-<%--    });--%>
 
-<%--    $('#churchRadio').click(function () {--%>
-
-<%--        $('#orgSelect').addClass('d-none');--%>
-<%--        $('#churchSelect').removeClass('d-none');--%>
-<%--        $('#orgname').removeClass('d-none');--%>
-<%--        $('#personfname').addClass('d-none');--%>
-<%--        $('#personlname').addClass('d-none');--%>
-
-<%--    });--%>
-<%--    $('#personRadio').click(function () {--%>
-<%--        $('#orgSelect').addClass('d-none');--%>
-<%--        $('#churchSelect').addClass('d-none');--%>
-<%--        $('#orgname').addClass('d-none');--%>
-<%--        $('#personfname').removeClass('d-none');--%>
-<%--        $('#personlname').removeClass('d-none');--%>
-<%--    });--%>
-<%--</script>--%>
 </body>
 </html>

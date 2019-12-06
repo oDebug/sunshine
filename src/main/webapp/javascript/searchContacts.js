@@ -1,19 +1,7 @@
 $(document).ready(function ($) {
     $('#contactTable').on("click", "#tableResults tr", function (e) {
         var id = $(this).attr('id');
-
-        $.ajax({
-            url: "getContact",
-            type: "GET",
-            data: {id: id},
-            success: function (data) {
-                clearEditForm();
-                populateEditForm(data);
-                $('#editContactModal').modal('show');
-                $('.nav-tabs a[href="#edit"]').tab('show')
-
-            }
-        })
+        openEditForm(id);
     });
     $("#submit-search").click(function (str) {
         showResults($('#search-string').val());
@@ -55,7 +43,7 @@ $('#searchForm').submit(function(e) {
 });
 
 function showResults(str) {
-    var url = "/listOrgs";
+    var url = "/listContacts";
     $.ajax({
         url: url,
         type: "GET",
@@ -94,7 +82,7 @@ function createRow(data) {
     trElement += "<td>" + data.type + "</td>";
     trElement += "<td>" + data.phones[0].phone + "</td>";
     trElement += "<td>" + address + "</td>";
-    trElement += "<td>" + "<a target='_blank' href='" + mapLink + "'><i class='fas fa-map-marked-alt'></i></a>"+ "</td></tr>";
+    trElement += "<td align='center'>" + "<a class='map-link' target='_blank' href='" + mapLink + "'><i class='fas fa-map-marked-alt'></i></a>"+ "</td></tr>";
     return trElement;
 }
 
@@ -130,47 +118,6 @@ function removeAlias() {
         alert("Select an alias");
     }
 }
-
-// function geocodeAddress(latest)
-// {
-//     var geocoder = new google.maps.Geocoder();
-//     var address = latest.addresses[0].street + ", " + latest.addresses[0].city + " " + latest.addresses[0].state + ", " + latest.addresses[0].postalCode;
-//     var coords;
-//     var bounds = new google.maps.LatLngBounds();
-//
-//     geocoder.geocode({'address': address}, function(results, status) //Geocode
-//     {
-//         if (status === 'OK')
-//         {
-//             coords = results[0].geometry.location;
-//
-//             var map = new google.maps.Map(document.getElementById('mapPane'), {
-//                 center: coords,
-//                 zoom: 14
-//             });
-//
-//             var marker = new google.maps.Marker({map: map, position: coords});
-//
-//         }
-//         else
-//         {
-//             alert('Geocode was not successful for the following reason: ' + status);
-//         }
-//     });
-// }
-//
-// function showAddress(str) //get address data on the row selected and run chain of callbacks to display map
-// {
-//     var url = "/listOrgs";
-//     $.ajax({
-//         url: url,
-//         type: "GET",
-//         data: {id: str},
-//         success: function (data) {
-//             geocodeAddress(data);
-//         }
-//     })
-// }
 
 function addWebsiteListNew() {
     var websiteElement = '<div class="form-row" id="formRowWebsiteNew">';

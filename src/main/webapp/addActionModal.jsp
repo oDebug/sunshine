@@ -1,10 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="modal fade" id="addActionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
      aria-hidden="true">
-    <div class="modal-lg modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-lg modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalCenterTitle">Add New Contact</h5>
+                <h5 class="modal-title" id="exampleModalCenterTitle">Add New Action</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -12,6 +12,7 @@
             <div class="modal-body">
                 <!-- input form -->
                 <form name="addActionForm" id="frmAddAction" autocomplete="off">
+                    <input hidden type="text" id="addActionId"/>
                     <div class="row">
                         <div class="col">
                             <div class="card p-3 mt-2 border-primary">

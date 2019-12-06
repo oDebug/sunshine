@@ -25,7 +25,7 @@
                                     <div class="form-group col-md-6">
                                         <label for="selectboxTypeAdd">Contact Type</label>
                                         <select class="custom-select" id="selectboxTypeAdd" name="type"
-                                                onchange="typeChange()">
+                                                onchange="typeChangeAdd()">
                                             <option selected>Choose...</option>
                                             <option value="Church">Church</option>
                                             <option value="Organization">Organization</option>
@@ -43,27 +43,27 @@
                                                placeholder="Email">
                                     </div>
                                     <div class="form-group col-md-6" name="denomShow">
-                                        <label for="lboxTypeDescriptions">Type Description</label>
-                                        <input class="form-control" id="lboxTypeDescriptions"
+                                        <label for="lboxTypeDescriptionsAdd">Type Description</label>
+                                        <input class="form-control" id="lboxTypeDescriptionsAdd"
                                                name="description"
                                                placeholder="Denomination, Job Title, etc.">
                                         <!-- populate list based on contact type via javascript by changing list attribute-->
-                                        <datalist id="churchTypeDescriptions">
+                                        <datalist id="churchTypeDescriptionsAdd">
                                             <option value="Baptist">
                                             <option value="Catholic">
                                         </datalist>
-                                        <datalist id="orgTypeDescriptions">
+                                        <datalist id="orgTypeDescriptionsAdd">
                                             <option value="Charity">
                                             <option value="Political">
                                         </datalist>
-                                        <datalist id="businessTypeDescriptions">
+                                        <datalist id="businessTypeDescriptionsAdd">
                                         </datalist>
-                                        <datalist id="schoolTypeDescriptions">
+                                        <datalist id="schoolTypeDescriptionsAdd">
                                             <option value="University">
                                             <option value="Private">
                                             <option value="Charter">
                                         </datalist>
-                                        <datalist id="personTypeDescriptions">
+                                        <datalist id="personTypeDescriptionsAdd">
                                             <option value="President">
                                             <option value="Receptionist">
                                             <option value="Chairperson">
@@ -119,15 +119,26 @@
                         <div class="col">
                             <div class="card p-3 mt-2 border-warning">
                                 <div class="form-row">
+                                    <div class="form-group col-md-5">
+                                        <label>Type</label>
+                                        <select class="custom-select" name="phoneType" id="selectboxPhoneTypeAdd">
+                                            <option selected>Choose...</option>
+                                            <option value="Home">Home</option>
+                                            <option value="Office">Office</option>
+                                            <option value="Mobile">Mobile</option>
+                                            <option value="Fax">Fax</option>
+                                            <option value="Pager">Pager</option>
+                                        </select>
+                                    </div>
                                     <div class="form-group col-md-4">
                                         <label>Phone</label>
                                         <input type="text" class="form-control" name="phone" id="tboxPhoneAdd"
                                                placeholder="Phone">
                                     </div>
                                     <div class="form-group col-md-3">
-                                        <label>Type</label>
-                                        <input type="text" class="form-control" name="phoneType"
-                                               id="tboxPhoneTypeAdd" placeholder="Type">
+                                        <label>Ext.</label>
+                                        <input type="text" class="form-control" name="extension"
+                                               id="tboxExtensionAdd">
                                     </div>
                                 </div>
                             </div>
@@ -157,28 +168,3 @@
     </div> <!-- end of modal role=document -->
 </div>
 <!-- end of model fade -->
-
-<%-- Radio Buttons:
-       rbtnContactTypeChurch
-       rbtnContactTypeOrg
-       rbtnContactTypePerson
-     Everything else:
-        tboxName
-        tboxAlias
-        tboxEmail
-        tboxDenomination
-        tboxOrgType
-        tboxAddressDesc
-        tboxAddress1
-        tboxAddress2
-        tboxCity
-        states
-        tboxZip
-        tboxPhone
-        tboxFax
-        tboxWebsite
-        tboxFacebook
-        tboxInstagram
-        tboxTwitter
-        txtareaInputNote
-       --%>

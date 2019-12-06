@@ -2,6 +2,7 @@ package merrymac.sunshinecontacts.controller;
 
 import merrymac.sunshinecontacts.dao.entity.*;
 import merrymac.sunshinecontacts.request.ContactRequest;
+import merrymac.sunshinecontacts.request.EditContactRequest;
 import merrymac.sunshinecontacts.response.ActionResponse;
 import merrymac.sunshinecontacts.response.ContactResponse;
 import merrymac.sunshinecontacts.service.ContactService;
@@ -39,9 +40,9 @@ public class ContactController {
         return mav;
     }
 
-    @RequestMapping(value = "/listOrgs", method = RequestMethod.GET) //Return query for Organizations
+    @RequestMapping(value = "/listContacts", method = RequestMethod.GET) //Return query for Organizations
     @ResponseBody
-    public List<ContactResponse> listOrgs(@RequestParam(value = "name", defaultValue = "") String name) {
+    public List<ContactResponse> listContacts(@RequestParam(value = "name", defaultValue = "") String name) {
         List<ContactResponse> response;
         if (name.isEmpty()) {
             response = contactService.getRecentlyAddedContacts();
@@ -65,16 +66,6 @@ public class ContactController {
 //        List<ContactResponse> response = contactService.listAll();
         ModelAndView mav = new ModelAndView("searchContacts");
 //        mav.addObject("tblResults", response);
-        return mav;
-    }
-
-    @GetMapping("/editContact")
-    @ResponseBody
-    public ModelAndView editOrg(@RequestParam("id") String id) {
-        Long orgId = Long.parseLong(id);
-        ContactResponse response = contactService.get(orgId);
-        ModelAndView mav = new ModelAndView("editContact_deprecated");
-        mav.addObject("result", response);
         return mav;
     }
 
@@ -125,6 +116,8 @@ public class ContactController {
             newPhone.setId(0L);
             newPhone.setPhone(Long.parseLong(contactRequest.getPhone()));
             newPhone.setType(contactRequest.getPhoneType());
+            newPhone.setExtension(contactRequest.getExtension());
+
         } catch (Exception e) {
             e.getMessage();
             return new ResponseEntity<Object>(HttpStatus.EXPECTATION_FAILED);
@@ -132,7 +125,9 @@ public class ContactController {
 
         Contact newContact = new Contact();
         try {
-            newContact = contactService.saveContact(contact);
+            contactService.saveContact(contact);
+            newContact = contactService.getLastAddedContact();
+
         } catch (Exception e) {
             e.getMessage();
             return new ResponseEntity<Object>(HttpStatus.EXPECTATION_FAILED);
@@ -187,5 +182,39 @@ public class ContactController {
         }
 
         return new ResponseEntity<Action>(newAction, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/updateContact", method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseEntity<Object> updateContact(@RequestBody EditContactRequest contact) {
+        Contact saveContact;
+        Long contactId;
+        Timestamp currentTime = new Timestamp(System.currentTimeMillis());
+        try {
+            contactId = Long.parseLong(contact.getId());
+            saveContact = new Contact();
+            saveContact.setId(contactId);
+            saveContact.setName(contact.getName());
+            saveContact.setEmail(contact.getEmail());
+            saveContact.setType(contact.getType());
+            saveContact.setDenomination(contact.getDescription());
+            saveContact.setLastUpdateTimestamp(currentTime);
+
+            contactService.saveContact(saveContact);
+
+            for (Address address : contact.getAddresses()) {
+//                address.setContactId(contactId);
+                contactService.saveAddress(address);
+            }
+            for (PhoneNumber phone : contact.getPhones()) {
+//                phone.setContactId(contactId);
+                contactService.savePhone(phone);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<Object>(e, HttpStatus.EXPECTATION_FAILED);
+        }
+
+        ContactResponse newContact = contactService.get(contactId);
+        return new ResponseEntity<Object>(newContact, HttpStatus.OK);
     }
 }
