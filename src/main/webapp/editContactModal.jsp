@@ -139,11 +139,14 @@
                                     <!--Phones Row------------------------------------------------------------------------------->
                                     <div class="col-4 pr-1 mb-2">
                                         <div class="card p-3 mt-2 h-100 border-warning">
-                                            <label>Phones</label>
-                                            <select class="custom-select" id="selectboxPhonesEdit" name="phonesEdit"
-                                                    onchange="changePhone()">
+                                            <div class="form-row">
+                                                    <label>Phones</label>
+                                                <div class="input-group">
+                                                    <select class="custom-select" id="selectboxPhonesEdit" name="phonesEdit" onchange="changePhone()"></select>
+                                                    <button type="button" id="addPhoneButton" class="btn btn-primary">Add Phone</button>
+                                                </div>
+                                            </div>
 
-                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-8 pl-1">
@@ -151,7 +154,6 @@
 
                                         </div>
                                     </div>
-
                                 </div>
                                 <div id="websiteCard" class="card p-3 mt-2">
                                     <div class="form-row">
@@ -274,4 +276,5 @@
 </div>
 <jsp:include page="addActionModal.jsp"/>
 <jsp:include page="addAddressModal.jsp"/>
+<jsp:include page="addPhoneModal.jsp"/>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWPtNLGcAlbmiNAiT9Pn794fMGXc3N4CM"></script>

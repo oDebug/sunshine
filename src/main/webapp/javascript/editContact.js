@@ -10,6 +10,10 @@ $(document).ready(function ($) {
     $('#newAddressButton').click(function (e) {
         $('#addAddressModal').modal('show');
     });
+
+    $('#addPhoneButton').click(function (e) {
+        $('#addPhoneModal').modal('show');
+    });
 });
 
 function clearEditForm() {
