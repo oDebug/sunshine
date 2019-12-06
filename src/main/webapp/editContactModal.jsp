@@ -123,61 +123,14 @@
                                                     </button>
                                                 </div>
                                                 <div class="col w-100">
-                                                    <button type='button' class='btn btn-outline-primary my-1 mx-0'
-                                                            data-toggle="modal" data-target="#newAddress">New
-                                                    </button>
+                                                    <button type='button' class='btn btn-outline-primary my-1 mx-0' id="newAddressButton">New</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-8 pl-1">
                                         <div class="card p-3 mt-2 border-success" id="addressesCard">
-                                            <!-- Address Desc, Address, Address2, City, State, Zip -->
-                                            <%--                                            <div class="addressItem">--%>
-                                            <%--                                                <div class="form-row">--%>
-                                            <%--                                                    <div class="form-group col-md-6">--%>
-                                            <%--                                                        <label>Street</label>--%>
-                                            <%--                                                        <input type="text" class="form-control" name="streetEdit"--%>
-                                            <%--                                                               id="tboxStreetEdit">--%>
-                                            <%--                                                    </div>--%>
-                                            <%--                                                    <div class="form-group col-md-2">--%>
-                                            <%--                                                        <label>Suite</label>--%>
-                                            <%--                                                        <input type="text" class="form-control" name="suiteEdit"--%>
-                                            <%--                                                               id="tboxSuiteEdit">--%>
-                                            <%--                                                    </div>--%>
-                                            <%--                                                    <div class="form-group col-md-4">--%>
-                                            <%--                                                        <label>City</label>--%>
-                                            <%--                                                        <input type="text" class="form-control" name="cityEdit"--%>
-                                            <%--                                                               id="tboxCityEdit">--%>
-                                            <%--                                                    </div>--%>
-                                            <%--                                                </div>--%>
-                                            <%--                                                <div class="form-row">--%>
-                                            <%--                                                    <div class="form-group col-md-3">--%>
-                                            <%--                                                        <label>State</label>--%>
-                                            <%--                                                        <input class="form-control" list="states" name="stateEdit"--%>
-                                            <%--                                                               id="listStatesEdit">--%>
-                                            <%--                                                        <datalist id="states">--%>
-                                            <%--                                                            <option value="MO">--%>
-                                            <%--                                                            <option value="IL">--%>
-                                            <%--                                                        </datalist>--%>
-                                            <%--                                                    </div>--%>
-                                            <%--                                                    <div class="form-group col-md-2">--%>
-                                            <%--                                                        <label>Zip</label>--%>
-                                            <%--                                                        <input type="text" class="form-control" name="zipEdit"--%>
-                                            <%--                                                               id="tboxZipEdit">--%>
-                                            <%--                                                    </div>--%>
-                                            <%--                                                    <div class="form-group col-md-5">--%>
-                                            <%--                                                        <label>Descr.</label>--%>
-                                            <%--                                                        <input type="text" class="form-control" name="addressDescrEdit"--%>
-                                            <%--                                                               id="tboxAddressDescrEdit">--%>
-                                            <%--                                                    </div>--%>
-                                            <%--                                                    <div class="form-group col-md-2 align-self-end">--%>
-                                            <%--                                                        <button type='button' id='editSaveButton'--%>
-                                            <%--                                                                class='btn btn-outline-success mt-2 mx-0'>Save--%>
-                                            <%--                                                        </button>--%>
-                                            <%--                                                    </div>--%>
-                                            <%--                                                </div>--%>
-                                            <%--                                            </div>--%>
+
                                         </div>
                                     </div>
                                 </div>
@@ -186,11 +139,14 @@
                                     <!--Phones Row------------------------------------------------------------------------------->
                                     <div class="col-4 pr-1 mb-2">
                                         <div class="card p-3 mt-2 h-100 border-warning">
-                                            <label>Phones</label>
-                                            <select class="custom-select" id="selectboxPhonesEdit" name="phonesEdit"
-                                                    onchange="changePhone()">
+                                            <div class="form-row">
+                                                    <label>Phones</label>
+                                                <div class="input-group">
+                                                    <select class="custom-select" id="selectboxPhonesEdit" name="phonesEdit" onchange="changePhone()"></select>
+                                                    <button type="button" id="addPhoneButton" class="btn btn-primary">Add Phone</button>
+                                                </div>
+                                            </div>
 
-                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-8 pl-1">
@@ -198,7 +154,6 @@
 
                                         </div>
                                     </div>
-
                                 </div>
                                 <div id="websiteCard" class="card p-3 mt-2">
                                     <div class="form-row">
@@ -231,9 +186,7 @@
                                 </div>
                             </div>
                             <div class="col-5 col-lg-3  ml-md-auto">
-                                <button type="button" class="btn btn-primary btn-block" id="addActionButton">Add
-                                    Action
-                                </button>
+                                <button type="button" class="btn btn-primary btn-block" id="addActionButton">Add Action</button>
                             </div>
                         </div>
                         <div class="table-responsive">
@@ -322,4 +275,6 @@
     </div>
 </div>
 <jsp:include page="addActionModal.jsp"/>
+<jsp:include page="addAddressModal.jsp"/>
+<jsp:include page="addPhoneModal.jsp"/>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWPtNLGcAlbmiNAiT9Pn794fMGXc3N4CM"></script>

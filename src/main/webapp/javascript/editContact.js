@@ -2,9 +2,18 @@ $(document).ready(function ($) {
     $('#editSaveButton').click(function (e) {
         updateContact();
     });
+
     $('#addActionButton').click(function (e) {
         $('#addActionModal').modal('show');
-    })
+    });
+
+    $('#newAddressButton').click(function (e) {
+        $('#addAddressModal').modal('show');
+    });
+
+    $('#addPhoneButton').click(function (e) {
+        $('#addPhoneModal').modal('show');
+    });
 });
 
 function clearEditForm() {
@@ -55,6 +64,7 @@ function populateAddresses(data) {
             selectedAddress.show();
         }
     }
+    typeChange(); //Run method to properly set Description options
 }
 function populatePhones(data) {
     $('#phonesCard').empty();
