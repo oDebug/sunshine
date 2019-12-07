@@ -16,7 +16,6 @@
                             <div class='form-row'>
                                 <div class='form-group col-md-4'>
                                     <input hidden type='text' id='phoneIdAdd'>
-                                    <input hidden type='text' id='phoneTypeAdd'>
                                     <label>Phone</label>
                                     <input type='text' class='form-control' name='phoneAdd' id='tboxPhoneAdd' value=''>
                                 </div>
@@ -24,6 +23,11 @@
                                     <label>Ext.</label>
                                     <input type='text' class='form-control' name='extensionAdd' id='tboxExtensionAdd' value=''>
                                 </div>
+                                <div class='form-group col-md-3'>
+                                    <label>Type</label>
+                                    <input type='text' class='form-control' name='typeAdd' id='tboxTypeAdd' value=''>
+                                </div>
+
                             </div>
                         </div>
                     </div>
