@@ -256,12 +256,14 @@
                     <div class='tab-pane fade' id='map' role='tabpanel' aria-labelledby='map-tab'>
                         <div class="container p-2">
                             <div class="row ">
-                                <div class="col justify-content-center">
-                                    <div id="mapPane" class="m-0" style="height: 350px; width: 350px; box-shadow: 0px 0px 5px 0px #383838;"></div>
+                                <div class="col-3"></div>
+                                <div class="col-2 justify-content-center">
+                                    <div id="mapPane" class="m-0" style="height: 500px; width: 500px; box-shadow: 0px 0px 5px 0px #383838;"></div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col"><p id="mapTabAddress"></p></div>
+                                <div class="col-3"></div>
+                                <div class="col justify-content-center"><p id="mapTabAddress"></p></div>
                             </div>
                         </div>
                     </div>
