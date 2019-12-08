@@ -19,6 +19,7 @@
     <script src="javascript/popper.min.js"></script>
     <script src="javascript/bootstrap.min.js"></script>
     <script src="javascript/editContact.js"></script>
+    <script src="javascript/searchContactResults.js"></script>
     <script src="javascript/addContact.js"></script>
     <script src="javascript/addAction.js"></script>
     <script src="javascript/dashboard.js"></script>
@@ -293,24 +294,25 @@
                         <div class="card-header"><h4>Recently Added Contacts</h4></div>
                         <div class="card-body" style="padding: 0">
                             <div class="table-responsive">
-                                <table id="contactTableDashboard" class="table table-primary table-hover">
-                                    <thead class="thead-dark">
-                                        <th>ID#</th>
-                                        <th>Name</th>
-                                        <th>Contact Type</th>
-                                        <th>Date Created</th>
-                                    </thead>
-                                    <tbody id="tableResultsDashboard">
-                                    <c:forEach var="contact" items="${recentContacts}">
-                                        <tr id="${contact.getId()}">
-                                            <td>${contact.getId()}</td>
-                                            <td>${contact.getName()}</td>
-                                            <td>${contact.getType()}</td>
-                                            <td>${contact.getCreateTimestamp()}</td>
-                                        </tr>
-                                    </c:forEach>
-                                    </tbody>
-                                </table>
+                                <jsp:include page="searchContactResults.jsp" />
+<%--                                <table id="contactTableDashboard" class="table table-primary table-hover">--%>
+<%--                                    <thead class="thead-dark">--%>
+<%--                                        <th>ID#</th>--%>
+<%--                                        <th>Name</th>--%>
+<%--                                        <th>Contact Type</th>--%>
+<%--                                        <th>Date Created</th>--%>
+<%--                                    </thead>--%>
+<%--                                    <tbody id="tableResultsDashboard">--%>
+<%--                                    <c:forEach var="contact" items="${recentContacts}">--%>
+<%--                                        <tr id="${contact.getId()}">--%>
+<%--                                            <td>${contact.getId()}</td>--%>
+<%--                                            <td>${contact.getName()}</td>--%>
+<%--                                            <td>${contact.getType()}</td>--%>
+<%--                                            <td>${contact.getCreateTimestamp()}</td>--%>
+<%--                                        </tr>--%>
+<%--                                    </c:forEach>--%>
+<%--                                    </tbody>--%>
+<%--                                </table>--%>
                             </div>
                         </div>
                     </div>

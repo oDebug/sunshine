@@ -66,8 +66,9 @@ public class ContactService {
         return response;
     }
 
-    public List<ContactResponse> getRecentlyAddedContacts() {
-        List<Contact> contacts = contactRepository.findTop5ByOrderByCreateTimestampDesc();
+    public List<ContactResponse> getRecentlyAddedContacts(int limit) {
+        List<Contact> contacts = contactRepository.findRecentContacts(limit);
+
         List<ContactResponse> response = new ArrayList<>();
         for (Contact contact : contacts) {
             response.add(toContactResponse(contact));

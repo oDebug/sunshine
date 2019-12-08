@@ -7,5 +7,6 @@ $(document).ready(function ($) {
         var id = $(this).attr('id');
         openEditForm(id);
     });
+    showResults("");
 });
 

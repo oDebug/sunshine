@@ -12,7 +12,7 @@
                 <!-- input form -->
                 <form name="addPhoneForm" id="frmAddPhone" autocomplete="off">
                     <div class="card p-3 mt-2 border-primary">
-                        <div class='phoneItem' id='Phone'>
+                        <div class='phoneItemAdd' id='Phone'>
                             <div class='form-row'>
                                 <div class='form-group col-md-4'>
                                     <input hidden type='text' id='phoneIdAdd'>
