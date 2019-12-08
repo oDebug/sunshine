@@ -31,7 +31,7 @@ public class ContactController {
     public ModelAndView dashboard() {
         ModelAndView mav = new ModelAndView("dashboard");
 
-        List<ContactResponse> recentContacts = contactService.getRecentlyAddedContacts();
+        List<ContactResponse> recentContacts = contactService.getRecentlyAddedContacts(5);
         mav.addObject("recentContacts", recentContacts);
 
         List<ActionResponse> upcomingActions = contactService.getUpcomingActions();
@@ -45,7 +45,7 @@ public class ContactController {
     public List<ContactResponse> listContacts(@RequestParam(value = "name", defaultValue = "") String name) {
         List<ContactResponse> response;
         if (name.isEmpty()) {
-            response = contactService.getRecentlyAddedContacts();
+            response = contactService.getRecentlyAddedContacts(5);
         } else {
             response = contactService.searchByAlias(name);
         }
@@ -116,7 +116,7 @@ public class ContactController {
             newPhone.setId(0L);
             newPhone.setPhone(Long.parseLong(contactRequest.getPhone()));
             newPhone.setType(contactRequest.getPhoneType());
-            newPhone.setExtension(contactRequest.getExtension());
+            newPhone.setExtension(Long.parseLong(contactRequest.getExtension()));
 
         } catch (Exception e) {
             e.getMessage();
@@ -191,23 +191,17 @@ public class ContactController {
         Long contactId;
         Timestamp currentTime = new Timestamp(System.currentTimeMillis());
         try {
-            contactId = Long.parseLong(contact.getId());
-            saveContact = new Contact();
-            saveContact.setId(contactId);
-            saveContact.setName(contact.getName());
-            saveContact.setEmail(contact.getEmail());
-            saveContact.setType(contact.getType());
-            saveContact.setDenomination(contact.getDescription());
+            saveContact = contact.getContact();
+            contactId = contact.getContact().getId();
+            saveContact.setStatusCode("A");
             saveContact.setLastUpdateTimestamp(currentTime);
-
+//            saveContact.setLastUpdateUser(currentUser);
             contactService.saveContact(saveContact);
 
             for (Address address : contact.getAddresses()) {
-//                address.setContactId(contactId);
                 contactService.saveAddress(address);
             }
             for (PhoneNumber phone : contact.getPhones()) {
-//                phone.setContactId(contactId);
                 contactService.savePhone(phone);
             }
         } catch (Exception e) {

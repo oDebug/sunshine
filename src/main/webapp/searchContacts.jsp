@@ -17,6 +17,7 @@
 
     <script src="javascript/jquery-3.4.1.min.js"></script>
     <script src="javascript/searchContacts.js"></script>
+    <script src="javascript/searchContactResults.js"></script>
     <script src="javascript/editContact.js"></script>
     <script src="javascript/addContact.js"></script>
     <script src="javascript/addAction.js"></script>
@@ -47,29 +48,14 @@
         </div>
 
         <div class="col-2 px-0">
-                <button type="button" class="btn btn-primary float-right
-" data-toggle="modal" data-target="#inputContact">Add Contact</button>
-
+                <button type="button" class="btn btn-primary float-right"
+                        data-toggle="modal" data-target="#inputContact">Add Contact</button>
         </div>
 
     </div>
 
     <div class="row mx-4"> <!-- TABLE ROW -->
-        <table id="contactTable" class="table table-hover table-bordered">
-            <caption>Click on a table row to view more contact info and actions.</caption>
-            <thead class="thead-dark">
-            <tr class="header">
-                <th>ID#</th>
-                <th onclick="sortTable(0)">Name</th>
-                <th>Contact Type</th>
-                <th>Phone</th>
-                <th>Address</th>
-                <th style="text-align: center;">Map</th>
-            </tr>
-            </thead>
-            <tbody id="tableResults">
-            </tbody>
-        </table>
+        <jsp:include page="searchContactResults.jsp" />
     </div>
 
 </div> <!-- big div for padding page -->

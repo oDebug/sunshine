@@ -266,14 +266,11 @@ function openEditForm(id) {
 }
 
 function updateContact() {
+    var contact = getContact();
     var addressArray = getAddresses();
     var phoneArray = getPhones();
     var formData = {
-        id: $('#editContactId').val(),
-        name: $('#tboxNameEdit').val(),
-        type: $('#selectboxTypeEdit').val(),
-        email: $('#tboxEmailEdit').val(),
-        description: $('#lboxTypeDescriptions').val(),
+        contact: contact,
         addresses: addressArray,
         phones: phoneArray
 };
@@ -284,6 +281,8 @@ function updateContact() {
         data: JSON.stringify(formData),
         type: "POST",
         success: function (data) {
+            $('#editContactModal').modal('hide');
+            showResults($('#search-string').val());
             alert('Contact updated successfully');
         }
     })
@@ -322,6 +321,16 @@ function getPhones() {
     return phones;
 }
 
+function getContact() {
+    var contact = {
+        id: $('#editContactId').val(),
+        name: $('#tboxNameEdit').val(),
+        type: $('#selectboxTypeEdit').val(),
+        email: $('#tboxEmailEdit').val(),
+        description: $('#lboxTypeDescriptions').val()
+    }
+    return contact;
+}
 function geocodeAddress(data) //THIS NOW WORKS
 {
     var geocoder = new google.maps.Geocoder();

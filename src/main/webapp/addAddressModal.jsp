@@ -13,7 +13,7 @@
                 <form name="addAddressForm" id="frmAddAddress" autocomplete="off">
                     <input hidden type="text" id="addAddressId"/>
                     <!-- Address Desc, Address, Address2, City, State, Zip -->
-                    <div class="addressItem">
+                    <div class="addressItemAdd">
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label>Street</label>

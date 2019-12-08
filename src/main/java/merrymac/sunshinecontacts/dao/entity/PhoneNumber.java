@@ -27,5 +27,5 @@ public class PhoneNumber {
     private String type;
 
     @Column(name="extension")
-    private String extension;
+    private Long extension;
 }
