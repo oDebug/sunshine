@@ -1,3 +1,10 @@
+$(document).ready(function ($) {
+    $('#contactTable').on("click", "#tableResults tr", function (e) {
+        var id = $(this).attr('id');
+        openEditForm(id);
+    });
+})
+
 function showResults(str) {
     var url = "/listContacts";
     $.ajax({

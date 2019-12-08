@@ -1,8 +1,5 @@
 $(document).ready(function ($) {
-    $('#contactTable').on("click", "#tableResults tr", function (e) {
-        var id = $(this).attr('id');
-        openEditForm(id);
-    });
+
     $("#submit-search").click(function (str) {
         showResults($('#search-string').val());
     });
