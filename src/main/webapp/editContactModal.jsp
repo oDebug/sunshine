@@ -126,7 +126,7 @@
                                             </div>
                                             <div class="row h-100 align-items-end">
                                                 <div class="col w-100">
-                                                    <button type='button' class='btn btn-outline-danger my-1 mx-0'>
+                                                    <button type='button' class='btn btn-outline-danger my-1 mx-0' onclick="removeAddress()">
                                                         Remove
                                                     </button>
                                                 </div>
@@ -155,7 +155,7 @@
                                             </div>
                                             <div class="form-row h-100 align-items-end">
                                                 <div class="col w-50">
-                                                    <button type='button' class='btn btn-outline-danger my-1 mx-0'>
+                                                    <button type='button' class='btn btn-outline-danger my-1 mx-0' onclick="removePhone()">
                                                         Remove
                                                     </button>
                                                 </div>
