@@ -1,29 +1,17 @@
 $(document).ready(function ($) {
-
     $("#submit-search").click(function (str) {
         showResults($('#search-string').val());
     });
+    $('#summernote').summernote({
+        toolbar: [
+            ['style', ['style']],
+            ['font', ['bold', 'underline', 'clear']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+        ],
+    });
     showResults("");
-
-    // $('#saveContact').click(function () {
-    //     var form = $("form#editContactModal");
-    //     $.ajax({
-    //         url: "/saveContact",
-    //         data: form.serialize(),
-    //         type: "POST",
-    //         success: function (data) {
-    //             window.location = 'searchContacts';
-    //
-    //         }
-    //     })
-    // });
 });
-
-
-
-
-
-
 
 function keyUpSearch(str) {
     //only run if string has 3+ chars. SOMEWHERE NEEDS TO BE ABLE TO SEARCH WITH 1 CHAR.
