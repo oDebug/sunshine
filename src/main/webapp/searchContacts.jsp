@@ -33,9 +33,9 @@
 <jsp:include page="navbar.jsp"/>
 
 <div class="container-fluid px-5"><!--Big Div for padding page -->
-    <div class="row mx-4"> <!-- CONTACTS ROW -->
+    <div class="row mx-auto justify-content-center text-center"> <!-- CONTACTS ROW -->
         <div class="col p-0">
-            <h3 class="">Manage Contacts</h3>
+            <h3 class="mx-auto mt-2">Manage Contacts</h3>
         </div>
     </div>
     <div class="row mx-4"><!--SEARCH AND ADD CONTACT BTN ROW-->

@@ -58,17 +58,17 @@ function setRemovingAlias(val) {
     document.getElementById("headerAlias").innerHTML = val;
 }
 
-function removeAlias() {
-    var list = document.getElementById("inputGroupAliases");
-
-    if (list.selectedIndex != 0) {
-        var alias = list.options[list.selectedIndex].value;
-        alert(alias);
-        list.remove(list.selectedIndex);
-    } else {
-        alert("Select an alias");
-    }
-}
+// function removeAlias() {
+//     var list = document.getElementById("inputGroupAliases");
+//
+//     if (list.selectedIndex != 0) {
+//         var alias = list.options[list.selectedIndex].value;
+//         alert(alias);
+//         list.remove(list.selectedIndex);
+//     } else {
+//         alert("Select an alias");
+//     }
+// }
 
 function addWebsiteListNew() {
     var websiteElement = '<div class="form-row" id="formRowWebsiteNew">';
