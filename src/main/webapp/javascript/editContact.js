@@ -363,4 +363,42 @@ function geocodeAddress(data) //THIS NOW WORKS
             alert('Geocode was not successful for the following reason: ' + status);
         }
     });
+};
+
+function removeAddress() {
+    var addrType =  $('#selectboxAddressesEdit').val();
+    var addrId = $('#' + addrType + 'Address').find($('#addressIdEdit')).val();
+    $.ajax({
+        url: "deleteAddress",
+        type: "POST",
+        data: {id: addrId},
+        success: function (data) {
+            $('#selectboxAddressesEdit').empty();
+            $('#addressesCard').empty();
+            populateAddresses(data)
+            alert('Address Deleted')
+        },
+        fail: function(data) {
+            alert(data)
+        }
+    })
+};
+
+function removePhone() {
+    var phnType =  $('#selectboxPhonesEdit').val();
+    var phnId = $('#' + phnType + 'Phone').find($('#phoneIdEdit')).val();
+    $.ajax({
+        url: "deletePhone",
+        type: "POST",
+        data: {id: phnId},
+        success: function (data) {
+            $('#selectboxPhonesEdit').empty();
+            $('#phonesCard').empty();
+            populatePhones(data)
+            alert('Phone Number Deleted')
+        },
+        fail: function(data) {
+            alert(data)
+        }
+    })
 }
