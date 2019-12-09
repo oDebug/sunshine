@@ -14,6 +14,14 @@ $(document).ready(function ($) {
     $('#addPhoneButton').click(function (e) {
         $('#addPhoneModal').modal('show');
     });
+
+    $('#btnAddAlias').click(function (e) {
+        addAlias();
+    });
+
+    $('#btnRemoveAlias').click(function (e) {
+        removeAlias();
+    });
 });
 
 function clearEditForm() {
@@ -166,9 +174,7 @@ function createPhoneItem(data) {
             dataElement += "<div class='form-group col-md-2 align-self-end mx-0 px-0'>";
                 dataElement += "<button id='btnPhoneUpdate' type='button'class='btn btn-outline-success mt-2 mx-0'>Save</button>";
             dataElement += "</div>";
-            dataElement += "<div class='form-group col-md-2 align-self-end mx-0 px-0'>";
-                dataElement += "<button type='button' class='btn btn-outline-danger mt-2 mx-0'>Remove</button>";
-            dataElement += "</div>";
+
         dataElement += "</div>" ;
     dataElement += "</div>";
 
@@ -420,4 +426,49 @@ function removePhone() {
             alert(data)
         }
     })
+}
+
+function removeAlias(){
+    var formData = {
+        aliasId: $("#inputGroupAliases").val(), //get selected alias to remove (alias.id)
+        id: $("#editContactId") //get id of contact to append alias to
+    };
+    $.ajax({
+        url: "/removeAlias",
+        contentType: "application/json",
+        dataType: "json",
+        data: JSON.stringify(formData),
+        type: "POST",
+        success: function (data) {
+            //clear and update alias list in inputGroupAliases
+        }
+    })
+}
+
+function addAlias(){
+    var formData = {
+        alias: $("#tboxNewAlias").val() //get selected alias to remove (alias.id)
+    };
+    $.ajax({
+        url: "/addAlias",
+        contentType: "application/json",
+        dataType: "json",
+        data: JSON.stringify(formData),
+        type: "POST",
+        success: function (data) {
+            //clear and update alias list in inputGroupAliases
+        }
+    })
+}
+
+function populateAliases(data) //pass list of aliases associated with contact
+{
+    $('#inputGroupAliases').empty();
+    var list = $('#inputGroupAliases');
+    list.append("<option selected>Choose...</option>"); //Always add this option first
+
+    for (var i = 0; i < data.length; i++) //create options
+    {
+        list.append("<option value='" + data.id.trim() +  "'>" + data.name + "</option>"); // <option value="1">Alias 1</option>, etc.
+    }
 }

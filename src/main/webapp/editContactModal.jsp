@@ -113,7 +113,7 @@
 
                                 <div class="row"> <!-- Address row -------------------------------------->
                                     <div class="col-4 pr-1 mb-2">
-                                        <div class="card p-3 mt-2 h-100 border-success">
+                                        <div class="card p-3 mt-2 h-100 border-secondary">
                                             <div class="row">
                                                 <div class="col">
                                                     <label for="selectboxAddressesEdit">Addresses</label>
@@ -137,7 +137,7 @@
                                         </div>
                                     </div>
                                     <div class="col-8 pl-1">
-                                        <div class="card p-3 mt-2 border-success" id="addressesCard">
+                                        <div class="card p-3 mt-2 border-secondary" id="addressesCard">
 
                                         </div>
                                     </div>
@@ -146,7 +146,7 @@
                                 <div class="row">
                                     <!--Phones Row------------------------------------------------------------------------------->
                                     <div class="col-4 pr-1 mb-2">
-                                        <div class="card p-3 mt-2 h-100 border-warning">
+                                        <div class="card p-3 mt-2 h-100 border-primary">
                                             <div class="form-row">
                                                 <label>Phones</label>
                                                 <div class="input-group">
@@ -166,7 +166,7 @@
                                         </div>
                                     </div>
                                     <div class="col-8 pl-1">
-                                        <div class="card p-3 mt-2 border-warning" id="phonesCard">
+                                        <div class="card p-3 mt-2 border-primary" id="phonesCard">
 
                                         </div>
                                     </div>
@@ -218,14 +218,14 @@
                     </div>
 
                     <div class='tab-pane fade' id='alias' role='tabpanel' aria-labelledby='alias-tab'>
-                        <h2 id="titleHeader" class="mt-2">Aliases for</h2>
-                        <form>
+                        <h2 id="titleHeaderAlias" class="mt-2">Aliases for</h2>
+                        <form id="addAliasForm">
                             <div class="form-row">
                                 <div class="col-6">
                                     <div class="input-group mb-3">
-                                        <input type="text" class="form-control" placeholder="New Alias">
+                                        <input id="tboxNewAlias" type="text" class="form-control" placeholder="New Alias">
                                         <div class="input-group-append">
-                                            <button class="btn btn-outline-secondary" type="button">Add Alias</button>
+                                            <button id="btnAddAlias" class="btn btn-outline-secondary" type="button">Add Alias</button>
                                         </div>
                                     </div>
                                 </div>
@@ -234,8 +234,8 @@
                                 </div>
                             </div>
                         </form>
-
-                        <div class="row">
+                        <form id="removeAliasForm">
+                            <div class="row">
                             <div class="col-6 pr-1">
                                 <h3>Remove Alias:</h3>
                                 <div class="input-group">
@@ -246,13 +246,14 @@
                                         <option value="Alias 3">Alias 3</option>
                                     </select>
                                     <div class="input-group-append">
-                                        <button class="btn btn-outline-danger" onclick="removeAlias()" type="button">
+                                        <button id="btnRemoveAlias" class="btn btn-outline-danger" onclick="removeAlias()" type="button">
                                             Remove
                                         </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        </form>
                         <div class="alert alert-warning alert-dismissible fade show">
                             <strong>Holy guacamole!</strong> You should check in on some of those fields below.
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
