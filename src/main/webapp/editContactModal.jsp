@@ -118,7 +118,7 @@
                                             </div>
                                             <div class="row h-100 align-items-end">
                                                 <div class="col w-100">
-                                                    <button type='button' class='btn btn-outline-danger my-1 mx-0'>
+                                                    <button type='button' class='btn btn-outline-danger my-1 mx-0' onclick="removeAddress()">
                                                         Remove
                                                     </button>
                                                 </div>
@@ -162,7 +162,7 @@
                                                    placeholder="https://example.com">
                                             <div class="input-group-append">
                                                 <button class="btn btn-outline-secondary" type="button">Go</button>
-                                                <button class="btn btn-outline-danger" type="button">Delete</button>
+                                                <button class="btn btn-outline-danger" type="button" onclick="">Delete</button>
                                             </div>
                                         </div>
                                     </div>

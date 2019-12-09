@@ -77,7 +77,7 @@ public class ContactController {
 
 
     @RequestMapping(value = "/validate", method = RequestMethod.GET)
-    public ResponseEntity<Object> deleteSport(@RequestParam("userid") String userId, @RequestParam("userpass") String userPass) {
+    public ResponseEntity<Object> validateUser(@RequestParam("userid") String userId, @RequestParam("userpass") String userPass) {
         try {
             User dbUser = userService.get(userId);
             if (dbUser.getPw().equals(userPass)) //if username + pw is valid
@@ -210,5 +210,30 @@ public class ContactController {
 
         ContactResponse newContact = contactService.get(contactId);
         return new ResponseEntity<Object>(newContact, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/deleteAddress", method = RequestMethod.POST)
+    public ResponseEntity<Object> deleteAddress(@RequestParam("id") Long id) {
+        Long contactId;
+        try {
+//            Long addrId = Long.parseLong(id);
+            //First, get the Address object
+            Address address = contactService.getAddress(id);
+            contactId = address.getContactId();
+            //Second, make sure there is more than one address
+            int addrSize = contactService.get(contactId).getAddresses().size();
+            if (addrSize <= 1) {
+                return new ResponseEntity<Object>("Contact must have at least 1 address", HttpStatus.EXPECTATION_FAILED);
+            } else {
+                //If there is more than 1, we can delete
+                contactService.deleteAddress(address);
+                List<Address> addressResponse = contactService.get(contactId).getAddresses();
+                return new ResponseEntity<Object>(addressResponse, HttpStatus.OK);
+            }
+
+        } catch(Exception e) {
+            return new ResponseEntity<Object>(e, HttpStatus.EXPECTATION_FAILED);
+        }
+
     }
 }

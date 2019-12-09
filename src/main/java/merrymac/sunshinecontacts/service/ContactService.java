@@ -113,4 +113,12 @@ public class ContactService {
 
         return response;
     }
+
+    public void deleteAddress(Address address) {
+        addressRepository.delete(address);
+    }
+
+    public Address getAddress(Long id) {
+        return addressRepository.findById(id).get();
+    }
 }
