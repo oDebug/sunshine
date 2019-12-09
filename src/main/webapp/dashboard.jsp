@@ -70,7 +70,6 @@
     <div class="card-body" style="padding: 0">
         <div class="table-responsive">
             <jsp:include page="searchContactResults.jsp" />
-
         </div>
     </div>
 </div>

@@ -98,8 +98,15 @@ function changePhone() {
     selectedPhone.show();
 }
 function createAddressItem(data) {
+    var address = data.street + ", " + data.city + " " + data.state + ", " + data.postalCode;
+    var mapLink = "https://www.google.com/maps/search/?api=1&query=" + decodeURIComponent(address);
+    if(data.suite == null)
+    {
+        data.suite = "";
+    }
+
     var dataElement = "<div class='addressItem' style='display: none' id='" + data.addressType + "Address'>";
-    dataElement += "<div class='form-row'>";
+    dataElement += "<div class='form-row align-items-end'>";
     dataElement += "<div class='form-group col-md-6'>";
     dataElement += "<input hidden type='text' id='addressIdEdit' value='" + data.id + "'></input>";
     dataElement += "<label>Street</label>";
@@ -109,6 +116,11 @@ function createAddressItem(data) {
     dataElement += "<label>Suite</label>";
     dataElement += "<input type='text' class='form-control' name='suiteEdit' id='tboxSuiteEdit' value='" + data.suite + "'>";
     dataElement += "</div>";
+
+    dataElement += "<div class='form-group col-md-2 pb-3 pl-3'>";
+    dataElement += "<a id='mapLinkEdit' class='map-link' target='_blank' href='" + mapLink + "'><i class='fas fa-map-marked-alt'></i></a>";
+    dataElement += "</div>";
+
     dataElement += "</div>";
     dataElement += "<div class='form-row'>";
     dataElement += "<div class='form-group col-md-4'>";
@@ -179,9 +191,16 @@ function createActionTableRow(data) {
     if (data.status === 'Completed') {
         trElement += "<option selected='Completed'>Completed</option>";
         trElement += "<option value='Follow Up'>Follow Up</option>";
-    } else {
+        trElement += "<option value='Cancelled'>Cancelled</option>";
+    } else if(data.status === 'Follow Up'){
         trElement += "<option value='Completed'>Completed</option>";
         trElement += "<option selected='Follow Up'>Follow Up</option>";
+        trElement += "<option value='Cancelled'>Cancelled</option>";
+    }
+    else {
+        trElement += "<option value='Completed'>Completed</option>";
+        trElement += "<option value='Follow Up'>Follow Up</option>";
+        trElement += "<option selected='Cancelled'>Cancelled</option>";
     }
     trElement += "</select></td>";
     trElement += "</tr>";
