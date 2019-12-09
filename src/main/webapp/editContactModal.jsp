@@ -77,8 +77,16 @@
                                                            placeholder="Denomination, Job Title, etc.">
                                                     <!-- populate list based on contact type via javascript by changing list attribute-->
                                                     <datalist id="churchTypeDescriptions">
+                                                        <option value="Assemblies of God">
                                                         <option value="Baptist">
                                                         <option value="Catholic">
+                                                        <option value="Church of God in Christ">
+                                                        <option value="Episcopalian">
+                                                        <option value="Greek Orthodox">
+                                                        <option value="Lutheran">
+                                                        <option value="Methodist">
+                                                        <option value="Non-Denominational">
+                                                        <option value="Presbyterian">
                                                     </datalist>
                                                     <datalist id="orgTypeDescriptions">
                                                         <option value="Charity">
@@ -140,13 +148,21 @@
                                     <div class="col-4 pr-1 mb-2">
                                         <div class="card p-3 mt-2 h-100 border-warning">
                                             <div class="form-row">
-                                                    <label>Phones</label>
+                                                <label>Phones</label>
                                                 <div class="input-group">
                                                     <select class="custom-select" id="selectboxPhonesEdit" name="phonesEdit" onchange="changePhone()"></select>
-                                                    <button type="button" id="addPhoneButton" class="btn btn-primary">Add Phone</button>
                                                 </div>
                                             </div>
-
+                                            <div class="form-row h-100 align-items-end">
+                                                <div class="col w-50">
+                                                    <button type='button' class='btn btn-outline-danger my-1 mx-0'>
+                                                        Remove
+                                                    </button>
+                                                </div>
+                                                <div class="col w-50">
+                                                    <button type='button' class='btn btn-outline-primary my-1 mx-0' id="newPhoneButton">New</button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-8 pl-1">
@@ -155,17 +171,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div id="websiteCard" class="card p-3 mt-2">
-                                    <div class="form-row">
-                                        <div class="form-group input-group col">
-                                            <input type="text" class="form-control" name="websiteEdit" id="websiteEdit"
-                                                   placeholder="https://example.com">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-outline-secondary" type="button">Go</button>
-                                                <button class="btn btn-outline-danger" type="button" onclick="">Delete</button>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div id="notesCard" class="card p-3 mt-2">
+                                    <label>Notes</label>
+                                    <textarea id="summernote" name="editordata"></textarea>
                                 </div>
                                 <button type='button' class='btn btn-primary mt-2' onclick="clearEditForm()">Clear Form</button>
                             </form>

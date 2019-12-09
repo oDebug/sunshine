@@ -50,4 +50,7 @@ public class Contact {
     @Column(name="delete_user")
     private String deleteUser;
 
+    @Column(name="notes")
+    private String notes;
+
 }

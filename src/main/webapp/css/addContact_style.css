@@ -41,3 +41,7 @@ a.map-link{
 map-style{
      !important;
 }
+
+note-editor{
+    margin-top: 10px !important;
+}
