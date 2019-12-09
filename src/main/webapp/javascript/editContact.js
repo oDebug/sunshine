@@ -33,6 +33,7 @@ function clearEditForm() {
     $('#tlistStatesEdit').val("");
     $('#selectboxAddressesEdit').empty();
     $('#selectboxPhonesEdit').empty();
+    $('#summernote').summernote("reset");
 }
 
 function populateEditForm(data) {
@@ -45,6 +46,7 @@ function populateEditForm(data) {
     populatePhones(data.phones);
 
     generateActionsTableBody(data.actions);
+    $('#summernote').summernote("code", data.notes);
 
     // generateWebsiteList(data);
 
@@ -107,12 +109,12 @@ function createAddressItem(data) {
     dataElement += "<label>Suite</label>";
     dataElement += "<input type='text' class='form-control' name='suiteEdit' id='tboxSuiteEdit' value='" + data.suite + "'>";
     dataElement += "</div>";
+    dataElement += "</div>";
+    dataElement += "<div class='form-row'>";
     dataElement += "<div class='form-group col-md-4'>";
     dataElement += "<label>City</label>";
     dataElement += "<input type='text' class='form-control' name='cityEdit' id='tboxCityEdit' value='" + data.city + "'>";
     dataElement += "</div>";
-    dataElement += "</div>";
-    dataElement += "<div class='form-row'>";
     dataElement += "<div class='form-group col-md-3'>";
     dataElement += "<label>State</label>";
     dataElement += "<input class='form-control' list='states' name='stateEdit' id='listStatesEdit' value='" + data.state + "'>";
@@ -122,10 +124,10 @@ function createAddressItem(data) {
     dataElement += "<label>Zip</label>";
     dataElement += "<input type='text' class='form-control' name='zipEdit' id='tboxZipEdit' value='" + data.postalCode + "'>";
     dataElement += "</div>";
-    dataElement += "<div class='form-group col-md-5'>";
-    dataElement += "<label>Descr.</label>";
-    dataElement += "<input type='text' class='form-control' name='addressDescrEdit' id='tboxAddressDescrEdit' value='" + data.addressType + "'>";
-    dataElement += "</div>";
+    // dataElement += "<div class='form-group col-md-5'>";
+    // dataElement += "<label>Descr.</label>";
+    // dataElement += "<input type='text' class='form-control' name='addressDescrEdit' id='tboxAddressDescrEdit' value='" + data.addressType + "'>";
+    // dataElement += "</div>";
     dataElement += "<div class='form-group col-md-2 align-self-end'>";
     dataElement += "<button type='button' id='editSaveButton' class='btn btn-outline-success mt-2 mx-0'>Save</button>";
     dataElement += "</div>";
@@ -136,27 +138,29 @@ function createAddressItem(data) {
 }
 function createPhoneItem(data) {
     var dataElement = "<div class='phoneItem' style='display: none' id='" + data.type + "Phone'>";
-    dataElement += "<div class='form-row'>";
-    dataElement += "<div class='form-group col-md-4'>";
-    dataElement += "<input hidden type='text' id='phoneIdEdit' value='" + data.id + "'>";
-    dataElement += "<input hidden type='text' id='phoneTypeEdit' value='" + data.type + "'>";
-    dataElement += "<label>Phone</label>";
-    dataElement += "<input type='text' class='form-control' name='phoneEdit' id='tboxPhoneEdit' value='" + data.phone +"'>";
-    dataElement += "</div>";
-    dataElement += "<div class='form-group col-md-3'>";
-    dataElement += "<label>Ext.</label>";
-    dataElement += "<input type='text' class='form-control' name='extensionEdit' id='tboxExtensionEdit' value='" + data.extension + "'>";
-    dataElement += "</div>";
-    dataElement += "<div class='form-group col-md-2 align-self-end mx-0 px-0'>";
-    dataElement += "<button id='btnPhoneUpdate' type='button'class='btn btn-outline-success mt-2 mx-0'>Update</button>";
-    dataElement += "</div>";
-    dataElement += "<div class='form-group col-md-2 align-self-end mx-0 px-0'>";
-    dataElement += "<button type='button' class='btn btn-outline-danger mt-2 mx-0'>Remove</button>";
-    dataElement += "</div>";
-    dataElement += "</div>";
+        dataElement += "<div class='form-row'>";
+            dataElement += "<div class='form-group col-md-6'>";
+                dataElement += "<input hidden type='text' id='phoneIdEdit' value='" + data.id + "'>";
+                dataElement += "<input hidden type='text' id='phoneTypeEdit' value='" + data.type + "'>";
+                dataElement += "<label>Phone</label>";
+                dataElement += "<input type='text' class='form-control' name='phoneEdit' id='tboxPhoneEdit' value='" + data.phone +"'>";
+            dataElement += "</div>"; //closing form group div
+            dataElement += "<div class='form-group col-md-6'>";
+                dataElement += "<label>Ext.</label>";
+                dataElement += "<input type='text' class='form-control' name='extensionEdit' id='tboxExtensionEdit' value='" + data.extension + "'>";
+            dataElement += "</div>"; //closing form group div
+        dataElement += "</div>"; //closing form-row div
+        dataElement += "<div class='form-row'>";
+            dataElement += "<div class='form-group col-md-2 align-self-end mx-0 px-0'>";
+                dataElement += "<button id='btnPhoneUpdate' type='button'class='btn btn-outline-success mt-2 mx-0'>Save</button>";
+            dataElement += "</div>";
+            dataElement += "<div class='form-group col-md-2 align-self-end mx-0 px-0'>";
+                dataElement += "<button type='button' class='btn btn-outline-danger mt-2 mx-0'>Remove</button>";
+            dataElement += "</div>";
+        dataElement += "</div>" ;
     dataElement += "</div>";
 
-    return dataElement;
+    return dataElement.trim();
 }
 function generateActionsTableBody(data) {
     $("#actionTableBody").empty(); //empty the table with id="tableResults"
@@ -327,7 +331,8 @@ function getContact() {
         name: $('#tboxNameEdit').val(),
         type: $('#selectboxTypeEdit').val(),
         email: $('#tboxEmailEdit').val(),
-        description: $('#lboxTypeDescriptions').val()
+        description: $('#lboxTypeDescriptions').val(),
+        notes: $('#summernote').summernote('code')
     }
     return contact;
 }
