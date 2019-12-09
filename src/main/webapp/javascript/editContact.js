@@ -377,4 +377,23 @@ function removeAddress() {
             alert(data)
         }
     })
+};
+
+function removePhone() {
+    var phnType =  $('#selectboxPhonesEdit').val();
+    var phnId = $('#' + phnType + 'Phone').find($('#phoneIdEdit')).val();
+    $.ajax({
+        url: "deletePhone",
+        type: "POST",
+        data: {id: phnId},
+        success: function (data) {
+            $('#selectboxPhonesEdit').empty();
+            $('#phonesCard').empty();
+            populatePhones(data)
+            alert('Phone Number Deleted')
+        },
+        fail: function(data) {
+            alert(data)
+        }
+    })
 }

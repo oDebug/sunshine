@@ -220,7 +220,7 @@ public class ContactController {
             //First, get the Address object
             Address address = contactService.getAddress(id);
             contactId = address.getContactId();
-            //Second, make sure there is more than one address
+            //Second, make sure there is more than one address for the contact
             int addrSize = contactService.get(contactId).getAddresses().size();
             if (addrSize <= 1) {
                 return new ResponseEntity<Object>("Contact must have at least 1 address", HttpStatus.EXPECTATION_FAILED);
@@ -229,6 +229,30 @@ public class ContactController {
                 contactService.deleteAddress(address);
                 List<Address> addressResponse = contactService.get(contactId).getAddresses();
                 return new ResponseEntity<Object>(addressResponse, HttpStatus.OK);
+            }
+
+        } catch(Exception e) {
+            return new ResponseEntity<Object>(e, HttpStatus.EXPECTATION_FAILED);
+        }
+
+    }
+
+    @RequestMapping(value = "/deletePhone", method = RequestMethod.POST)
+    public ResponseEntity<Object> deletePhone(@RequestParam("id") Long id) {
+        Long contactId;
+        try {
+            //First, get the Phone object
+            PhoneNumber phoneNumber = contactService.getPhoneNumber(id);
+            contactId = phoneNumber.getContactId();
+            //Second, make sure there is more than one phone number for the contact
+            int phnSize = contactService.get(contactId).getPhones().size();
+            if (phnSize <= 1) {
+                return new ResponseEntity<Object>("Contact must have at least 1 address", HttpStatus.EXPECTATION_FAILED);
+            } else {
+                //If there is more than 1, we can delete
+                contactService.deletePhoneNumber(phoneNumber);
+                List<PhoneNumber> phoneResponse = contactService.get(contactId).getPhones();
+                return new ResponseEntity<Object>(phoneResponse, HttpStatus.OK);
             }
 
         } catch(Exception e) {
