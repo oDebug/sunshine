@@ -3,6 +3,7 @@
     <div class='modal-dialog modal-xl' role='document'>
         <div class='modal-content'>
             <div class='modal-header'>
+                <h2 id="nameModalHeader"></h2>
                 <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
                     <span aria-hidden='true'>&times;</span>
                 </button>
@@ -124,14 +125,12 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="row h-100 align-items-end">
-                                                <div class="col w-100">
-                                                    <button type='button' class='btn btn-outline-danger my-1 mx-0' onclick="removeAddress()">
-                                                        Remove
-                                                    </button>
+                                            <div class="form-row h-100 align-items-end">
+                                                <div class="col w-50">
+                                                    <button type='button' class='btn btn-block btn-outline-danger my-1 mx-0' onclick="removeAddress()">Remove</button>
                                                 </div>
-                                                <div class="col w-100">
-                                                    <button type='button' class='btn btn-outline-primary my-1 mx-0' id="newAddressButton">New</button>
+                                                <div class="col w-50">
+                                                    <button type='button' class='btn btn-block btn-outline-primary my-1 mx-0' id="newAddressButton">New</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -155,12 +154,12 @@
                                             </div>
                                             <div class="form-row h-100 align-items-end">
                                                 <div class="col w-50">
-                                                    <button type='button' class='btn btn-outline-danger my-1 mx-0' onclick="removePhone()">
+                                                    <button type='button' class='btn btn-block btn-outline-danger my-1 mx-0' onclick="removePhone()">
                                                         Remove
                                                     </button>
                                                 </div>
                                                 <div class="col w-50">
-                                                    <button type='button' class='btn btn-outline-primary my-1 mx-0' id="newPhoneButton">New</button>
+                                                    <button type='button' class='btn btn-block btn-outline-primary my-1 mx-0' id="newPhoneButton">New</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -219,9 +218,10 @@
                     </div>
 
                     <div class='tab-pane fade' id='alias' role='tabpanel' aria-labelledby='alias-tab'>
-                        <h2 id="titleHeaderAlias" class="mt-2">Aliases</h2>
+                        <h2 id="titleHeaderAlias" class="mt-2 mb-3">Aliases</h2>
                         <form id="addAliasForm">
                             <div class="form-row">
+                                <div class="col"></div>
                                 <div class="col-6">
                                     <div class="input-group mb-3">
                                         <input id="tboxNewAlias" type="text" class="form-control" placeholder="New Alias">
@@ -236,8 +236,9 @@
                             </div>
                         </form>
                         <form id="removeAliasForm">
-                            <div class="row">
-                            <div class="col-6 pr-1">
+                            <div class="form-row">
+                                <div class="col"></div>
+                                <div class="col-6 pr-1">
                                 <h3>Remove Alias:</h3>
                                 <div class="input-group">
                                     <select class="custom-select" id="inputGroupAliases">
@@ -253,14 +254,9 @@
                                     </div>
                                 </div>
                             </div>
+                                <div class="col"></div>
                         </div>
                         </form>
-                        <div class="alert alert-warning alert-dismissible fade show">
-                            <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
                     </div>
 
 <%--                    <div class='tab-pane fade' id='map' role='tabpanel' aria-labelledby='map-tab'>--%>

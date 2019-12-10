@@ -54,6 +54,7 @@ function populateEditForm(data) {
     populatePhones(data.phones);
     generateActionsTableBody(data.actions);
     $('#summernote').summernote("code", data.notes);
+    $('#nameModalHeader').text(data.name);
 
     // generateWebsiteList(data);
 
