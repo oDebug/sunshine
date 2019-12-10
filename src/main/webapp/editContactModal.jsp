@@ -204,10 +204,11 @@
                                 <tr class="header">
                                     <%--                                        <th>Action ID</th>--%>
                                     <th>Date Created</th>
-                                    <%--                                        <th>Date Due</th>--%>
+
                                     <th>Type</th>
                                     <th>Notes</th>
                                     <th>Status</th>
+                                    <th>Date Due</th>
                                     <%--                                        <th>Date Completed</th>--%>
                                     <th class="d-none">Contact ID</th>
                                 </tr>

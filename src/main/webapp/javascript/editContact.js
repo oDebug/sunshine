@@ -188,6 +188,12 @@ function generateActionsTableBody(data) {
     }
 }
 function createActionTableRow(data) {
+    if(data.dueDate == null)
+    {
+        data.dueDate = "N/A";
+    }
+
+
     var trElement = "<tr id='action" + data.id + "'>";
     trElement += "<td>" + data.createDate + "</td>";
     trElement += "<td>" + data.actionType + "</td>";
@@ -208,6 +214,7 @@ function createActionTableRow(data) {
         trElement += "<option selected='Cancelled'>Cancelled</option>";
     }
     trElement += "</select></td>";
+    trElement += "<td>" + data.dueDate + "</td>";
     trElement += "</tr>";
 
     return trElement;
