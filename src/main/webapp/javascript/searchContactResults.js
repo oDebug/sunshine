@@ -39,6 +39,12 @@ function createRow(data) {
     trElement += "<td>" + data.type + "</td>";
     trElement += "<td>" + data.phones[0].phone + "</td>";
     trElement += "<td>" + address + "</td>";
-    trElement += "<td align='center'>" + "<a class='map-link' target='_blank' href='" + mapLink + "'><i class='fas fa-map-marked-alt'></i></a>"+ "</td></tr>";
+    trElement += "<td align='center'>" + "<button class='btn map-link' target='_blank' onclick='mapGoogle(\"" + mapLink + "\")'><i class='fas fa-map-marked-alt'></i></button>"+ "</td></tr>";
     return trElement;
+}
+
+function mapGoogle(url)
+{
+    event.stopPropagation();
+    window.open(url);
 }
