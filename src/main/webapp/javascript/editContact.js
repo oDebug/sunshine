@@ -52,7 +52,6 @@ function populateEditForm(data) {
     $('#tboxEmailEdit').val(data.email);
     populateAddresses(data.addresses);
     populatePhones(data.phones);
-
     generateActionsTableBody(data.actions);
     $('#summernote').summernote("code", data.notes);
 
@@ -430,8 +429,8 @@ function removePhone() {
 
 function removeAlias(){
     var formData = {
-        aliasId: $("#inputGroupAliases").val(), //get selected alias to remove (alias.id)
-        id: $("#editContactId") //get id of contact to append alias to
+        aliasId: $("#inputGroupAliases").val() //get selected alias to remove (alias.id)
+
     };
     $.ajax({
         url: "/removeAlias",
@@ -447,7 +446,8 @@ function removeAlias(){
 
 function addAlias(){
     var formData = {
-        alias: $("#tboxNewAlias").val() //get selected alias to remove (alias.id)
+        alias: $("#tboxNewAlias").val(), //get selected alias to add (alias.id)
+        id: $("#editContactId") //get id of contact to append alias to
     };
     $.ajax({
         url: "/addAlias",
@@ -471,4 +471,5 @@ function populateAliases(data) //pass list of aliases associated with contact
     {
         list.append("<option value='" + data.id.trim() +  "'>" + data.name + "</option>"); // <option value="1">Alias 1</option>, etc.
     }
+
 }
