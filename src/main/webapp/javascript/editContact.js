@@ -11,7 +11,7 @@ $(document).ready(function ($) {
         $('#addAddressModal').modal('show');
     });
 
-    $('#addPhoneButton').click(function (e) {
+    $('#newPhoneButton').click(function (e) {
         $('#addPhoneModal').modal('show');
     });
 
