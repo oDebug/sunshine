@@ -23,7 +23,7 @@
                     </li>
                     <li class='nav-item'>
                         <a class='nav-link' id='alias-tab' data-toggle='tab' href='#alias' role='tab'
-                           aria-controls='action' aria-selected='false'>Alias</a>
+                           aria-controls='action' aria-selected='false'>Aliases</a>
                     </li>
 <%--                    <li class='nav-item'>--%>
 <%--                        <a class='nav-link' id='map-tab' data-toggle='tab' href='#map' role='tab' aria-controls='action'--%>
@@ -218,7 +218,7 @@
                     </div>
 
                     <div class='tab-pane fade' id='alias' role='tabpanel' aria-labelledby='alias-tab'>
-                        <h2 id="titleHeaderAlias" class="mt-2">Aliases for</h2>
+                        <h2 id="titleHeaderAlias" class="mt-2">Aliases</h2>
                         <form id="addAliasForm">
                             <div class="form-row">
                                 <div class="col-6">
