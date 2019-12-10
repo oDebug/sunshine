@@ -19,8 +19,7 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="tboxNameAdd">Name</label>
-                                        <input type="text" class="form-control" name="name" id="tboxNameAdd"
-                                               placeholder="Name">
+                                        <input type="text" class="form-control" name="name" id="tboxNameAdd" placeholder="Name" required>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="selectboxTypeAdd">Contact Type</label>

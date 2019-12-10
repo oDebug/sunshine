@@ -1,5 +1,6 @@
 $(document).ready(function ($) {
-    $('#addSaveButton').click(function (e) {
+    $('#addSaveButton').click(function (e)
+    {
         var formData = {
             name: $('#tboxNameAdd').val(),
             type: $('#selectboxTypeAdd').val(),
@@ -48,3 +49,44 @@ function typeChangeAdd() {
         y.setAttribute("list", "");
     }
 }
+
+// $("#frmAddContact").submit(function(e){
+//     try{
+//
+//         alert("Asdfasdf");
+//         var formData = {
+//             name: $('#tboxNameAdd').val(),
+//             type: $('#selectboxTypeAdd').val(),
+//             email: $('#tboxEmailAdd').val(),
+//             description: $('#lboxTypeDescriptions').val(),
+//             street: $('#tboxStreetAdd').val(),
+//             suite: $('#tboxSuiteAdd').val(),
+//             city: $('#tboxCityAdd').val(),
+//             state: $('#listStatesAdd').val(),
+//             zip: $('#tboxZipAdd').val(),
+//             addressType: $('#tboxAddressDescrAdd').val(),
+//             phone: $('#tboxPhoneAdd').val(),
+//             phoneType: $('#selectboxPhoneTypeAdd').val(),
+//             extenstion: $('#tboxExtensionAdd').val()
+//         };
+//         $.ajax({
+//             url: "/addContact",
+//             contentType: "application/json",
+//             dataType: "json",
+//             data: JSON.stringify(formData),
+//             type: "POST",
+//             success: function (data) {
+//                 $('#inputContact').modal('hide');
+//                 window.location = 'searchContacts';
+//                 alert('Contact added successfully');
+//             }
+//         })
+//     }
+//     catch (ex)
+//     {
+//         alert("error");
+//     }
+//     e.preventDefault();
+//     e.stopImmediatePropagation();
+//
+// });

@@ -48,8 +48,7 @@
                                             <div class="form-row">
                                                 <div class="form-group col-md-6">
                                                     <label for="tboxNameEdit">Name</label>
-                                                    <input type="text" class="form-control" name="nameEdit"
-                                                           id="tboxNameEdit" placeholder="Name">
+                                                    <input type="text" class="form-control" name="nameEdit" id="tboxNameEdit" placeholder="Name" required>
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <label for="selectboxTypeEdit">Contact Type</label>
