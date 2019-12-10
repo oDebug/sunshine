@@ -34,7 +34,7 @@ body {
     border-radius: 0px !important;
 }
 
-a.map-link{
+.map-link{
     color: #385a3e !important;
 }
 
@@ -44,4 +44,8 @@ map-style{
 
 note-editor{
     margin-top: 10px !important;
+}
+
+#nameModalHeader{
+    color: #721c24;
 }
