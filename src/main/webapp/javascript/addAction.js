@@ -8,7 +8,8 @@ function addNewAction(){
         actionType: $('#selectboxActionTypeAdd').val(),
         notes: $('#tboxActionNotes').val(),
         status: $('#selectActionStatus').val(),
-        contactId: $('#editContactId').val()
+        contactId: $('#editContactId').val(),
+        dueDate: $('#dateActionDue').val()
     };
     $.ajax({
         url: "/addAction",
