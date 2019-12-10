@@ -25,10 +25,10 @@
                         <a class='nav-link' id='alias-tab' data-toggle='tab' href='#alias' role='tab'
                            aria-controls='action' aria-selected='false'>Alias</a>
                     </li>
-                    <li class='nav-item'>
-                        <a class='nav-link' id='map-tab' data-toggle='tab' href='#map' role='tab' aria-controls='action'
-                           aria-selected='false'>Map</a>
-                    </li>
+<%--                    <li class='nav-item'>--%>
+<%--                        <a class='nav-link' id='map-tab' data-toggle='tab' href='#map' role='tab' aria-controls='action'--%>
+<%--                           aria-selected='false'>Map</a>--%>
+<%--                    </li>--%>
                 </ul>
                 <div class='tab-content' id='myTabContent'>
                     <div class='tab-pane fade' id='edit' role='tabpanel' aria-labelledby='edit-tab'><!-- edit tab -->
@@ -262,20 +262,20 @@
                         </div>
                     </div>
 
-                    <div class='tab-pane fade' id='map' role='tabpanel' aria-labelledby='map-tab'>
-                        <div class="container p-2">
-                            <div class="row ">
-                                <div class="col-3"></div>
-                                <div class="col-2 justify-content-center">
-                                    <div id="mapPane" class="m-0" style="height: 500px; width: 500px; box-shadow: 0px 0px 5px 0px #383838;"></div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-3"></div>
-                                <div class="col justify-content-center"><p id="mapTabAddress"></p></div>
-                            </div>
-                        </div>
-                    </div>
+<%--                    <div class='tab-pane fade' id='map' role='tabpanel' aria-labelledby='map-tab'>--%>
+<%--                        <div class="container p-2">--%>
+<%--                            <div class="row ">--%>
+<%--                                <div class="col-3"></div>--%>
+<%--                                <div class="col-2 justify-content-center">--%>
+<%--                                    <div id="mapPane" class="m-0" style="height: 500px; width: 500px; box-shadow: 0px 0px 5px 0px #383838;"></div>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                            <div class="row">--%>
+<%--                                <div class="col-3"></div>--%>
+<%--                                <div class="col justify-content-center"><p id="mapTabAddress"></p></div>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
                 </div>
             </div>
             <div class='modal-footer'>
@@ -288,4 +288,4 @@
 <jsp:include page="addActionModal.jsp"/>
 <jsp:include page="addAddressModal.jsp"/>
 <jsp:include page="addPhoneModal.jsp"/>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWPtNLGcAlbmiNAiT9Pn794fMGXc3N4CM"></script>
+<%--<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWPtNLGcAlbmiNAiT9Pn794fMGXc3N4CM"></script>--%>
