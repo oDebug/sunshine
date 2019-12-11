@@ -36,17 +36,18 @@
                                         </select>
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="selectActionStatus">Status</label>
-                                        <select class='custom-select' id="selectActionStatus">
+                                        <label for="selectActionStatusAdd">Status</label>
+                                        <select class='custom-select' id="selectActionStatusAdd">
                                             <option selected='Completed'>Completed</option>
-                                            <option value='Follow Up'>Follow Up</option>
+                                            <option value='In Progress'>In Progress</option>
+                                            <option value='Canceled'>Canceled</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label>Notes</label>
-                                        <input type="text" class="form-control" id="tboxActionNotes" name="notes"
+                                        <input type="text" class="form-control" id="tboxActionNotesAdd" name="notes"
                                                placeholder="Notes...">
                                     </div>
                                     <div class="form-group col-md-6">

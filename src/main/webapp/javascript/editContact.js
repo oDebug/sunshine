@@ -1,17 +1,20 @@
 $(document).ready(function ($) {
-    $('#editSaveButton').click(function (e) {
-        updateContact();
-    });
+    // $('#editSaveButton').click(function (e) {
+    //     updateContact();
+    // });
 
     $('#addActionButton').click(function (e) {
+        clearAddActionModal();
         $('#addActionModal').modal('show');
     });
 
     $('#newAddressButton').click(function (e) {
+        clearAddAddressModal();
         $('#addAddressModal').modal('show');
     });
 
     $('#newPhoneButton').click(function (e) {
+        clearAddPhoneModal();
         $('#addPhoneModal').modal('show');
     });
 
@@ -61,6 +64,7 @@ function populateEditForm(data) {
 }
 
 function populateAddresses(data) {
+    $('#selectboxAddressesEdit').empty();
     $('#addressesCard').empty();
     var card = $('#addressesCard');
 
@@ -74,20 +78,17 @@ function populateAddresses(data) {
             selectedAddress.show();
         }
     }
-    typeChange(); //Run method to properly set Description options
 }
 function populatePhones(data) {
-    var sBox = $('#selectboxPhonesEdit');
-    sBox.empty();
+    $('#selectboxPhonesEdit').empty();
     $('#phonesCard').empty();
-
     var card = $('#phonesCard');
 
     for (var i = 0; i < data.length; i++) {
         card.append(createPhoneItem(data[i]));
-        sBox.append(new Option(data[i].type), i);
+        $('#selectboxPhonesEdit').append(new Option(data[i].type), i);
         if (i === 0) {
-            sBox.val(data[i].type)
+            $('#selectboxPhonesEdit').val(data[i].type)
 
             var selectedPhone =  $('#' + data[i].type + 'Phone');
             selectedPhone.show();
@@ -111,21 +112,19 @@ function changePhone() {
 function createAddressItem(data) {
     var address = data.street + ", " + data.city + " " + data.state + ", " + data.postalCode;
     var mapLink = "https://www.google.com/maps/search/?api=1&query=" + decodeURIComponent(address);
-    if(data.suite == null)
-    {
-        data.suite = "";
-    }
 
     var dataElement = "<div class='addressItem' style='display: none' id='" + data.addressType + "Address'>";
+    dataElement += "<input hidden type='text' name='id' id='addressIdEdit' value='" + data.id + "'>";
+    dataElement += "<input hidden type='text' name='addressType' value='" + data.addressType + "'>";
+    dataElement += "<input hidden type='text' name='contactId' value='" + data.contactId + "'>";
     dataElement += "<div class='form-row align-items-end'>";
     dataElement += "<div class='form-group col-md-6'>";
-    dataElement += "<input hidden type='text' id='addressIdEdit' value='" + data.id + "'></input>";
     dataElement += "<label>Street</label>";
-    dataElement += "<input type='text' class='form-control' name='streetEdit' id='tboxStreetEdit' value='" + data.street + "'>";
+    dataElement += "<input type='text' class='form-control' name='street' id='tboxStreetEdit' value='" + data.street + "'>";
     dataElement += "</div>";
     dataElement += "<div class='form-group col-md-2'>";
     dataElement += "<label>Suite</label>";
-    dataElement += "<input type='text' class='form-control' name='suiteEdit' id='tboxSuiteEdit' value='" + data.suite + "'>";
+    dataElement += "<input type='text' class='form-control' name='suite' id='tboxSuiteEdit' value='" + (data.suite != null ? data.suite : "") + "'>";
     dataElement += "</div>";
 
     dataElement += "<div class='form-group col-md-2 pb-3 pl-3'>";
@@ -136,23 +135,23 @@ function createAddressItem(data) {
     dataElement += "<div class='form-row'>";
     dataElement += "<div class='form-group col-md-4'>";
     dataElement += "<label>City</label>";
-    dataElement += "<input type='text' class='form-control' name='cityEdit' id='tboxCityEdit' value='" + data.city + "'>";
+    dataElement += "<input type='text' class='form-control' name='city' id='tboxCityEdit' value='" + data.city + "'>";
     dataElement += "</div>";
     dataElement += "<div class='form-group col-md-3'>";
     dataElement += "<label>State</label>";
-    dataElement += "<input class='form-control' list='states' name='stateEdit' id='listStatesEdit' value='" + data.state + "'>";
+    dataElement += "<input class='form-control' list='states' name='state' id='listStatesEdit' value='" + data.state + "'>";
     dataElement += "<datalist id='states'><option value='MO'><option value='IL'></datalist>";
     dataElement += "</div>";
     dataElement += "<div class='form-group col-md-2'>";
     dataElement += "<label>Zip</label>";
-    dataElement += "<input type='text' class='form-control' name='zipEdit' id='tboxZipEdit' value='" + data.postalCode + "'>";
+    dataElement += "<input type='text' class='form-control' name='postalCode' id='tboxZipEdit' value='" + data.postalCode + "'>";
     dataElement += "</div>";
     // dataElement += "<div class='form-group col-md-5'>";
     // dataElement += "<label>Descr.</label>";
     // dataElement += "<input type='text' class='form-control' name='addressDescrEdit' id='tboxAddressDescrEdit' value='" + data.addressType + "'>";
     // dataElement += "</div>";
     dataElement += "<div class='form-group col-md-2 align-self-end'>";
-    dataElement += "<button type='button' id='editSaveButton' class='btn btn-outline-success mt-2 mx-0'>Save</button>";
+    dataElement += "<button type='button' id='editSaveButton' class='btn btn-outline-success mt-2 mx-0' onclick='updateAddress()'>Save</button>";
     dataElement += "</div>";
     dataElement += "</div>";
     dataElement += "</div>";
@@ -161,21 +160,21 @@ function createAddressItem(data) {
 }
 function createPhoneItem(data) {
     var dataElement = "<div class='phoneItem' style='display: none' id='" + data.type + "Phone'>";
+    dataElement += "<input hidden type='text' name='id' id='phoneIdEdit' value='" + data.id + "'>";
+    dataElement += "<input hidden type='text' name='type' id='phoneTypeEdit' value='" + data.type + "'>";
         dataElement += "<div class='form-row'>";
             dataElement += "<div class='form-group col-md-6'>";
-                dataElement += "<input hidden type='text' id='phoneIdEdit' value='" + data.id + "'>";
-                dataElement += "<input hidden type='text' id='phoneTypeEdit' value='" + data.type + "'>";
                 dataElement += "<label>Phone</label>";
-                dataElement += "<input type='tel' pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}' class='form-control' name='phoneEdit' id='tboxPhoneEdit' value='" + data.phone +"'>";
+                dataElement += "<input type='tel' name='phone' pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}' class='form-control' id='tboxPhoneEdit' value='" + data.phone +"'>";
             dataElement += "</div>"; //closing form group div
             dataElement += "<div class='form-group col-md-6'>";
                 dataElement += "<label>Ext.</label>";
-                dataElement += "<input type='text' class='form-control' name='extensionEdit' id='tboxExtensionEdit' value='" + data.extension + "'>";
+                dataElement += "<input type='text' class='form-control' name='extension' id='tboxExtensionEdit' value='" + (data.extension != null ? data.extension : "") + "'>";
             dataElement += "</div>"; //closing form group div
         dataElement += "</div>"; //closing form-row div
         dataElement += "<div class='form-row'>";
             dataElement += "<div class='form-group col-md-2 align-self-end mx-0 px-0'>";
-                dataElement += "<button id='btnPhoneUpdate' type='button'class='btn btn-outline-success mt-2 mx-0'>Save</button>";
+                dataElement += "<button id='btnPhoneUpdate' type='button' onclick='updatePhone()' class='btn btn-outline-success mt-2 mx-0'>Save</button>";
             dataElement += "</div>";
 
         dataElement += "</div>" ;
@@ -315,10 +314,10 @@ function updateContact() {
     var contact = getContact();
     var addressArray = getAddresses();
     var phoneArray = getPhones();
-    for(var x = 0; x < phoneArray.length; x++)
-    {
-        phoneArray[x] = phoneArray[x].replace(/\D/g, ''); //strip non-numeric values
-    }
+    // for(var x = 0; x < phoneArray.length; x++)
+    // {
+    //     phoneArray[x].phone = phoneArray[x].phone.replace(/\D/g, ''); //strip non-numeric values
+    // }
 
     var formData = {
         contact: contact,
@@ -370,7 +369,7 @@ function getPhones() {
     $('.phoneItem').each(function() {
         var formData = {
             id: $(this).find('#phoneIdEdit').val(),
-            phone: $(this).find('#tboxPhoneEdit').val(),
+            phone: $(this).find('#tboxPhoneEdit').val().replace(/\D/g, ''),
             extension: $(this).find('#tboxExtensionEdit').val(),
             phoneType: $(this).find('#phoneTypeEdit').val()
         }
@@ -422,14 +421,12 @@ function getContact() {
 
 function removeAddress() {
     var addrType =  $('#selectboxAddressesEdit').val();
-    var addrId = $('#' + addrType + 'Address').find($('#addressIdEdit')).val();
+    var addrId = $('#' + addrType + 'Address').find('#addressIdEdit').val();
     $.ajax({
         url: "deleteAddress",
         type: "POST",
         data: {id: addrId},
         success: function (data) {
-            $('#selectboxAddressesEdit').empty();
-            $('#addressesCard').empty();
             populateAddresses(data)
             alert('Address Deleted')
         },
@@ -441,7 +438,7 @@ function removeAddress() {
 
 function removePhone() {
     var phnType =  $('#selectboxPhonesEdit').val();
-    var phnId = $('#' + phnType + 'Phone').find($('#phoneIdEdit')).val();
+    var phnId = $('#' + phnType + 'Phone').find('#phoneIdEdit').val();
     $.ajax({
         url: "deletePhone",
         type: "POST",
@@ -503,4 +500,77 @@ function populateAliases(data) //pass list of aliases associated with contact
         list.append("<option value='" + data.id.trim() +  "'>" + data.name + "</option>"); // <option value="1">Alias 1</option>, etc.
     }
 
+}
+
+function updateAddress() {
+    var currentType = $('#selectboxAddressesEdit').val();
+    var currentAddr = $('#' + currentType + 'Address');
+
+    var formData = {
+        id : currentAddr.find('input[name="id"]').val(),
+        addressType : currentType,
+        contactId : currentAddr.find('input[name="contactId"]').val(),
+        street : currentAddr.find('input[name="street"]').val(),
+        suite : currentAddr.find('input[name="suite"]').val(),
+        city : currentAddr.find('input[name="city"]').val(),
+        state : currentAddr.find('input[name="state"]').val(),
+        postalCode : currentAddr.find('input[name="postalCode"]').val()
+    };
+
+    $.ajax({
+        url: "/saveAddress",
+        contentType: "application/json",
+        dataType: "json",
+        data: JSON.stringify(formData),
+        type: "POST",
+        success: function (data) {
+            populateAddresses(data)
+        }
+    })
+}
+
+function updatePhone() {
+    var currentType = $('#selectboxPhonesEdit').val();
+    var currentPhn = $('#' + currentType + 'Phone');
+
+    var formData = {
+        id : currentPhn.find('input[name="id"]').val(),
+        type : currentType,
+        contactId : currentPhn.find('input[name="contactId"]').val(),
+        phone : currentPhn.find('input[name="phone"]').val(),
+        extension : currentPhn.find('input[name="extension"]').val()
+    };
+
+    $.ajax({
+        url: "/savePhone",
+        contentType: "application/json",
+        dataType: "json",
+        data: JSON.stringify(formData),
+        type: "POST",
+        success: function (data) {
+            populatePhones(data)
+        }
+    })
+}
+
+function clearAddPhoneModal() {
+    $('#tboxPhoneAdd').val("");
+    $('#tboxExtensionAdd').val("");
+    $('#selectboxPhoneTypeAdd').val("");
+}
+
+function clearAddAddressModal() {
+    $('#tboxStreetAdd').val("");
+    $('#tboxSuiteAdd').val("");
+    $('#tboxCityAdd').val("");
+    $('#listStatesAdd').val("");
+    $('#tboxZipAdd').val("");
+    $('#selectboxAddressTypeAdd').val("");
+}
+
+function clearAddActionModal() {
+    $('#selectboxActionTypeAdd').val("");
+    $('#selectActionStatusAdd').val("Completed");
+    $('#tboxActionNotesAdd').val("");
+    $('#dateActionDue').val("");
 }

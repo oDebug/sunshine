@@ -1,15 +1,17 @@
-$(document).ready(function($) {
+$(document).ready(function ($) {
     $('#addPhoneSaveButton').click(function (e) {
         var phone = {
             id: $('#phoneIdAdd').val(),
-            phone: $('#tboxPhoneAdd').val().replace(/\D/g,''),
+            phone: $('#tboxPhoneAdd').val().replace(/\D/g, ''),
             extension: $('#tboxExtensionAdd').val(),
             contactId: $('#editContactId').val(),
             type: $('#selectboxPhoneTypeAdd').val()
         }
         savePhone(phone);
     });
+    clearPhoneForm();
 })
+
 function savePhone(phone) {
     $.ajax({
         url: "addPhone",
@@ -22,4 +24,12 @@ function savePhone(phone) {
             $('#editContactModal').modal('show');
         }
     })
+}
+
+function clearPhoneForm() {
+    $('#phoneIdAdd').val("");
+    $('#tboxPhoneAdd').val("");
+    $('#tboxExtensionAdd').val("");
+    $('#editContactId').val("");
+    $('#SelectboxPhoneTypeAdd').val("");
 }
