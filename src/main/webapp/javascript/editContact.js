@@ -163,7 +163,7 @@ function createPhoneItem(data) {
                 dataElement += "<input hidden type='text' id='phoneIdEdit' value='" + data.id + "'>";
                 dataElement += "<input hidden type='text' id='phoneTypeEdit' value='" + data.type + "'>";
                 dataElement += "<label>Phone</label>";
-                dataElement += "<input type='text' class='form-control' name='phoneEdit' id='tboxPhoneEdit' value='" + data.phone +"'>";
+                dataElement += "<input type='tel' pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}' class='form-control' name='phoneEdit' id='tboxPhoneEdit' value='" + data.phone +"'>";
             dataElement += "</div>"; //closing form group div
             dataElement += "<div class='form-group col-md-6'>";
                 dataElement += "<label>Ext.</label>";
@@ -308,9 +308,15 @@ function updateContact() {
         return;
     }
 
+
     var contact = getContact();
     var addressArray = getAddresses();
     var phoneArray = getPhones();
+    for(var x = 0; x < phoneArray.length; x++)
+    {
+        phoneArray[x] = phoneArray[x].replace(/\D/g, ''); //strip non-numeric values
+    }
+
     var formData = {
         contact: contact,
         addresses: addressArray,
