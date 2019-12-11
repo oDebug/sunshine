@@ -1,6 +1,12 @@
 $(document).ready(function ($) {
     $('#addSaveButton').click(function (e)
     {
+        if($('#tboxNameAdd').val() == "")
+        {
+            $("#validateNameAdd").removeClass("d-none");
+            return;
+        }
+
         var formData = {
             name: $('#tboxNameAdd').val(),
             type: $('#selectboxTypeAdd').val(),
@@ -30,6 +36,15 @@ $(document).ready(function ($) {
         })
     })
 });
+
+function hideValidationAdd()
+{
+    if(!$("#validateNameAdd").hasClass("d-none"))
+    {
+        $("#validateNameAdd").addClass("d-none");
+    }
+
+}
 
 function typeChangeAdd() {
     var x = document.getElementById("selectboxTypeAdd").value;
