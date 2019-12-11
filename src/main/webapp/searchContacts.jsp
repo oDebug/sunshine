@@ -16,9 +16,12 @@
     <link rel="stylesheet" href="../css/addContact_style.css">
 
     <script src="javascript/jquery-3.4.1.min.js"></script>
+    <script src="javascript/popper.min.js"></script>
+    <script src="javascript/bootstrap.min.js"></script>
     <script src="javascript/searchContacts.js"></script>
     <script src="javascript/searchContactResults.js"></script>
     <script src="javascript/editContact.js"></script>
+    <script src="javascript/addPhoneNumber.js"></script>
     <script src="javascript/addContact.js"></script>
     <script src="javascript/addAction.js"></script>
 

@@ -34,15 +34,19 @@ public class ContactService {
     public void saveContact(Contact contact) {
         contactRepository.save(contact);
     }
+
     public Contact getLastAddedContact() {
         return contactRepository.findTopByOrderByIdDesc();
     }
+
     public void savePhone(PhoneNumber phoneNumber) {
         phoneRepository.save(phoneNumber);
     }
+
     public void saveAddress(Address address) {
         addressRepository.save(address);
     }
+
     public Action saveAction(Action action) {
         actionRepository.save(action);
         return actionRepository.findTopByOrderByIdDesc();
@@ -128,5 +132,9 @@ public class ContactService {
 
     public void deletePhoneNumber(PhoneNumber phoneNumber) {
         phoneRepository.delete(phoneNumber);
+    }
+
+    public List<PhoneNumber> getPhoneNumbersByContactId(Long contactId) {
+        return phoneRepository.findByContactId(contactId);
     }
 }

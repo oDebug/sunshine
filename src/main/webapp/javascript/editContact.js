@@ -77,14 +77,17 @@ function populateAddresses(data) {
     typeChange(); //Run method to properly set Description options
 }
 function populatePhones(data) {
+    var sBox = $('#selectboxPhonesEdit');
+    sBox.empty();
     $('#phonesCard').empty();
+
     var card = $('#phonesCard');
 
     for (var i = 0; i < data.length; i++) {
         card.append(createPhoneItem(data[i]));
-        $('#selectboxPhonesEdit').append(new Option(data[i].type), i);
+        sBox.append(new Option(data[i].type), i);
         if (i === 0) {
-            $('#selectboxPhonesEdit').val(data[i].type)
+            sBox.val(data[i].type)
 
             var selectedPhone =  $('#' + data[i].type + 'Phone');
             selectedPhone.show();
