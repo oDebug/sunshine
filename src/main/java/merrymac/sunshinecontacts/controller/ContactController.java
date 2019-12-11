@@ -3,7 +3,6 @@ package merrymac.sunshinecontacts.controller;
 import merrymac.sunshinecontacts.dao.entity.*;
 import merrymac.sunshinecontacts.request.ContactRequest;
 import merrymac.sunshinecontacts.request.EditContactRequest;
-import merrymac.sunshinecontacts.request.PhoneNumberRequest;
 import merrymac.sunshinecontacts.response.ActionResponse;
 import merrymac.sunshinecontacts.response.ContactResponse;
 import merrymac.sunshinecontacts.service.ContactService;
@@ -15,9 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
 import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -263,25 +260,14 @@ public class ContactController {
     }
 
     @RequestMapping(value = "/addPhone", method = RequestMethod.POST)
-    public ResponseEntity<Object> addPhone(@RequestBody PhoneNumberRequest phone) {
+    public ResponseEntity<Object> addPhone(@RequestBody PhoneNumber phone) {
         try {
-            PhoneNumber newPhone = new PhoneNumber();
-            newPhone.setContactId(Long.parseLong(phone.getContactId()));
-            newPhone.setPhone(Long.parseLong(phone.getPhone()));
-            if (phone.getExtension().isEmpty()) {
-                newPhone.setExtension(null);
-            } else {
-                newPhone.setExtension(Long.parseLong(phone.getExtension()));
-            }
-
             if (phone.getType().startsWith("Choose")) {
                 return new ResponseEntity<Object>("Invalid Phone Type: " + phone.getType(), HttpStatus.EXPECTATION_FAILED);
-            } else {
-                newPhone.setType(phone.getType());
             }
-            newPhone.setId(0L);
-            contactService.savePhone(newPhone);
-            List<PhoneNumber> phoneResponse = contactService.getPhoneNumbersByContactId(newPhone.getContactId());
+            phone.setId(0L);
+            contactService.savePhone(phone);
+            List<PhoneNumber> phoneResponse = contactService.getPhoneNumbersByContactId(phone.getContactId());
             return new ResponseEntity<Object>(phoneResponse, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<Object>(e, HttpStatus.EXPECTATION_FAILED);
@@ -289,4 +275,43 @@ public class ContactController {
 
     }
 
+    @RequestMapping(value = "/addAddress", method = RequestMethod.POST)
+    public ResponseEntity<Object> addAddress(@RequestBody Address address) {
+        try {
+            if (address.getAddressType().startsWith("Choose")) {
+                return new ResponseEntity<Object>("Invalid Address Type: " + address.getAddressType(), HttpStatus.EXPECTATION_FAILED);
+            }
+            address.setId(0L);
+            contactService.saveAddress(address);
+            List<Address> addressResponse = contactService.getAddressesByContactId(address.getContactId());
+            return new ResponseEntity<Object>(addressResponse, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<Object>(e, HttpStatus.EXPECTATION_FAILED);
+        }
+
+    }
+
+    @RequestMapping(value = "/saveAddress", method = RequestMethod.POST)
+    public ResponseEntity<Object> saveAddress(@RequestBody Address address) {
+        try {
+            contactService.saveAddress(address);
+            List<Address> addressResponse = contactService.getAddressesByContactId(address.getContactId());
+            return new ResponseEntity<Object>(addressResponse, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<Object>(e, HttpStatus.EXPECTATION_FAILED);
+        }
+
+    }
+
+    @RequestMapping(value = "/savePhone", method = RequestMethod.POST)
+    public ResponseEntity<Object> savePhone(@RequestBody PhoneNumber phone) {
+        try {
+            contactService.savePhone(phone);
+            List<PhoneNumber> phoneResponse = contactService.getPhoneNumbersByContactId(phone.getContactId());
+            return new ResponseEntity<Object>(phoneResponse, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<Object>(e, HttpStatus.EXPECTATION_FAILED);
+        }
+
+    }
 }

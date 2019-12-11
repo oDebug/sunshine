@@ -24,6 +24,7 @@
     <script src="javascript/addPhoneNumber.js"></script>
     <script src="javascript/addAction.js"></script>
     <script src="javascript/dashboard.js"></script>
+    <script src="javascript/addAddress.js"></script>
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.css" rel="stylesheet">
@@ -36,52 +37,52 @@
 <!-- HOME SECTION -->
 
 <div class="container-fluid h-100" id="bgContainer">
-<div class="row">
-    <div class="col-2"></div>
-<div class="col">
-<div class="card bg-light text-center card-form mt-3 text-dark">
-    <div class="card-header"><h4>Follow Up</h4></div>
-    <div class="card-body" style="padding: 0">
-        <div class="table-responsive-md">
-            <table id="actionTableDashboard" class="table table-primary table-hover">
-                <thead class="thead-dark">
-                <th>Action ID#</th>
-                <th>Contact Name</th>
-                <th>Date Created</th>
-<%--                                    <th>FollowUp Date</th>--%>
-                <th>Note</th>
-                </thead>
-                <tbody id="actionTableResultsDashboard">
-                <c:forEach var="action" items="${upcomingActions}">
-                    <tr id="${action.getContact().getId()}">
-                        <td>${action.getId()}</td>
-                        <td>${action.getContact().getName()}</td>
-                        <td>${action.getCreateDate()}</td>
-<%--                                            <td>${action.getDueDate()}</td>--%>
-                        <td>${action.getNotes()}</td>
-                    </tr>
-                </c:forEach>
-                </tbody>
-            </table>
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col">
+            <div class="card bg-light text-center card-form mt-3 text-dark">
+                <div class="card-header"><h4>Follow Up</h4></div>
+                <div class="card-body" style="padding: 0">
+                    <div class="table-responsive-md">
+                        <table id="actionTableDashboard" class="table table-primary table-hover">
+                            <thead class="thead-dark">
+                            <th>Action ID#</th>
+                            <th>Contact Name</th>
+                            <th>Date Created</th>
+                            <%--                                    <th>FollowUp Date</th>--%>
+                            <th>Note</th>
+                            </thead>
+                            <tbody id="actionTableResultsDashboard">
+                            <c:forEach var="action" items="${upcomingActions}">
+                                <tr id="${action.getContact().getId()}">
+                                    <td>${action.getId()}</td>
+                                    <td>${action.getContact().getName()}</td>
+                                    <td>${action.getCreateDate()}</td>
+                                        <%--                                            <td>${action.getDueDate()}</td>--%>
+                                    <td>${action.getNotes()}</td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="card bg-light text-center card-form mt-3 text-dark">
+                <div class="card-header"><h4>Recently Added Contacts</h4></div>
+                <div class="card-body" style="padding: 0">
+                    <div class="table-responsive">
+                        <jsp:include page="searchContactResults.jsp"/>
+                    </div>
+                </div>
+            </div>
         </div>
+        <div class="col-2"></div>
     </div>
-</div>
-<div class="card bg-light text-center card-form mt-3 text-dark">
-    <div class="card-header"><h4>Recently Added Contacts</h4></div>
-    <div class="card-body" style="padding: 0">
-        <div class="table-responsive">
-            <jsp:include page="searchContactResults.jsp" />
-        </div>
-    </div>
-</div>
-</div>
-<div class="col-2"></div>
-</div>
 </div>
 
 
-<jsp:include page="editContactModal.jsp" />
-<jsp:include page="addContactModal.jsp" />
+<jsp:include page="editContactModal.jsp"/>
+<jsp:include page="addContactModal.jsp"/>
 
 
 <!-- Optional JavaScript -->

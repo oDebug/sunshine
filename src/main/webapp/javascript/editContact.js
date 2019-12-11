@@ -61,6 +61,7 @@ function populateEditForm(data) {
 }
 
 function populateAddresses(data) {
+    $('#selectboxAddressesEdit').empty();
     $('#addressesCard').empty();
     var card = $('#addressesCard');
 
@@ -74,20 +75,17 @@ function populateAddresses(data) {
             selectedAddress.show();
         }
     }
-    typeChange(); //Run method to properly set Description options
 }
 function populatePhones(data) {
-    var sBox = $('#selectboxPhonesEdit');
-    sBox.empty();
+    $('#selectboxPhonesEdit').empty();
     $('#phonesCard').empty();
-
     var card = $('#phonesCard');
 
     for (var i = 0; i < data.length; i++) {
         card.append(createPhoneItem(data[i]));
-        sBox.append(new Option(data[i].type), i);
+        $('#selectboxPhonesEdit').append(new Option(data[i].type), i);
         if (i === 0) {
-            sBox.val(data[i].type)
+            $('#selectboxPhonesEdit').val(data[i].type)
 
             var selectedPhone =  $('#' + data[i].type + 'Phone');
             selectedPhone.show();
@@ -117,9 +115,9 @@ function createAddressItem(data) {
     }
 
     var dataElement = "<div class='addressItem' style='display: none' id='" + data.addressType + "Address'>";
+    dataElement += "<input hidden type='text' id='addressIdEdit' value='" + data.id + "'>";
     dataElement += "<div class='form-row align-items-end'>";
     dataElement += "<div class='form-group col-md-6'>";
-    dataElement += "<input hidden type='text' id='addressIdEdit' value='" + data.id + "'></input>";
     dataElement += "<label>Street</label>";
     dataElement += "<input type='text' class='form-control' name='streetEdit' id='tboxStreetEdit' value='" + data.street + "'>";
     dataElement += "</div>";
@@ -161,10 +159,10 @@ function createAddressItem(data) {
 }
 function createPhoneItem(data) {
     var dataElement = "<div class='phoneItem' style='display: none' id='" + data.type + "Phone'>";
+    dataElement += "<input hidden type='text' id='phoneIdEdit' value='" + data.id + "'>";
+    dataElement += "<input hidden type='text' id='phoneTypeEdit' value='" + data.type + "'>";
         dataElement += "<div class='form-row'>";
             dataElement += "<div class='form-group col-md-6'>";
-                dataElement += "<input hidden type='text' id='phoneIdEdit' value='" + data.id + "'>";
-                dataElement += "<input hidden type='text' id='phoneTypeEdit' value='" + data.type + "'>";
                 dataElement += "<label>Phone</label>";
                 dataElement += "<input type='tel' pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}' class='form-control' name='phoneEdit' id='tboxPhoneEdit' value='" + data.phone +"'>";
             dataElement += "</div>"; //closing form group div
@@ -422,14 +420,12 @@ function getContact() {
 
 function removeAddress() {
     var addrType =  $('#selectboxAddressesEdit').val();
-    var addrId = $('#' + addrType + 'Address').find($('#addressIdEdit')).val();
+    var addrId = $('#' + addrType + 'Address').find($('#addressIdEdit')).attr('value');
     $.ajax({
         url: "deleteAddress",
         type: "POST",
         data: {id: addrId},
         success: function (data) {
-            $('#selectboxAddressesEdit').empty();
-            $('#addressesCard').empty();
             populateAddresses(data)
             alert('Address Deleted')
         },

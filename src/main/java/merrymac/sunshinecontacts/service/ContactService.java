@@ -137,4 +137,8 @@ public class ContactService {
     public List<PhoneNumber> getPhoneNumbersByContactId(Long contactId) {
         return phoneRepository.findByContactId(contactId);
     }
+
+    public List<Address> getAddressesByContactId(Long contactId) {
+        return addressRepository.findByContactId(contactId);
+    }
 }
