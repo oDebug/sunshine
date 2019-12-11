@@ -35,6 +35,6 @@ public class Address implements Serializable {
     @Column(name="postal_code")
     private Long postalCode;
 
-    @Column(name="address_type")
+    @Column(name="address_type", updatable = false)
     private String addressType;
 }
