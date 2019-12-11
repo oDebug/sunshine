@@ -248,7 +248,7 @@
                                         <option value="Alias 3">Alias 3</option>
                                     </select>
                                     <div class="input-group-append">
-                                        <button id="btnRemoveAlias" class="btn btn-outline-danger" onclick="removeAlias()" type="button">
+                                        <button id="btnRemoveAlias" class="btn btn-outline-danger" type="button">
                                             Remove
                                         </button>
                                     </div>

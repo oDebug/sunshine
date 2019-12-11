@@ -14,10 +14,15 @@ public class AliasService {
     @Autowired
     AliasRepository aliasRepository;
 
+    public Alias findById(Long id) {
+        return aliasRepository.findById(id).get();
+    }
     public void save(Alias alias) {
         aliasRepository.save(alias);
     }
-
+    public void delete(Alias alias) {
+        aliasRepository.delete(alias);
+    }
     public List<Alias> findByContactId(Long contactId) {
         return aliasRepository.findByContactId(contactId);
     }

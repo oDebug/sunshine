@@ -461,18 +461,13 @@ function removePhone() {
 }
 
 function removeAlias() {
-    var formData = {
-        aliasId: $("#inputGroupAliases").val() //get selected alias to remove (alias.id)
-
-    };
     $.ajax({
-        url: "/removeAlias",
-        contentType: "application/json",
-        dataType: "json",
-        data: JSON.stringify(formData),
+        url: "/deleteAlias",
+        data: {id: $("#inputGroupAliases").val()},
         type: "POST",
         success: function (data) {
-            //clear and update alias list in inputGroupAliases
+            populateAliases(data);
+            alert('Deleted');
         }
     })
 }
