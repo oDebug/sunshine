@@ -1,4 +1,4 @@
-create table contacts
+create table sunshine.contacts
 (
     id int(7) not null
         primary key,
@@ -11,25 +11,33 @@ create table contacts
     last_update_user varchar(10) null,
     status_code varchar(1) default 'A' not null,
     delete_timestamp timestamp null,
-    delete_user varchar(10) null,
-    email varchar(60) null
+    delete_user varchar(10) null
 )
-    comment 'Table for Organization data';
+    comment 'Table for Contact data';
 
 create index contact_types_type_code_fk
-    on contacts (type);
+    on sunshine.contacts (type);
 
-create definer = root@localhost trigger after_insert_contacts
-    after INSERT on contacts
+create definer = root@localhost trigger sunshine.after_insert_contacts
+    after INSERT on sunshine.contacts
     for each row
 BEGIN
     INSERT into sunshine.aliases(contact_id, name)
-    VALUES (new.id, new.name);
+    VALUES (new.id, new.id), (new.id, new.name);
 END;
 
-create definer = merrymac@localhost trigger before_insert_contacts
-    before INSERT on contacts
+create definer = merrymac@localhost trigger sunshine.before_insert_contacts
+    before INSERT on sunshine.contacts
     for each row
 begin
     SET new.id = get_next_gid();
+end;
+
+create definer = merrymac@localhost trigger sunshine.after_update_contacts
+    after UPDATE on sunshine.contacts
+    for each row
+begin
+    IF (new.name != old.name) THEN
+        update sunshine.aliases set name = new.name WHERE contact_id = old.id AND name = old.name;
+    END IF;
 end;

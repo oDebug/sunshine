@@ -11,16 +11,16 @@ $(document).ready(function ($) {
             name: $('#tboxNameAdd').val(),
             type: $('#selectboxTypeAdd').val(),
             email: $('#tboxEmailAdd').val(),
-            description: $('#lboxTypeDescriptions').val(),
-            street: $('#tboxStreetAdd').val(),
-            suite: $('#tboxSuiteAdd').val(),
-            city: $('#tboxCityAdd').val(),
-            state: $('#listStatesAdd').val(),
-            zip: $('#tboxZipAdd').val(),
-            addressType: $('#tboxAddressDescrAdd').val(),
-            phone: $('#tboxPhoneAdd').val(),
-            phoneType: $('#selectboxPhoneTypeAdd').val(),
-            extenstion: $('#tboxExtensionAdd').val()
+            description: $('#lboxTypeDescriptionsAdd').val(),
+            street: $('#tboxStreetAddContact').val(),
+            suite: $('#tboxSuiteAddContact').val(),
+            city: $('#tboxCityAddContact').val(),
+            state: $('#listStatesAddContact').val(),
+            zip: $('#tboxZipAddContact').val(),
+            addressType: $('#tboxAddressTypeAddContact').val(),
+            phone: $('#tboxPhoneAddContact').val(),
+            phoneType: $('#selectboxPhoneTypeAddContact').val(),
+            extension: $('#tboxExtensionAddContact').val()
         };
         $.ajax({
             url: "/addContact",
