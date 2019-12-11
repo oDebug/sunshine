@@ -242,7 +242,7 @@ public class ContactController {
                 return new ResponseEntity<Object>(addressResponse, HttpStatus.OK);
             }
 
-        } catch(Exception e) {
+        } catch (Exception e) {
             return new ResponseEntity<Object>(e, HttpStatus.EXPECTATION_FAILED);
         }
 
@@ -266,7 +266,7 @@ public class ContactController {
                 return new ResponseEntity<Object>(phoneResponse, HttpStatus.OK);
             }
 
-        } catch(Exception e) {
+        } catch (Exception e) {
             return new ResponseEntity<Object>(e, HttpStatus.EXPECTATION_FAILED);
         }
 
@@ -340,4 +340,26 @@ public class ContactController {
         }
 
     }
+
+    @RequestMapping(value = "/deleteAlias", method = RequestMethod.POST)
+    public ResponseEntity<Object> deleteAlias(@RequestParam("id") Long id) {
+        try {
+            //First, get the Phone object
+            Alias alias = aliasService.findById(id);
+            if (alias.getContact().getName().equalsIgnoreCase(alias.getAlias()) ||
+                    String.valueOf(alias.getContact().getId()).equalsIgnoreCase(alias.getAlias())) {
+                //Contact Name and ID are default search alias values, do not delete
+                return new ResponseEntity<Object>("Can not delete that alias", HttpStatus.EXPECTATION_FAILED);
+            }
+
+            aliasService.delete(alias);
+            List<Alias> aliasResponse = aliasService.findByContactId(alias.getContactId());
+            return new ResponseEntity<>(aliasResponse, HttpStatus.OK);
+
+        } catch (Exception e) {
+            return new ResponseEntity<Object>(e, HttpStatus.EXPECTATION_FAILED);
+        }
+
+    }
+
 }
