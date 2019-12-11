@@ -13,7 +13,18 @@
                 <form name="addAddressForm" id="frmAddAddress" autocomplete="off">
                     <input hidden type="text" id="addAddressId"/>
                     <!-- Address Desc, Address, Address2, City, State, Zip -->
-                    <div class="addressItem">
+                    <div class="addressItemAdd">
+                        <div class="form-row">
+                            <div class="form-group col-md-5">
+                                <label>Address Type.</label>
+                                <select class="custom-select form-control" id="selectboxAddressTypeAdd" name="addressTypeAdd">
+                                    <option selected>Choose...</option>
+                                    <option value="Home">Home</option>
+                                    <option value="Work">Work</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label>Street</label>
@@ -25,13 +36,13 @@
                                 <input type="text" class="form-control" name="suiteAdd"
                                        id="tboxSuiteAdd">
                             </div>
+                        </div>
+                        <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label>City</label>
                                 <input type="text" class="form-control" name="cityAdd"
                                        id="tboxCityAdd">
                             </div>
-                        </div>
-                        <div class="form-row">
                             <div class="form-group col-md-3">
                                 <label>State</label>
                                 <input class="form-control" list="states" name="stateAdd"
@@ -46,16 +57,7 @@
                                 <input type="text" class="form-control" name="zipAdd"
                                        id="tboxZipAdd">
                             </div>
-                            <div class="form-group col-md-5">
-                                <label>Descr.</label>
-                                <input type="text" class="form-control" name="addressDescrAdd"
-                                       id="tboxAddressDescrAdd">
-                            </div>
-                            <div class="form-group col-md-2 align-self-end">
-                                <button type='button' id='AddSaveButton'
-                                        class='btn btn-outline-success mt-2 mx-0'>Save
-                                </button>
-                            </div>
+
                         </div>
                     </div>
                 </form>

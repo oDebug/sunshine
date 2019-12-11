@@ -1,32 +1,17 @@
 $(document).ready(function ($) {
-    $('#contactTable').on("click", "#tableResults tr", function (e) {
-        var id = $(this).attr('id');
-        openEditForm(id);
-    });
     $("#submit-search").click(function (str) {
         showResults($('#search-string').val());
     });
+    $('#summernote').summernote({
+        toolbar: [
+            ['style', ['style']],
+            ['font', ['bold', 'underline', 'clear']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+        ],
+    });
     showResults("");
-
-    // $('#saveContact').click(function () {
-    //     var form = $("form#editContactModal");
-    //     $.ajax({
-    //         url: "/saveContact",
-    //         data: form.serialize(),
-    //         type: "POST",
-    //         success: function (data) {
-    //             window.location = 'searchContacts';
-    //
-    //         }
-    //     })
-    // });
 });
-
-
-
-
-
-
 
 function keyUpSearch(str) {
     //only run if string has 3+ chars. SOMEWHERE NEEDS TO BE ABLE TO SEARCH WITH 1 CHAR.
@@ -42,17 +27,7 @@ $('#searchForm').submit(function(e) {
     showResults(str);
 });
 
-function showResults(str) {
-    var url = "/listContacts";
-    $.ajax({
-        url: url,
-        type: "GET",
-        data: {name: str},
-        success: function (data) {
-            generateTable(data);
-        }
-    })
-}
+
 
 function addContact() //dont use
 {
@@ -60,31 +35,7 @@ function addContact() //dont use
 }
 
 
-function generateTable(data) {
-    $("#tableResults").empty(); //empty the table with id="tableResults"
-    var table = $("#tableResults"); //store reference to table
 
-    for (var i = 0; i < data.length; i++) //use data to fill rows
-    {
-        table.append(createRow(data[i]));
-    }
-}
-
-function createRow(data) {
-    // geocodeAddress(data); //this is just for testing. Need to send the actual data of the row clicked on.
-
-    var address = data.addresses[0].street + ", " + data.addresses[0].city + " " + data.addresses[0].state + ", " + data.addresses[0].postalCode;
-    var mapLink = "https://www.google.com/maps/search/?api=1&query=" + decodeURIComponent(address);
-
-    var trElement = "<tr class=\"clickable-row\" id=" + data.id + ">";
-    trElement += "<td>" + data.id + "</td>";
-    trElement += "<td>" + data.name + "</td>";
-    trElement += "<td>" + data.type + "</td>";
-    trElement += "<td>" + data.phones[0].phone + "</td>";
-    trElement += "<td>" + address + "</td>";
-    trElement += "<td align='center'>" + "<a class='map-link' target='_blank' href='" + mapLink + "'><i class='fas fa-map-marked-alt'></i></a>"+ "</td></tr>";
-    return trElement;
-}
 
 $("#frmAddContact").submit(function (e) {
     e.preventDefault(); //prevent usual post cycle
@@ -107,17 +58,17 @@ function setRemovingAlias(val) {
     document.getElementById("headerAlias").innerHTML = val;
 }
 
-function removeAlias() {
-    var list = document.getElementById("inputGroupAliases");
-
-    if (list.selectedIndex != 0) {
-        var alias = list.options[list.selectedIndex].value;
-        alert(alias);
-        list.remove(list.selectedIndex);
-    } else {
-        alert("Select an alias");
-    }
-}
+// function removeAlias() {
+//     var list = document.getElementById("inputGroupAliases");
+//
+//     if (list.selectedIndex != 0) {
+//         var alias = list.options[list.selectedIndex].value;
+//         alert(alias);
+//         list.remove(list.selectedIndex);
+//     } else {
+//         alert("Select an alias");
+//     }
+// }
 
 function addWebsiteListNew() {
     var websiteElement = '<div class="form-row" id="formRowWebsiteNew">';

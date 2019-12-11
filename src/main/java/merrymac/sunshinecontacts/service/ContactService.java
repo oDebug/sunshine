@@ -34,15 +34,19 @@ public class ContactService {
     public void saveContact(Contact contact) {
         contactRepository.save(contact);
     }
+
     public Contact getLastAddedContact() {
         return contactRepository.findTopByOrderByIdDesc();
     }
+
     public void savePhone(PhoneNumber phoneNumber) {
         phoneRepository.save(phoneNumber);
     }
+
     public void saveAddress(Address address) {
         addressRepository.save(address);
     }
+
     public Action saveAction(Action action) {
         actionRepository.save(action);
         return actionRepository.findTopByOrderByIdDesc();
@@ -57,17 +61,9 @@ public class ContactService {
         return response;
     }
 
-    public List<ContactResponse> listAll() {
-        List<Contact> contacts = (List<Contact>) contactRepository.findAll();
-        List<ContactResponse> response = new ArrayList<>();
-        for (Contact contact : contacts) {
-            response.add(toContactResponse(contact));
-        }
-        return response;
-    }
+    public List<ContactResponse> getRecentlyAddedContacts(int limit) {
+        List<Contact> contacts = contactRepository.findRecentContacts(limit);
 
-    public List<ContactResponse> getRecentlyAddedContacts() {
-        List<Contact> contacts = contactRepository.findTop5ByOrderByCreateTimestampDesc();
         List<ContactResponse> response = new ArrayList<>();
         for (Contact contact : contacts) {
             response.add(toContactResponse(contact));
@@ -81,6 +77,9 @@ public class ContactService {
         return response;
     }
 
+    public Contact getContactById(Long contactId) {
+        return contactRepository.findById(contactId).get();
+    }
     public void delete(Long id) {
         contactRepository.deleteById(id);
     }
@@ -111,5 +110,29 @@ public class ContactService {
         }
 
         return response;
+    }
+
+    public void deleteAddress(Address address) {
+        addressRepository.delete(address);
+    }
+
+    public Address getAddress(Long id) {
+        return addressRepository.findById(id).get();
+    }
+
+    public PhoneNumber getPhoneNumber(Long id) {
+        return phoneRepository.findById(id).get();
+    }
+
+    public void deletePhoneNumber(PhoneNumber phoneNumber) {
+        phoneRepository.delete(phoneNumber);
+    }
+
+    public List<PhoneNumber> getPhoneNumbersByContactId(Long contactId) {
+        return phoneRepository.findByContactId(contactId);
+    }
+
+    public List<Address> getAddressesByContactId(Long contactId) {
+        return addressRepository.findByContactId(contactId);
     }
 }

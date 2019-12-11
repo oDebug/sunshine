@@ -35,6 +35,9 @@ public class ContactResponseAdapter {
         response.setAliases(aliases);
         response.setSocialMedia(socialMedia);
         response.setEmail(contact.getEmail());
+        response.setNotes(contact.getNotes());
+        response.setDenomination(contact.getDenomination());
+
         return response;
     }
 

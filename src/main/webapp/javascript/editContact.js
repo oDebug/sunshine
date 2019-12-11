@@ -1,18 +1,29 @@
 $(document).ready(function ($) {
-    $('#editSaveButton').click(function (e) {
-        updateContact();
-    });
+    // $('#editSaveButton').click(function (e) {
+    //     updateContact();
+    // });
 
     $('#addActionButton').click(function (e) {
+        clearAddActionModal();
         $('#addActionModal').modal('show');
     });
 
     $('#newAddressButton').click(function (e) {
+        clearAddAddressModal();
         $('#addAddressModal').modal('show');
     });
 
-    $('#addPhoneButton').click(function (e) {
+    $('#newPhoneButton').click(function (e) {
+        clearAddPhoneModal();
         $('#addPhoneModal').modal('show');
+    });
+
+    $('#btnAddAlias').click(function (e) {
+        addAlias();
+    });
+
+    $('#btnRemoveAlias').click(function (e) {
+        removeAlias();
     });
 });
 
@@ -33,6 +44,7 @@ function clearEditForm() {
     $('#tlistStatesEdit').val("");
     $('#selectboxAddressesEdit').empty();
     $('#selectboxPhonesEdit').empty();
+    $('#summernote').summernote("reset");
 }
 
 function populateEditForm(data) {
@@ -40,17 +52,21 @@ function populateEditForm(data) {
     $('#editContactId').val(data.id);
     $('#tboxNameEdit').val(data.name);
     $('#selectboxTypeEdit').val(data.type);
+    $('#lboxTypeDescriptions').val(data.denomination);
     $('#tboxEmailEdit').val(data.email);
     populateAddresses(data.addresses);
     populatePhones(data.phones);
-
     generateActionsTableBody(data.actions);
+    populateAliases(data.aliases);
+    $('#summernote').summernote("code", data.notes);
+    $('#nameModalHeader').text(data.name);
 
     // generateWebsiteList(data);
 
 }
 
 function populateAddresses(data) {
+    $('#selectboxAddressesEdit').empty();
     $('#addressesCard').empty();
     var card = $('#addressesCard');
 
@@ -60,13 +76,14 @@ function populateAddresses(data) {
         if (i === 0) {
             $('#selectboxAddressesEdit').val(data[i].addressType)
 
-            var selectedAddress =  $('#' + data[i].addressType + 'Address');
+            var selectedAddress = $('#' + data[i].addressType + 'Address');
             selectedAddress.show();
         }
     }
-    typeChange(); //Run method to properly set Description options
 }
+
 function populatePhones(data) {
+    $('#selectboxPhonesEdit').empty();
     $('#phonesCard').empty();
     var card = $('#phonesCard');
 
@@ -76,88 +93,103 @@ function populatePhones(data) {
         if (i === 0) {
             $('#selectboxPhonesEdit').val(data[i].type)
 
-            var selectedPhone =  $('#' + data[i].type + 'Phone');
+            var selectedPhone = $('#' + data[i].type + 'Phone');
             selectedPhone.show();
         }
     }
 }
+
 function changeAddress() {
-    $('.addressItem').each(function() {
+    $('.addressItem').each(function () {
         $(this).hide();
     });
-    var selectedAddress =  $('#' + $('#selectboxAddressesEdit').val() + 'Address')
+    var selectedAddress = $('#' + $('#selectboxAddressesEdit').val() + 'Address') //#BusinessAddress, etc.
     selectedAddress.show();
 }
+
 function changePhone() {
-    $('.phoneItem').each(function() {
+    $('.phoneItem').each(function () {
         $(this).hide();
     });
-    var selectedPhone =  $('#' + $('#selectboxPhonesEdit').val() + 'Phone')
+    var selectedPhone = $('#' + $('#selectboxPhonesEdit').val() + 'Phone')
     selectedPhone.show();
 }
+
 function createAddressItem(data) {
+    var address = data.street + ", " + data.city + " " + data.state + ", " + data.postalCode;
+    var mapLink = "https://www.google.com/maps/search/?api=1&query=" + decodeURIComponent(address);
+
     var dataElement = "<div class='addressItem' style='display: none' id='" + data.addressType + "Address'>";
-    dataElement += "<div class='form-row'>";
+    dataElement += "<input hidden type='text' name='id' id='addressIdEdit' value='" + data.id + "'>";
+    dataElement += "<input hidden type='text' name='addressType' value='" + data.addressType + "'>";
+    dataElement += "<input hidden type='text' name='contactId' value='" + data.contactId + "'>";
+    dataElement += "<div class='form-row align-items-end'>";
     dataElement += "<div class='form-group col-md-6'>";
-    dataElement += "<input hidden type='text' id='addressIdEdit' value='" + data.id + "'></input>";
     dataElement += "<label>Street</label>";
-    dataElement += "<input type='text' class='form-control' name='streetEdit' id='tboxStreetEdit' value='" + data.street + "'>";
+    dataElement += "<input type='text' class='form-control' name='street' id='tboxStreetEdit' value='" + data.street + "'>";
     dataElement += "</div>";
     dataElement += "<div class='form-group col-md-2'>";
     dataElement += "<label>Suite</label>";
-    dataElement += "<input type='text' class='form-control' name='suiteEdit' id='tboxSuiteEdit' value='" + data.suite + "'>";
+    dataElement += "<input type='text' class='form-control' name='suite' id='tboxSuiteEdit' value='" + (data.suite != null ? data.suite : "") + "'>";
     dataElement += "</div>";
-    dataElement += "<div class='form-group col-md-4'>";
-    dataElement += "<label>City</label>";
-    dataElement += "<input type='text' class='form-control' name='cityEdit' id='tboxCityEdit' value='" + data.city + "'>";
+
+    dataElement += "<div class='form-group col-md-2 pb-3 pl-3'>";
+    dataElement += "<a id='mapLinkEdit' class='map-link' target='_blank' href='" + mapLink + "'><i class='fas fa-map-marked-alt'></i></a>";
     dataElement += "</div>";
+
     dataElement += "</div>";
     dataElement += "<div class='form-row'>";
+    dataElement += "<div class='form-group col-md-4'>";
+    dataElement += "<label>City</label>";
+    dataElement += "<input type='text' class='form-control' name='city' id='tboxCityEdit' value='" + data.city + "'>";
+    dataElement += "</div>";
     dataElement += "<div class='form-group col-md-3'>";
     dataElement += "<label>State</label>";
-    dataElement += "<input class='form-control' list='states' name='stateEdit' id='listStatesEdit' value='" + data.state + "'>";
+    dataElement += "<input class='form-control' list='states' name='state' id='listStatesEdit' value='" + data.state + "'>";
     dataElement += "<datalist id='states'><option value='MO'><option value='IL'></datalist>";
     dataElement += "</div>";
     dataElement += "<div class='form-group col-md-2'>";
     dataElement += "<label>Zip</label>";
-    dataElement += "<input type='text' class='form-control' name='zipEdit' id='tboxZipEdit' value='" + data.postalCode + "'>";
+    dataElement += "<input type='text' class='form-control' name='postalCode' id='tboxZipEdit' value='" + data.postalCode + "'>";
     dataElement += "</div>";
-    dataElement += "<div class='form-group col-md-5'>";
-    dataElement += "<label>Descr.</label>";
-    dataElement += "<input type='text' class='form-control' name='addressDescrEdit' id='tboxAddressDescrEdit' value='" + data.addressType + "'>";
-    dataElement += "</div>";
+    // dataElement += "<div class='form-group col-md-5'>";
+    // dataElement += "<label>Descr.</label>";
+    // dataElement += "<input type='text' class='form-control' name='addressDescrEdit' id='tboxAddressDescrEdit' value='" + data.addressType + "'>";
+    // dataElement += "</div>";
     dataElement += "<div class='form-group col-md-2 align-self-end'>";
-    dataElement += "<button type='button' id='editSaveButton' class='btn btn-outline-success mt-2 mx-0'>Save</button>";
+    dataElement += "<button type='button' id='editSaveButton' class='btn btn-outline-success mt-2 mx-0' onclick='updateAddress()'>Save</button>";
     dataElement += "</div>";
     dataElement += "</div>";
     dataElement += "</div>";
 
     return dataElement;
 }
+
 function createPhoneItem(data) {
     var dataElement = "<div class='phoneItem' style='display: none' id='" + data.type + "Phone'>";
+    dataElement += "<input hidden type='text' name='id' id='phoneIdEdit' value='" + data.id + "'>";
+    dataElement += "<input hidden type='text' name='type' id='phoneTypeEdit' value='" + data.type + "'>";
     dataElement += "<div class='form-row'>";
-    dataElement += "<div class='form-group col-md-4'>";
-    dataElement += "<input hidden type='text' id='phoneIdEdit' value='" + data.id + "'>";
-    dataElement += "<input hidden type='text' id='phoneTypeEdit' value='" + data.type + "'>";
+    dataElement += "<div class='form-group col-md-6'>";
     dataElement += "<label>Phone</label>";
-    dataElement += "<input type='text' class='form-control' name='phoneEdit' id='tboxPhoneEdit' value='" + data.phone +"'>";
-    dataElement += "</div>";
-    dataElement += "<div class='form-group col-md-3'>";
+    dataElement += "<input type='tel' name='phone' pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}' class='form-control' id='tboxPhoneEdit' value='" + data.phone + "'>";
+    dataElement += "</div>"; //closing form group div
+    dataElement += "<div class='form-group col-md-6'>";
     dataElement += "<label>Ext.</label>";
-    dataElement += "<input type='text' class='form-control' name='extensionEdit' id='tboxExtensionEdit' value='" + data.extension + "'>";
-    dataElement += "</div>";
+    dataElement += "<input type='text' class='form-control' name='extension' id='tboxExtensionEdit' value='" + (data.extension != null ? data.extension : "") + "'>";
+    dataElement += "</div>"; //closing form group div
+    dataElement += "</div>"; //closing form-row div
+    dataElement += "<div class='form-row'>";
     dataElement += "<div class='form-group col-md-2 align-self-end mx-0 px-0'>";
-    dataElement += "<button id='btnPhoneUpdate' type='button'class='btn btn-outline-success mt-2 mx-0'>Update</button>";
+    dataElement += "<button id='btnPhoneUpdate' type='button' onclick='updatePhone()' class='btn btn-outline-success mt-2 mx-0'>Save</button>";
     dataElement += "</div>";
-    dataElement += "<div class='form-group col-md-2 align-self-end mx-0 px-0'>";
-    dataElement += "<button type='button' class='btn btn-outline-danger mt-2 mx-0'>Remove</button>";
-    dataElement += "</div>";
+
     dataElement += "</div>";
     dataElement += "</div>";
 
-    return dataElement;
+    return dataElement.trim();
 }
+
 function generateActionsTableBody(data) {
     $("#actionTableBody").empty(); //empty the table with id="tableResults"
     var table = $("#actionTableBody"); //store reference to table
@@ -166,7 +198,13 @@ function generateActionsTableBody(data) {
         table.append(createActionTableRow(data[i]));
     }
 }
+
 function createActionTableRow(data) {
+    if (data.dueDate == null) {
+        data.dueDate = "N/A";
+    }
+
+
     var trElement = "<tr id='action" + data.id + "'>";
     trElement += "<td>" + data.createDate + "</td>";
     trElement += "<td>" + data.actionType + "</td>";
@@ -175,11 +213,18 @@ function createActionTableRow(data) {
     if (data.status === 'Completed') {
         trElement += "<option selected='Completed'>Completed</option>";
         trElement += "<option value='Follow Up'>Follow Up</option>";
-    } else {
+        trElement += "<option value='Cancelled'>Cancelled</option>";
+    } else if (data.status === 'Follow Up') {
         trElement += "<option value='Completed'>Completed</option>";
         trElement += "<option selected='Follow Up'>Follow Up</option>";
+        trElement += "<option value='Cancelled'>Cancelled</option>";
+    } else {
+        trElement += "<option value='Completed'>Completed</option>";
+        trElement += "<option value='Follow Up'>Follow Up</option>";
+        trElement += "<option selected='Cancelled'>Cancelled</option>";
     }
     trElement += "</select></td>";
+    trElement += "<td>" + data.dueDate + "</td>";
     trElement += "</tr>";
 
     return trElement;
@@ -258,7 +303,7 @@ function openEditForm(id) {
         success: function (data) {
             clearEditForm();
             populateEditForm(data);
-            geocodeAddress(data);
+            //geocodeAddress(data);
             $('#editContactModal').modal('show');
             $('.nav-tabs a[href="#edit"]').tab('show');
         }
@@ -266,17 +311,25 @@ function openEditForm(id) {
 }
 
 function updateContact() {
+    if ($('#tboxNameEdit').val() == "") {
+        $("#validateNameEdit").removeClass("d-none");
+        return;
+    }
+
+
+    var contact = getContact();
     var addressArray = getAddresses();
     var phoneArray = getPhones();
+    // for(var x = 0; x < phoneArray.length; x++)
+    // {
+    //     phoneArray[x].phone = phoneArray[x].phone.replace(/\D/g, ''); //strip non-numeric values
+    // }
+
     var formData = {
-        id: $('#editContactId').val(),
-        name: $('#tboxNameEdit').val(),
-        type: $('#selectboxTypeEdit').val(),
-        email: $('#tboxEmailEdit').val(),
-        description: $('#lboxTypeDescriptions').val(),
+        contact: contact,
         addresses: addressArray,
         phones: phoneArray
-};
+    };
     $.ajax({
         url: "/updateContact",
         contentType: "application/json",
@@ -284,14 +337,22 @@ function updateContact() {
         data: JSON.stringify(formData),
         type: "POST",
         success: function (data) {
+            $('#editContactModal').modal('hide');
+            showResults($('#search-string').val());
             alert('Contact updated successfully');
         }
     })
 }
 
+function hideValidationEdit() {
+    if (!$("#validateNameEdit").hasClass("d-none")) {
+        $("#validateNameEdit").addClass("d-none");
+    }
+}
+
 function getAddresses() {
     var addresses = new Array();
-    $('.addressItem').each(function() {
+    $('.addressItem').each(function () {
         var formData = {
             id: $(this).find('#addressIdEdit').val(),
             street: $(this).find('#tboxStreetEdit').val(),
@@ -299,7 +360,7 @@ function getAddresses() {
             city: $(this).find('#tboxCityEdit').val(),
             state: $(this).find('#listStatesEdit').val(),
             postalCode: $(this).find('#tboxZipEdit').val(),
-            addressType: $(this).attr('id').replace('Address','')
+            addressType: $(this).attr('id').replace('Address', '')
         }
         addresses.push(formData);
     });
@@ -309,10 +370,10 @@ function getAddresses() {
 
 function getPhones() {
     var phones = new Array();
-    $('.phoneItem').each(function() {
+    $('.phoneItem').each(function () {
         var formData = {
             id: $(this).find('#phoneIdEdit').val(),
-            phone: $(this).find('#tboxPhoneEdit').val(),
+            phone: $(this).find('#tboxPhoneEdit').val().replace(/\D/g, ''),
             extension: $(this).find('#tboxExtensionEdit').val(),
             phoneType: $(this).find('#phoneTypeEdit').val()
         }
@@ -322,31 +383,196 @@ function getPhones() {
     return phones;
 }
 
-function geocodeAddress(data) //THIS NOW WORKS
+function getContact() {
+    var contact = {
+        id: $('#editContactId').val(),
+        name: $('#tboxNameEdit').val(),
+        type: $('#selectboxTypeEdit').val(),
+        email: $('#tboxEmailEdit').val(),
+        description: $('#lboxTypeDescriptions').val(),
+        notes: $('#summernote').summernote('code')
+    }
+    return contact;
+}
+
+// function geocodeAddress(data) //THIS NOW WORKS
+// {
+//     var geocoder = new google.maps.Geocoder();
+//     var address = data.addresses[0].street + ", " + data.addresses[0].city + " " + data.addresses[0].state + ", " + data.addresses[0].postalCode;
+//     var coords;
+//     var bounds = new google.maps.LatLngBounds();
+//     document.getElementById('mapTabAddress').innerText = address;
+//
+//     geocoder.geocode({'address': address}, function(results, status) //Geocode
+//     {
+//         if (status === 'OK')
+//         {
+//             coords = results[0].geometry.location;
+//
+//             var map = new google.maps.Map(document.getElementById('mapPane'), {
+//                 center: coords,
+//                 zoom: 14
+//             });
+//
+//             var marker = new google.maps.Marker({map: map, position: coords});
+//
+//         }
+//         else
+//         {
+//             alert('Geocode was not successful for the following reason: ' + status);
+//         }
+//     });
+// };
+
+function removeAddress() {
+    var addrType = $('#selectboxAddressesEdit').val();
+    var addrId = $('#' + addrType + 'Address').find('#addressIdEdit').val();
+    $.ajax({
+        url: "deleteAddress",
+        type: "POST",
+        data: {id: addrId},
+        success: function (data) {
+            populateAddresses(data)
+            alert('Address Deleted')
+        },
+        fail: function (data) {
+            alert(data)
+        }
+    })
+};
+
+function removePhone() {
+    var phnType = $('#selectboxPhonesEdit').val();
+    var phnId = $('#' + phnType + 'Phone').find('#phoneIdEdit').val();
+    $.ajax({
+        url: "deletePhone",
+        type: "POST",
+        data: {id: phnId},
+        success: function (data) {
+            $('#selectboxPhonesEdit').empty();
+            $('#phonesCard').empty();
+            populatePhones(data)
+            alert('Phone Number Deleted')
+        },
+        fail: function (data) {
+            alert(data)
+        }
+    })
+}
+
+function removeAlias() {
+    $.ajax({
+        url: "/deleteAlias",
+        data: {id: $("#inputGroupAliases").val()},
+        type: "POST",
+        success: function (data) {
+            populateAliases(data);
+            alert('Deleted');
+        }
+    })
+}
+
+function addAlias() {
+    var formData = {
+        alias: $("#tboxNewAlias").val(), //get selected alias to add (alias.id)
+        contactId: $("#editContactId").val() //get id of contact to append alias to
+    };
+    $.ajax({
+        url: "/addAlias",
+        contentType: "application/json",
+        dataType: "json",
+        data: JSON.stringify(formData),
+        type: "POST",
+        success: function (data) {
+            populateAliases(data);
+            alert("Alias Added");
+        }
+    })
+}
+
+function populateAliases(data) //pass list of aliases associated with contact
 {
-    var geocoder = new google.maps.Geocoder();
-    var address = data.addresses[0].street + ", " + data.addresses[0].city + " " + data.addresses[0].state + ", " + data.addresses[0].postalCode;
-    var coords;
-    var bounds = new google.maps.LatLngBounds();
-    document.getElementById('mapTabAddress').innerText = address;
+    $('#tboxNewAlias').val("");
+    $('#inputGroupAliases').empty();
+    var list = $('#inputGroupAliases');
+    list.append("<option selected>Choose...</option>"); //Always add this option first
 
-    geocoder.geocode({'address': address}, function(results, status) //Geocode
-    {
-        if (status === 'OK')
-        {
-            coords = results[0].geometry.location;
+    for (var i = 0; i < data.length; i++) {
+        //create options
+        list.append("<option value='" + data[i].id + "'>" + data[i].alias + "</option>");
+    }
 
-            var map = new google.maps.Map(document.getElementById('mapPane'), {
-                center: coords,
-                zoom: 14
-            });
+}
 
-            var marker = new google.maps.Marker({map: map, position: coords});
+function updateAddress() {
+    var currentType = $('#selectboxAddressesEdit').val();
+    var currentAddr = $('#' + currentType + 'Address');
 
+    var formData = {
+        id: currentAddr.find('input[name="id"]').val(),
+        addressType: currentType,
+        contactId: currentAddr.find('input[name="contactId"]').val(),
+        street: currentAddr.find('input[name="street"]').val(),
+        suite: currentAddr.find('input[name="suite"]').val(),
+        city: currentAddr.find('input[name="city"]').val(),
+        state: currentAddr.find('input[name="state"]').val(),
+        postalCode: currentAddr.find('input[name="postalCode"]').val()
+    };
+
+    $.ajax({
+        url: "/saveAddress",
+        contentType: "application/json",
+        dataType: "json",
+        data: JSON.stringify(formData),
+        type: "POST",
+        success: function (data) {
+            populateAddresses(data)
         }
-        else
-        {
-            alert('Geocode was not successful for the following reason: ' + status);
+    })
+}
+
+function updatePhone() {
+    var currentType = $('#selectboxPhonesEdit').val();
+    var currentPhn = $('#' + currentType + 'Phone');
+
+    var formData = {
+        id: currentPhn.find('input[name="id"]').val(),
+        type: currentType,
+        contactId: currentPhn.find('input[name="contactId"]').val(),
+        phone: currentPhn.find('input[name="phone"]').val(),
+        extension: currentPhn.find('input[name="extension"]').val()
+    };
+
+    $.ajax({
+        url: "/savePhone",
+        contentType: "application/json",
+        dataType: "json",
+        data: JSON.stringify(formData),
+        type: "POST",
+        success: function (data) {
+            populatePhones(data)
         }
-    });
+    })
+}
+
+function clearAddPhoneModal() {
+    $('#tboxPhoneAdd').val("");
+    $('#tboxExtensionAdd').val("");
+    $('#selectboxPhoneTypeAdd').val("");
+}
+
+function clearAddAddressModal() {
+    $('#tboxStreetAdd').val("");
+    $('#tboxSuiteAdd').val("");
+    $('#tboxCityAdd').val("");
+    $('#listStatesAdd').val("");
+    $('#tboxZipAdd').val("");
+    $('#selectboxAddressTypeAdd').val("");
+}
+
+function clearAddActionModal() {
+    $('#selectboxActionTypeAdd').val("");
+    $('#selectActionStatusAdd').val("Completed");
+    $('#tboxActionNotesAdd').val("");
+    $('#dateActionDue').val("");
 }

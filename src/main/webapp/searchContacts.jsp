@@ -16,10 +16,19 @@
     <link rel="stylesheet" href="../css/addContact_style.css">
 
     <script src="javascript/jquery-3.4.1.min.js"></script>
+    <script src="javascript/popper.min.js"></script>
+    <script src="javascript/bootstrap.min.js"></script>
     <script src="javascript/searchContacts.js"></script>
+    <script src="javascript/searchContactResults.js"></script>
     <script src="javascript/editContact.js"></script>
+    <script src="javascript/addPhoneNumber.js"></script>
     <script src="javascript/addContact.js"></script>
     <script src="javascript/addAction.js"></script>
+    <script src="javascript/addAddress.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.js"></script>
 
     <title>Sunshine Ministries Contacts</title>
 </head>
@@ -28,9 +37,9 @@
 <jsp:include page="navbar.jsp"/>
 
 <div class="container-fluid px-5"><!--Big Div for padding page -->
-    <div class="row mx-4"> <!-- CONTACTS ROW -->
+    <div class="row mx-auto justify-content-center text-center"> <!-- CONTACTS ROW -->
         <div class="col p-0">
-            <h3 class="">Manage Contacts</h3>
+            <h3 class="mx-auto mt-2">Manage Contacts</h3>
         </div>
     </div>
     <div class="row mx-4"><!--SEARCH AND ADD CONTACT BTN ROW-->
@@ -47,29 +56,14 @@
         </div>
 
         <div class="col-2 px-0">
-                <button type="button" class="btn btn-primary float-right
-" data-toggle="modal" data-target="#inputContact">Add Contact</button>
-
+                <button type="button" class="btn btn-primary float-right"
+                        data-toggle="modal" data-target="#inputContact">Add Contact</button>
         </div>
 
     </div>
 
     <div class="row mx-4"> <!-- TABLE ROW -->
-        <table id="contactTable" class="table table-hover table-bordered">
-            <caption>Click on a table row to view more contact info and actions.</caption>
-            <thead class="thead-dark">
-            <tr class="header">
-                <th>ID#</th>
-                <th onclick="sortTable(0)">Name</th>
-                <th>Contact Type</th>
-                <th>Phone</th>
-                <th>Address</th>
-                <th style="text-align: center;">Map</th>
-            </tr>
-            </thead>
-            <tbody id="tableResults">
-            </tbody>
-        </table>
+        <jsp:include page="searchContactResults.jsp" />
     </div>
 
 </div> <!-- big div for padding page -->

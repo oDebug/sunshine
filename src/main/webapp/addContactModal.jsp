@@ -19,8 +19,8 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="tboxNameAdd">Name</label>
-                                        <input type="text" class="form-control" name="name" id="tboxNameAdd"
-                                               placeholder="Name">
+                                        <input type="text" class="form-control" name="name" id="tboxNameAdd" placeholder="Name" onkeyup="hideValidationAdd()">
+                                        <div id="validateNameAdd" class="d-none text-danger">Please provide a name.</div>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="selectboxTypeAdd">Contact Type</label>
@@ -81,21 +81,21 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label>Street</label>
-                                        <input type="text" class="form-control" name="street" id="tboxStreetAdd">
+                                        <input type="text" class="form-control" name="street" id="tboxStreetAddContact">
                                     </div>
                                     <div class="form-group col-md-2">
                                         <label>Suite</label>
-                                        <input type="text" class="form-control" name="suite" id="tboxSuiteAdd">
+                                        <input type="text" class="form-control" name="suite" id="tboxSuiteAddContact">
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label>City</label>
-                                        <input type="text" class="form-control" name="city" id="tboxCityAdd">
+                                        <input type="text" class="form-control" name="city" id="tboxCityAddContact">
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-3">
                                         <label>State</label>
-                                        <input class="form-control" list="states" name="stateAdd" id="listStatesAdd">
+                                        <input class="form-control" list="states" name="stateAdd" id="listStatesAddContact">
                                         <datalist id="states">
                                             <option value="MO">
                                             <option value="IL">
@@ -103,12 +103,12 @@
                                     </div>
                                     <div class="form-group col-md-2">
                                         <label>Zip</label>
-                                        <input type="text" class="form-control" name="zip" id="tboxZipAdd">
+                                        <input type="text" class="form-control" name="zip" id="tboxZipAddContact">
                                     </div>
                                     <div class="form-group col-md-5">
                                         <label>Descr.</label>
                                         <input type="text" class="form-control" name="addressType"
-                                               id="tboxAddressDescrAdd">
+                                               id="tboxAddressTypeAddContact">
                                     </div>
                                 </div>
                             </div>
@@ -121,7 +121,7 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-5">
                                         <label>Type</label>
-                                        <select class="custom-select" name="phoneType" id="selectboxPhoneTypeAdd">
+                                        <select class="custom-select" name="phoneType" id="selectboxPhoneTypeAddContact">
                                             <option selected>Choose...</option>
                                             <option value="Home">Home</option>
                                             <option value="Office">Office</option>
@@ -132,13 +132,13 @@
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label>Phone</label>
-                                        <input type="text" class="form-control" name="phone" id="tboxPhoneAdd"
+                                        <input type="text" class="form-control" name="phone" id="tboxPhoneAddContact"
                                                placeholder="Phone">
                                     </div>
                                     <div class="form-group col-md-3">
                                         <label>Ext.</label>
                                         <input type="text" class="form-control" name="extension"
-                                               id="tboxExtensionAdd">
+                                               id="tboxExtensionAddContact">
                                     </div>
                                 </div>
                             </div>

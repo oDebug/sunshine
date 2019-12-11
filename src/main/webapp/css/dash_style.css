@@ -19,22 +19,28 @@ html {
     background-size: cover;
 }
 
-#home-section {
-    color: white;
+#bgContainer {
+    background: url(../img/dash.jpg) no-repeat center center fixed;
+    background-size: cover;
 }
 
-#home-section .dark-overlay, .dark-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    min-height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-}
+/*#home-section {*/
+/*    color: white;*/
+/*}*/
 
-#home-section .home-inner {
-    padding-top: 200px;
-}
+/*#bgContainer {*/
+/*    */
+/*    */
+/*    top: 0;*/
+/*    left: 0;*/
+/*    width: 100%;*/
+/*    min-height: 100%;*/
+/*    background: rgba(0, 0, 0, 0.7);*/
+/*}*/
+
+/*#home-section .home-inner {*/
+/*    padding-top: 200px;*/
+/*}*/
 
 #home-section .card-form {
     opacity: 1;

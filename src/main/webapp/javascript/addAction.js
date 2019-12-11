@@ -6,9 +6,10 @@ $(document).ready(function ($) {
 function addNewAction(){
     var formData = {
         actionType: $('#selectboxActionTypeAdd').val(),
-        notes: $('#tboxActionNotes').val(),
-        status: $('#selectActionStatus').val(),
-        contactId: $('#editContactId').val()
+        notes: $('#tboxActionNotesAdd').val(),
+        status: $('#selectActionStatusAdd').val(),
+        contactId: $('#editContactId').val(),
+        dueDate: $('#dateActionDue').val()
     };
     $.ajax({
         url: "/addAction",

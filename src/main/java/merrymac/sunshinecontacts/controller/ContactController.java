@@ -5,6 +5,7 @@ import merrymac.sunshinecontacts.request.ContactRequest;
 import merrymac.sunshinecontacts.request.EditContactRequest;
 import merrymac.sunshinecontacts.response.ActionResponse;
 import merrymac.sunshinecontacts.response.ContactResponse;
+import merrymac.sunshinecontacts.service.AliasService;
 import merrymac.sunshinecontacts.service.ContactService;
 import merrymac.sunshinecontacts.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,12 +25,14 @@ public class ContactController {
     private ContactService contactService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private AliasService aliasService;
 
     @RequestMapping("/dashboard")
     public ModelAndView dashboard() {
         ModelAndView mav = new ModelAndView("dashboard");
 
-        List<ContactResponse> recentContacts = contactService.getRecentlyAddedContacts();
+        List<ContactResponse> recentContacts = contactService.getRecentlyAddedContacts(5);
         mav.addObject("recentContacts", recentContacts);
 
         List<ActionResponse> upcomingActions = contactService.getUpcomingActions();
@@ -43,7 +46,7 @@ public class ContactController {
     public List<ContactResponse> listContacts(@RequestParam(value = "name", defaultValue = "") String name) {
         List<ContactResponse> response;
         if (name.isEmpty()) {
-            response = contactService.getRecentlyAddedContacts();
+            response = contactService.getRecentlyAddedContacts(5);
         } else {
             response = contactService.searchByAlias(name);
         }
@@ -71,7 +74,7 @@ public class ContactController {
 
 
     @RequestMapping(value = "/validate", method = RequestMethod.GET)
-    public ResponseEntity<Object> deleteSport(@RequestParam("userid") String userId, @RequestParam("userpass") String userPass) {
+    public ResponseEntity<Object> validateUser(@RequestParam("userid") String userId, @RequestParam("userpass") String userPass) {
         try {
             User dbUser = userService.get(userId);
             if (dbUser.getPw().equals(userPass)) //if username + pw is valid
@@ -96,6 +99,7 @@ public class ContactController {
         try {
             contact.setId(0L);
             contact.setName(contactRequest.getName());
+            contact.setEmail(contactRequest.getEmail());
             contact.setType(contactRequest.getType());
             contact.setDenomination(contactRequest.getDescription());
             contact.setCreateTimestamp(new Timestamp(System.currentTimeMillis()));
@@ -106,11 +110,18 @@ public class ContactController {
             newAddress.setCity(contactRequest.getCity());
             newAddress.setState(contactRequest.getState());
             newAddress.setPostalCode(Long.parseLong(contactRequest.getZip()));
+            newAddress.setAddressType(contactRequest.getAddressType());
 
             newPhone.setId(0L);
             newPhone.setPhone(Long.parseLong(contactRequest.getPhone()));
             newPhone.setType(contactRequest.getPhoneType());
-            newPhone.setExtension(contactRequest.getExtension());
+
+            if (contactRequest.getExtension().isEmpty()) {
+                newPhone.setExtension(null);
+            } else {
+                newPhone.setExtension(Long.parseLong(contactRequest.getExtension()));
+            }
+
 
         } catch (Exception e) {
             e.getMessage();
@@ -185,23 +196,19 @@ public class ContactController {
         Long contactId;
         Timestamp currentTime = new Timestamp(System.currentTimeMillis());
         try {
-            contactId = Long.parseLong(contact.getId());
-            saveContact = new Contact();
-            saveContact.setId(contactId);
-            saveContact.setName(contact.getName());
-            saveContact.setEmail(contact.getEmail());
-            saveContact.setType(contact.getType());
-            saveContact.setDenomination(contact.getDescription());
+            saveContact = contact.getContact();
+            contactId = contact.getContact().getId();
+            saveContact.setStatusCode("A");
             saveContact.setLastUpdateTimestamp(currentTime);
-
+//            saveContact.setLastUpdateUser(currentUser);
             contactService.saveContact(saveContact);
 
             for (Address address : contact.getAddresses()) {
-//                address.setContactId(contactId);
+                address.setContactId(contactId);
                 contactService.saveAddress(address);
             }
             for (PhoneNumber phone : contact.getPhones()) {
-//                phone.setContactId(contactId);
+                phone.setContactId(contactId);
                 contactService.savePhone(phone);
             }
         } catch (Exception e) {
@@ -211,4 +218,144 @@ public class ContactController {
         ContactResponse newContact = contactService.get(contactId);
         return new ResponseEntity<Object>(newContact, HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/deleteAddress", method = RequestMethod.POST)
+    public ResponseEntity<Object> deleteAddress(@RequestParam("id") Long id) {
+        Long contactId;
+        try {
+//            Long addrId = Long.parseLong(id);
+            //First, get the Address object
+            Address address = contactService.getAddress(id);
+            contactId = address.getContactId();
+            //Second, make sure there is more than one address for the contact
+            int addrSize = contactService.get(contactId).getAddresses().size();
+            if (addrSize <= 1) {
+                return new ResponseEntity<Object>("Contact must have at least 1 address", HttpStatus.EXPECTATION_FAILED);
+            } else {
+                //If there is more than 1, we can delete
+                contactService.deleteAddress(address);
+                List<Address> addressResponse = contactService.get(contactId).getAddresses();
+                return new ResponseEntity<Object>(addressResponse, HttpStatus.OK);
+            }
+
+        } catch (Exception e) {
+            return new ResponseEntity<Object>(e, HttpStatus.EXPECTATION_FAILED);
+        }
+
+    }
+
+    @RequestMapping(value = "/deletePhone", method = RequestMethod.POST)
+    public ResponseEntity<Object> deletePhone(@RequestParam("id") Long id) {
+        Long contactId;
+        try {
+            //First, get the Phone object
+            PhoneNumber phoneNumber = contactService.getPhoneNumber(id);
+            contactId = phoneNumber.getContactId();
+            //Second, make sure there is more than one phone number for the contact
+            int phnSize = contactService.get(contactId).getPhones().size();
+            if (phnSize <= 1) {
+                return new ResponseEntity<Object>("Contact must have at least 1 address", HttpStatus.EXPECTATION_FAILED);
+            } else {
+                //If there is more than 1, we can delete
+                contactService.deletePhoneNumber(phoneNumber);
+                List<PhoneNumber> phoneResponse = contactService.getPhoneNumbersByContactId(contactId);
+                return new ResponseEntity<Object>(phoneResponse, HttpStatus.OK);
+            }
+
+        } catch (Exception e) {
+            return new ResponseEntity<Object>(e, HttpStatus.EXPECTATION_FAILED);
+        }
+
+    }
+
+    @RequestMapping(value = "/addPhone", method = RequestMethod.POST)
+    public ResponseEntity<Object> addPhone(@RequestBody PhoneNumber phone) {
+        try {
+            if (phone.getType().startsWith("Choose")) {
+                return new ResponseEntity<Object>("Invalid Phone Type: " + phone.getType(), HttpStatus.EXPECTATION_FAILED);
+            }
+            phone.setId(0L);
+            contactService.savePhone(phone);
+            List<PhoneNumber> phoneResponse = contactService.getPhoneNumbersByContactId(phone.getContactId());
+            return new ResponseEntity<Object>(phoneResponse, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<Object>(e, HttpStatus.EXPECTATION_FAILED);
+        }
+
+    }
+
+    @RequestMapping(value = "/addAddress", method = RequestMethod.POST)
+    public ResponseEntity<Object> addAddress(@RequestBody Address address) {
+        try {
+            if (address.getAddressType().startsWith("Choose")) {
+                return new ResponseEntity<Object>("Invalid Address Type: " + address.getAddressType(), HttpStatus.EXPECTATION_FAILED);
+            }
+            address.setId(0L);
+            contactService.saveAddress(address);
+            List<Address> addressResponse = contactService.getAddressesByContactId(address.getContactId());
+            return new ResponseEntity<Object>(addressResponse, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<Object>(e, HttpStatus.EXPECTATION_FAILED);
+        }
+
+    }
+
+    @RequestMapping(value = "/saveAddress", method = RequestMethod.POST)
+    public ResponseEntity<Object> saveAddress(@RequestBody Address address) {
+        try {
+            contactService.saveAddress(address);
+            List<Address> addressResponse = contactService.getAddressesByContactId(address.getContactId());
+            return new ResponseEntity<Object>(addressResponse, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<Object>(e, HttpStatus.EXPECTATION_FAILED);
+        }
+
+    }
+
+    @RequestMapping(value = "/savePhone", method = RequestMethod.POST)
+    public ResponseEntity<Object> savePhone(@RequestBody PhoneNumber phone) {
+        try {
+            contactService.savePhone(phone);
+            List<PhoneNumber> phoneResponse = contactService.getPhoneNumbersByContactId(phone.getContactId());
+            return new ResponseEntity<Object>(phoneResponse, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<Object>(e, HttpStatus.EXPECTATION_FAILED);
+        }
+
+    }
+
+    @RequestMapping(value = "/addAlias", method = RequestMethod.POST)
+    public ResponseEntity<Object> addAlias(@RequestBody Alias alias) {
+        try {
+            alias.setContact(contactService.getContactById(alias.getContactId()));
+            aliasService.save(alias);
+            List<Alias> aliasResponse = aliasService.findByContactId(alias.getContactId());
+            return new ResponseEntity<Object>(aliasResponse, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<Object>(e, HttpStatus.EXPECTATION_FAILED);
+        }
+
+    }
+
+    @RequestMapping(value = "/deleteAlias", method = RequestMethod.POST)
+    public ResponseEntity<Object> deleteAlias(@RequestParam("id") Long id) {
+        try {
+            //First, get the Phone object
+            Alias alias = aliasService.findById(id);
+            if (alias.getContact().getName().equalsIgnoreCase(alias.getAlias()) ||
+                    String.valueOf(alias.getContact().getId()).equalsIgnoreCase(alias.getAlias())) {
+                //Contact Name and ID are default search alias values, do not delete
+                return new ResponseEntity<Object>("Can not delete that alias", HttpStatus.EXPECTATION_FAILED);
+            }
+
+            aliasService.delete(alias);
+            List<Alias> aliasResponse = aliasService.findByContactId(alias.getContactId());
+            return new ResponseEntity<>(aliasResponse, HttpStatus.OK);
+
+        } catch (Exception e) {
+            return new ResponseEntity<Object>(e, HttpStatus.EXPECTATION_FAILED);
+        }
+
+    }
+
 }

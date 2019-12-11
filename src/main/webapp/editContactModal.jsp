@@ -3,6 +3,7 @@
     <div class='modal-dialog modal-xl' role='document'>
         <div class='modal-content'>
             <div class='modal-header'>
+                <h2 id="nameModalHeader"></h2>
                 <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
                     <span aria-hidden='true'>&times;</span>
                 </button>
@@ -23,12 +24,12 @@
                     </li>
                     <li class='nav-item'>
                         <a class='nav-link' id='alias-tab' data-toggle='tab' href='#alias' role='tab'
-                           aria-controls='action' aria-selected='false'>Alias</a>
+                           aria-controls='action' aria-selected='false'>Aliases</a>
                     </li>
-                    <li class='nav-item'>
-                        <a class='nav-link' id='map-tab' data-toggle='tab' href='#map' role='tab' aria-controls='action'
-                           aria-selected='false'>Map</a>
-                    </li>
+<%--                    <li class='nav-item'>--%>
+<%--                        <a class='nav-link' id='map-tab' data-toggle='tab' href='#map' role='tab' aria-controls='action'--%>
+<%--                           aria-selected='false'>Map</a>--%>
+<%--                    </li>--%>
                 </ul>
                 <div class='tab-content' id='myTabContent'>
                     <div class='tab-pane fade' id='edit' role='tabpanel' aria-labelledby='edit-tab'><!-- edit tab -->
@@ -47,8 +48,8 @@
                                             <div class="form-row">
                                                 <div class="form-group col-md-6">
                                                     <label for="tboxNameEdit">Name</label>
-                                                    <input type="text" class="form-control" name="nameEdit"
-                                                           id="tboxNameEdit" placeholder="Name">
+                                                    <input type="text" class="form-control" name="nameEdit" id="tboxNameEdit" placeholder="Name" onkeyup="hideValidationEdit()">
+                                                    <div id="validateNameEdit" class="d-none text-danger">Please provide a name.</div>
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <label for="selectboxTypeEdit">Contact Type</label>
@@ -77,8 +78,16 @@
                                                            placeholder="Denomination, Job Title, etc.">
                                                     <!-- populate list based on contact type via javascript by changing list attribute-->
                                                     <datalist id="churchTypeDescriptions">
+                                                        <option value="Assemblies of God">
                                                         <option value="Baptist">
                                                         <option value="Catholic">
+                                                        <option value="Church of God in Christ">
+                                                        <option value="Episcopalian">
+                                                        <option value="Greek Orthodox">
+                                                        <option value="Lutheran">
+                                                        <option value="Methodist">
+                                                        <option value="Non-Denominational">
+                                                        <option value="Presbyterian">
                                                     </datalist>
                                                     <datalist id="orgTypeDescriptions">
                                                         <option value="Charity">
@@ -105,7 +114,7 @@
 
                                 <div class="row"> <!-- Address row -------------------------------------->
                                     <div class="col-4 pr-1 mb-2">
-                                        <div class="card p-3 mt-2 h-100 border-success">
+                                        <div class="card p-3 mt-2 h-100 border-secondary">
                                             <div class="row">
                                                 <div class="col">
                                                     <label for="selectboxAddressesEdit">Addresses</label>
@@ -116,20 +125,18 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="row h-100 align-items-end">
-                                                <div class="col w-100">
-                                                    <button type='button' class='btn btn-outline-danger my-1 mx-0'>
-                                                        Remove
-                                                    </button>
+                                            <div class="form-row h-100 align-items-end">
+                                                <div class="col w-50">
+                                                    <button type='button' class='btn btn-block btn-outline-danger my-1 mx-0' onclick="removeAddress()">Remove</button>
                                                 </div>
-                                                <div class="col w-100">
-                                                    <button type='button' class='btn btn-outline-primary my-1 mx-0' id="newAddressButton">New</button>
+                                                <div class="col w-50">
+                                                    <button type='button' class='btn btn-block btn-outline-primary my-1 mx-0' id="newAddressButton">New</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-8 pl-1">
-                                        <div class="card p-3 mt-2 border-success" id="addressesCard">
+                                        <div class="card p-3 mt-2 border-secondary" id="addressesCard">
 
                                         </div>
                                     </div>
@@ -138,34 +145,34 @@
                                 <div class="row">
                                     <!--Phones Row------------------------------------------------------------------------------->
                                     <div class="col-4 pr-1 mb-2">
-                                        <div class="card p-3 mt-2 h-100 border-warning">
+                                        <div class="card p-3 mt-2 h-100 border-primary">
                                             <div class="form-row">
-                                                    <label>Phones</label>
+                                                <label>Phones</label>
                                                 <div class="input-group">
                                                     <select class="custom-select" id="selectboxPhonesEdit" name="phonesEdit" onchange="changePhone()"></select>
-                                                    <button type="button" id="addPhoneButton" class="btn btn-primary">Add Phone</button>
                                                 </div>
                                             </div>
-
+                                            <div class="form-row h-100 align-items-end">
+                                                <div class="col w-50">
+                                                    <button type='button' class='btn btn-block btn-outline-danger my-1 mx-0' onclick="removePhone()">
+                                                        Remove
+                                                    </button>
+                                                </div>
+                                                <div class="col w-50">
+                                                    <button type='button' class='btn btn-block btn-outline-primary my-1 mx-0' id="newPhoneButton">New</button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-8 pl-1">
-                                        <div class="card p-3 mt-2 border-warning" id="phonesCard">
+                                        <div class="card p-3 mt-2 border-primary" id="phonesCard">
 
                                         </div>
                                     </div>
                                 </div>
-                                <div id="websiteCard" class="card p-3 mt-2">
-                                    <div class="form-row">
-                                        <div class="form-group input-group col">
-                                            <input type="text" class="form-control" name="websiteEdit" id="websiteEdit"
-                                                   placeholder="https://example.com">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-outline-secondary" type="button">Go</button>
-                                                <button class="btn btn-outline-danger" type="button">Delete</button>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div id="notesCard" class="card p-3 mt-2">
+                                    <label>Notes</label>
+                                    <textarea id="summernote" name="editordata"></textarea>
                                 </div>
                                 <button type='button' class='btn btn-primary mt-2' onclick="clearEditForm()">Clear Form</button>
                             </form>
@@ -196,10 +203,11 @@
                                 <tr class="header">
                                     <%--                                        <th>Action ID</th>--%>
                                     <th>Date Created</th>
-                                    <%--                                        <th>Date Due</th>--%>
+
                                     <th>Type</th>
                                     <th>Notes</th>
                                     <th>Status</th>
+                                    <th>Date Due</th>
                                     <%--                                        <th>Date Completed</th>--%>
                                     <th class="d-none">Contact ID</th>
                                 </tr>
@@ -210,14 +218,15 @@
                     </div>
 
                     <div class='tab-pane fade' id='alias' role='tabpanel' aria-labelledby='alias-tab'>
-                        <h2 id="titleHeader" class="mt-2">Aliases for</h2>
-                        <form>
+                        <h2 id="titleHeaderAlias" class="mt-2 mb-3">Aliases</h2>
+                        <form id="addAliasForm">
                             <div class="form-row">
+                                <div class="col"></div>
                                 <div class="col-6">
                                     <div class="input-group mb-3">
-                                        <input type="text" class="form-control" placeholder="New Alias">
+                                        <input id="tboxNewAlias" type="text" class="form-control" placeholder="New Alias">
                                         <div class="input-group-append">
-                                            <button class="btn btn-outline-secondary" type="button">Add Alias</button>
+                                            <button id="btnAddAlias" class="btn btn-outline-secondary" type="button">Add Alias</button>
                                         </div>
                                     </div>
                                 </div>
@@ -226,9 +235,10 @@
                                 </div>
                             </div>
                         </form>
-
-                        <div class="row">
-                            <div class="col-6 pr-1">
+                        <form id="removeAliasForm">
+                            <div class="form-row">
+                                <div class="col"></div>
+                                <div class="col-6 pr-1">
                                 <h3>Remove Alias:</h3>
                                 <div class="input-group">
                                     <select class="custom-select" id="inputGroupAliases">
@@ -238,35 +248,31 @@
                                         <option value="Alias 3">Alias 3</option>
                                     </select>
                                     <div class="input-group-append">
-                                        <button class="btn btn-outline-danger" onclick="removeAlias()" type="button">
+                                        <button id="btnRemoveAlias" class="btn btn-outline-danger" type="button">
                                             Remove
                                         </button>
                                     </div>
                                 </div>
                             </div>
+                                <div class="col"></div>
                         </div>
-                        <div class="alert alert-warning alert-dismissible fade show">
-                            <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
+                        </form>
                     </div>
 
-                    <div class='tab-pane fade' id='map' role='tabpanel' aria-labelledby='map-tab'>
-                        <div class="container p-2">
-                            <div class="row ">
-                                <div class="col-3"></div>
-                                <div class="col-2 justify-content-center">
-                                    <div id="mapPane" class="m-0" style="height: 500px; width: 500px; box-shadow: 0px 0px 5px 0px #383838;"></div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-3"></div>
-                                <div class="col justify-content-center"><p id="mapTabAddress"></p></div>
-                            </div>
-                        </div>
-                    </div>
+<%--                    <div class='tab-pane fade' id='map' role='tabpanel' aria-labelledby='map-tab'>--%>
+<%--                        <div class="container p-2">--%>
+<%--                            <div class="row ">--%>
+<%--                                <div class="col-3"></div>--%>
+<%--                                <div class="col-2 justify-content-center">--%>
+<%--                                    <div id="mapPane" class="m-0" style="height: 500px; width: 500px; box-shadow: 0px 0px 5px 0px #383838;"></div>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                            <div class="row">--%>
+<%--                                <div class="col-3"></div>--%>
+<%--                                <div class="col justify-content-center"><p id="mapTabAddress"></p></div>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
                 </div>
             </div>
             <div class='modal-footer'>
@@ -279,4 +285,4 @@
 <jsp:include page="addActionModal.jsp"/>
 <jsp:include page="addAddressModal.jsp"/>
 <jsp:include page="addPhoneModal.jsp"/>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWPtNLGcAlbmiNAiT9Pn794fMGXc3N4CM"></script>
+<%--<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWPtNLGcAlbmiNAiT9Pn794fMGXc3N4CM"></script>--%>

@@ -23,10 +23,10 @@
                     <a class="nav-link" href="./help">Help <span class="sr-only" width="30" height="30"
                                                                  alt="Sunshine">(current)</span></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/">Log Out <span class="sr-only" width="30" height="30"
-                                                               alt="Sunshine">(current)</span></a>
-                </li>
+<%--                <li class="nav-item">--%>
+<%--                    <a class="nav-link" href="/">Log Out <span class="sr-only" width="30" height="30"--%>
+<%--                                                               alt="Sunshine">(current)</span></a>--%>
+<%--                </li>--%>
             </ul>
         </div>
     </div>

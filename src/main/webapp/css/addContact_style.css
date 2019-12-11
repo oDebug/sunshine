@@ -15,9 +15,24 @@
 /*    */
 /*}*/
 
+:root{
+    --gradient: linear-gradient(45deg, #b9c5c7, #e0dde2);
+}
+
 body {
     background-color: #c0c0c0;
+    /*background-image: var(--gradient);*/
+    /*background-size: 400%;*/
+    /*animation: bg-animation 20s infinite alternate-reverse;*/
+    /*min-height: 100vh;*/
+
 }
+
+@keyframes bg-animation{
+    0%{background-position: left;}
+    100%{background-position: right;}
+}
+
 .card {
     margin-top: 2rem;
 }
@@ -34,10 +49,18 @@ body {
     border-radius: 0px !important;
 }
 
-a.map-link{
+.map-link{
     color: #385a3e !important;
 }
 
 map-style{
      !important;
+}
+
+note-editor{
+    margin-top: 10px !important;
+}
+
+#nameModalHeader{
+    color: #721c24;
 }
