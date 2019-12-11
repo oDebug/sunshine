@@ -197,9 +197,11 @@ public class ContactController {
             contactService.saveContact(saveContact);
 
             for (Address address : contact.getAddresses()) {
+                address.setContactId(contactId);
                 contactService.saveAddress(address);
             }
             for (PhoneNumber phone : contact.getPhones()) {
+                phone.setContactId(contactId);
                 contactService.savePhone(phone);
             }
         } catch (Exception e) {

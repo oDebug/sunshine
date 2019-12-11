@@ -23,7 +23,7 @@ public class PhoneNumber {
     @Column(name = "phone")
     private Long phone;
 
-    @Column(name="phone_type")
+    @Column(name="phone_type", updatable = false)
     private String type;
 
     @Column(name="extension")
