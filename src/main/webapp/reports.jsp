@@ -70,8 +70,9 @@
 </header>
 <script src="./javascript/popper.min.js"></script>
 <script src="./javascript/bootstrap.min.js"></script>
+<script src="./DataTables/datatables.min.js"></script>
+<script src="./javascript/buildReport.js"></script>
 
-<script src="./javascript/buildReports.js"></script>
 </body>
 
 </html>

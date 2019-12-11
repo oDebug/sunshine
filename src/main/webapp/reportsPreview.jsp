@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -23,31 +24,24 @@
 
 <jsp:include page="navbar.jsp"/>
 
-
-<p>Output1</p>
-<c:forEach var="a" items="${actionType}">
-<p><c:out value="${a}"/></p>
-</c:forEach>
-<p>Output2</p>
-Number of Entries: ${size}
-
-
-
-<table id="actionReportTable" class="display" >
-    <thead>
-        <tr>
-            <th>Contact ID</th>
-            <th>Name</th>
-            <th>Contact Type</th>
-            <th>Action ID</th>
-            <th>Action Type</th>
-            <th>Action Status</th>
-            <th>Action Note</th>
-            <th>Create Date</th>
-        </tr>
+<div class="container mt-3 ml-4">
+    <div class="row"><h3 class="ml-3">Report Preview</h3></div>
+</div>
+<table id="actionReportTable" class="table table-hover table-bordered display">
+    <thead class="thead-dark">
+    <tr class="header">
+        <th>Contact ID</th>
+        <th>Name</th>
+        <th>Contact Type</th>
+        <th>Action ID</th>
+        <th>Action Type</th>
+        <th>Action Status</th>
+        <th>Action Note</th>
+        <th>Create Date</th>
+    </tr>
     </thead>
     <tbody>
-<c:forEach var="r" items="${results}">
+    <c:forEach var="r" items="${results}">
         <tr>
             <td>${r.contact.id}</td>
             <td>${r.contact.name}</td>
@@ -56,87 +50,69 @@ Number of Entries: ${size}
             <td>${r.actionType}</td>
             <td>${r.status}</td>
             <td>${r.notes}</td>
-            <td>${r.createDate}</td>
+            <td><fmt:formatDate pattern = "yyyy-MM-dd"
+                                value = "${r.createDate}" /></td>
         </tr>
-</c:forEach>
+    </c:forEach>
     </tbody>
 </table>
 
-<table id="table_id" class="table table-hover table-bordered display strip hover">
+<table id="table_id" class="table table-hover table-bordered display">
     <thead class="thead-dark">
     <tr class="header">
-        <th>Contact Type</th>
         <th>Contact ID</th>
         <th>Name</th>
+        <th>Contact Type</th>
         <th>Action ID</th>
         <th>Action Type</th>
-        <th>Status</th>
-        <th>Date</th>
-        <th>Note</th>
+        <th>Action Status</th>
+        <th>Action Note</th>
+        <th>Create Date</th>
     </tr>
     </thead>
     <tbody>
-    <tr>
-        <td>Person</td>
-        <td>1</td>
-        <td>Morgan Elder</td>
-        <td>1</td>
-        <td>Emailed</td>
-        <td>Completed</td>
-        <td>11/6/2019</td>
-        <td>None</td>
-    </tr>
-    <tr>
-        <td>Church</td>
-        <td>2</td>
-        <td>Hazelwood Baptist Church</td>
-        <td>2</td>
-        <td>Emailed</td>
-        <td>Completed</td>
-        <td>11/6/2019</td>
-        <td>None</td>
-    </tr>
-    <tr>
-        <td>Church</td>
-        <td>2</td>
-        <td>Hazelwood Baptist Church</td>
-        <td>3</td>
-        <td>GIK Pick-up</td>
-        <td>In progress</td>
-        <td>none</td>
-        <td>Left over Halloween candies</td>
-    </tr>
-    <tr>
-        <td>Church</td>
-        <td>3</td>
-        <td>St Louis Cathedral</td>
-        <td>4</td>
-        <td>Left Message</td>
-        <td>Complete</td>
-        <td>none</td>
-        <td>The pope will be talking next week.</td>
-    </tr>
+
 
     </tbody>
 </table>
-<c:forEach var="contact" items="${contactType}"></c:forEach>
-${contact}
+
+
+
 
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="javascript/jquery-3.4.1.min.js"></script>
 
-<script src="./javascript/popper.min.js"></script>
-<script src="./javascript/bootstrap.min.js"></script>
-<script type="text/javascript" charset="utf8" src="./DataTables/datatables.min.js"></script>
-<script src="./javascript/buildReports.js"></script>
+<script src="javascript/popper.min.js"></script>
+<script src="javascript/bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf8" src="DataTables/datatables.min.js"></script>
+<script src="javascript/buildReports.js"></script>
 
+<%--<script>--%>
+
+<%--    $('#example').DataTable( {--%>
+<%--        data: ${results},--%>
+<%--        columns: [--%>
+<%--            &lt;%&ndash;{ data: '${results.contact.id}' },&ndash;%&gt;--%>
+<%--            &lt;%&ndash;{ data: '${results.contact.name}' },&ndash;%&gt;--%>
+<%--            &lt;%&ndash;{ data: '${results.contact.type}' },&ndash;%&gt;--%>
+<%--            &lt;%&ndash;{ data: ${results.id} },&ndash;%&gt;--%>
+<%--            &lt;%&ndash;{ data: ${results.actionType} },&ndash;%&gt;--%>
+<%--            &lt;%&ndash;{ data: ${results.status} },&ndash;%&gt;--%>
+<%--            &lt;%&ndash;{ data: ${results.notes} }&ndash;%&gt;--%>
+<%--            { data: 'id' }--%>
+
+
+<%--        ]--%>
+<%--    } );--%>
+<%--</script>--%>
 <script>
-    //DataTable initialization
-    $(document).ready(function() {
-        $('table.display').DataTable();
-    } );
+    $(document).ready(function(){
+        console.log.(${results});
+    })
 </script>
+
+
 </body>
 </html>

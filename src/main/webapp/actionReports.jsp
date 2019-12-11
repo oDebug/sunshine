@@ -45,10 +45,13 @@
     <div class="col-sm-9">
         <div class="form-group">
             <select multiple class="form-control" name="actionStatusSelect" id="actionStatusSelect">
-                <option>In progress</option>
+                <option>In Progress</option>
                 <option>Completed</option>
                 <option>Canceled</option>
             </select>
+        </div>
+        <div class="alert alert-danger d-none" id="actionStatusAlert" role="alert">
+            <strong>Please select one, or more, action status.</strong>
         </div>
     </div>
 </div>
@@ -65,18 +68,24 @@
     </div>
 </div>
 <div class="form-group row">
-    <label for="startDate" class="col-sm-3">Start Date:</label>
+    <label for="actionStartDate" class="col-sm-3">Start Date:</label>
     <div class="col-sm-9">
         <div class="form-group">
-            <input type="date" class="form-control" id="startDate" >
+            <input type="date" class="form-control" id="actionStartDate" >
+        </div>
+        <div class="alert alert-danger d-none" id="actionStartDateAlert" role="alert">
+            <strong>Please select a start date.</strong>
         </div>
     </div>
 </div>
 <div class="form-group row">
-    <label for="endDate" class="col-sm-3">End Date:</label>
+    <label for="actionEndDate" class="col-sm-3">End Date:</label>
     <div class="col-sm-9">
         <div class="form-group">
-            <input type="date" class="form-control" id="endDate" >
+            <input type="date" class="form-control" id="actionEndDate" >
+        </div>
+        <div class="alert alert-danger d-none" id="actionEndDateAlert" role="alert">
+            <strong>Please select an end date.</strong>
         </div>
     </div>
 </div>

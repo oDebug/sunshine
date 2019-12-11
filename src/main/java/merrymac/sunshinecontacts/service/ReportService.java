@@ -33,14 +33,12 @@ public class ReportService {
 
     public List<Action> getActionReport(String[] actionType, String [] contactType) {
         List<Contact> contacts = contactRepository.findContactByTypeIn(contactType);
-        List<Action> results = actionRepository.findActionByActionTypeIn(actionType);
-        List<Action> actionByContactType = actionRepository.findActionByContactIn(contacts);
+//        List<Action> results = actionRepository.findActionByActionTypeIn(actionType);
+        List<Action> results = actionRepository.findActionByActionTypeInAndContactIn(actionType, contacts);
 
 
 
-
-        return actionByContactType;
-
+            return results;
 
 
     }

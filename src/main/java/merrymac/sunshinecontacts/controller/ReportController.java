@@ -38,8 +38,8 @@ public class ReportController {
 
 
 //        mav.addObject("results", results);
-        mav.addObject("actionType", actionType);
-        mav.addObject("contact", results);
+//        mav.addObject("actionType", actionType);
+        mav.addObject("results", results);
         return mav;
     }
 }

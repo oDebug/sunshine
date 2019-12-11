@@ -22,5 +22,6 @@ ActionRepository extends CrudRepository<Action, Long> {
 
     List<Action> findActionByActionTypeIn(String[] actionType);
 
-    List<Action> findActionByContactIn(List<Contact> contactType);
+    List<Action> findActionByActionTypeInAndContactIn(String[] actionType, List<Contact> contactType);
+
 }
