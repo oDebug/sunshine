@@ -5,6 +5,7 @@ import merrymac.sunshinecontacts.request.ContactRequest;
 import merrymac.sunshinecontacts.request.EditContactRequest;
 import merrymac.sunshinecontacts.response.ActionResponse;
 import merrymac.sunshinecontacts.response.ContactResponse;
+import merrymac.sunshinecontacts.service.AliasService;
 import merrymac.sunshinecontacts.service.ContactService;
 import merrymac.sunshinecontacts.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,8 @@ public class ContactController {
     private ContactService contactService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private AliasService aliasService;
 
     @RequestMapping("/dashboard")
     public ModelAndView dashboard() {
@@ -100,6 +103,7 @@ public class ContactController {
         try {
             contact.setId(0L);
             contact.setName(contactRequest.getName());
+            contact.setEmail(contactRequest.getEmail());
             contact.setType(contactRequest.getType());
             contact.setDenomination(contactRequest.getDescription());
             contact.setCreateTimestamp(new Timestamp(System.currentTimeMillis()));
@@ -110,11 +114,18 @@ public class ContactController {
             newAddress.setCity(contactRequest.getCity());
             newAddress.setState(contactRequest.getState());
             newAddress.setPostalCode(Long.parseLong(contactRequest.getZip()));
+            newAddress.setAddressType(contactRequest.getAddressType());
 
             newPhone.setId(0L);
             newPhone.setPhone(Long.parseLong(contactRequest.getPhone()));
             newPhone.setType(contactRequest.getPhoneType());
-            newPhone.setExtension(Long.parseLong(contactRequest.getExtension()));
+
+            if (contactRequest.getExtension().isEmpty()) {
+                newPhone.setExtension(null);
+            } else {
+                newPhone.setExtension(Long.parseLong(contactRequest.getExtension()));
+            }
+
 
         } catch (Exception e) {
             e.getMessage();
@@ -311,6 +322,19 @@ public class ContactController {
             contactService.savePhone(phone);
             List<PhoneNumber> phoneResponse = contactService.getPhoneNumbersByContactId(phone.getContactId());
             return new ResponseEntity<Object>(phoneResponse, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<Object>(e, HttpStatus.EXPECTATION_FAILED);
+        }
+
+    }
+
+    @RequestMapping(value = "/addAlias", method = RequestMethod.POST)
+    public ResponseEntity<Object> addAlias(@RequestBody Alias alias) {
+        try {
+            alias.setContact(contactService.getContactById(alias.getContactId()));
+            aliasService.save(alias);
+            List<Alias> aliasResponse = aliasService.findByContactId(alias.getContactId());
+            return new ResponseEntity<Object>(aliasResponse, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<Object>(e, HttpStatus.EXPECTATION_FAILED);
         }

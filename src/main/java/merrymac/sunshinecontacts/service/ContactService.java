@@ -61,15 +61,6 @@ public class ContactService {
         return response;
     }
 
-    public List<ContactResponse> listAll() {
-        List<Contact> contacts = (List<Contact>) contactRepository.findAll();
-        List<ContactResponse> response = new ArrayList<>();
-        for (Contact contact : contacts) {
-            response.add(toContactResponse(contact));
-        }
-        return response;
-    }
-
     public List<ContactResponse> getRecentlyAddedContacts(int limit) {
         List<Contact> contacts = contactRepository.findRecentContacts(limit);
 
@@ -86,6 +77,9 @@ public class ContactService {
         return response;
     }
 
+    public Contact getContactById(Long contactId) {
+        return contactRepository.findById(contactId).get();
+    }
     public void delete(Long id) {
         contactRepository.deleteById(id);
     }
