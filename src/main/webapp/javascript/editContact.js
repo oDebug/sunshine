@@ -95,7 +95,7 @@ function changeAddress() {
     $('.addressItem').each(function() {
         $(this).hide();
     });
-    var selectedAddress =  $('#' + $('#selectboxAddressesEdit').val() + 'Address')
+    var selectedAddress =  $('#' + $('#selectboxAddressesEdit').val() + 'Address') //#BusinessAddress, etc.
     selectedAddress.show();
 }
 function changePhone() {
@@ -302,6 +302,12 @@ function openEditForm(id) {
 }
 
 function updateContact() {
+    if($('#tboxNameEdit').val() == "")
+    {
+        $("#validateNameEdit").removeClass("d-none");
+        return;
+    }
+
     var contact = getContact();
     var addressArray = getAddresses();
     var phoneArray = getPhones();
@@ -322,6 +328,14 @@ function updateContact() {
             alert('Contact updated successfully');
         }
     })
+}
+
+function hideValidationEdit()
+{
+    if(!$("#validateNameEdit").hasClass("d-none"))
+    {
+        $("#validateNameEdit").addClass("d-none");
+    }
 }
 
 function getAddresses() {

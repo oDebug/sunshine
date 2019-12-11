@@ -19,7 +19,8 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="tboxNameAdd">Name</label>
-                                        <input type="text" class="form-control" name="name" id="tboxNameAdd" placeholder="Name" required>
+                                        <input type="text" class="form-control" name="name" id="tboxNameAdd" placeholder="Name" onkeyup="hideValidationAdd()">
+                                        <div id="validateNameAdd" class="d-none text-danger">Please provide a name.</div>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="selectboxTypeAdd">Contact Type</label>
