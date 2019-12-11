@@ -14,9 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
 import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -69,11 +67,7 @@ public class ContactController {
         return mav;
     }
 
-    @GetMapping("/reports")
-    public ModelAndView Reports() {
-        ModelAndView mav = new ModelAndView("reports");
-        return mav;
-    }
+
 
 
     @RequestMapping(value = "/validate", method = RequestMethod.GET)

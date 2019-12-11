@@ -11,4 +11,5 @@ public interface ContactRepository extends CrudRepository<Contact, Long> {
     Contact findById(Integer id);
     List<Contact>findTop5ByOrderByCreateTimestampDesc();
     Contact findTopByOrderByIdDesc();
+    List<Contact>findContactByTypeIn(String[] contactType);
 }

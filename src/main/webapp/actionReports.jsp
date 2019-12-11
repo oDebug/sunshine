@@ -1,24 +1,19 @@
-<form>
+<form class="d-none" name="actionReport" id="frmActionReport" autocomplete="off">
 <div class="form-group row">
-    <div class="col-sm-3">Contact Type:</div>
+    <label for="contactTypeSelect" class="col-sm-3 col-form-label">Contact Type:</label>
     <div class="col-sm-9">
-        <div class="form-check form-check-inline">
-            <input type="checkbox" class="form-check-input" id="orgType" >
-            <label class="form-check-label" for="orgType">
-                Organization
-            </label>
+        <div class="form-group">
+            <select multiple class="form-control" name="contactTypeSelect" id="contactTypeSelect">
+                <option>Church</option>
+                <option>Organization</option>
+                <option>Business</option>
+                <option>School</option>
+                <option>Person</option>
+                <option>Other</option>
+            </select>
         </div>
-        <div class="form-check form-check-inline">
-            <input type="checkbox" class="form-check-input" id="churchType" >
-            <label class="form-check-label" for="churchType">
-                Church
-            </label>
-        </div>
-        <div class="form-check form-check-inline">
-            <input type="checkbox" class="form-check-input" id="personType" >
-            <label class="form-check-label" for="personType">
-                Person
-            </label>
+        <div class="alert alert-danger " id="contactTypeAlert" role="alert">
+            <strong>Please select one, or more, contact type(s).</strong>
         </div>
     </div>
 </div>
@@ -27,19 +22,24 @@
     <div class="col-sm-9">
         <div class="form-group">
             <select multiple class="form-control" name="actionTypeSelect" id="actionTypeSelect">
-                <option>Emailed</option>
-                <option>GIK Drop-off</option>
-                <option>GIK Pick-up</option>
-                <option>Left Message</option>
-                <option>Phone Call</option>
-                <option>Sent Thank You Note</option>
-                <option>Tour of Sunshine</option>
-                <option>Visit/Speak at Church</option>
-                <option>Other</option>
+                <option value="Emailed">Emailed</option>
+                <option value="GIK Drop-off">GIK Drop-off</option>
+                <option value="GIK Pick-up">GIK Pick-up</option>
+                <option value="Left Message">Left Message</option>
+                <option value="Phone Call">Phone Call</option>
+                <option value="Sent Thank You Note">Sent Thank You Note</option>
+                <option value="Tour of Sunshine">Tour of Sunshine</option>
+                <option value="Visit/Speak at Church">Visit/Speak at Church</option>
+                <option value="Other">Other</option>
             </select>
+        </div>
+
+        <div class="alert alert-danger d-none" id="actionTypeAlert" role="alert">
+            <strong>Please select one, or more, action type(s).</strong>
         </div>
     </div>
 </div>
+
 <div class="form-group row">
     <label for="actionStatusSelect" class="col-sm-3 col-form-label">Action Status:</label>
     <div class="col-sm-9">
@@ -82,7 +82,7 @@
 </div>
 <div class="form-group row justify-content-center">
     <div class="col-sm-3">
-        <input type="button" id="buildReport" class="btn btn-secondary btn-block" value="Build">
+        <button type="button" id="buildActionReport" class="btn btn-secondary btn-block" >Build</button>
     </div>
 </div>
 </form>
