@@ -15,9 +15,24 @@
 /*    */
 /*}*/
 
+:root{
+    --gradient: linear-gradient(45deg, #b9c5c7, #e0dde2);
+}
+
 body {
     background-color: #c0c0c0;
+    /*background-image: var(--gradient);*/
+    /*background-size: 400%;*/
+    /*animation: bg-animation 20s infinite alternate-reverse;*/
+    /*min-height: 100vh;*/
+
 }
+
+@keyframes bg-animation{
+    0%{background-position: left;}
+    100%{background-position: right;}
+}
+
 .card {
     margin-top: 2rem;
 }
