@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<div class="modal fade" id="addPhoneModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="addPhoneModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
     <div class="modal-lg modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -14,6 +15,18 @@
                     <div class="card p-3 mt-2 border-primary">
                         <div class='phoneItemAdd' id='Phone'>
                             <div class='form-row'>
+                                <div class='form-group col-md-3'>
+                                    <label>Type</label>
+                                    <select class="custom-select form-control" id="selectboxPhoneTypeAdd" name="phoneTypeAdd">
+                                        <option selected>Choose...</option>
+                                        <option value="Home">Home</option>
+                                        <option value="Work">Work</option>
+                                        <option value="Mobile">Mobile</option>
+                                        <option value="Pager">Pager</option>
+                                        <option value="Fax">Fax</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
                                 <div class='form-group col-md-4'>
                                     <input hidden type='text' id='phoneIdAdd'>
                                     <label>Phone</label>
@@ -21,13 +34,9 @@
                                 </div>
                                 <div class='form-group col-md-3'>
                                     <label>Ext.</label>
-                                    <input type='text' class='form-control' name='extensionAdd' id='tboxExtensionAdd' value=''>
+                                    <input type='text' class='form-control' name='extensionAdd' id='tboxExtensionAdd'
+                                           value=''>
                                 </div>
-                                <div class='form-group col-md-3'>
-                                    <label>Type</label>
-                                    <input type='text' class='form-control' name='typeAdd' id='tboxTypeAdd' value=''>
-                                </div>
-
                             </div>
                         </div>
                     </div>

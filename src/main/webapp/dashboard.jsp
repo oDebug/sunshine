@@ -21,6 +21,7 @@
     <script src="javascript/editContact.js"></script>
     <script src="javascript/searchContactResults.js"></script>
     <script src="javascript/addContact.js"></script>
+    <script src="javascript/addPhoneNumber.js"></script>
     <script src="javascript/addAction.js"></script>
     <script src="javascript/dashboard.js"></script>
 
