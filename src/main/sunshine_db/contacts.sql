@@ -4,7 +4,7 @@ create table sunshine.contacts
         primary key,
     name varchar(45) not null,
     type varchar(20) not null,
-    denomination varchar(30) null,
+    description varchar(30) null,
     create_timestamp timestamp null,
     create_user varchar(10) null,
     last_update_timestamp timestamp null,

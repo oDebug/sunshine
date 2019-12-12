@@ -1,5 +1,6 @@
 package merrymac.sunshinecontacts.controller;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import merrymac.sunshinecontacts.dao.entity.*;
 import merrymac.sunshinecontacts.request.ContactRequest;
 import merrymac.sunshinecontacts.request.EditContactRequest;
@@ -70,11 +71,7 @@ public class ContactController {
         return mav;
     }
 
-    @GetMapping("/reports")
-    public ModelAndView Reports() {
-        ModelAndView mav = new ModelAndView("reports");
-        return mav;
-    }
+
 
 
     @RequestMapping(value = "/validate", method = RequestMethod.GET)
@@ -203,7 +200,7 @@ public class ContactController {
             saveContact = contact.getContact();
             contactId = contact.getContact().getId();
             saveContact.setStatusCode("A");
-            saveContact.setLastUpdateTimestamp(currentTime);
+            saveContact.setLastUpdateTimestamp(currentTime);;
 //            saveContact.setLastUpdateUser(currentUser);
             contactService.saveContact(saveContact);
 
@@ -248,7 +245,7 @@ public class ContactController {
 
     }
 
-    @RequestMapping(value = "/deletePhone", method = RequestMethod.POST)
+    @RequestMapping(value = "/deletePhone", method = RequestMethod.GET)
     public ResponseEntity<Object> deletePhone(@RequestParam("id") Long id) {
         Long contactId;
         try {
@@ -360,6 +357,13 @@ public class ContactController {
             return new ResponseEntity<Object>(e, HttpStatus.EXPECTATION_FAILED);
         }
 
+    }
+    @GetMapping("/help")
+    public ModelAndView help(Map<String, Object> model) {
+//        List<ContactResponse> response = contactService.listAll();
+        ModelAndView mav = new ModelAndView("help");
+//        mav.addObject("tblResults", response);
+        return mav;
     }
 
 }
