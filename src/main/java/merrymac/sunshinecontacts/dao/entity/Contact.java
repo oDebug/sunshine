@@ -5,13 +5,14 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 @Entity
 @Table(name = "contacts", schema = "sunshine")
 @Data
 @NoArgsConstructor
-public class Contact {
+public class Contact implements Serializable {
     @Id
     @Column(name = "id", updatable = false, nullable = false)
     private Long id;

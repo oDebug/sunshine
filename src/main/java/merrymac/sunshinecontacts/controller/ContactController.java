@@ -1,5 +1,6 @@
 package merrymac.sunshinecontacts.controller;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import merrymac.sunshinecontacts.dao.entity.*;
 import merrymac.sunshinecontacts.request.ContactRequest;
 import merrymac.sunshinecontacts.request.EditContactRequest;
@@ -199,7 +200,7 @@ public class ContactController {
             saveContact = contact.getContact();
             contactId = contact.getContact().getId();
             saveContact.setStatusCode("A");
-            saveContact.setLastUpdateTimestamp(currentTime);
+            saveContact.setLastUpdateTimestamp(currentTime);;
 //            saveContact.setLastUpdateUser(currentUser);
             contactService.saveContact(saveContact);
 
@@ -244,7 +245,7 @@ public class ContactController {
 
     }
 
-    @RequestMapping(value = "/deletePhone", method = RequestMethod.POST)
+    @RequestMapping(value = "/deletePhone", method = RequestMethod.GET)
     public ResponseEntity<Object> deletePhone(@RequestParam("id") Long id) {
         Long contactId;
         try {

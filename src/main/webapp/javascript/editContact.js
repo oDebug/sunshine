@@ -389,7 +389,7 @@ function getContact() {
         name: $('#tboxNameEdit').val(),
         type: $('#selectboxTypeEdit').val(),
         email: $('#tboxEmailEdit').val(),
-        description: $('#lboxTypeDescriptions').val(),
+        denomination: $('#lboxTypeDescriptions').val(),
         notes: $('#summernote').summernote('code')
     }
     return contact;
@@ -463,8 +463,8 @@ function removePhone() {
 function removeAlias() {
     $.ajax({
         url: "/deleteAlias",
-        data: {id: $("#inputGroupAliases").val()},
         type: "POST",
+        data: {id: $("#inputGroupAliases").val()},
         success: function (data) {
             populateAliases(data);
             alert('Deleted');
