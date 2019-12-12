@@ -24,7 +24,7 @@
 
 <jsp:include page="navbar.jsp"/>
 
-<div class="container mt-3 ml-4">
+<div class="container mt-3 ml-4" style="padding-top: 100px">
     <div class="row"><h3 class="ml-3">Report Preview</h3></div>
 </div>
 <table id="actionReportTable" class="table table-hover table-bordered display">
@@ -57,24 +57,24 @@
     </tbody>
 </table>
 
-<table id="table_id" class="table table-hover table-bordered display">
-    <thead class="thead-dark">
-    <tr class="header">
-        <th>Contact ID</th>
-        <th>Name</th>
-        <th>Contact Type</th>
-        <th>Action ID</th>
-        <th>Action Type</th>
-        <th>Action Status</th>
-        <th>Action Note</th>
-        <th>Create Date</th>
-    </tr>
-    </thead>
-    <tbody>
+<%--<table id="table_id" class="table table-hover table-bordered display">--%>
+<%--    <thead class="thead-dark">--%>
+<%--    <tr class="header">--%>
+<%--        <th>Contact ID</th>--%>
+<%--        <th>Name</th>--%>
+<%--        <th>Contact Type</th>--%>
+<%--        <th>Action ID</th>--%>
+<%--        <th>Action Type</th>--%>
+<%--        <th>Action Status</th>--%>
+<%--        <th>Action Note</th>--%>
+<%--        <th>Create Date</th>--%>
+<%--    </tr>--%>
+<%--    </thead>--%>
+<%--    <tbody>--%>
 
 
-    </tbody>
-</table>
+<%--    </tbody>--%>
+<%--</table>--%>
 
 
 
@@ -107,11 +107,7 @@
 <%--        ]--%>
 <%--    } );--%>
 <%--</script>--%>
-<script>
-    $(document).ready(function(){
-        console.log.(${results});
-    })
-</script>
+
 
 
 </body>

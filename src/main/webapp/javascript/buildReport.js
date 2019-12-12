@@ -41,20 +41,20 @@ $("#buildActionReport").click(function() {
             colReorder: true
         });
     }
-            $("#contactTypeAlert").removeClass('d-none');
-            console.log("Contact Types: " + contactTypeArray.join());
-            console.log("contact Type length : " + contactTypeArray.length);
-            console.log("Action Types: " + actionTypeArray.join());
-            console.log("Action Type length : " + actionTypeArray.length);
-            console.log("Action Types: " + actionTypeArray.join());
-            console.log("Action Type length : " + actionTypeArray.length);
-            console.log("Action Status: " + actionStatusArray.join());
-            console.log("Action Status length : " + actionStatusArray.length);
-            console.log("Start Date: " + actionStartDate);
-            console.log("Start Date length : " + actionStartDate.length);
-            console.log("End Date: " + actionEndDate);
-            console.log("End Date length : " + actionEndDate.length);
-            console.log(isValid());
+            // $("#contactTypeAlert").removeClass('d-none');
+            // console.log("Contact Types: " + contactTypeArray.join());
+            // console.log("contact Type length : " + contactTypeArray.length);
+            // console.log("Action Types: " + actionTypeArray.join());
+            // console.log("Action Type length : " + actionTypeArray.length);
+            // console.log("Action Types: " + actionTypeArray.join());
+            // console.log("Action Type length : " + actionTypeArray.length);
+            // console.log("Action Status: " + actionStatusArray.join());
+            // console.log("Action Status length : " + actionStatusArray.length);
+            // console.log("Start Date: " + actionStartDate);
+            // console.log("Start Date length : " + actionStartDate.length);
+            // console.log("End Date: " + actionEndDate);
+            // console.log("End Date length : " + actionEndDate.length);
+            // console.log(isValid());
 
 
 
@@ -63,12 +63,7 @@ $("#buildActionReport").click(function() {
                 function(htmlpage) {
 
                 $("html").empty();
-                    $("table.display").dataTable({
-                        "aaData": htmlpage,
-                        "columns" [{
-                            "data": "Action.id"
-                        }]
-                });
+
                 $("html").append(htmlpage);
                 console.log("success");
 

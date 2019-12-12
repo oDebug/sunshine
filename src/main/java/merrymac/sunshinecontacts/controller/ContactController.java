@@ -357,5 +357,12 @@ public class ContactController {
         }
 
     }
+    @GetMapping("/help")
+    public ModelAndView help(Map<String, Object> model) {
+//        List<ContactResponse> response = contactService.listAll();
+        ModelAndView mav = new ModelAndView("help");
+//        mav.addObject("tblResults", response);
+        return mav;
+    }
 
 }

@@ -12,7 +12,7 @@
                 <option>Other</option>
             </select>
         </div>
-        <div class="alert alert-danger " id="contactTypeAlert" role="alert">
+        <div class="alert alert-danger d-none" id="contactTypeAlert" role="alert">
             <strong>Please select one, or more, contact type(s).</strong>
         </div>
     </div>
@@ -40,55 +40,55 @@
     </div>
 </div>
 
-<div class="form-group row">
-    <label for="actionStatusSelect" class="col-sm-3 col-form-label">Action Status:</label>
-    <div class="col-sm-9">
-        <div class="form-group">
-            <select multiple class="form-control" name="actionStatusSelect" id="actionStatusSelect">
-                <option>In Progress</option>
-                <option>Completed</option>
-                <option>Canceled</option>
-            </select>
-        </div>
-        <div class="alert alert-danger d-none" id="actionStatusAlert" role="alert">
-            <strong>Please select one, or more, action status.</strong>
-        </div>
-    </div>
-</div>
-<div class="form-group row">
-    <div class="col-sm-3">Date Type:</div>
-    <div class="col-sm-9">
-        <div class="form-group">
-            <select class="custom-select" id="dateType">
-                <option selected>Choose...</option>
-                <option value="Created">Created</option>
-                <option value="Completed">Completed</option>
-            </select>
-        </div>
-    </div>
-</div>
-<div class="form-group row">
-    <label for="actionStartDate" class="col-sm-3">Start Date:</label>
-    <div class="col-sm-9">
-        <div class="form-group">
-            <input type="date" class="form-control" id="actionStartDate" >
-        </div>
-        <div class="alert alert-danger d-none" id="actionStartDateAlert" role="alert">
-            <strong>Please select a start date.</strong>
-        </div>
-    </div>
-</div>
-<div class="form-group row">
-    <label for="actionEndDate" class="col-sm-3">End Date:</label>
-    <div class="col-sm-9">
-        <div class="form-group">
-            <input type="date" class="form-control" id="actionEndDate" >
-        </div>
-        <div class="alert alert-danger d-none" id="actionEndDateAlert" role="alert">
-            <strong>Please select an end date.</strong>
-        </div>
-    </div>
-</div>
+<%--<div class="form-group row">--%>
+<%--    <label for="actionStatusSelect" class="col-sm-3 col-form-label">Action Status:</label>--%>
+<%--    <div class="col-sm-9">--%>
+<%--        <div class="form-group">--%>
+<%--            <select multiple class="form-control" name="actionStatusSelect" id="actionStatusSelect">--%>
+<%--                <option>In Progress</option>--%>
+<%--                <option>Completed</option>--%>
+<%--                <option>Canceled</option>--%>
+<%--            </select>--%>
+<%--        </div>--%>
+<%--        <div class="alert alert-danger d-none" id="actionStatusAlert" role="alert">--%>
+<%--            <strong>Please select one, or more, action status.</strong>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--</div>--%>
+<%--<div class="form-group row">--%>
+<%--    <div class="col-sm-3">Date Type:</div>--%>
+<%--    <div class="col-sm-9">--%>
+<%--        <div class="form-group">--%>
+<%--            <select class="custom-select" id="dateType">--%>
+<%--                <option selected>Choose...</option>--%>
+<%--                <option value="Created">Created</option>--%>
+<%--                <option value="Completed">Completed</option>--%>
+<%--            </select>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--</div>--%>
+<%--<div class="form-group row">--%>
+<%--    <label for="actionStartDate" class="col-sm-3">Start Date:</label>--%>
+<%--    <div class="col-sm-9">--%>
+<%--        <div class="form-group">--%>
+<%--            <input type="date" class="form-control" id="actionStartDate" >--%>
+<%--        </div>--%>
+<%--        <div class="alert alert-danger d-none" id="actionStartDateAlert" role="alert">--%>
+<%--            <strong>Please select a start date.</strong>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--</div>--%>
+<%--<div class="form-group row">--%>
+<%--    <label for="actionEndDate" class="col-sm-3">End Date:</label>--%>
+<%--    <div class="col-sm-9">--%>
+<%--        <div class="form-group">--%>
+<%--            <input type="date" class="form-control" id="actionEndDate" >--%>
+<%--        </div>--%>
+<%--        <div class="alert alert-danger d-none" id="actionEndDateAlert" role="alert">--%>
+<%--            <strong>Please select an end date.</strong>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--</div>--%>
 <div class="form-group row justify-content-center">
     <div class="col-sm-3">
         <button type="button" id="buildActionReport" class="btn btn-secondary btn-block" >Build</button>
