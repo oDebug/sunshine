@@ -28,60 +28,75 @@ public class ContactService {
     PhoneRepository phoneRepository;
     @Autowired
     ContactResponseAdapter contactResponseAdapter;
+    @Autowired
+    SocialMediaRepository socialMediaRepository;
 
-    public void save(Contact contact) {
+    public void saveContact(Contact contact) {
         contactRepository.save(contact);
+    }
+
+    public Contact getLastAddedContact() {
+        return contactRepository.findTopByOrderByIdDesc();
+    }
+
+    public void savePhone(PhoneNumber phoneNumber) {
+        phoneRepository.save(phoneNumber);
+    }
+
+    public void saveAddress(Address address) {
+        addressRepository.save(address);
+    }
+
+    public Action saveAction(Action action) {
+        actionRepository.save(action);
+        return actionRepository.findTopByOrderByIdDesc();
     }
 
     public List<ContactResponse> searchByAlias(String alias) {
         List<Contact> contacts = aliasRepository.searchByAlias(alias);
         List<ContactResponse> response = new ArrayList<>();
-        for (Contact org : contacts) {
-            response.add(toOrgResponse(org));
+        for (Contact contact : contacts) {
+            response.add(toContactResponse(contact));
         }
         return response;
     }
 
-    public List<ContactResponse> listAll() {
-        List<Contact> contacts = (List<Contact>) contactRepository.findAll();
-        List<ContactResponse> response = new ArrayList<>();
-        for (Contact org : contacts) {
-            response.add(toOrgResponse(org));
-        }
-        return response;
-    }
+    public List<ContactResponse> getRecentlyAddedContacts(int limit) {
+        List<Contact> contacts = contactRepository.findRecentContacts(limit);
 
-    public List<ContactResponse> getRecentlyAddedOrgs() {
-        List<Contact> contacts = contactRepository.findTop5ByOrderByCreateTimestampDesc();
         List<ContactResponse> response = new ArrayList<>();
-        for (Contact org : contacts) {
-            response.add(toOrgResponse(org));
+        for (Contact contact : contacts) {
+            response.add(toContactResponse(contact));
         }
         return response;
     }
 
     public ContactResponse get(Long id) {
         Contact contact = contactRepository.findById(id).get();
-        ContactResponse response = toOrgResponse(contact);
+        ContactResponse response = toContactResponse(contact);
         return response;
     }
 
+    public Contact getContactById(Long contactId) {
+        return contactRepository.findById(contactId).get();
+    }
     public void delete(Long id) {
         contactRepository.deleteById(id);
     }
 
-    private ContactResponse toOrgResponse(Contact contact) {
+    private ContactResponse toContactResponse(Contact contact) {
         ContactResponse response = new ContactResponse();
         ContactResponse element;
 
-        Long orgId = contact.getId();
+        Long contactId = contact.getId();
 
-        List<PhoneNumber> phones = phoneRepository.findByOrgId(orgId);
-        List<Action> actions = actionRepository.findByOrgId(orgId);
-        List<Address> addresses = addressRepository.findByOrgId(orgId);
-        List<Alias> aliases = aliasRepository.findByContactId(orgId);
+        List<PhoneNumber> phones = phoneRepository.findByContactId(contactId);
+        List<Action> actions = actionRepository.findByContactId(contactId);
+        List<Address> addresses = addressRepository.findByContactId(contactId);
+        List<Alias> aliases = aliasRepository.findByContactId(contactId);
+        List<SocialMedia> socialMedia = socialMediaRepository.findByContactId(contactId);
 
-        return contactResponseAdapter.toOrgResponse(contact, phones, addresses, actions, aliases);
+        return contactResponseAdapter.toContactResponse(contact, phones, addresses, actions, aliases, socialMedia);
 
     }
 
@@ -90,10 +105,34 @@ public class ContactService {
 
         List<ActionResponse> response = new ArrayList<>();
         for (Action action : results) {
-            Contact contact = contactRepository.findById(action.getOrgId()).get();
-            response.add(contactResponseAdapter.toOrgActionResponse(action, contact));
+            Contact contact = contactRepository.findById(action.getContactId()).get();
+            response.add(contactResponseAdapter.toContactActionResponse(action, contact));
         }
 
         return response;
+    }
+
+    public void deleteAddress(Address address) {
+        addressRepository.delete(address);
+    }
+
+    public Address getAddress(Long id) {
+        return addressRepository.findById(id).get();
+    }
+
+    public PhoneNumber getPhoneNumber(Long id) {
+        return phoneRepository.findById(id).get();
+    }
+
+    public void deletePhoneNumber(PhoneNumber phoneNumber) {
+        phoneRepository.delete(phoneNumber);
+    }
+
+    public List<PhoneNumber> getPhoneNumbersByContactId(Long contactId) {
+        return phoneRepository.findByContactId(contactId);
+    }
+
+    public List<Address> getAddressesByContactId(Long contactId) {
+        return addressRepository.findByContactId(contactId);
     }
 }

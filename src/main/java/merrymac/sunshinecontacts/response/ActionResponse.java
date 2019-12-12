@@ -14,7 +14,7 @@ public class ActionResponse {
     private Long id;
     private Contact contact;
     private String actionType;
-    private boolean completed;
+    private String status;
     private String notes;
     private Date dueDate;
     private String createUser;

@@ -1,0 +1,72 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<div class="modal fade" id="addActionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
+    <div class="modal-lg modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Add New Action</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- input form -->
+                <form name="addActionForm" id="frmAddAction" autocomplete="off">
+                    <input hidden type="text" id="addActionId"/>
+                    <div class="row">
+                        <div class="col">
+                            <div class="card p-3 mt-2 border-primary">
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="selectboxActionTypeAdd">Action Type</label>
+                                        <select class="custom-select" id="selectboxActionTypeAdd" name="type">
+<%--                                            <option selected="Donation - Money">Donation - Money</option>--%>
+<%--                                            <option value="Donation - Gift in Kind">Donation - Gift in Kind</option>--%>
+<%--                                            <option value="Correspondence">Correspondence</option>--%>
+<%--                                            <option value="Personal Visit">Personal Visit</option>--%>
+                                            <option selected value="Emailed">Emailed</option>
+                                            <option value="GIK Drop-off">GIK Drop-off</option>
+                                            <option value="GIK Pick-up">GIK Pick-up</option>
+                                            <option value="Left Message">Left Message</option>
+                                            <option value="Phone Call">Phone Call</option>
+                                            <option value="Sent Thanks">Sent Thanks</option>
+                                            <option value="Tour of Sunshine">Tour of Sunshine</option>
+                                            <option value="Visit/Speak at Church">Visit/Speak at Church</option>
+
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="selectActionStatusAdd">Status</label>
+                                        <select class='custom-select' id="selectActionStatusAdd">
+                                            <option selected='Completed'>Completed</option>
+                                            <option value='In Progress'>In Progress</option>
+                                            <option value='Canceled'>Canceled</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label>Notes</label>
+                                        <input type="text" class="form-control" id="tboxActionNotesAdd" name="notes"
+                                               placeholder="Notes...">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label>Due (optional)</label>
+                                        <input type="date" class="form-control" id="dateActionDue" >
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class='modal-footer'>
+<%--                <button type='button' class='btn btn-primary' onclick="clearAddForm()">Clear Form</button>--%>
+                <button type='button' class='btn btn-primary' id="addActionSaveButton">Add Action</button>
+                <button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>
+            </div>
+        </div> <!-- end of modal-content-->
+    </div> <!-- end of modal role=document -->
+</div>
+<!-- end of model fade -->

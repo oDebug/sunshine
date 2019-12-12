@@ -17,13 +17,15 @@ public class PhoneNumber {
     @Column(name = "id", updatable = false, nullable = false)
     private Long id;
 
-    @Column(name = "org_id", insertable = false, updatable = false)
-    private Long orgId;
+    @Column(name = "contact_id", updatable = false)
+    private Long contactId;
 
     @Column(name = "phone")
     private Long phone;
 
-    @Column(name="phone_type")
+    @Column(name="phone_type", updatable = false)
     private String type;
 
+    @Column(name="extension")
+    private Long extension;
 }

@@ -1,18 +1,12 @@
 package merrymac.sunshinecontacts.dao.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -23,20 +17,19 @@ import java.util.Date;
 public class Action implements Serializable {
 
     @Id
-    @GeneratedValue
     @Column(name="id", updatable=false, nullable=false)
     private Long id;
 
-    @Column(name="org_id", insertable = false, updatable = false)
-    private Long orgId;
+    @Column(name="contact_id", updatable = false)
+    private Long contactId;
 
     @Column(name="action_type")
     private String actionType;
 
-    @Column(name="complete_status")
-    private boolean completed;
+    @Column(name="status")
+    private String status;
 
-    @Column(name="action_notes")
+    @Column(name="notes")
     private String notes;
 
     @Column(name="due_date")
@@ -54,4 +47,10 @@ public class Action implements Serializable {
     @Column(name="complete_user")
     private String completeUser;
 
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "contact_id", referencedColumnName="id",
+            insertable =  false, updatable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private Contact contact;
 }

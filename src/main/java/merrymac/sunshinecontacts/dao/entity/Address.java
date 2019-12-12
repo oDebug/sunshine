@@ -14,15 +14,17 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class Address implements Serializable {
     @Id
-    @GeneratedValue
     @Column(name="id", updatable=false, nullable=false)
     private Long id;
 
-    @Column(name="org_id", insertable = false, updatable = false)
-    private Long orgId;
+    @Column(name="contact_id", updatable = false)
+    private Long contactId;
 
     @Column(name="street")
     private String street;
+
+    @Column(name="suite")
+    private String suite;
 
     @Column(name="city")
     private String city;
@@ -33,4 +35,6 @@ public class Address implements Serializable {
     @Column(name="postal_code")
     private Long postalCode;
 
+    @Column(name="address_type", updatable = false)
+    private String addressType;
 }

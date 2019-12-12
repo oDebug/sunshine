@@ -6,6 +6,21 @@
     padding-bottom: 0px;
 }
 
-.navbar img {
-    width: 12rem;
+/*.navbar img {*/
+/*    width: 12rem;*/
+/*}*/
+
+.navbar-nav > li{
+    padding-left:7px;
+    padding-right:7px;
 }
+
+
+/*.navbar-nav > li > a:after {*/
+/*    content: '';*/
+/*    width: 0;*/
+/*    height: 100%;*/
+/*    border: 1px solid black;*/
+/*    top: 0;*/
+/*    left: 100px;*/
+/*}*/

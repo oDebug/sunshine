@@ -1,19 +1,27 @@
 package merrymac.sunshinecontacts.dao.repository;
 
 import merrymac.sunshinecontacts.dao.entity.Action;
+import merrymac.sunshinecontacts.dao.entity.Contact;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public interface ActionRepository extends CrudRepository<Action, Long> {
+@Repository
+public interface
+ActionRepository extends CrudRepository<Action, Long> {
 
     @Query("SELECT a " +
             "FROM Action a " +
-            "WHERE a.completed=false " +
-            "AND a.dueDate BETWEEN current_date AND current_date + 5 " +
-            "ORDER BY a.dueDate ASC ")
+            "WHERE a.status <> 'Completed' " +
+            "ORDER BY a.createDate desc ")
     List<Action> findTop5ByOrderByDueDateAsc ();
+    Action findTopByOrderByIdDesc();
+    List<Action> findByContactId(Long contactId);
 
-    List<Action> findByOrgId(Long orgId);
+    List<Action> findActionByActionTypeIn(String[] actionType);
+
+    List<Action> findActionByActionTypeInAndContactIn(String[] actionType, List<Contact> contactType);
+
 }

@@ -1,76 +1,33 @@
-<!-- sorting columns by clicking headers -->
-// function sortTable(n) {
-//     var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-//     table = document.getElementById("contactTable");
-//     switching = true;
-//     // Set the sorting direction to ascending:
-//     dir = "asc";
-//     /* Make a loop that will continue until
-//     no switching has been done: */
-//     while (switching) {
-//         // Start by saying: no switching is done:
-//         switching = false;
-//         rows = table.rows;
-//         /* Loop through all table rows (except the
-//         first, which contains table headers): */
-//         for (i = 1; i < (rows.length - 1); i++) {
-//             // Start by saying there should be no switching:
-//             shouldSwitch = false;
-//             /* Get the two elements you want to compare,
-//             one from current row and one from the next: */
-//             x = rows[i].getElementsByTagName("TD")[n];
-//             y = rows[i + 1].getElementsByTagName("TD")[n];
-//             /* Check if the two rows should switch place,
-//             based on the direction, asc or desc: */
-//             if (dir == "asc") {
-//                 if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-//                     // If so, mark as a switch and break the loop:
-//                     shouldSwitch = true;
-//                     break;
-//                 }
-//             } else if (dir == "desc") {
-//                 if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-//                     // If so, mark as a switch and break the loop:
-//                     shouldSwitch = true;
-//                     break;
-//                 }
-//             }
-//         }
-//         if (shouldSwitch) {
-//             /* If a switch has been marked, make the switch
-//             and mark that a switch has been done: */
-//             rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-//             switching = true;
-//             // Each time a switch is done, increase this count by 1:
-//             switchcount++;
-//         } else {
-//             /* If no switching has been done AND the direction is "asc",
-//             set the direction to "desc" and run the while loop again. */
-//             if (switchcount == 0 && dir == "asc") {
-//                 dir = "desc";
-//                 switching = true;
-//             }
-//         }
-//     }
-// }
+$(document).ready(function ($) {
+    $("#submit-search").click(function (str) {
+        showResults($('#search-string').val());
+    });
+    $('#summernote').summernote({
+        toolbar: [
+            ['style', ['style']],
+            ['font', ['bold', 'underline', 'clear']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+        ],
+    });
+    showResults("");
+});
+
 function keyUpSearch(str) {
     //only run if string has 3+ chars. SOMEWHERE NEEDS TO BE ABLE TO SEARCH WITH 1 CHAR.
     if (str.toString().length > 2) {
         showResults(str);
+    } else if (str === "") {
+        showResults(str)
     }
 }
+$('#searchForm').submit(function(e) {
+    e.preventDefault();
+    var str = $('#search-string').val();
+    showResults(str);
+});
 
-function showResults(str) {
-    var url = "/listOrgs";
-    $.ajax({
-        url: url,
-        type: "GET",
-        data: {name: str},
-        success: function (data) {
-            generateTable(data);
-        }
-    })
-}
+
 
 function addContact() //dont use
 {
@@ -78,80 +35,47 @@ function addContact() //dont use
 }
 
 
-function generateTable(data) {
-    $("#tableResults").empty(); //empty the table with id="tableResults"
-    var table = $("#tableResults"); //store reference to table
 
-    for (var i = 0; i < data.length; i++) //use data to fill rows
-    {
-        table.append(createRow(data[i]));
-    }
+
+$("#frmAddContact").submit(function (e) {
+    e.preventDefault(); //prevent usual post cycle
+    var form = $(this); //set the form that called this method to a var
+    var url = form.attr('action');
+    alert("Data sent looks like: " + form.serialize());
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: form.serialize(), //serialize the form input data
+        success: function (data) {
+            alert("Success: This is ajax at bottom of searchContacts.jsp"); //test alert
+        }
+    });
+
+    $('#inputContact').modal('hide');
+});
+
+function setRemovingAlias(val) {
+    document.getElementById("headerAlias").innerHTML = val;
 }
 
-function createRow(data) {
-    var trElement = "<tr class=\"clickable-row\">";
-    trElement += "<td><a href='editContact?id=" + data.id + "'>" + data.id + "</a></td>";
-    trElement += "<td>" + data.name + "</td>";
-    trElement += "<td>" + data.type + "</td>";
-    trElement += "<td>" + data.phones[0].phone + "</td>";
-    trElement += "<td>" + data.addresses[0].street + "</td></tr>";
-    return trElement;
+
+function addWebsiteListNew() {
+    var websiteElement = '<div class="form-row" id="formRowWebsiteNew">';
+    websiteElement += '<div class="form-group input-group col">';
+    websiteElement += '<input type="text" class="form-control" name="websiteEdit" id="websiteEditNew" value="" placeholder="https://example.com">';
+    websiteElement += '<div class="input-group-append">';
+    websiteElement += '<button class="btn btn-outline-primary" type="button" onclick="addWebsite()">Add Website</button>';
+    websiteElement += '</div></div></div>';
+
+    return websiteElement;
 }
 
-$(document).ready(function ($) {
-    $(".clickable-row").click(function() {
-        window.location = $(this).data("href");
-    });
-    $("#submit-search").click(function(str) {
-        showResults($('#search-string').val());
-    });
-    showResults("");
+$(document).on('hidden.bs.modal', '.modal', function () //Not Working Yet
+{
+    $('modal:visible').length && $(document.body).addClass('modal-open');
 });
 
 
-// $('#contactTable tbody').on('click', 'tr', function () {
-//
-//     if ($('#contactLabel').length) {
-//         $('#contactLabel').remove();
-//         $('#contactTitle').remove();
-//     }
-//     var rowContact = $(this).find('td:nth-of-type(3)').text();
-//     var contactID = $(this).find('td:nth-of-type(1)').text();
-//     var name = $(this).find('td:nth-of-type(2)').text();
-//
-//     $('#orgModal').modal('show');
-//
-//     $('#orgModal .modal-header').prepend('<h5 class="modal-title" id="contactTitle">' + name + '</h5>')
-//     $('#rowContact').append('<div id="contactLabel"><label>Contact Type: ' + rowContact + '</label></br><label id="contactIDLabel" >Contact ID: ' + contactID + '</label></div>');
-//
-//     if (rowContact === "Person" || rowContact === "PN") {
-//         $('#orgTypeShow').addClass('d-none');
-//         $('#denomShow').addClass('d-none');
-//     } else if (rowContact === "Church" || rowContact === "CH") {
-//         $('#orgTypeShow').addClass('d-none');
-//         $('#denomShow').removeClass('d-none');
-//
-//     } else {
-//         $('#denomShow').addClass("d-none");
-//         $('#orgTypeShow').removeClass('d-none');
-//     }
-//
-// });
-//
-// $(document).on('hidden.bs.modal', '.modal', function () {
-//     $('.modal:visible').length && $(document.body).addClass('modal-open');
-// });
-//
-// $('#addContactBtn').on('click', function () {
-//     $('#orgRadio').click(function () {
-//         $('#churchSelect').addClass("d-none");
-//         $('#orgSelect').removeClass('d-none');
-//     });
-//
-//     $('#churchRadio').click(function () {
-//
-//         $('#orgSelect').addClass('d-none');
-//         $('#churchSelect').removeClass('d-none');
-//
-//     });
-// });
+
+
+

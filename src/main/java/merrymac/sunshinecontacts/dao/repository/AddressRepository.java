@@ -6,5 +6,5 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface AddressRepository extends CrudRepository<Address, Long> {
-    List<Address> findByOrgId(Long orgId);
+    List<Address> findByContactId(Long contactId);
 }
